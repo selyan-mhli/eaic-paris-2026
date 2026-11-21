@@ -29,4 +29,7 @@
 - Étape 3 : écrire le plan de requêtes `ep-*` (ex. 20 prompts × 5 répétitions = 100) dans `c2/PLAN.md`
   en PR, relu avant de lancer quoi que ce soit.
 
+Plan de requêtes : [PLAN.md](PLAN.md) (budget ref-* mesuré : 1 000 000, ep-* : 100). Analyse hors ligne :
+`analyze.py` (tests : `pytest c2/test_analyze.py`, synthétique via `synth.py`). Copie du scoreur : `kit/`.
+
 Fiche complète : [../docs/HACKATHON.md](../docs/HACKATHON.md).
