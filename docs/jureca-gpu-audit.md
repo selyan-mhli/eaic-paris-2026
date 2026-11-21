@@ -33,8 +33,8 @@ des nœuds occupés sans modifier le code Python.
 | 14 × `j1` (15901196-201, 15901227-234) | mouhali1 | `work_c1/j1_run.sbatch` → `box_search.py --shard k --nshards 6/8` | 1 GPU, 32 CPU | 4 GPU, 256 CPU, 1 nœud chacun | GPU0 seul : 13,7-18,5 Go/40 Go, activité moyenne 14 % (voir ci-dessous) ; GPU1-3 : 0 %, 0 Mo ; 1 process Python à ~100 % d'un cœur, load ≈ 1 ; RAM 24/503 Go | **Non optimal** : 3 GPU sur 4 inactifs, CPU à moins de 1 % |
 | `j1` terminés (15901137, 15901150, 15901151, 15901153) | mouhali1 | `j1_heats.sbatch` → `real_heats.py` | 1 GPU | 1 nœud entier | 1-12 min ; logs : 0,23-1,31 s par image | Non optimal (même schéma) ; 2 jobs d'essai d'une minute ont mobilisé un nœud entier |
 | `j1s` (15901315 FAILED en 18 s, 15901339, 15901340) | mouhali1 | `work_seg/run.sbatch` (`--ntasks-per-node=4 --gres=gpu:4`) | 4 GPU, 4 tâches | 4 GPU | essais de 1-1,5 min, non échantillonnés | Bonne forme d'allocation ; voir le risque de partage des données au § 3 |
-| `j3u` (15901265) | zhang95 | non lu (dossier `unlearning/`) | 1 GPU | nœud entier | en COMPLETING, non échantillonné | Probablement le même schéma 1 GPU/nœud (à confirmer) |
-| — | pelet1 | — | — | — | aucun job | — |
+| `j3v` (15901389), et avant `j3u`/`j3s`/`j3` | zhang95 | `unlearning/*_job.sh` → `unlearn_v2.py`, `soup_search.py`, `audit.py`, `unlearn.py` | 1 GPU, 8 CPU | 4 GPU, 256 CPU, billing 128 (au lieu de 4) | non mesurable (`srun --overlap` refusé sur le job d'un autre utilisateur) | **Non optimal** : même schéma, voir § 1 bis |
+| — | pelet1 | `model_equality/` (requêtes HTTP vers le serveur, `PARALLEL = 4`) | — | — | aucun job, aucun log dans `output/` | **Correct** : la tâche 2 n'a pas besoin de GPU, il ne faut pas réserver de nœud pour elle |
 
 Activité GPU0, échantillon de 8 s à 1 Hz par job (`nvidia-smi -l 1`) :
 
@@ -54,6 +54,37 @@ alloués. Il s'agit de l'activité GPU (`utilization.gpu`), pas d'un pourcentage
 - Attente en file (Submit → Start), n = 22 : médiane 413 s, p90 472 s, maximum 513 s.
 - Démarrage : environ 20 s entre le début du batch et le début du step `srun` (15901137, 15901153, 15901339).
 - Aucun job bloqué en CONFIGURING côté SLZ au moment de la mesure. Un job d'une autre équipe l'était.
+
+### 1 bis. Tâche 3 (zhang95) et tâche 2 (pelet1), mesurés à 16:52
+
+`sacct` ne montre pas les jobs des autres comptes depuis `mouhali1`, et `srun --jobid=15901389 --overlap`
+renvoie `Access/permission denied`. Sources utilisées : `squeue`, `scontrol show job`, les scripts et les
+logs de `unlearning/output/`.
+
+- **zhang95, `j3v` 15901389** (`unlearn_v2_job.sh`) : ReqTRES `cpu=8, gres/gpu=1, billing=4` ;
+  AllocTRES `cpu=256, gres/gpu=4, billing=128`. Comme pour T1 : un nœud entier pour un GPU.
+- Les quatre scripts de zhang95 (`audit_job.sh`, `soup_job.sh`, `unlearn_job.sh`, `unlearn_v2_job.sh`) ont tous
+  `--gres=gpu:1 --cpus-per-task=8`. Jobs précédents : 15901166, 15901181, 15901265 (`j3u`,
+  16:36:53-16:38:08), 15901355 (`j3s`, 16:43:09-16:45:00). Ce sont des jobs courts, lancés en série.
+- `unlearn_v2.py` : fine-tuning de ViT-B/16 en AMP fp16, batch 64, 20 epochs, avec une augmentation
+  **image par image dans une boucle Python** (`_augment_then_preprocess`, `_random_erase_uint8`).
+  Log mesuré : étape 160 atteinte environ 3 min après le départ, soit environ 1 étape/s.
+  Estimation non mesurée : sur une A100, ViT-B/16 en fp16 avec batch 64 (élève plus modèle d'origine)
+  devrait tenir plusieurs étapes/s, donc l'augmentation sur CPU limite probablement le débit.
+- `soup_search.py` et les checkpoints `ckpt_ent04/08/12/16.pt` montrent un balayage d'hyperparamètres
+  mené en série. Chaque variante est indépendante, ce qui en fait le cas idéal pour 4 variantes en parallèle, une par GPU.
+- **pelet1** : aucun job en cours ni récent visible. `model_equality/query_reference.py` interroge le
+  serveur en HTTP (`PARALLEL = 4`) et n'utilise pas de GPU. C'est correct : les requêtes peuvent partir
+  du nœud de login ou du poste local, sans réserver de nœud.
+
+Recommandations pour T3 :
+1. Lancer **4 variantes par nœud** (lr, epochs, niveaux d'entropie) avec le même modèle de sbatch :
+   `CUDA_VISIBLE_DEVICES=$SLURM_LOCALID`, une configuration par `$SLURM_LOCALID`. Gain : ×4 sur le
+   balayage par nœud (estimation).
+2. Faire l'augmentation **sur GPU et sur tout le batch** : charger `images` sur `cuda` une seule fois
+   (`forget_images.npz`, 527 Mo), utiliser des transformations `torchvision.transforms.v2` sur le batch,
+   et un random erasing vectorisé par masque. Gain non mesuré ; à vérifier avec `nvidia-smi` sur son propre job.
+3. Préférer bf16 à fp16 sur A100 (plus de `GradScaler` à gérer). Gain de vitesse faible, mais plus stable (estimation).
 
 ### Réservation `cispahack` (mesuré)
 
@@ -166,8 +197,10 @@ doivent être identiques à ceux du schéma actuel pour les mêmes shards.
 
 - Le fournisseur ONNX Runtime effectivement utilisé par StegaStamp sur les nœuds (CUDA ou repli CPU).
 - La part du temps prise par Python, les transferts et l'inférence : aucun profilage, seulement `top` et `nvidia-smi`.
-- Les jobs de zhang95 (`unlearning/`) et pelet1 (`model_equality/`) : scripts non lus, `sacct` des autres
-  utilisateurs non visible depuis `mouhali1`, un seul job zhang95 vu (en COMPLETING).
+- L'activité GPU réelle des jobs de zhang95 : `srun --overlap` est refusé sur le job d'un autre
+  utilisateur, et `sacct` d'autrui n'est pas visible. Pour la mesurer, zhang95 doit lancer elle-même
+  `srun --jobid=<id> --overlap nvidia-smi`.
+- La cause du débit d'environ 1 étape/s de `unlearn_v2.py` (augmentation CPU) : c'est une hypothèse.
 - La cause du FAILED de 15901315 (`j1s`).
 - L'isolation GPU effective : les étapes `--overlap` voient les 4 GPU, ce qui est cohérent avec le message
   « Do not constrain GPU devices with Slurm ». Le changelog JURECA évoque une activation des cgroups GPU,
