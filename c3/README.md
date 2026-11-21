@@ -30,7 +30,7 @@
 | Fichier | Rôle | État |
 |---|---|---|
 | `eval.py` | Validation locale par proxys (retain, forget, fp16, format), affiche `score: <float>` | testé sur modèle factice et sur timm `vit_tiny` / `vit_base` à poids aléatoires ; **jamais lancé sur le vrai `model.pt`** |
-| `test_eval.py` | Tests CPU de `eval.py` (~4 s) | en CI : les tests numpy tournent, ceux qui demandent torch/timm sont sautés (la CI n'installe que numpy) |
+| `test_eval.py` | Tests CPU de `eval.py` | tous exécutés en CI (torch 2.15.0 CPU, timm 1.0.31, versions du `.venv` JURECA) ; sautés seulement si torch/timm manquent |
 | `unlearn_pack.sh` | 4 variantes de `unlearn_v2.py` en parallèle sur un nœud | jamais lancé |
 | `audit.py`, `unlearn_v2.py`, `soup_search.py`, `unlearn.py`, jobs `j3*` | Méthode de Yihuan | **sur JURECA seulement**, à verser (voir plus bas) ; résultats à préciser par Yihuan |
 
