@@ -13,6 +13,9 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install ruff==0.8.6 numpy pytest
+      # Tests c3 : mêmes versions que le .venv officiel JURECA (torch 2.15.0+cu132, timm 1.0.31), roue CPU.
+      - run: pip install torch==2.15.0 torchvision --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install timm==1.0.31
       # Erreurs bloquantes seulement (syntaxe, noms indéfinis, imports cassés).
       - run: ruff check --select E9,F63,F7,F82 .
-      - run: pytest -q c1/test_metric.py c2/test_analyze.py c2/test_features.py
+      - run: pytest -q -rs c1/test_metric.py c2/test_analyze.py c2/test_features.py c3/test_eval.py
