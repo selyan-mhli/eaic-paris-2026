@@ -22,8 +22,26 @@ son propre espace JURECA, pas dans le dossier partagé.
 - Toute expérience a une ligne dans `docs/experiences.md` : hypothèse, changement, coût, score local, score serveur.
 - Validation locale avant soumission ; le serveur masque les scores inférieurs à ton meilleur.
 - Jamais de clé API dans le dépôt : variable `EAIC_API_KEY` seulement.
-- Un propriétaire par dossier `cN/`, petits commits, `git pull --rebase` avant de pousser.
+- Un propriétaire par dossier `cN/` ; tout passe par une PR (voir ci-dessous).
 - Aucune collaboration avec une autre équipe (règle des organisateurs : disqualification).
+
+## Workflow Git (PR obligatoire)
+
+```bash
+# une fois, dans TON espace JURECA (pas dans le dossier partagé SLZ)
+cd /p/scratch/training2666/$USER && git clone https://github.com/selyan-mhli/eaic-paris-2026.git
+# à chaque changement
+git switch main && git pull --rebase
+git switch -c feat/c3-scrub          # feat/cN-…, fix/cN-…, docs/…
+git add c3/ && git commit -m "feat(c3): SCRUB baseline"
+git push -u origin HEAD
+gh pr create --fill                  # ou le lien affiché par git push
+```
+
+- Jamais de push direct sur `main` ; une PR par idée, petite, fusionnée vite (squash).
+- La CI (ruff + tests) doit être verte ; le propriétaire du dossier relit (`.github/CODEOWNERS`).
+- Code dans `cN/` du dépôt ; données, poids, `.venv` et sorties restent dans le dossier SLZ.
+- Dépendance en plus : `uv add <paquet>` dans le dossier de la tâche, pas `pip install` à la main.
 
 ## Cluster JURECA
 
