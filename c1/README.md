@@ -6,7 +6,7 @@
 - **But :** pour chaque image test 512×512, un masque binaire 128×128 (1 = watermarqué).
   Méthodes : PixelSeal, TrustMark, StegaStamp. Le test donne la méthode et le message.
 - **Métrique :** mIoU sur 2 classes, moyennée par image. Public 30 %, final 70 %.
-- **Soumission :** `.pt` `{"image_names": names, "masks": Tensor[N,128,128]}` en 0/1, ≤ 20 Mo.
+- **Soumission :** `.pt` `{"image_names": names, "masks": Tensor[N,128,128]}` en 0/1, ≤ 25 Mo (README du kit officiel ; un tenseur bool fait ~17 Mo), chargé avec `weights_only=True`.
 - **Validation locale :** k-fold sur les 510 images train, stratifié par méthode et type d'édition.
 
 Fiche complète : [../docs/HACKATHON.md](../docs/HACKATHON.md).
