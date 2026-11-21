@@ -149,24 +149,30 @@ def divergence(pid: str, text: str) -> float | None:
 
 
 def determinism(grouped: dict) -> dict:
-    """{endpoint: fraction des prompts où toutes ses répétitions (>= 2) sont identiques}. Un endpoint
-    décodé en greedy approche 1 ; sert à savoir si l'égalité exacte entre endpoints est une preuve."""
+    """{endpoint: fraction des prompts où toutes ses répétitions non vides (>= 2) sont identiques}. Un endpoint
+    décodé en greedy approche 1 ; sert à savoir si l'égalité exacte entre endpoints est une preuve. Les
+    réponses vides sont absentes ; un endpoint sans aucun prompt exploitable vaut nan."""
     tot, same = Counter(), Counter()
+    eps = set()
     for by_ep in grouped.values():
         for ep, v in by_ep.items():
+            eps.add(ep)
+            v = [t for t in v if t.strip()]
             if len(v) >= 2:
                 tot[ep] += 1
                 same[ep] += len({analyze.normalize(t) for t in v}) == 1
-    return {ep: same[ep] / tot[ep] for ep in sorted(tot)}
+    return {ep: (same[ep] / tot[ep] if tot[ep] else float("nan")) for ep in sorted(eps)}
 
 
 _SENT_SPLIT = re.compile(r"((?<=[.!?])[ \t]+|\n+)")
 
 
-def fit_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12, min_frac: float = 0.5) -> dict:
+def fit_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12, min_frac: float = 0.5,
+                    min_endpoint_prompts: int = 5) -> dict:
     """{endpoint: phrases normalisées à retirer} : celles présentes dans ses réponses à au moins
     max(min_prompts, min_frac × nb de prompts de l'endpoint) prompts différents. Une formule de persona revient
-    presque partout ; une phrase factuelle partagée par quelques prompts reste."""
+    presque partout ; une phrase factuelle partagée par quelques prompts reste. Rien n'est retiré pour un
+    endpoint qui a répondu à moins de min_endpoint_prompts prompts (trop peu pour distinguer)."""
     seen = defaultdict(lambda: defaultdict(set))
     n_prompts = Counter()
     for pid, by_ep in grouped.items():
@@ -178,7 +184,8 @@ def fit_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12, mi
                     n = analyze.normalize(s_)
                     if len(n) >= min_chars:
                         seen[ep][n].add(pid)
-    return {ep: {x for x, ps in d.items() if len(ps) >= max(min_prompts, min_frac * n_prompts[ep])}
+    return {ep: ({x for x, ps in d.items() if len(ps) >= max(min_prompts, min_frac * n_prompts[ep])}
+                 if n_prompts[ep] >= min_endpoint_prompts else set())
             for ep, d in seen.items()}
 
 

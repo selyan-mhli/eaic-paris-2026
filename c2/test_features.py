@@ -61,12 +61,12 @@ def test_kernels_by_hand():
 
 def test_boilerplate_sentences_removed_only_when_repeated_across_prompts():
     g = {f"p{i}": {"a": [f"Ahoy matey, a fine question! answer {i} here.", f"answer {i} again."],
-                   "b": [f"answer {i} here.", f"Ahoy matey, a fine question! other {i}."]} for i in range(4)}
+                   "b": [f"answer {i} here.", f"Ahoy matey, a fine question! other {i}."]} for i in range(6)}
     g["p0"]["b"] = ["Ahoy matey, a fine question! once."]
     out = F.strip_boilerplate(g, min_prompts=3)
     assert all("ahoy" not in t.lower() for t in out["p1"]["a"])
     assert "answer 1 here." in out["p1"]["a"][0]
-    assert all("ahoy" not in t.lower() for t in out["p2"]["b"])        # b la répète aussi (4 prompts)
+    assert all("ahoy" not in t.lower() for t in out["p2"]["b"])        # b la répète aussi (6 prompts)
 
 
 def test_feature_distances_shapes_and_auc_on_synthetic():
@@ -227,3 +227,23 @@ def test_6_determinism_nfc_and_case():
     g = {"p": {"a": ["Café", "CAFÉ", "Cafe\u0301"], "b": ["Café", "Cafe"]}}
     d = F.determinism(g)
     assert d["a"] == 1.0 and d["b"] == 0.0
+
+
+def test_7_learned_affix_not_applied_to_answer_without_it():
+    """Relecture Sol : après apprentissage de « Hello there friend: », une réponse sans cet affixe reste
+    intacte (avant : « Mercury is a rocky planet. » devenait « rocky planet. »)."""
+    sel = {f"p{i}": {"a": [f"Hello there friend: Body {i}.", f"Hello there friend: Body {i} bis."]} for i in range(4)}
+    cut = analyze.fit_affixes(sel)
+    assert cut["a"][0] == ("hello", "there", "friend:")
+    ev = {"q": {"a": ["Mercury is a rocky planet.", "HELLO there friend: Mars is red."]}}
+    assert analyze.apply_affixes(ev, cut)["q"]["a"] == ["Mercury is a rocky planet.", "Mars is red."]
+
+
+def test_7_determinism_empty_is_missing():
+    d = F.determinism({"p": {"a": ["", ""], "b": ["x", "x"]}})
+    assert np.isnan(d["a"]) and d["b"] == 1.0
+
+
+def test_7_no_sentence_removed_with_too_few_prompts():
+    g = {f"p{i}": {"a": [f"Common sentence here for all. Body {i}."]} for i in range(3)}
+    assert all("Common sentence" in v["a"][0] for v in F.strip_boilerplate(g).values())

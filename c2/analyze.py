@@ -112,7 +112,7 @@ def _boundary_after(text: str, toks: list, i: int) -> bool:
 
 
 def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict:
-    """{endpoint: (nb mots de préfixe, nb mots de suffixe)} communs à TOUTES ses réponses non vides, tous
+    """{endpoint: (mots du préfixe, mots du suffixe)} (normalisés) communs à TOUTES ses réponses non vides, tous
     prompts confondus (comparaison sur les mots normalisés). Un vrai début de réponse dépend du prompt ; une
     formule identique partout vient d'un system prompt ou d'une persona. Rien si < min_prompts prompts."""
     by_ep = defaultdict(list)
@@ -139,22 +139,35 @@ def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict
             pre = 0
         if pre + suf >= shortest:
             suf = 0
-        cut[ep] = (pre if pre >= min_words else 0, suf if suf >= min_words else 0)
+        pre = pre if pre >= min_words else 0
+        suf = suf if suf >= min_words else 0
+        ref = seqs[0]
+        cut[ep] = (tuple(ref[:pre]), tuple(ref[len(ref) - suf:]) if suf else ())
     return cut
 
 
-def cut_affix(text: str, pre: int, suf: int) -> str:
-    """Retire pre mots au début et suf mots à la fin, sans toucher au reste (sauts de ligne, casse)."""
+def cut_affix(text: str, pre=(), suf=()) -> str:
+    """Retire le préfixe pre et le suffixe suf (suites de mots normalisés apprises par fit_affixes) SEULEMENT
+    si la réponse commence (finit) bien par ces mots et que la coupure tombe sur une frontière de phrase ou
+    de ligne ; sinon n'y touche pas. Le reste du texte est gardé tel quel (sauts de ligne, casse)."""
     if not (pre or suf):
         return text
     toks = list(_TOKEN.finditer(text))
-    if pre + suf >= len(toks):
-        return ""
-    return text[toks[pre].start():toks[len(toks) - suf - 1].end()]
+    words = [normalize(m.group()) for m in toks]
+    i, j = 0, len(toks)
+    if pre and len(words) > len(pre) and tuple(words[:len(pre)]) == tuple(pre) \
+            and _boundary_after(text, toks, len(pre) - 1):
+        i = len(pre)
+    if suf and j - len(suf) > i and tuple(words[j - len(suf):]) == tuple(suf) \
+            and _boundary_after(text, toks, j - len(suf) - 1):
+        j -= len(suf)
+    if (i, j) == (0, len(toks)):
+        return text
+    return text[toks[i].start():toks[j - 1].end()]
 
 
 def apply_affixes(grouped: dict, cut: dict) -> dict:
-    return {p: {ep: [cut_affix(t, *cut.get(ep, (0, 0))) for t in v] for ep, v in d.items()}
+    return {p: {ep: [cut_affix(t, *cut.get(ep, ((), ()))) for t in v] for ep, v in d.items()}
             for p, d in grouped.items()}
 
 
