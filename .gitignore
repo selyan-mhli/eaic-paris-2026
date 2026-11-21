@@ -1,0 +1,7 @@
+.venv/
+third_party/
+__pycache__/
+*.pt
+*.pth
+.env
+data/
