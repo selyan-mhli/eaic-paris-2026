@@ -31,8 +31,8 @@ WEIGHT_DRIFT = {"S": 0.0, "fp8": 0.04, "L0.3": 0.06, "L0.7": 0.14, "L1.5": 0.32}
 BASE_NOISE = 0.10
 DISGUISES = {
     "plain": {},
-    "system prompt": {"prefix": "certainly here is the answer you asked for"},
-    "persona": {"prefix": "ahoy friend", "suffix": "fair winds", "style": 0.03},
+    "system prompt": {"prefix": "Certainly! Here is the answer you asked for:"},
+    "persona": {"prefix": "Ahoy friend,", "suffix": "Fair winds!", "style": 0.03},
     "watermark": {"green": 0.06},
     "temperature": {"noise": 0.22},
 }
@@ -92,7 +92,7 @@ def sample(ep: Endpoint, pid: str, length: int, rng: np.random.Generator) -> str
     if d.get("style"):
         for j in np.flatnonzero(rng.random(length) < d["style"]):
             words[j] = rng.choice(["arr", "matey", "aye", "yo-ho"])
-    text = " ".join(words)
+    text = " ".join(words) + "."
     if d.get("prefix"):
         text = d["prefix"] + " " + text
     if d.get("suffix"):

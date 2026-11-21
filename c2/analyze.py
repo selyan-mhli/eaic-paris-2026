@@ -35,6 +35,7 @@ import json
 import math
 import re
 import sys
+import unicodedata
 import zlib
 from collections import defaultdict
 from pathlib import Path
@@ -99,30 +100,81 @@ def _common_affix(seqs: list, suffix: bool = False) -> int:
     return k
 
 
-def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict:
-    """Retire, par endpoint, le préfixe et le suffixe (en mots) communs à TOUTES ses réponses, tous prompts
-    confondus. Un vrai début de réponse dépend du prompt ; un préfixe identique partout vient d'un system
-    prompt ou d'une persona, qui ne changent pas l'identité. Inactif si < min_prompts prompts."""
+_TOKEN = re.compile(r"\S+")
+
+
+def _boundary_after(text: str, toks: list, i: int) -> bool:
+    """Vrai si le mot i finit une phrase (. ! ? : , ;) ou est suivi d'un saut de ligne."""
+    if i < 0 or i >= len(toks) - 1:
+        return i >= 0
+    w = toks[i].group()
+    return w[-1] in ".!?:,;" or "\n" in text[toks[i].end():toks[i + 1].start()]
+
+
+def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 5) -> dict:
+    """{endpoint: (mots du préfixe, mots du suffixe)} (normalisés) communs à TOUTES ses réponses non vides, tous
+    prompts confondus (comparaison sur les mots normalisés). Un vrai début de réponse dépend du prompt ; une
+    formule identique partout vient d'un system prompt ou d'une persona. Rien si l'endpoint a répondu à
+    moins de min_prompts prompts (trop peu pour distinguer une formule d'une phrase de contenu partagée)."""
     by_ep = defaultdict(list)
     for p, d in grouped.items():
         for ep, v in d.items():
-            by_ep[ep].append(p)
+            if any(t.strip() for t in v):
+                by_ep[ep].append(p)
     cut = {}
     for ep, pids in by_ep.items():
         if len(pids) < min_prompts:
             continue
-        seqs = [normalize(t).split(" ") for p in pids for t in grouped[p][ep]]
+        texts = [t for p in pids for t in grouped[p][ep] if t.strip()]
+        toks = [list(_TOKEN.finditer(t)) for t in texts]
+        seqs = [[normalize(m.group()) for m in tk] for tk in toks]
         pre, suf = _common_affix(seqs), _common_affix(seqs, suffix=True)
-        cut[ep] = (pre if pre >= min_words else 0, suf if suf >= min_words else 0)
-    out = {}
-    for p, d in grouped.items():
-        out[p] = {}
-        for ep, v in d.items():
-            pre, suf = cut.get(ep, (0, 0))
-            if pre or suf:
-                v = [" ".join(normalize(t).split(" ")[pre:len(normalize(t).split(" ")) - suf]) for t in v]
-            out[p][ep] = v
-    return out
+        # la coupure doit tomber sur une frontière (fin de phrase ou de ligne) dans TOUTES les réponses,
+        # sinon on mangerait le début du contenu (ex. la puce « - » d'une liste)
+        while pre and not all(_boundary_after(t, tk, pre - 1) for t, tk in zip(texts, toks)):
+            pre -= 1
+        while suf and not all(_boundary_after(t, tk, len(tk) - suf - 1) for t, tk in zip(texts, toks)):
+            suf -= 1
+        shortest = min(len(x) for x in seqs)
+        if pre >= shortest:                  # l'affixe mangerait une réponse entière : on n'y touche pas
+            pre = 0
+        if pre + suf >= shortest:
+            suf = 0
+        pre = pre if pre >= min_words else 0
+        suf = suf if suf >= min_words else 0
+        ref = seqs[0]
+        cut[ep] = (tuple(ref[:pre]), tuple(ref[len(ref) - suf:]) if suf else ())
+    return cut
+
+
+def cut_affix(text: str, pre=(), suf=()) -> str:
+    """Retire le préfixe pre et le suffixe suf (suites de mots normalisés apprises par fit_affixes) SEULEMENT
+    si la réponse commence (finit) bien par ces mots et que la coupure tombe sur une frontière de phrase ou
+    de ligne ; sinon n'y touche pas. Le reste du texte est gardé tel quel (sauts de ligne, casse)."""
+    if not (pre or suf):
+        return text
+    toks = list(_TOKEN.finditer(text))
+    words = [normalize(m.group()) for m in toks]
+    i, j = 0, len(toks)
+    if pre and len(words) > len(pre) and tuple(words[:len(pre)]) == tuple(pre) \
+            and _boundary_after(text, toks, len(pre) - 1):
+        i = len(pre)
+    if suf and j - len(suf) > i and tuple(words[j - len(suf):]) == tuple(suf) \
+            and _boundary_after(text, toks, j - len(suf) - 1):
+        j -= len(suf)
+    if (i, j) == (0, len(toks)):
+        return text
+    return text[toks[i].start():toks[j - 1].end()]
+
+
+def apply_affixes(grouped: dict, cut: dict) -> dict:
+    return {p: {ep: [cut_affix(t, *cut.get(ep, ((), ()))) for t in v] for ep, v in d.items()}
+            for p, d in grouped.items()}
+
+
+def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 5, fit_on: dict | None = None) -> dict:
+    """Retire les affixes constants par endpoint (règles apprises sur fit_on, par défaut grouped lui-même)."""
+    return apply_affixes(grouped, fit_affixes(grouped if fit_on is None else fit_on, min_words, min_prompts))
 
 
 def answers_per_endpoint(grouped: dict) -> dict:
@@ -139,7 +191,8 @@ _WS = re.compile(r"\s+")
 
 
 def normalize(text: str) -> str:
-    return _WS.sub(" ", text.lower()).strip()
+    """NFC + casefold + espaces fusionnés : « Café », « CAFÉ » et « Cafe\u0301 » deviennent identiques."""
+    return _WS.sub(" ", unicodedata.normalize("NFC", text).casefold()).strip()
 
 
 def ngram_vectors(texts, ns=(3, 4, 5), dim: int = 1 << 14) -> np.ndarray:
@@ -215,6 +268,8 @@ def per_prompt_distances(grouped: dict, endpoints: list, kernel: str = "ngram", 
     pos = {ep: i for i, ep in enumerate(endpoints)}
     out = {}
     for pid, by_ep in grouped.items():
+        # réponse vide = donnée absente (ni identité ni différence)
+        by_ep = {ep: [t for t in v if t.strip()] for ep, v in by_ep.items()}
         eps = [ep for ep in endpoints if by_ep.get(ep)]
         if len(eps) < 2:
             continue
@@ -268,9 +323,14 @@ def combine(per_prompt: dict, kinds=("multi",), normalize_median: bool = False, 
 # ---------------------------------------------------------------------------------------------- clustering
 
 
-def upgma(D: np.ndarray, threshold: float = math.inf):
-    """Lien moyen. Fusionne tant que la distance moyenne la plus petite est <= threshold.
-    Retourne (labels 0..k-1, hauteurs des fusions effectuées). nan = distance inconnue (ignorée)."""
+def upgma(D: np.ndarray, threshold: float | None = None):
+    """Lien moyen. Fusionne tant que la distance moyenne la plus petite est <= threshold ; threshold=None
+    construit le dendrogramme complet (usage interne : hauteurs de fusion). Un seuil fourni doit être fini :
+    nan ou ±inf sont refusés (nan fusionnait tout, +inf aussi). Retourne (labels 0..k-1, hauteurs des
+    fusions effectuées). nan dans D = distance inconnue (ignorée)."""
+    if threshold is not None and not math.isfinite(threshold):
+        raise ValueError(f"seuil non fini ({threshold}) : refusé")
+    limit = math.inf if threshold is None else threshold
     n = D.shape[0]
     clusters = [[i] for i in range(n)]
     heights = []
@@ -283,7 +343,7 @@ def upgma(D: np.ndarray, threshold: float = math.inf):
             d = float(np.nanmean(sub))
             if d < best:
                 best, pair = d, (a, b)
-        if pair is None or best > threshold:
+        if pair is None or best > limit:
             break
         a, b = pair
         clusters[a] = clusters[a] + clusters[b]
@@ -359,7 +419,10 @@ def score(truth: dict, rows: list) -> dict:
     """Score façon serveur. family : toutes les paires ; model : paires de même famille *vraie* (hypothèse
     de lecture de l'énoncé « only pairs within one family »). Same model = même (family, model)."""
     guess = {e: (f, m) for e, f, m in rows}
-    eps = sorted(set(truth) & set(guess))
+    missing = sorted(set(truth) - set(guess))
+    if missing:     # comme score_practice.py : une sortie incomplète est refusée, pas scorée sur l'intersection
+        raise ValueError(f"sortie incomplète, aucune ligne pour : {', '.join(missing)}")
+    eps = sorted(truth)
     pairs = list(itertools.combinations(eps, 2))
     f_t = [truth[a][0] == truth[b][0] for a, b in pairs]
     f_g = [guess[a][0] == guess[b][0] for a, b in pairs]
@@ -373,11 +436,26 @@ def score(truth: dict, rows: list) -> dict:
             "practice_mcc": mcc(all_t, all_g), "pairs": len(pairs)}
 
 
-def calibrate(endpoints, D_model, truth: dict, D_family=None, t_family: float = math.inf):
+def _single_family_threshold(D: np.ndarray) -> float:
+    """Seuil famille fini qui met tous les endpoints dans une seule famille."""
+    fin = D[np.isfinite(D)]
+    return float(fin.max() + 1.0) if fin.size else 1.0
+
+
+def calibrate(endpoints, D_model, truth: dict, D_family=None, t_family: float | None = None):
     """Seuil modèle qui maximise le MCC « même modèle » sur les endpoints de vérité connue.
+    Les seuils candidats sont les hauteurs de fusion des dendrogrammes calculés DANS chaque famille, comme la
+    partition modèle (partition() découpe par famille). t_family=None : une seule famille.
     Retourne (seuil au milieu du meilleur intervalle, meilleur MCC)."""
     D_family = D_model if D_family is None else D_family
-    _, h = upgma(D_model)
+    if t_family is None:
+        t_family = _single_family_threshold(D_family)
+    fam, _ = upgma(D_family, t_family)
+    h = []
+    for f in sorted(set(fam)):
+        members = [i for i in range(len(endpoints)) if fam[i] == f]
+        if len(members) > 1:
+            h += upgma(D_model[np.ix_(members, members)])[1]
     cands = sorted(set([0.0] + h))
     cands = [(x + y) / 2 for x, y in zip(cands, cands[1:])] + [cands[-1] + 1e-6]
     res = [(t, score(truth, partition(endpoints, D_family, D_model, t_family, t))["practice_mcc"]) for t in cands]
@@ -496,7 +574,11 @@ def main(argv=None) -> int:
     truth = read_truth(a.truth) if a.truth else None
     t_model = a.t_model if a.t_model == "auto" else float(a.t_model)
     t_family = a.t_family if a.t_family == "auto" else float(a.t_family)
-    res = analyze(grouped, a.kernel, a.stat, t_model, t_family, truth, a.calibrate, strip=not a.no_strip)
+    try:
+        res = analyze(grouped, a.kernel, a.stat, t_model, t_family, truth, a.calibrate, strip=not a.no_strip)
+    except ValueError as exc:
+        print(f"erreur : {exc}", file=sys.stderr)
+        return 2
     eps, rows = res["endpoints"], res["rows"]
     n = answers_per_endpoint(grouped)
 

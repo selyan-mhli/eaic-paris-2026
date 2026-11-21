@@ -51,11 +51,17 @@ Pourquoi 15 × 4 plutôt que 60 × 1 ou 30 × 2 :
 
 - La statistique (`corr`, section 4) a besoin d'au moins 2 réponses par endpoint et par prompt pour estimer
   la dispersion interne ; avec 2 elle est très bruitée.
-- Mesure sur données synthétiques (33 endpoints, 3 graines, seuil automatique) : 15 × 4 et 25 × 4 donnent
-  1,00 sur les 3 graines ; 30 × 2 donne 0,64 / 0,64 / 1,00. Le synthétique est volontairement simple :
-  ce résultat montre seulement qu'à budget égal, la répétition stabilise la statistique. **Le choix
-  final se fait sur les vraies réponses ref** (section 3, étape P2), en rejouant 15 × 4, 20 × 3, 30 × 2
-  et 60 × 1 à partir du même pilote.
+- Mesure sur données synthétiques, **corrigée le 21/11 à 19:00** : la version initiale (0,64 / 0,64 / 1,00 pour
+  30 × 2) venait d'une version antérieure du code et de `synth.py`. Avec le code de cette branche, `synth.py`
+  ponctué, graines 0 à 3, seuil automatique, les trois allocations 15 × 4, 25 × 4 et 30 × 2 donnent toutes
+  **1,00**. Le synthétique ne discrimine donc pas les allocations et ne justifie pas 4 répétitions à lui
+  seul. Commande : `python c2/synth.py --scenario ep --prompts 30 --reps 4 --seed S --out ep.jsonl --truth t.csv`
+  puis `python c2/analyze.py ep.jsonl --truth t.csv --max-prompts N --max-reps R --seed 0 --quiet`.
+- Ce qui justifie les répétitions est mesuré sur les vraies ref : à 1 répétition, le score calibré tombe
+  à 0,00-0,52. Attention : les scores ref de ce plan sont calibrés ET évalués sur les mêmes 9 ref, donc
+  optimistes ; l'évaluation honnête (sélection sur les répétitions paires, évaluation sur les impaires,
+  `features.py eval`) arrive à 4 répétitions. **Le choix final se fait sur les vraies réponses ref**
+  (section 3, étape P2).
 - Phase 2 : relancer `task_template.py` avec les mêmes ids et `REPEATS = 9` ajoute exactement les
   répétitions 4 à 8 (le kit saute les `(endpoint, id, repeat)` déjà présents). Coût : 5 prompts × 5 = 25.
   On ne la lance que pour les endpoints dont une paire tombe dans la bande ambiguë (distance entre
