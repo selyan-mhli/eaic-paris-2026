@@ -140,23 +140,28 @@ class Head:
 
     @torch.no_grad()
     def predict(self, model, X32, X128):
+        if isinstance(model, list):  # ensemble : moyenne des probabilités
+            return sum(self.predict(m, X32, X128) for m in model) / len(model)
         net, nrm = model; net.eval(); a32, a128 = self.prep(X32, X128, nrm)
         return np.concatenate([torch.sigmoid(net(a32[i:i + 128].to(self.dev), a128[i:i + 128].to(self.dev))).cpu().numpy()
                                for i in range(0, len(X32), 128)])
 
 
-def head_preds(H: Head, X32, X128, gt, full, method, tr, te_like, seed):
-    """Prédictions du réseau : hors-fold interne sur les F d'apprentissage, réseau final ailleurs."""
-    P = np.full((len(gt), 128, 128), np.nan, np.float32)
+def head_preds(H: Head, X32, X128, gt, full, method, tr, te_like, seed, ens: int = 1):
+    """Prédictions du réseau (moyenne de `ens` réseaux de graines différentes) : hors-fold interne sur les F
+    d'apprentissage, réseaux finaux ailleurs."""
+    P = np.zeros((len(gt), 128, 128), np.float32)
     trF = tr[full[tr]]
     inner = folds(method[trF], 4, seed + 100)
-    for k in range(4):
-        a, b = trF[inner != k], trF[inner == k]
-        P[b] = H.predict(H.fit(X32[a], X128[a], gt[a], seed * 10 + k), X32[b], X128[b])
-    fin = H.fit(X32[trF], X128[trF], gt[trF], seed * 10 + 9)
     rest = np.setdiff1d(np.concatenate([tr, te_like]), trF)
-    P[rest] = H.predict(fin, X32[rest], X128[rest])
-    return P, fin
+    fins = []
+    for e in range(ens):
+        for k in range(4):
+            a, b = trF[inner != k], trF[inner == k]
+            P[b] += H.predict(H.fit(X32[a], X128[a], gt[a], seed * 10 + k + 1000 * e), X32[b], X128[b]) / ens
+        fin = H.fit(X32[trF], X128[trF], gt[trF], seed * 10 + 9 + 1000 * e); fins.append(fin)
+        P[rest] += H.predict(fin, X32[rest], X128[rest]) / ens
+    return P, fins
 
 
 def choose(D, gt, P, tr, r):
@@ -191,7 +196,7 @@ def main():
     ap.add_argument("--heats", type=Path, required=True); ap.add_argument("--boxes", required=True)
     ap.add_argument("--ff", required=True); ap.add_argument("--hf"); ap.add_argument("--extra")
     ap.add_argument("--data", default="release"); ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
-    ap.add_argument("--epochs", type=int, default=60); ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--epochs", type=int, default=60); ap.add_argument("--ens", type=int, default=1); ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--test-heats", type=Path); ap.add_argument("--test-boxes"); ap.add_argument("--test-ff")
     ap.add_argument("--test-hf"); ap.add_argument("--test-extra"); ap.add_argument("--write-sub", type=Path)
     a = ap.parse_args()
@@ -214,7 +219,7 @@ def main():
         for k in range(5):
             tr, te = allidx[fo != k], allidx[fo == k]
             r, _ = ge.fit(D, gt, tr, "full")
-            P, _ = head_preds(H, X32, X128, gt, full, method, tr, te, seed * 7 + k)
+            P, _ = head_preds(H, X32, X128, gt, full, method, tr, te, seed * 7 + k, a.ens)
             ch = choose(D, gt, P, tr, r)
             s_ch[te] = fast_miou(ge.apply(D, te, r), gt[te])
             s_hd[te] = fast_miou(apply(D, P, te, r, ch), gt[te])
@@ -242,7 +247,7 @@ def main():
         T32, T128 = build_inputs(a.config, tn, dt, load(a.test_ff), load(a.test_hf) if a.test_hf else {},
                                  load(a.test_extra) if a.test_extra else {})
         r, _ = ge.fit(D, gt, allidx, "full")
-        Pall, fin = head_preds(H, X32, X128, gt, full, method, allidx, np.array([], int), 999)
+        Pall, fin = head_preds(H, X32, X128, gt, full, method, allidx, np.array([], int), 999, a.ens)
         ch = choose(D, gt, Pall, allidx, r)
         Pt = H.predict(fin, T32, T128)
         masks = apply(T, Pt, np.arange(T.n), r, ch)
