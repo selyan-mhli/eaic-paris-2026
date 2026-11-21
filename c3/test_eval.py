@@ -149,6 +149,14 @@ def test_cli_pred_dir_with_timm(tmp_path, capsys):
     assert [ln for ln in out.splitlines() if ln.startswith("score: ")]
 
 
+def test_vit_base_without_layerscale_is_rejected():
+    pytest.importorskip("torch")
+    pytest.importorskip("timm")
+    plain = ev.make_timm_model(init_values=None).state_dict()  # 85 875 556 paramètres
+    r = ev.check_format(plain, ev.make_timm_model)
+    assert not r["format_ok"] and r["n_params"] == ev.N_PARAMS - 18_432
+
+
 def test_vit_base_contract_strict():
     pytest.importorskip("torch")
     pytest.importorskip("timm")
@@ -156,4 +164,6 @@ def test_vit_base_contract_strict():
     r = ev.check_format(sd, ev.make_timm_model)
     assert r["format_ok"], r["format_errors"]
     assert sd["head.weight"].shape == (ev.NUM_CLASSES, 768)
+    assert "blocks.0.ls1.gamma" in sd  # LayerScale actif (init_values=1e-4)
+    assert r["n_params"] == ev.N_PARAMS == 85_893_988  # = audit.py sur le vrai model.pt
     assert r["n_params"] * 4 < ev.MAX_BYTES  # float32 : ~343 Mo, sous la limite

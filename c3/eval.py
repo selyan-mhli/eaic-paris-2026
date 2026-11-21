@@ -14,7 +14,8 @@ Mesures :
   (c) contrôle fp16 : écart des logits fp32 vs fp16 autocast (le serveur évalue en fp16),
       sorties non finies et taux de top-1 qui changent.
   (d) format de soumission : load_state_dict strict=True sur timm vit_base_patch16_224
-      à 100 classes, tous les tenseurs en float32, fichier ≤ 450 Mo (450e6 octets).
+      à 100 classes avec init_values=1e-4 (LayerScale, = task_template.build_model),
+      tous les tenseurs en float32, fichier ≤ 450 Mo (450e6 octets).
 
 score = retain_proxy × forget_proxy, mis à 0 si (c) ou (d) échoue ou si l'accord retain < --gate.
 
@@ -48,6 +49,8 @@ import numpy as np
 DEFAULT_TASK_DIR = Path("/p/scratch/training2666/mouhali1/SLZ/unlearning")  # = common/paths.py c3
 ARCH = "vit_base_patch16_224"
 NUM_CLASSES = 100
+INIT_VALUES = 1e-4  # LayerScale, comme task_template.build_model
+N_PARAMS = 85_893_988  # vit_base_patch16_224, 100 classes, LayerScale (= audit.py)
 MAX_BYTES = 450_000_000  # 450 Mo, lecture stricte (450 Mio = 471 859 200 serait plus permissif)
 TEMPERATURE = 2.0
 
@@ -121,9 +124,14 @@ def combine(fmt_ok: bool, fp16_ok: bool, retain: dict, forget: dict, gate: float
 
 # ---------------------------------------------------------------- torch / timm
 
-def make_timm_model(arch: str = ARCH, num_classes: int = NUM_CLASSES):
+def make_timm_model(arch: str = ARCH, num_classes: int = NUM_CLASSES, init_values: float | None = INIT_VALUES):
+    """Architecture de soumission, identique à task_template.build_model (JURECA, lignes 55-62).
+
+    init_values=1e-4 active LayerScale (ls1.gamma, ls2.gamma par bloc : 12 × 2 × 768 = 18 432
+    paramètres) ; sans lui, strict=True échoue sur le vrai model.pt et sur toute soumission.
+    """
     import timm
-    return timm.create_model(arch, pretrained=False, num_classes=num_classes)
+    return timm.create_model(arch, pretrained=False, num_classes=num_classes, init_values=init_values)
 
 
 def load_state_dict(path: Path) -> dict:

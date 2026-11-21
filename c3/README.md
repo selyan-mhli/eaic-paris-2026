@@ -34,11 +34,11 @@
 | `unlearn_pack.sh` | 4 variantes de `unlearn_v2.py` en parallèle sur un nœud | jamais lancé |
 | `audit.py`, `unlearn_v2.py`, `soup_search.py`, `unlearn.py`, jobs `j3*` | Méthode de Yihuan | **sur JURECA seulement**, à verser (voir plus bas) ; résultats à préciser par Yihuan |
 
-Point à vérifier : timm `vit_base_patch16_224` à 100 classes compte **85 875 556** paramètres
-(mesuré, timm 0.9.16), alors que `audit.py` en annonce 85 893 988 (écart 18 432 = 24 × 768).
-Soit l'architecture du `task_template.py` diffère (tokens en plus, autre `img_size`…), soit le
-décompte inclut autre chose : à préciser par Yihuan. Si c'est l'architecture, il faut adapter
-`make_timm_model` dans `eval.py`, sinon le contrôle `strict=True` est faux.
+Architecture : `task_template.build_model` (JURECA, lignes 55-62) crée
+`timm.create_model("vit_base_patch16_224", pretrained=False, num_classes=100, init_values=1e-4)`.
+`init_values` active LayerScale (`ls1.gamma`, `ls2.gamma` : 2 × 768 par bloc × 12 blocs = 18 432
+paramètres), d'où les **85 893 988** paramètres d'`audit.py` (85 875 556 sans LayerScale).
+`eval.py` utilise la même construction ; un test vérifie ce nombre.
 
 ## `eval.py` : ce qu'il mesure, et ce qu'il ne mesure pas
 
@@ -52,7 +52,7 @@ données retain. Il sert à comparer des candidats entre eux et à bloquer les s
   forget (pseudo-labels = argmax de l'origine) et la perte de l'origine sur des augmentations
   fortes des forget (substitut d'images « jamais vues »).
 - (c) **fp16** : écart des logits fp32 / fp16 autocast, sorties non finies, part des top-1 qui changent (> 1 % → échec).
-- (d) **format** : `strict=True` sur timm `vit_base_patch16_224` à 100 classes, tout en float32, fichier ≤ 450e6 octets.
+- (d) **format** : `strict=True` sur timm `vit_base_patch16_224` à 100 classes avec `init_values=1e-4`, tout en float32, fichier ≤ 450e6 octets.
 - `score` = (a) × (b), mis à 0 si (c) ou (d) échoue ou si l'accord retain < `--gate` (0,72 par défaut).
 
 Limites : sans `--retain-npz`, (a) et (b) portent sur les mêmes images et se contredisent en
