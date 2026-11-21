@@ -1,6 +1,6 @@
 # c3 — Task 3 : Unlearning
 
-- **Propriétaire :** à préciser
+- **Propriétaire :** Yihuan (GitHub Yihuan0301, Jülich zhang95)
 - **Données et env (JURECA) :** `/p/scratch/training2666/mouhali1/SLZ/unlearning/`
   (`model.pt`, `forget_images.npz`, `task_template.py`, `submission.py` ; `.venv` avec torch et timm)
 - **But :** à partir du ViT-B/16 (timm `vit_base_patch16_224`, 100 classes), un modèle qui se

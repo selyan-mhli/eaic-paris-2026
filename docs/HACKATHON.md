@@ -109,13 +109,13 @@ et à détecter un écart grossier entre local et public. Chaque soumission est 
 - Ne pas utiliser les soumissions pour « sonder » les paires : c'est du sur-apprentissage du public
   (et l'esprit de la limite de 30 min).
 
-## Répartition (à confirmer en équipe)
+## Répartition
 
 | Épreuve | Profil | Personne |
 |---|---|---|
-| c1 Localisation (Task 1) | vision, à l'aise avec les modèles de watermark | à préciser |
-| c3 Unlearning (Task 3) | PyTorch, entraînement GPU sur JURECA | à préciser |
-| c2 Model equality (Task 2) | LLM, statistiques, rigueur sur le budget | à préciser |
+| c1 Localisation (Task 1) | vision, à l'aise avec les modèles de watermark | Selyan (mouhali1) |
+| c3 Unlearning (Task 3) | PyTorch, entraînement GPU sur JURECA | Yihuan (zhang95) |
+| c2 Model equality (Task 2) | LLM, statistiques, rigueur sur le budget | Sophie (pelet1) |
 
 ## Ordre de marche
 

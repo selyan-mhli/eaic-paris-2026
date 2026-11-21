@@ -1,6 +1,6 @@
 # c2 — Task 2 : Model Equality Testing
 
-- **Propriétaire :** à préciser
+- **Propriétaire :** Sophie (GitHub SophiePelet, Jülich pelet1)
 - **Données et env (JURECA) :** `/p/scratch/training2666/mouhali1/SLZ/model_equality/`
   (`task_template.py`, `query_reference.py`, `score_practice.py`, `practice_answers.csv`, `submission.py`)
 - **But :** pour 33 endpoints LLM, un label de famille et un label de modèle.

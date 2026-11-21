@@ -1,6 +1,6 @@
 # c1 — Task 1 : Watermark Localization
 
-- **Propriétaire :** Selyan
+- **Propriétaire :** Selyan (GitHub selyan-mhli, Jülich mouhali1)
 - **Données et env (JURECA) :** `/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task/`
   (accès Hugging Face en attente de validation)
 - **But :** pour chaque image test 512×512, un masque binaire 128×128 (1 = watermarqué).
