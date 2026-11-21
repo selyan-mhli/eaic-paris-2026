@@ -35,6 +35,7 @@ import json
 import math
 import re
 import sys
+import unicodedata
 import zlib
 from collections import defaultdict
 from pathlib import Path
@@ -99,30 +100,67 @@ def _common_affix(seqs: list, suffix: bool = False) -> int:
     return k
 
 
-def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict:
-    """Retire, par endpoint, le préfixe et le suffixe (en mots) communs à TOUTES ses réponses, tous prompts
-    confondus. Un vrai début de réponse dépend du prompt ; un préfixe identique partout vient d'un system
-    prompt ou d'une persona, qui ne changent pas l'identité. Inactif si < min_prompts prompts."""
+_TOKEN = re.compile(r"\S+")
+
+
+def _boundary_after(text: str, toks: list, i: int) -> bool:
+    """Vrai si le mot i finit une phrase (. ! ? : , ;) ou est suivi d'un saut de ligne."""
+    if i < 0 or i >= len(toks) - 1:
+        return i >= 0
+    w = toks[i].group()
+    return w[-1] in ".!?:,;" or "\n" in text[toks[i].end():toks[i + 1].start()]
+
+
+def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict:
+    """{endpoint: (nb mots de préfixe, nb mots de suffixe)} communs à TOUTES ses réponses non vides, tous
+    prompts confondus (comparaison sur les mots normalisés). Un vrai début de réponse dépend du prompt ; une
+    formule identique partout vient d'un system prompt ou d'une persona. Rien si < min_prompts prompts."""
     by_ep = defaultdict(list)
     for p, d in grouped.items():
         for ep, v in d.items():
-            by_ep[ep].append(p)
+            if any(t.strip() for t in v):
+                by_ep[ep].append(p)
     cut = {}
     for ep, pids in by_ep.items():
         if len(pids) < min_prompts:
             continue
-        seqs = [normalize(t).split(" ") for p in pids for t in grouped[p][ep]]
+        texts = [t for p in pids for t in grouped[p][ep] if t.strip()]
+        toks = [list(_TOKEN.finditer(t)) for t in texts]
+        seqs = [[normalize(m.group()) for m in tk] for tk in toks]
         pre, suf = _common_affix(seqs), _common_affix(seqs, suffix=True)
+        # la coupure doit tomber sur une frontière (fin de phrase ou de ligne) dans TOUTES les réponses,
+        # sinon on mangerait le début du contenu (ex. la puce « - » d'une liste)
+        while pre and not all(_boundary_after(t, tk, pre - 1) for t, tk in zip(texts, toks)):
+            pre -= 1
+        while suf and not all(_boundary_after(t, tk, len(tk) - suf - 1) for t, tk in zip(texts, toks)):
+            suf -= 1
+        shortest = min(len(x) for x in seqs)
+        if pre >= shortest:                  # l'affixe mangerait une réponse entière : on n'y touche pas
+            pre = 0
+        if pre + suf >= shortest:
+            suf = 0
         cut[ep] = (pre if pre >= min_words else 0, suf if suf >= min_words else 0)
-    out = {}
-    for p, d in grouped.items():
-        out[p] = {}
-        for ep, v in d.items():
-            pre, suf = cut.get(ep, (0, 0))
-            if pre or suf:
-                v = [" ".join(normalize(t).split(" ")[pre:len(normalize(t).split(" ")) - suf]) for t in v]
-            out[p][ep] = v
-    return out
+    return cut
+
+
+def cut_affix(text: str, pre: int, suf: int) -> str:
+    """Retire pre mots au début et suf mots à la fin, sans toucher au reste (sauts de ligne, casse)."""
+    if not (pre or suf):
+        return text
+    toks = list(_TOKEN.finditer(text))
+    if pre + suf >= len(toks):
+        return ""
+    return text[toks[pre].start():toks[len(toks) - suf - 1].end()]
+
+
+def apply_affixes(grouped: dict, cut: dict) -> dict:
+    return {p: {ep: [cut_affix(t, *cut.get(ep, (0, 0))) for t in v] for ep, v in d.items()}
+            for p, d in grouped.items()}
+
+
+def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3, fit_on: dict | None = None) -> dict:
+    """Retire les affixes constants par endpoint (règles apprises sur fit_on, par défaut grouped lui-même)."""
+    return apply_affixes(grouped, fit_affixes(grouped if fit_on is None else fit_on, min_words, min_prompts))
 
 
 def answers_per_endpoint(grouped: dict) -> dict:
@@ -139,7 +177,8 @@ _WS = re.compile(r"\s+")
 
 
 def normalize(text: str) -> str:
-    return _WS.sub(" ", text.lower()).strip()
+    """NFC + casefold + espaces fusionnés : « Café », « CAFÉ » et « Cafe\u0301 » deviennent identiques."""
+    return _WS.sub(" ", unicodedata.normalize("NFC", text).casefold()).strip()
 
 
 def ngram_vectors(texts, ns=(3, 4, 5), dim: int = 1 << 14) -> np.ndarray:
@@ -215,6 +254,8 @@ def per_prompt_distances(grouped: dict, endpoints: list, kernel: str = "ngram", 
     pos = {ep: i for i, ep in enumerate(endpoints)}
     out = {}
     for pid, by_ep in grouped.items():
+        # réponse vide = donnée absente (ni identité ni différence)
+        by_ep = {ep: [t for t in v if t.strip()] for ep, v in by_ep.items()}
         eps = [ep for ep in endpoints if by_ep.get(ep)]
         if len(eps) < 2:
             continue
@@ -271,6 +312,8 @@ def combine(per_prompt: dict, kinds=("multi",), normalize_median: bool = False, 
 def upgma(D: np.ndarray, threshold: float = math.inf):
     """Lien moyen. Fusionne tant que la distance moyenne la plus petite est <= threshold.
     Retourne (labels 0..k-1, hauteurs des fusions effectuées). nan = distance inconnue (ignorée)."""
+    if threshold is None or math.isnan(threshold):
+        raise ValueError("seuil non fini (nan) : refusé, il fusionnerait tous les endpoints")
     n = D.shape[0]
     clusters = [[i] for i in range(n)]
     heights = []

@@ -160,28 +160,51 @@ def determinism(grouped: dict) -> dict:
     return {ep: same[ep] / tot[ep] for ep in sorted(tot)}
 
 
-def strip_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12) -> dict:
-    """Par endpoint, retire les phrases (normalisées) présentes dans ses réponses à >= min_prompts prompts
-    différents : formules de persona/system prompt qui ne sont pas en préfixe exact. Une phrase de vrai
-    contenu dépend du prompt et ne revient pas d'un prompt à l'autre."""
+_SENT_SPLIT = re.compile(r"((?<=[.!?])[ \t]+|\n+)")
+
+
+def fit_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12, min_frac: float = 0.5) -> dict:
+    """{endpoint: phrases normalisées à retirer} : celles présentes dans ses réponses à au moins
+    max(min_prompts, min_frac × nb de prompts de l'endpoint) prompts différents. Une formule de persona revient
+    presque partout ; une phrase factuelle partagée par quelques prompts reste."""
     seen = defaultdict(lambda: defaultdict(set))
+    n_prompts = Counter()
     for pid, by_ep in grouped.items():
         for ep, texts in by_ep.items():
+            if any(t.strip() for t in texts):
+                n_prompts[ep] += 1
             for t in texts:
-                for s in sentences(t):
-                    n = analyze.normalize(s)
+                for s_ in sentences(t):
+                    n = analyze.normalize(s_)
                     if len(n) >= min_chars:
                         seen[ep][n].add(pid)
-    bad = {ep: {s for s, ps in d.items() if len(ps) >= min_prompts} for ep, d in seen.items()}
-    out = {}
-    for pid, by_ep in grouped.items():
-        out[pid] = {}
-        for ep, texts in by_ep.items():
-            b = bad.get(ep, set())
-            if b:
-                texts = [" ".join(s for s in sentences(t) if analyze.normalize(s) not in b) for t in texts]
-            out[pid][ep] = list(texts)
-    return out
+    return {ep: {x for x, ps in d.items() if len(ps) >= max(min_prompts, min_frac * n_prompts[ep])}
+            for ep, d in seen.items()}
+
+
+def drop_sentences(text: str, bad: set) -> str:
+    """Retire les phrases de bad, garde le reste du texte tel quel (sauts de ligne, casse, ponctuation)."""
+    if not bad:
+        return text
+    parts = _SENT_SPLIT.split(text)          # [contenu, séparateur, contenu, séparateur, ...]
+    out = []
+    for i in range(0, len(parts), 2):
+        piece = parts[i]
+        sep = parts[i + 1] if i + 1 < len(parts) else ""
+        if piece.strip() and analyze.normalize(piece) in bad:
+            continue
+        out.append(piece + sep)
+    return "".join(out).strip()
+
+
+def apply_boilerplate(grouped: dict, bad: dict) -> dict:
+    return {p: {ep: [drop_sentences(t, bad.get(ep, set())) for t in v] for ep, v in d.items()}
+            for p, d in grouped.items()}
+
+
+def strip_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12, fit_on: dict | None = None) -> dict:
+    """Retire, par endpoint, les phrases d'enrobage récurrentes (règles apprises sur fit_on, défaut grouped)."""
+    return apply_boilerplate(grouped, fit_boilerplate(grouped if fit_on is None else fit_on, min_prompts, min_chars))
 
 
 # ---------------------------------------------------------------------------------------------- noyaux
@@ -202,18 +225,27 @@ def _cos(token_lists) -> np.ndarray:
     V = _hash_vectors(token_lists)
     K = np.clip(V @ V.T, 0.0, 1.0)
     np.fill_diagonal(K, 1.0)
+    return _empty_as_missing(K, token_lists)
+
+
+def _empty_as_missing(K: np.ndarray, items) -> np.ndarray:
+    """Une séquence/un ensemble vide est une donnée absente : sa ligne et sa colonne passent à nan."""
+    for i, x in enumerate(items):
+        if len(x) == 0:
+            K[i, :] = np.nan
+            K[:, i] = np.nan
     return K
 
 
 def _positional(seqs) -> np.ndarray:
-    """k(x, y) = #{i : x_i = y_i} / max(|x|, |y|) ; 1 sur la diagonale, 1 si les deux sont vides."""
+    """k(x, y) = #{i : x_i = y_i} / max(|x|, |y|) ; 1 sur la diagonale ; nan si l'un est vide."""
     n = len(seqs)
     K = np.eye(n)
     for i, j in itertools.combinations(range(n), 2):
         a, b = seqs[i], seqs[j]
         m = max(len(a), len(b))
-        K[i, j] = K[j, i] = (sum(x == y for x, y in zip(a, b)) / m) if m else 1.0
-    return K
+        K[i, j] = K[j, i] = (sum(x == y for x, y in zip(a, b)) / m) if m else np.nan
+    return _empty_as_missing(K, seqs)
 
 
 def _lcp(seqs) -> np.ndarray:
@@ -225,8 +257,8 @@ def _lcp(seqs) -> np.ndarray:
         k = 0
         while k < min(len(a), len(b)) and a[k] == b[k]:
             k += 1
-        K[i, j] = K[j, i] = (k / m) if m else 1.0
-    return K
+        K[i, j] = K[j, i] = (k / m) if m else np.nan
+    return _empty_as_missing(K, seqs)
 
 
 def _jaccard(sets) -> np.ndarray:
@@ -235,8 +267,8 @@ def _jaccard(sets) -> np.ndarray:
     for i, j in itertools.combinations(range(n), 2):
         a, b = sets[i], sets[j]
         u = len(a | b)
-        K[i, j] = K[j, i] = (len(a & b) / u) if u else 1.0
-    return K
+        K[i, j] = K[j, i] = (len(a & b) / u) if u else np.nan
+    return _empty_as_missing(K, sets)
 
 
 def _rbf(x) -> np.ndarray:
@@ -300,6 +332,11 @@ VIEWS = ("char", "hamming", "word", "nums", "numset", "items", "order", "lcp", "
 # ---------------------------------------------------------------------------------------------- distances
 
 
+def _nanmean(x) -> float:
+    x = np.asarray(x, dtype=np.float64)
+    return float(np.mean(x[np.isfinite(x)])) if np.isfinite(x).any() else float("nan")
+
+
 def feature_kernels(grouped: dict, endpoints: list, views=VIEWS, min_reps: int = 2) -> dict:
     """{(pid, view): matrice E×E des noyaux moyens} : M[a, b] = moyenne de k entre réponses de a et de b,
     M[a, a] = moyenne hors diagonale (non biaisée). nan si l'endpoint manque. Toutes les statistiques
@@ -308,6 +345,7 @@ def feature_kernels(grouped: dict, endpoints: list, views=VIEWS, min_reps: int =
     pos = {ep: i for i, ep in enumerate(endpoints)}
     out = {}
     for pid, by_ep in grouped.items():
+        by_ep = {ep: [t for t in v if t.strip()] for ep, v in by_ep.items()}      # vide = absent
         eps = [ep for ep in endpoints if len(by_ep.get(ep, [])) >= min_reps]
         if len(eps) < 2:
             continue
@@ -322,9 +360,11 @@ def feature_kernels(grouped: dict, endpoints: list, views=VIEWS, min_reps: int =
                 continue
             M = np.full((E, E), np.nan)
             for a in eps:
-                M[pos[a], pos[a]] = analyze._off_diag_mean(K, idx[a])
+                sub = K[np.ix_(idx[a], idx[a])].copy()
+                np.fill_diagonal(sub, np.nan)
+                M[pos[a], pos[a]] = _nanmean(sub)
             for a, b in itertools.combinations(eps, 2):
-                M[pos[a], pos[b]] = M[pos[b], pos[a]] = float(K[np.ix_(idx[a], idx[b])].mean())
+                M[pos[a], pos[b]] = M[pos[b], pos[a]] = _nanmean(K[np.ix_(idx[a], idx[b])])
             out[(pid, view)] = M
     return out
 
@@ -359,8 +399,9 @@ def feature_distances(grouped: dict, endpoints: list, views=VIEWS, stat: str = "
 
 
 def pooled_distance(fk: dict, keys, stat: str = "corr", weights: dict | None = None) -> np.ndarray:
-    """Mise en commun : moyenne des noyaux moyens M sur les features, PUIS statistique (rapport des
-    moyennes). Bien moins bruité que la moyenne des rapports par prompt quand il y a peu de répétitions."""
+    """Mise en commun : pour chaque paire (a, b), moyenne des noyaux Kaa, Kbb et Kab sur les SEULES features
+    où a et b sont tous deux présents (même support), PUIS statistique. Bien moins bruité que la moyenne des
+    rapports par prompt quand il y a peu de répétitions."""
     mats, ws = [], []
     for k in keys:
         if k in fk:
@@ -369,10 +410,23 @@ def pooled_distance(fk: dict, keys, stat: str = "corr", weights: dict | None = N
     if not mats:
         raise ValueError("aucune feature retenue")
     A = np.stack(mats)
-    W = np.array(ws)[:, None, None] * np.isfinite(A)
-    with np.errstate(invalid="ignore", divide="ignore"):
-        M = np.where(W.sum(0) > 0, (np.where(np.isfinite(A), A, 0.0) * W).sum(0) / W.sum(0), np.nan)
-    return dist_from_kernel(M, stat)
+    w = np.array(ws)
+    E = A.shape[1]
+    D = np.full((E, E), np.nan)
+    for i in range(E):
+        if np.isfinite(A[:, i, i]).any():
+            D[i, i] = 0.0
+    for i, j in itertools.combinations(range(E), 2):
+        ok = np.isfinite(A[:, i, j]) & np.isfinite(A[:, i, i]) & np.isfinite(A[:, j, j]) & (w > 0)
+        if not ok.any():
+            continue
+        ww = w[ok]
+        M = np.empty((2, 2))
+        M[0, 0] = np.average(A[ok, i, i], weights=ww)
+        M[1, 1] = np.average(A[ok, j, j], weights=ww)
+        M[0, 1] = M[1, 0] = np.average(A[ok, i, j], weights=ww)
+        D[i, j] = D[j, i] = dist_from_kernel(M, stat)[0, 1]
+    return D
 
 
 def combine_features(fd: dict, keys, weights: dict | None = None, scale: str = "median") -> np.ndarray:
@@ -487,6 +541,10 @@ def split_half_threshold(grouped: dict, endpoints, keys, stat: str = "corr", q: 
     """Plancher de bruit : pour chaque endpoint, ses répétitions paires contre ses impaires sont traitées
     comme deux pseudo-endpoints ; distance combinée (mêmes features, même mise à l'échelle que fd_scale si
     fournie) ; seuil = factor × quantile q de ces distances « soi contre soi ». Aucune vérité utilisée."""
+    reps = [len([t for t in v if t.strip()]) for p, _ in keys if p in grouped for v in grouped[p].values()]
+    if not reps or max(reps) < 4:
+        raise ValueError("seuil split-half impossible : il faut au moins 4 répétitions par (prompt, endpoint) "
+                         f"(2 par moitié) ; maximum observé {max(reps) if reps else 0}")
     halves = {}
     for p, d in grouped.items():
         halves[p] = {}
@@ -506,14 +564,21 @@ def split_half_threshold(grouped: dict, endpoints, keys, stat: str = "corr", q: 
             M = M / fd_scale[k]
         mats.append(M)
     if not mats:
-        return float("nan")
+        raise ValueError("seuil split-half impossible : aucune feature calculable sur les demi-échantillons "
+                         "(il faut au moins 4 répétitions par (prompt, endpoint))")
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)       # cases toutes nan : restent nan
         A = np.nanmean(np.stack(mats), axis=0)
     for i in range(0, len(eps2), 2):
         if np.isfinite(A[i, i + 1]):
             self_d.append(A[i, i + 1])
-    return float(factor * np.quantile(self_d, q)) if self_d else float("nan")
+    if not self_d:
+        raise ValueError("seuil split-half impossible : aucune distance soi/soi finie "
+                         "(il faut au moins 4 répétitions par (prompt, endpoint))")
+    t = float(factor * np.quantile(self_d, q))
+    if not np.isfinite(t):
+        raise ValueError(f"seuil split-half non fini ({t})")
+    return t
 
 
 def median_scales(fd: dict) -> dict:
@@ -536,11 +601,12 @@ def evaluate(grouped: dict, truth: dict, views=VIEWS, stat: str = "corr", top: i
              scale: str = "median", strip: str = "both", fixed_keys=None) -> dict:
     """Sélection sur les répétitions paires (features + seuil), évaluation sur les impaires, et l'inverse.
     Retourne les MCC de partition (seuil transféré), l'AUC globale/difficile du D évalué, les features."""
-    g = prepare(grouped, strip)
-    endpoints = sorted({ep for d in g.values() for ep in d})
+    endpoints = sorted({ep for d in grouped.values() for ep in d})
     out = {"folds": []}
     for sel, ev in ((0, 1), (1, 0)):
-        gs, ge = parity(g, sel), parity(g, ev)
+        raw_s, raw_e = parity(grouped, sel), parity(grouped, ev)
+        # règles de retrait (affixes, phrases) apprises sur la sélection seulement, appliquées aux deux
+        gs, ge = prepare(raw_s, strip, fit_on=raw_s), prepare(raw_e, strip, fit_on=raw_s)
         fds = feature_distances(gs, endpoints, views, stat)
         fde = feature_distances(ge, endpoints, views, stat)
         keys = list(fixed_keys) if fixed_keys is not None else select(rank_features(fds, endpoints, truth), top, by=by)
@@ -559,8 +625,11 @@ def evaluate(grouped: dict, truth: dict, views=VIEWS, stat: str = "corr", top: i
         t, m_sel = best_threshold(Ds, endpoints, truth)
         m_ev, rows = partition_mcc(De, endpoints, truth, t)
         _, m_oracle = best_threshold(De, endpoints, truth)
-        t_sh = split_half_threshold(ge, endpoints, keys, stat, q=1.0, fd_scale=sc)
-        m_sh, _ = partition_mcc(De, endpoints, truth, t_sh) if np.isfinite(t_sh) else (float("nan"), None)
+        try:
+            t_sh = split_half_threshold(ge, endpoints, keys, stat, q=1.0, fd_scale=sc)
+            m_sh, _ = partition_mcc(De, endpoints, truth, t_sh)
+        except ValueError:                  # trop peu de répétitions dans la moitié d'évaluation
+            t_sh, m_sh = float("nan"), float("nan")
         hp = hard_pairs(truth)
         out["folds"].append({"keys": keys, "t": t, "mcc_sel": m_sel, "mcc_eval": m_ev, "mcc_oracle": m_oracle,
                              "t_split_half": t_sh, "mcc_split_half": m_sh,
@@ -569,13 +638,17 @@ def evaluate(grouped: dict, truth: dict, views=VIEWS, stat: str = "corr", top: i
     return out
 
 
-def prepare(grouped: dict, strip: str = "both") -> dict:
-    """strip : 'none', 'affix' (analyze.strip_constant_affixes), 'sent' (strip_boilerplate) ou 'both'."""
+def prepare(grouped: dict, strip: str = "both", fit_on: dict | None = None) -> dict:
+    """strip : 'none', 'affix' (analyze.strip_constant_affixes), 'sent' (strip_boilerplate) ou 'both'.
+    Les règles de retrait sont apprises sur fit_on (défaut : grouped) puis appliquées à grouped."""
+    fit = grouped if fit_on is None else fit_on
     g = grouped
     if strip in ("affix", "both"):
-        g = analyze.strip_constant_affixes(g)
+        cut = analyze.fit_affixes(fit)
+        g = analyze.apply_affixes(g, cut)
+        fit = analyze.apply_affixes(fit, cut)
     if strip in ("sent", "both"):
-        g = strip_boilerplate(g)
+        g = apply_boilerplate(g, fit_boilerplate(fit))
     return g
 
 
@@ -687,11 +760,18 @@ def main(argv=None) -> int:
     sc = median_scales(fd)
     D = combine_features({k: fd[k] / sc[k] for k in keys}, keys, scale="none")
     if a.t_model == "split":
-        t = split_half_threshold(g, eps, keys, a.stat, factor=a.split_factor, fd_scale=sc)
+        try:
+            t = split_half_threshold(g, eps, keys, a.stat, factor=a.split_factor, fd_scale=sc)
+        except ValueError as exc:
+            print(f"erreur : {exc}", file=sys.stderr)
+            return 2
     elif a.t_model == "calib":
         t, _ = best_threshold(D, eps, truth)
     else:
         t = float(a.t_model)
+    if not np.isfinite(t):
+        print(f"erreur : seuil non fini ({t})", file=sys.stderr)
+        return 2
     rows = analyze.partition(eps, np.zeros_like(D), D, 10.0, t)
     print(f"{len(keys)} features, seuil {t:.4f}")
     print(analyze._fmt_matrix(eps, D))
