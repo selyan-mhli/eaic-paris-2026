@@ -161,3 +161,15 @@ Pièges du kit relevés en lisant le code :
 - La famille : sur des prompts très contraints, deux familles différentes peuvent donner le même texte ;
   la coupure famille automatique doit être relue à la main avec les réponses d'identité (f01, f02).
 - Le temps réel par requête (estimé, pas mesuré).
+
+## 7. Premières mesures réelles (pilote ref en cours)
+
+- 21/11 17:15, 200 réponses (répétition 0 seulement, 23 prompts × 9 ref) : avec **une seule** réponse par
+  prompt, le score `score_practice` calibré vaut 0,00 (ngram), 0,04 (seq), 0,52 (hamming). Seule la LoRA 1,5
+  (ref-07) s'isole. Le petit modèle ref échantillonne de façon très bruitée (ex. m04, pi : les 5 ref « S »
+  donnent 5 sorties différentes). Confirme qu'il faut des répétitions ; analyse `corr` dès 2 répétitions
+  complètes (vers 17:50).
+- Paramètres API (35 POST ref-01, tous en 429 « occupé » à cause du pilote) : seuls `model`, `messages`,
+  `max_tokens` sont validés par le serveur ; `n`, `logprobs`, `top_logprobs`, `temperature` sont très
+  probablement ignorés (inférence par validation de schéma, non mesurée) ; `/v1/completions` n'existe pas
+  (404). Préremplissage `assistant` et coût de `n` : à mesurer pendant une pause du pilote.
