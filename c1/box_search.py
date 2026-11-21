@@ -62,6 +62,13 @@ def grid(max_ratio):
 
 def refine(wm, img, msg, seeds, steps=(16, 8)):
     best = list(seeds)
+    cache = {}  # boîte -> acc (chaque boîte n'est décodée qu'une fois)
+
+    def score(bs_):
+        todo = [b for b in bs_ if b not in cache]
+        if todo:
+            cache.update(zip(todo, accs_for(wm, img, msg, todo).tolist()))
+        return np.array([cache[b] for b in bs_], np.float32)
     for st in steps:
         for _ in range(3):
             cand = set(best)
@@ -74,13 +81,13 @@ def refine(wm, img, msg, seeds, steps=(16, 8)):
                                 if 0 <= b[0] < b[1] <= H and 0 <= b[2] < b[3] <= H and b[1] - b[0] >= 16 and b[3] - b[2] >= 16:
                                     cand.add(b)
             cand = sorted(cand)
-            a = accs_for(wm, img, msg, cand)
+            a = score(cand)
             order = np.argsort(-a)[: len(seeds)]
             new = [cand[i] for i in order]
             if new == best:
                 break
             best = new
-    a = accs_for(wm, img, msg, best)
+    a = score(best)
     k = int(np.argmax(a))
     return best[k], float(a[k])
 
@@ -100,10 +107,28 @@ def main():
     idx = [i for i in range(len(ds)) if i % args.nshards == args.shard]
     wms = {m: load_watermark(m, "models", dev) for m in METHODS}
     grids = {m: grid(2.0 if m == "trustmark" else 16.0) for m in METHODS}
+    print("onnxruntime StegaStamp :", wms["stegastamp"].sess.get_providers(), flush=True)
     print("boîtes par grille :", {m: len(g) for m, g in grids.items()}, flush=True)
     names, method, box, acc, accf = [], [], [], [], []
+    part = args.out.with_name("partial_" + args.out.name)  # hors du motif boxes_*
+
+    def save(path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name("tmp_" + path.name)
+        np.savez_compressed(tmp, names=np.array(names), method=np.array(method), box=np.array(box, np.int32).reshape(-1, 4),
+                            acc_box=np.array(acc, np.float32), acc_full=np.array(accf, np.float32))
+        tmp.rename(path)
+
+    if part.exists() and not args.limit:  # reprise après dépassement de --time
+        z = np.load(part)
+        names, method, box = z["names"].tolist(), z["method"].tolist(), [tuple(b) for b in z["box"].tolist()]
+        acc, accf = z["acc_box"].tolist(), z["acc_full"].tolist()
+        print(f"reprise : {len(names)} images déjà faites ({part})", flush=True)
+    doneset = set(names)
     t0 = time.time(); done = 0
     for i in idx:
+        if ds.meta[i]["image_name"] in doneset:
+            continue
         it = ds[i]; m = it["method"]; wm = wms[m]
         img = to_tensor(it["image"]).to(dev); msg = torch.from_numpy(it["message"]).float()
         af = float(accs_for(wm, img, msg, [(0, H, 0, H)])[0])
@@ -124,10 +149,12 @@ def main():
                     gt = f" gt_bbox=({ys.min()},{ys.max() + 1},{xs.min()},{xs.max() + 1})" if len(ys) else " gt vide"
                 print(f"[R {done}] {m} acc_full={af:.3f} best={b} acc={a:.3f}{gt} {time.time() - t0:.0f}s", flush=True)
         names.append(it["image_name"]); method.append(m); box.append(b); acc.append(a); accf.append(af)
+        if af < args.gate and not args.limit and done % 5 == 0:
+            save(part)
     print(f"{len(names)} images, {done} recherches, {time.time() - t0:.0f} s", flush=True)
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(args.out, names=np.array(names), method=np.array(method), box=np.array(box, np.int32),
-                        acc_box=np.array(acc, np.float32), acc_full=np.array(accf, np.float32))
+    save(args.out)
+    if part.exists():
+        part.unlink()
     print("->", args.out, flush=True)
 
 
