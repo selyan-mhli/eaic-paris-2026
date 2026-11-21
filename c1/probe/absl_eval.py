@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -62,6 +63,7 @@ def nested(D, gt, method, full, seed) -> np.ndarray:
     for k in range(5):
         tr, te = idx[fo != k], idx[fo == k]
         r, _ = ge.fit(D, gt, tr, "full")
+        print(f"    règle graine {seed} fold {k} : " + json.dumps(r), flush=True)  # « jamais choisi » vérifiable
         s[te] = fast_miou(ge.apply(D, te, r), gt[te])
     return s
 
