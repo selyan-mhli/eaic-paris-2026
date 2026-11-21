@@ -117,6 +117,7 @@ def test_prompt_files_are_kit_compatible():
         assert rows and len({p for p, _ in rows}) == len(rows), path.name
         for pid, prompt in rows:
             assert pilot.get(pid) == prompt, (path.name, pid)
-            assert pid not in ep_ids, (path.name, pid)       # pas de collision entre fichiers ep (même jsonl)
+            # un même id peut revenir dans deux phases (le kit complète alors les répétitions manquantes),
+            # mais toujours avec le même texte : c'est garanti par l'égalité avec le pilote ci-dessus
             ep_ids.add(pid)
     assert all(0 < len(t) <= 1500 for t in pilot.values())
