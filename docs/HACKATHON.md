@@ -45,7 +45,7 @@ et à détecter un écart grossier entre local et public. Chaque soumission est 
 | | c1 — Localisation de watermark | c3 — Unlearning | c2 — Model equality |
 |---|---|---|---|
 | Entrée | 1 020 images test 512×512 (+ 510 train avec masques) | ViT-B/16 timm, 100 classes + 3 500 images à oublier | 33 endpoints LLM (+ 9 endpoints d'entraînement) |
-| Sortie | `.pt` `{image_names, masks[N,128,128]}` ≤ 20 Mo | state dict float32 `strict=True` ≤ 450 Mo | CSV `endpoint,family,model` |
+| Sortie | `.pt` `{image_names, masks[N,128,128]}` ≤ 25 Mo | state dict float32 `strict=True` ≤ 450 Mo | CSV `endpoint,family,model` |
 | Métrique | mIoU 2 classes, moyenne par image | forget_score × retain_score, porte 70 % de val. | 0,1·MCC famille + 0,9·MCC modèle |
 | Validation locale | **forte** : 510 images train avec masques | **faible** : pas de gold ni de données retain | **moyenne** : ref-01..09 + `score_practice.py` |
 | Ressource rare | GPU modéré | GPU (fine-tuning ViT) | **budget de requêtes : 100 par endpoint, pour tout le week-end** |
