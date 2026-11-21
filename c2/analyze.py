@@ -171,6 +171,18 @@ def kernel_matrix(texts, kind: str = "ngram", max_words: int = 100) -> np.ndarra
         for i, j in itertools.combinations(range(n), 2):
             K[i, j] = K[j, i] = difflib.SequenceMatcher(None, words[i], words[j], autojunk=False).ratio()
         return K
+    if kind == "hamming":
+        # Gao et al. : fraction de positions identiques (caractères), textes complétés à droite par un
+        # symbole de bourrage jusqu'à L = 1 000 caractères (~256 tokens).
+        L = 1000
+        A = np.full((len(texts), L), -1, dtype=np.int32)
+        for i, t in enumerate(texts):
+            codes = [ord(c) for c in normalize(t)[:L]]
+            A[i, :len(codes)] = codes
+        K = np.empty((len(texts), len(texts)))
+        for i in range(len(texts)):
+            K[i] = (A == A[i]).mean(axis=1)
+        return K
     if kind == "both":
         return 0.5 * (kernel_matrix(texts, "ngram") + kernel_matrix(texts, "seq", max_words))
     raise ValueError(f"noyau inconnu : {kind}")
@@ -454,7 +466,7 @@ def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("answers", nargs="+", help="answers.jsonl au format du kit")
     p.add_argument("--prefix", default="ep-", help="endpoints analysés (ep- par défaut, ref- pour le pilote)")
-    p.add_argument("--kernel", default="ngram", choices=["ngram", "seq", "both"])
+    p.add_argument("--kernel", default="ngram", choices=["ngram", "seq", "hamming", "both"])
     p.add_argument("--stat", default="corr", choices=["corr", "mmd"])
     p.add_argument("--t-model", default="auto", help="seuil modèle (nombre) ou auto")
     p.add_argument("--t-family", default="auto", help="seuil famille (nombre) ou auto")

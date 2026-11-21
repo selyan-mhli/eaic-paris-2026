@@ -104,8 +104,13 @@ def test_prompt_files_are_kit_compatible():
     """CSV id,prompt lisibles par le kit, ids uniques par fichier, prompts courts (1 024 tokens max en
     entrée : on reste sous 1 500 caractères), et chaque prompt ep-* figure à l'identique dans le pilote ref-*
     (la sélection faite sur les ref se transpose donc id pour id)."""
-    pilot = dict(_read_prompts(HERE / "prompts_ref_pilot.csv"))
-    assert len(pilot) == len(_read_prompts(HERE / "prompts_ref_pilot.csv"))
+    pilot = {}
+    for path in sorted(HERE.glob("prompts_ref_pilot*.csv")):
+        rows = _read_prompts(path)
+        assert len({p for p, _ in rows}) == len(rows), path.name
+        for pid, prompt in rows:
+            assert pid not in pilot, (path.name, pid)        # ids uniques entre vagues du pilote
+            pilot[pid] = prompt
     ep_ids = set()
     for path in sorted(HERE.glob("prompts_ep_*.csv")):
         rows = _read_prompts(path)
