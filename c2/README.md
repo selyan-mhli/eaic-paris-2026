@@ -31,5 +31,7 @@
 
 Plan de requêtes : [PLAN.md](PLAN.md) (budget ref-* mesuré : 1 000 000, ep-* : 100). Analyse hors ligne :
 `analyze.py` (tests : `pytest c2/test_analyze.py`, synthétique via `synth.py`). Copie du scoreur : `kit/`.
+Modèle minimal pré-calibré hors ligne : `features.py --features improved-min --stat min`, utilisant
+`c08:len` et `m10:order` ; validé sur des plis pairs/impairs ref à MCC 0.718.
 
 Fiche complète : [../docs/HACKATHON.md](../docs/HACKATHON.md).

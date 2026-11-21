@@ -289,3 +289,8 @@ def test_codex_5_incomplete_output_refused(tmp_path):
     rows = [(e, "A", "A1") for e in truth if e != "ref-09"]
     with pytest.raises(ValueError, match="ref-09"):
         analyze.score(truth, rows)
+
+
+def test_improved_min_preset_is_fixed_and_portable():
+    # Keep this as a fixed, documented baseline; do not reselect it from ep-* data.
+    assert F._keys_from("improved-min") == [("c08", "len"), ("m10", "order")]

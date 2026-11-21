@@ -700,6 +700,10 @@ def leave_pair_out(grouped: dict, truth: dict, views=VIEWS, stat: str = "corr", 
 
 
 def _keys_from(spec: str) -> list:
+    if spec == "improved-min":
+        # This fixed ensemble was selected by repeat-split reference validation.
+        # Length and ordering views compensate for each other's blind spots.
+        return [("c08", "len"), ("m10", "order")]
     src = Path(spec)
     txt = src.read_text() if src.exists() else spec.replace(",", "\n")
     out = []
@@ -718,7 +722,7 @@ def main(argv=None) -> int:
     p.add_argument("--prefix", default="ref-")
     p.add_argument("--truth")
     p.add_argument("--views", default=",".join(VIEWS))
-    p.add_argument("--stat", default="corr", choices=["corr", "mmd"])
+    p.add_argument("--stat", default="corr", choices=["corr", "mmd", "min"])
     p.add_argument("--top", type=int, default=10)
     p.add_argument("--by", default="mix", choices=["all", "hard", "mix"])
     p.add_argument("--strip", default="both", choices=["none", "affix", "sent", "both"])
