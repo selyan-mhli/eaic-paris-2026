@@ -84,6 +84,7 @@ def main() -> None:
     ap.add_argument("--test-heats", type=Path)
     ap.add_argument("--write-sub", type=Path)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--allow-partial", action="store_true", help="accepter une sortie --limit (test du code)")
     args = ap.parse_args()
 
     z = np.load(Path(args.data) / "train" / "masks_128.npz")
@@ -100,6 +101,8 @@ def main() -> None:
     names = d["names"].tolist(); method = d["method"]; full = d["full_watermark"]
     gt = np.stack([allm[n] for n in names])  # n 128 128
     n = len(names)
+    assert args.allow_partial or (n == len(set(names)) == 510 and set(names) == set(allm)), "sortie partielle ou doublons"
+    assert gt.shape[1:] == (128, 128) and set(np.unique(gt)) <= {0, 1}
     print(f"\n{n} images ; couverture GT moyenne {gt.mean():.3f}")
     # 2) diagnostic
     print("\nDiagnostic bit accuracy (moyenne) par méthode x full_watermark (F = image entière watermarkée)")
