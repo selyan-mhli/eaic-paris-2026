@@ -21,8 +21,16 @@ un challenge, un dossier possédé et un objectif mesurable. Tu ne sors pas de c
    à l'identique et la tester sur un cas à la main.
 4. **Petit avant gros.** Faire tourner un sous-échantillon (quelques batches, quelques secondes)
    avant de lancer un job long : formes, dtypes, device, absence de NaN, écriture des sorties.
-5. **Format de soumission vérifié** contre l'exemple officiel (colonnes, ordre, nombre de lignes,
+5. **Formes de tenseurs commentées** après chaque `view`, `reshape`, `permute`, `einsum`, `cat`
+   (`x = x.view(b, c, -1)  # b c h w -> b c (h w)`) : la plupart des bugs de nuit viennent de là.
+6. **Format de soumission vérifié** contre l'exemple officiel (colonnes, ordre, nombre de lignes,
    encodage) avant de rendre la main.
+
+## Boucle autonome
+
+Une fois la baseline et `cN/eval.py` vérifiés, l'amélioration sans humain (la nuit) suit le
+skill `autoresearch` du projet (`.claude/skills/autoresearch/SKILL.md`) et passe par
+`common/autoresearch/run_one.py`. Pas de boucle sans `cN/program.md` rempli et conditions d'arrêt.
 
 ## Journal obligatoire
 
