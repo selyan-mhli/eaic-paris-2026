@@ -116,9 +116,11 @@ Recommandations pour T3 :
    - Après chaque appel, `.cpu()` provoque une synchronisation ; les crops sont construits par `torch.cat`
      dans une boucle Python.
    - `refine` redécode des boîtes déjà évaluées : il n'y a pas de cache par boîte.
-3. **StegaStamp sur GPU : non démontré.** Le wrapper demande `CUDAExecutionProvider`, puis CPU en repli.
-   Les logs ne contiennent ni `get_providers()` ni avertissement. Chaque batch fait GPU → NumPy CPU → ORT.
-   Le top observé (1 cœur alors qu'ORT a 4 threads intra-op) ne permet pas de conclure.
+3. **StegaStamp tourne sur GPU (mesuré après coup, job 15901414).** Le log de chaque shard affiche
+   `onnxruntime StegaStamp : ['CUDAExecutionProvider', 'CPUExecutionProvider']` : la session ORT a bien
+   chargé CUDA, il n'y a pas de repli CPU. La lenteur de StegaStamp (100-120 s par image) vient donc plutôt
+   des petits batches et du passage GPU → NumPy CPU → ORT à chaque batch (hypothèse). Ce log ne prouve pas
+   que chaque opérateur passe par CUDA (Codex) ; un profil ORT le dirait.
 4. **32 CPU par tâche : inutiles en l'état (mesuré : environ 1 cœur occupé).** Sans conséquence aujourd'hui,
    puisque le nœud entier est alloué de toute façon. Pour un packing, 8 cœurs physiques par shard suffisent (estimation).
 5. **I/O : non limitant (estimation).** 556 Mo de PNG pour des recherches de plusieurs secondes à plusieurs
@@ -131,7 +133,7 @@ Recommandations pour T3 :
 | # | Action | Gain | Effort | Statut |
 |---|---|---|---|---|
 | 1 | **4 shards par nœud, un par GPU** (modèle ci-dessous) | Jusqu'à ×4 de débit par nœud. Les 14 shards tiendraient sur 4 nœuds au lieu de 14 (≈ 70 % de nœuds libérés pour nous ou les autres équipes). Ne raccourcit pas un shard (estimation) | Faible, aucun changement Python | Recommandé maintenant |
-| 2 | Journaliser `sess.get_providers()` de StegaStamp dans le log du job | Élevé si ORT retombe sur CPU (StegaStamp domine avec 100-120 s par image), nul sinon | Très faible | À faire avant toute optimisation de StegaStamp |
+| 2 | Journaliser `sess.get_providers()` de StegaStamp dans le log du job | Pas de gain : CUDA est bien utilisé | Très faible | **Fait** (journalisé dans `box_search.py`, job 15901414) |
 | 3 | Cache des scores par boîte dans `refine` (par image et décodeur) | Non chiffré (dépend du taux de réutilisation) | Faible | Recommandé |
 | 4 | Décoder ensemble des crops de tailles différentes : `interpolate` par groupe de taille, puis tampon à résolution fixe décodé par lots (32 pour StegaStamp) | Potentiellement important pendant `refine` ; le facteur ×10 n'est pas démontré | Moyen | Vérifier l'égalité des logits et des meilleures boîtes. `roi_align` n'est **pas** équivalent au resize antialiasé, à éviter sans validation du score |
 | 5 | ORT I/O binding : passer un tenseur CUDA NHWC contigu via `run_with_iobinding()`, sans passage par NumPy | Inconnu | Moyen | Après le n° 2 |
@@ -149,7 +151,7 @@ Conserver `--nshards` 6/8 pour retrouver les mêmes images : le découpage se fa
 Ce modèle s'appuie sur le constat que les GPU ne sont pas isolés par cgroups (message du login).
 Le masque est donc imposé par `CUDA_VISIBLE_DEVICES=$SLURM_LOCALID`, et chaque shard vérifie qu'il ne voit qu'un GPU.
 Le code de sortie est non nul si au moins un shard échoue (`srun` renvoie le pire code ; `--kill-on-bad-exit=0`
-laisse les autres shards finir). **Non testé sur JURECA** : `bash -n` seulement.
+laisse les autres shards finir). **Validé sur JURECA** (job 15901414, voir ci-dessous).
 
 ```bash
 #!/bin/bash
@@ -187,15 +189,26 @@ srun --ntasks="$NTASKS" --kill-on-bad-exit=0 --cpu-bind=cores \
 
 Codex propose une variante plus défensive : quatre `srun --exclusive --exact --gres=none &` avec
 `wait` par PID, des UUID GPU et un trap. Elle est utile si `$SLURM_LOCALID` ne correspond pas à l'index
-physique ou si les steps se sérialisent. La version ci-dessus est plus simple : il faut d'abord la tester sur un nœud.
+physique ou si les steps se sérialisent. Elle n'a pas été nécessaire : la version simple fonctionne.
 
-Recette de validation (à lancer par la session qui possède `work_c1/`) : `--limit 2`, puis
-`srun --jobid=<id> --overlap nvidia-smi` doit montrer **4 processus sur 4 GPU distincts**, et les 4 `.npz`
-doivent être identiques à ceux du schéma actuel pour les mêmes shards.
+### Validation sur JURECA (job 15901414, 2026-11-21)
+
+La session de la tâche 1 a lancé `j1_pack.sbatch` avec `train 6 0` et `--limit 2`.
+
+- **Mesuré (`sacct`, logs) :** COMPLETED en 2 min 58 s, 4 GPU alloués sur le nœud jrc0374, un log par shard
+  (`output/15901414_0.out` à `_3.out`), chaque shard k annonce « shard k/6 sur GPU k ».
+- **Rapporté par la session de la tâche 1, non revérifié ici :** torch voit exactement 1 GPU par tâche,
+  `nvidia-smi` montre des UUID distincts, et pour les shards 1 et 2 les boîtes et les scores sont identiques
+  à l'ancien schéma 1 job = 1 GPU (39/39 et 54/54 images).
+- **Ajouts de la session de la tâche 1 au modèle :** `$4` = préfixe de sortie (défaut `boxes_<split>`),
+  `$5` = arguments en plus pour `box_search.py`.
+
+La tâche 1 utilise ce sbatch pour ses prochains lancements ; les jobs déjà en cours restent sur l'ancien schéma.
+`c3/unlearn_pack.sh` (tâche 3) reprend le même principe mais n'a pas encore tourné.
 
 ## 4. Non vérifié
 
-- Le fournisseur ONNX Runtime effectivement utilisé par StegaStamp sur les nœuds (CUDA ou repli CPU).
+- L'attribution de chaque opérateur ONNX à CUDA : la session déclare CUDA, aucun profil ORT n'a été fait.
 - La part du temps prise par Python, les transferts et l'inférence : aucun profilage, seulement `top` et `nvidia-smi`.
 - L'activité GPU réelle des jobs de zhang95 : `srun --overlap` est refusé sur le job d'un autre
   utilisateur, et `sacct` d'autrui n'est pas visible. Pour la mesurer, zhang95 doit lancer elle-même
@@ -205,6 +218,6 @@ doivent être identiques à ceux du schéma actuel pour les mêmes shards.
 - L'isolation GPU effective : les étapes `--overlap` voient les 4 GPU, ce qui est cohérent avec le message
   « Do not constrain GPU devices with Slurm ». Le changelog JURECA évoque une activation des cgroups GPU,
   et la configuration réelle de la réservation prime : le test `device_count()==1` du modèle sert de garde-fou.
-- Le modèle de sbatch n'a jamais tourné sur JURECA.
+- `c3/unlearn_pack.sh` n'a jamais tourné sur JURECA ; l'égalité des sorties pour les shards 0 et 3 du test 15901414.
 - Mes sondes `srun --overlap ... nvidia-smi -l 1` apparaissent comme steps FAILED dans `sacct`
   (interrompues volontairement après 8 s). Elles n'ont pas affecté les jobs.
