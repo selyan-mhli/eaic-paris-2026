@@ -148,6 +148,18 @@ def divergence(pid: str, text: str) -> float | None:
     return float(best)
 
 
+def determinism(grouped: dict) -> dict:
+    """{endpoint: fraction des prompts où toutes ses répétitions (>= 2) sont identiques}. Un endpoint
+    décodé en greedy approche 1 ; sert à savoir si l'égalité exacte entre endpoints est une preuve."""
+    tot, same = Counter(), Counter()
+    for by_ep in grouped.values():
+        for ep, v in by_ep.items():
+            if len(v) >= 2:
+                tot[ep] += 1
+                same[ep] += len({analyze.normalize(t) for t in v}) == 1
+    return {ep: same[ep] / tot[ep] for ep in sorted(tot)}
+
+
 def strip_boilerplate(grouped: dict, min_prompts: int = 3, min_chars: int = 12) -> dict:
     """Par endpoint, retire les phrases (normalisées) présentes dans ses réponses à >= min_prompts prompts
     différents : formules de persona/system prompt qui ne sont pas en préfixe exact. Une phrase de vrai
@@ -288,9 +300,10 @@ VIEWS = ("char", "hamming", "word", "nums", "numset", "items", "order", "lcp", "
 # ---------------------------------------------------------------------------------------------- distances
 
 
-def feature_distances(grouped: dict, endpoints: list, views=VIEWS, stat: str = "corr",
-                      min_reps: int = 2) -> dict:
-    """{(pid, view): matrice E×E (nan si absent)}. Seuls les endpoints à >= min_reps réponses comptent."""
+def feature_kernels(grouped: dict, endpoints: list, views=VIEWS, min_reps: int = 2) -> dict:
+    """{(pid, view): matrice E×E des noyaux moyens} : M[a, b] = moyenne de k entre réponses de a et de b,
+    M[a, a] = moyenne hors diagonale (non biaisée). nan si l'endpoint manque. Toutes les statistiques
+    (corr, min, mmd) et la mise en commun des prompts (pooled) se calculent à partir de M."""
     E = len(endpoints)
     pos = {ep: i for i, ep in enumerate(endpoints)}
     out = {}
@@ -307,13 +320,59 @@ def feature_distances(grouped: dict, endpoints: list, views=VIEWS, stat: str = "
             K = view_kernel(view, pid, texts)
             if K is None:
                 continue
-            D = np.full((E, E), np.nan)
+            M = np.full((E, E), np.nan)
+            for a in eps:
+                M[pos[a], pos[a]] = analyze._off_diag_mean(K, idx[a])
             for a, b in itertools.combinations(eps, 2):
-                D[pos[a], pos[b]] = D[pos[b], pos[a]] = analyze.pair_stat(K, idx[a], idx[b], stat)
-            for ep in eps:
-                D[pos[ep], pos[ep]] = 0.0
-            out[(pid, view)] = D
+                M[pos[a], pos[b]] = M[pos[b], pos[a]] = float(K[np.ix_(idx[a], idx[b])].mean())
+            out[(pid, view)] = M
     return out
+
+
+def dist_from_kernel(M: np.ndarray, stat: str = "corr") -> np.ndarray:
+    """Distance E×E depuis les noyaux moyens.
+    corr : 1 - Kab / sqrt(Kaa Kbb) (analyze.pair_stat) ;
+    min  : 1 - Kab / min(Kaa, Kbb), bornée à [0, 1] : un endpoint déterministe (Kaa = 1, ex. watermark
+           greedy) dont la réponse est un échantillon typique de b reste à distance ~0 de b ;
+    mmd  : Kaa + Kbb - 2 Kab."""
+    d = np.diag(M)
+    kaa, kbb = d[:, None], d[None, :]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        if stat == "corr":
+            D = 1.0 - M / np.sqrt(np.maximum(kaa, 1e-9) * np.maximum(kbb, 1e-9))
+        elif stat == "min":
+            D = 1.0 - M / np.maximum(np.minimum(kaa, kbb), 1e-9)
+        elif stat == "mmd":
+            D = kaa + kbb - 2 * M
+        else:
+            raise ValueError(f"statistique inconnue : {stat}")
+    D = np.clip(D, 0.0, None if stat == "mmd" else 1.0)
+    D = np.where(np.isfinite(M), D, np.nan)
+    np.fill_diagonal(D, np.where(np.isfinite(d), 0.0, np.nan))
+    return D
+
+
+def feature_distances(grouped: dict, endpoints: list, views=VIEWS, stat: str = "corr",
+                      min_reps: int = 2) -> dict:
+    """{(pid, view): matrice E×E (nan si absent)}. Seuls les endpoints à >= min_reps réponses comptent."""
+    return {k: dist_from_kernel(M, stat) for k, M in feature_kernels(grouped, endpoints, views, min_reps).items()}
+
+
+def pooled_distance(fk: dict, keys, stat: str = "corr", weights: dict | None = None) -> np.ndarray:
+    """Mise en commun : moyenne des noyaux moyens M sur les features, PUIS statistique (rapport des
+    moyennes). Bien moins bruité que la moyenne des rapports par prompt quand il y a peu de répétitions."""
+    mats, ws = [], []
+    for k in keys:
+        if k in fk:
+            mats.append(fk[k])
+            ws.append(1.0 if weights is None else float(weights.get(k, 0.0)))
+    if not mats:
+        raise ValueError("aucune feature retenue")
+    A = np.stack(mats)
+    W = np.array(ws)[:, None, None] * np.isfinite(A)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        M = np.where(W.sum(0) > 0, (np.where(np.isfinite(A), A, 0.0) * W).sum(0) / W.sum(0), np.nan)
+    return dist_from_kernel(M, stat)
 
 
 def combine_features(fd: dict, keys, weights: dict | None = None, scale: str = "median") -> np.ndarray:

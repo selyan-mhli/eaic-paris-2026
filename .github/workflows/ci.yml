@@ -15,4 +15,4 @@ jobs:
       - run: pip install ruff==0.8.6 numpy pytest
       # Erreurs bloquantes seulement (syntaxe, noms indéfinis, imports cassés).
       - run: ruff check --select E9,F63,F7,F82 .
-      - run: pytest -q c1/test_metric.py c2/test_analyze.py
+      - run: pytest -q c1/test_metric.py c2/test_analyze.py c2/test_features.py
