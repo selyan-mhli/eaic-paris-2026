@@ -178,7 +178,7 @@ def test_2_pooled_distance_uses_common_support():
 
 def test_3_affix_strip_keeps_structure_and_twins_match():
     g = {f"p{i}": {"a": [f"Ahoy friend, here:\n- X{i}\n- y{i}\nFair winds!"], "b": [f"- X{i}\n- y{i}"]}
-         for i in range(4)}
+         for i in range(6)}
     out = analyze.strip_constant_affixes(g)
     for p in g:
         assert out[p]["a"][0] == g[p]["b"][0]           # même texte que le jumeau, sauts de ligne et casse gardés
@@ -216,8 +216,8 @@ def test_4_empty_answers_are_missing_not_identity():
 def test_5_strip_rules_learned_on_selection_only():
     """Un préfixe présent seulement dans la moitié d'évaluation n'est pas retiré : les règles viennent de la
     sélection."""
-    sel = {f"p{i}": {"a": [f"Body {i}.", f"Body {i} bis."]} for i in range(4)}
-    ev = {f"p{i}": {"a": [f"Hello there friend: Body {i}.", f"Hello there friend: Body {i} ter."]} for i in range(4)}
+    sel = {f"p{i}": {"a": [f"Body {i}.", f"Body {i} bis."]} for i in range(6)}
+    ev = {f"p{i}": {"a": [f"Hello there friend: Body {i}.", f"Hello there friend: Body {i} ter."]} for i in range(6)}
     out = F.prepare(ev, "both", fit_on=sel)
     assert out["p1"]["a"][0].startswith("Hello there friend:")
     assert not F.prepare(ev, "both")["p1"]["a"][0].startswith("Hello")   # appris sur ev lui-même : retiré
@@ -232,7 +232,7 @@ def test_6_determinism_nfc_and_case():
 def test_7_learned_affix_not_applied_to_answer_without_it():
     """Relecture Sol : après apprentissage de « Hello there friend: », une réponse sans cet affixe reste
     intacte (avant : « Mercury is a rocky planet. » devenait « rocky planet. »)."""
-    sel = {f"p{i}": {"a": [f"Hello there friend: Body {i}.", f"Hello there friend: Body {i} bis."]} for i in range(4)}
+    sel = {f"p{i}": {"a": [f"Hello there friend: Body {i}.", f"Hello there friend: Body {i} bis."]} for i in range(6)}
     cut = analyze.fit_affixes(sel)
     assert cut["a"][0] == ("hello", "there", "friend:")
     ev = {"q": {"a": ["Mercury is a rocky planet.", "HELLO there friend: Mars is red."]}}
@@ -247,3 +247,45 @@ def test_7_determinism_empty_is_missing():
 def test_7_no_sentence_removed_with_too_few_prompts():
     g = {f"p{i}": {"a": [f"Common sentence here for all. Body {i}."]} for i in range(3)}
     assert all("Common sentence" in v["a"][0] for v in F.strip_boilerplate(g).values())
+
+
+# ------------------------------------------------------------------ relecture Codex (PR #15, d2daac9)
+
+def test_c_affix_not_learned_from_three_prompts():
+    """Une phrase de contenu commune à 3 prompts n'est pas prise pour une formule (minimum 5 prompts)."""
+    g = {f"p{i}": {"a": [f"Paris is the capital of France. Body {i}."]} for i in range(3)}
+    out = F.prepare(g, "both")
+    assert all(v["a"][0].startswith("Paris is the capital of France.") for v in out.values())
+
+
+def test_codex_2_leave_pair_out_scales_exclude_the_pair():
+    M = np.array([[0, 1, 9], [1, 0, 9], [9, 9, 0]], dtype=float)
+    assert F.median_scales({"k": M}, keep=[0, 1])["k"] == 1.0
+    assert F.median_scales({"k": M})["k"] == 9.0
+
+
+def test_codex_3_infinite_thresholds_refused():
+    D = np.array([[0.0, 5.0], [5.0, 0.0]])
+    for t in (float("inf"), float("-inf"), float("nan")):
+        with pytest.raises(ValueError):
+            analyze.upgma(D, t)
+    labels, _ = analyze.upgma(D)          # dendrogramme complet (usage interne) reste possible
+    assert len(set(labels)) == 1
+
+
+def test_codex_4_calibration_uses_within_family_heights():
+    """Familles {a,b} et {c,d} ; ab=0,20, cd=0,25, ac=0,01 entre familles (ignoré par la partition modèle) :
+    un seuil vers 0,22 donne MCC 1 sur la vérité (a=b, c≠d)."""
+    eps = ["a", "b", "c", "d"]
+    Dm = np.array([[0, .20, .01, .9], [.20, 0, .9, .9], [.01, .9, 0, .25], [.9, .9, .25, 0]])
+    Df = np.array([[0, 0, 1, 1], [0, 0, 1, 1], [1, 1, 0, 0], [1, 1, 0, 0]], dtype=float)
+    truth = {"a": ("F", "1"), "b": ("F", "1"), "c": ("G", "2"), "d": ("G", "3")}
+    t, m = analyze.calibrate(eps, Dm, truth, Df, 0.5)
+    assert m == 1.0 and 0.20 < t < 0.25
+
+
+def test_codex_5_incomplete_output_refused(tmp_path):
+    truth = analyze.read_truth(HERE / "kit" / "practice_answers.csv")
+    rows = [(e, "A", "A1") for e in truth if e != "ref-09"]
+    with pytest.raises(ValueError, match="ref-09"):
+        analyze.score(truth, rows)

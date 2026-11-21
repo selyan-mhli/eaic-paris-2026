@@ -111,10 +111,11 @@ def _boundary_after(text: str, toks: list, i: int) -> bool:
     return w[-1] in ".!?:,;" or "\n" in text[toks[i].end():toks[i + 1].start()]
 
 
-def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3) -> dict:
+def fit_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 5) -> dict:
     """{endpoint: (mots du préfixe, mots du suffixe)} (normalisés) communs à TOUTES ses réponses non vides, tous
     prompts confondus (comparaison sur les mots normalisés). Un vrai début de réponse dépend du prompt ; une
-    formule identique partout vient d'un system prompt ou d'une persona. Rien si < min_prompts prompts."""
+    formule identique partout vient d'un system prompt ou d'une persona. Rien si l'endpoint a répondu à
+    moins de min_prompts prompts (trop peu pour distinguer une formule d'une phrase de contenu partagée)."""
     by_ep = defaultdict(list)
     for p, d in grouped.items():
         for ep, v in d.items():
@@ -171,7 +172,7 @@ def apply_affixes(grouped: dict, cut: dict) -> dict:
             for p, d in grouped.items()}
 
 
-def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 3, fit_on: dict | None = None) -> dict:
+def strip_constant_affixes(grouped: dict, min_words: int = 2, min_prompts: int = 5, fit_on: dict | None = None) -> dict:
     """Retire les affixes constants par endpoint (règles apprises sur fit_on, par défaut grouped lui-même)."""
     return apply_affixes(grouped, fit_affixes(grouped if fit_on is None else fit_on, min_words, min_prompts))
 
@@ -322,11 +323,14 @@ def combine(per_prompt: dict, kinds=("multi",), normalize_median: bool = False, 
 # ---------------------------------------------------------------------------------------------- clustering
 
 
-def upgma(D: np.ndarray, threshold: float = math.inf):
-    """Lien moyen. Fusionne tant que la distance moyenne la plus petite est <= threshold.
-    Retourne (labels 0..k-1, hauteurs des fusions effectuées). nan = distance inconnue (ignorée)."""
-    if threshold is None or math.isnan(threshold):
-        raise ValueError("seuil non fini (nan) : refusé, il fusionnerait tous les endpoints")
+def upgma(D: np.ndarray, threshold: float | None = None):
+    """Lien moyen. Fusionne tant que la distance moyenne la plus petite est <= threshold ; threshold=None
+    construit le dendrogramme complet (usage interne : hauteurs de fusion). Un seuil fourni doit être fini :
+    nan ou ±inf sont refusés (nan fusionnait tout, +inf aussi). Retourne (labels 0..k-1, hauteurs des
+    fusions effectuées). nan dans D = distance inconnue (ignorée)."""
+    if threshold is not None and not math.isfinite(threshold):
+        raise ValueError(f"seuil non fini ({threshold}) : refusé")
+    limit = math.inf if threshold is None else threshold
     n = D.shape[0]
     clusters = [[i] for i in range(n)]
     heights = []
@@ -339,7 +343,7 @@ def upgma(D: np.ndarray, threshold: float = math.inf):
             d = float(np.nanmean(sub))
             if d < best:
                 best, pair = d, (a, b)
-        if pair is None or best > threshold:
+        if pair is None or best > limit:
             break
         a, b = pair
         clusters[a] = clusters[a] + clusters[b]
@@ -415,7 +419,10 @@ def score(truth: dict, rows: list) -> dict:
     """Score façon serveur. family : toutes les paires ; model : paires de même famille *vraie* (hypothèse
     de lecture de l'énoncé « only pairs within one family »). Same model = même (family, model)."""
     guess = {e: (f, m) for e, f, m in rows}
-    eps = sorted(set(truth) & set(guess))
+    missing = sorted(set(truth) - set(guess))
+    if missing:     # comme score_practice.py : une sortie incomplète est refusée, pas scorée sur l'intersection
+        raise ValueError(f"sortie incomplète, aucune ligne pour : {', '.join(missing)}")
+    eps = sorted(truth)
     pairs = list(itertools.combinations(eps, 2))
     f_t = [truth[a][0] == truth[b][0] for a, b in pairs]
     f_g = [guess[a][0] == guess[b][0] for a, b in pairs]
@@ -429,11 +436,26 @@ def score(truth: dict, rows: list) -> dict:
             "practice_mcc": mcc(all_t, all_g), "pairs": len(pairs)}
 
 
-def calibrate(endpoints, D_model, truth: dict, D_family=None, t_family: float = math.inf):
+def _single_family_threshold(D: np.ndarray) -> float:
+    """Seuil famille fini qui met tous les endpoints dans une seule famille."""
+    fin = D[np.isfinite(D)]
+    return float(fin.max() + 1.0) if fin.size else 1.0
+
+
+def calibrate(endpoints, D_model, truth: dict, D_family=None, t_family: float | None = None):
     """Seuil modèle qui maximise le MCC « même modèle » sur les endpoints de vérité connue.
+    Les seuils candidats sont les hauteurs de fusion des dendrogrammes calculés DANS chaque famille, comme la
+    partition modèle (partition() découpe par famille). t_family=None : une seule famille.
     Retourne (seuil au milieu du meilleur intervalle, meilleur MCC)."""
     D_family = D_model if D_family is None else D_family
-    _, h = upgma(D_model)
+    if t_family is None:
+        t_family = _single_family_threshold(D_family)
+    fam, _ = upgma(D_family, t_family)
+    h = []
+    for f in sorted(set(fam)):
+        members = [i for i in range(len(endpoints)) if fam[i] == f]
+        if len(members) > 1:
+            h += upgma(D_model[np.ix_(members, members)])[1]
     cands = sorted(set([0.0] + h))
     cands = [(x + y) / 2 for x, y in zip(cands, cands[1:])] + [cands[-1] + 1e-6]
     res = [(t, score(truth, partition(endpoints, D_family, D_model, t_family, t))["practice_mcc"]) for t in cands]
@@ -552,7 +574,11 @@ def main(argv=None) -> int:
     truth = read_truth(a.truth) if a.truth else None
     t_model = a.t_model if a.t_model == "auto" else float(a.t_model)
     t_family = a.t_family if a.t_family == "auto" else float(a.t_family)
-    res = analyze(grouped, a.kernel, a.stat, t_model, t_family, truth, a.calibrate, strip=not a.no_strip)
+    try:
+        res = analyze(grouped, a.kernel, a.stat, t_model, t_family, truth, a.calibrate, strip=not a.no_strip)
+    except ValueError as exc:
+        print(f"erreur : {exc}", file=sys.stderr)
+        return 2
     eps, rows = res["endpoints"], res["rows"]
     n = answers_per_endpoint(grouped)
 

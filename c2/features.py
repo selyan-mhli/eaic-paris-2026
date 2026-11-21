@@ -588,9 +588,13 @@ def split_half_threshold(grouped: dict, endpoints, keys, stat: str = "corr", q: 
     return t
 
 
-def median_scales(fd: dict) -> dict:
+def median_scales(fd: dict, keep=None) -> dict:
+    """Échelle de chaque feature = médiane hors diagonale de sa matrice, calculée sur les seuls indices keep
+    (défaut : tous). En leave-pair-out, keep exclut la paire prédite."""
     out = {}
     for k, M in fd.items():
+        if keep is not None:
+            M = M[np.ix_(keep, keep)]
         off = M[np.triu_indices_from(M, 1)]
         off = off[np.isfinite(off)]
         med = float(np.median(off)) if off.size else 0.0
@@ -666,13 +670,14 @@ def leave_pair_out(grouped: dict, truth: dict, views=VIEWS, stat: str = "corr", 
     g = prepare(grouped, strip)
     endpoints = sorted({ep for d in g.values() for ep in d})
     fd = feature_distances(g, endpoints, views, stat)
-    sc = median_scales(fd)
-    fdn = {k: M / sc[k] for k, M in fd.items()}
     pos = {e: i for i, e in enumerate(endpoints)}
     eps = [e for e in endpoints if e in truth]
     tt, gg, chosen = [], [], Counter()
     for a, b in itertools.combinations(eps, 2):
         sub = {e: truth[e] for e in eps if e not in (a, b)}
+        # échelles calculées sans a ni b : la paire prédite n'influence ni les features ni leur échelle
+        sc = median_scales(fd, keep=[pos[e] for e in endpoints if e not in (a, b)])
+        fdn = {k: M / sc[k] for k, M in fd.items()}
         ranked = []
         hp = hard_pairs(sub)
         for k, D in fdn.items():
