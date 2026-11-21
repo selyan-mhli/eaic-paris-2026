@@ -17,4 +17,16 @@
   (`data/` est ignoré par Git : garder les journaux sur JURECA, dans `output/`).
 - S'entraîner d'abord sur `ref-01..09` avec `score_practice.py` (illimité).
 
+## État au 21/11 16:30 et premiers pas
+
+- **Budget intact** : 0 requête dépensée sur les 42 endpoints (33 `ep-*` + 9 `ref-*`), vérifié via `/v1/models`.
+- Aucune soumission c2 encore. Étape 1 : une soumission aléatoire valide
+  (`RANDOM_SUBMISSION = True` dans `task_template.py`, puis `submission.py`) pour tester clé et format.
+- Étape 2 : sur `ref-01..09` uniquement, tester des prompts discriminants et les scorer avec
+  `score_practice.py`. Vérité terrain dans `practice_answers.csv` : ref-01/03/05/06/08 = même modèle S
+  (plain, system prompt, persona, watermark, température) ; ref-02 = fp8 ; ref-04/07/09 = LoRA 0,7/1,5/0,3.
+  Le but est de séparer quantif/LoRA tout en regroupant les déguisements.
+- Étape 3 : écrire le plan de requêtes `ep-*` (ex. 20 prompts × 5 répétitions = 100) dans `c2/PLAN.md`
+  en PR, relu avant de lancer quoi que ce soit.
+
 Fiche complète : [../docs/HACKATHON.md](../docs/HACKATHON.md).

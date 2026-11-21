@@ -12,4 +12,17 @@
 - **Validation locale :** faible (pas de gold, pas de données retain). Proxys et prudence ;
   le score public ne donne qu'une tendance.
 
+## État au 21/11 16:30 et premiers pas
+
+- `audit.py` de Yihuan (dans le dossier SLZ, pas encore dans le dépôt) établit le contrat :
+  ViT 85 893 988 paramètres, `forget_images` uint8 [3500, 224, 224, 3] **sans labels**,
+  aucun retain/val loader fourni. → à ranger dans `c3/audit.py` via une PR.
+- Aucune soumission c3 encore. Étape 1 : soumettre le modèle d'origine tel quel
+  (`unlearn` = identité) pour tester clé, format et fp16, et avoir le score plancher.
+- Étape 2 : pseudo-labels = argmax du modèle d'origine sur les forget ; proxy retain = accord
+  avec le modèle d'origine sur des versions fortement augmentées des forget (ou un jeu public
+  à 224 px) ; garder l'accuracy proxy > 72 %.
+- Étape 3 : baseline SCRUB ou NPO (enseignant = modèle d'origine), en job Slurm `-J j3`.
+- Dépendances ajoutées à la main au `.venv` partagé (scikit-learn, scipy) : passer par `uv add`.
+
 Fiche complète : [../docs/HACKATHON.md](../docs/HACKATHON.md).
