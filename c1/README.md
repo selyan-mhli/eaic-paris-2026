@@ -18,6 +18,22 @@ literature and past-edition review: [VEILLE.md](VEILLE.md).
   the official decoders. The decoder becomes a measuring instrument: "is this message still readable
   here?"
 
+## Pipeline
+
+```mermaid
+flowchart LR
+  A["Test image<br/>+ method + message"] --> B{"Decode the message<br/>on the whole image"}
+  B -- "bit accuracy ≥ 0.75" --> F["Regime F<br/>fully watermarked,<br/>holes restored"]
+  B -- "bit accuracy < 0.75" --> R["Regime R<br/>one watermarked rectangle"]
+  F --> H["PixelSeal: holes head on decoder features<br/>TrustMark: pixel segmenter"]
+  R --> X["PixelSeal, TrustMark:<br/>search over cropped boxes<br/>decoded against the message"]
+  F --> S["StegaStamp, both regimes:<br/>ConvNeXt pixel segmenter,<br/>seed ensemble"]
+  R --> S
+  H --> M["128×128 binary mask"]
+  X --> M
+  S --> M
+```
+
 ## How we reasoned
 
 ### 1. Measure before modelling
@@ -55,6 +71,11 @@ The validation turned out faithful: 0.5583 locally, 0.5572 on the public split.
 | Pixel segmenter on StegaStamp | U-Net "pixseg" on synthetic data, routed to StegaStamp only | 0.5845 |
 | Pretrained encoder | ConvNeXt-Tiny encoder (timm, ImageNet weights) | 0.6137 |
 | Seed ensembles | 4 × 4,000-step models, then 6,000-step models on StegaStamp and TrustMark F, weighted seeds | 0.6377 → 0.6893 |
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/figures/t1_progression_dark.svg">
+  <img alt="Line chart of the Task 1 public mIoU over ten successive best submissions, from 0.531 to 0.689, against 0.803 for the best team at Sunday 03:17." src="../docs/figures/t1_progression_light.svg" width="760">
+</picture>
 
 The pixel-segmentation code is archived as is in
 [../docs/archives-worktrees-20261122/c1-pixseg/](../docs/archives-worktrees-20261122/c1-pixseg/).

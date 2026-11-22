@@ -15,6 +15,17 @@ pre-registered test, so the scored endpoints were never used to submit a real pa
   counts pairs inside a family, so the real task is to split each family correctly.
 - The scarce resource: **100 answers per endpoint for the whole weekend**, never refilled.
 
+## Where it stopped
+
+```mermaid
+flowchart TD
+  Q["100 sampled answers per endpoint,<br/>no logprobs"] --> W["White box: likelihood under<br/>Qwen2.5-3B, Qwen2.5-1.5B, Llama-3.2-1B"]
+  W --> FAM["3 families × 11 endpoints<br/>528/528 pairs correct"]
+  FAM --> V{"Inside a family:<br/>same weights?"}
+  V --> O["Ours: one statistic for everything<br/>(fp8 likelihood ratio, logit ties,<br/>context profile) → no rule passed: 0.20"]
+  V --> T["Top teams: identify each disguise first<br/>(prompt leak, watermark, T = 1 test),<br/>then fp8 replica and public LoRA → 1.00"]
+```
+
 ## How we reasoned
 
 ### 1. Learn the API on the reference endpoints

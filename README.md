@@ -24,6 +24,15 @@ the result: submit only if the gain is at least +0.01 and the lower bound of the
 positive. Every experiment, failures included, has a line in [docs/experiences.md](docs/experiences.md)
 (hypothesis, change, GPU cost, local score, public score).
 
+```mermaid
+flowchart LR
+  C["Candidate"] --> V["Nested cross-validation<br/>paired gain vs current best<br/>2,000-sample bootstrap"]
+  V --> D{"gain ≥ +0.01<br/>and 95 % lower bound > 0?"}
+  D -- yes --> S["Submit"]
+  D -- "no, but positive" --> G["DIAGNOSTIC:<br/>keep, do not submit"]
+  D -- no --> A["ABANDON,<br/>logged anyway"]
+```
+
 ## The idea of each task
 
 **Task 1: watermark localization.** 510 labelled training images, 1,020 test images (512×512), three
