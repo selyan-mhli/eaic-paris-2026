@@ -1,0 +1,936 @@
+{
+  "source": "http://34.147.229.55/leaderboard_page",
+  "analysis_paris": "2026-11-22T05:26:12.570594+01:00",
+  "capture_paris": "2026-11-22T03:17:19.363101+01:00",
+  "html_sha256": "d6f83e0c4f8f2dce76ba2b0243feb8e66cabe8147e39733f77de6d9bc061c719",
+  "slz": {
+    "team": "SLZ",
+    "rank": 27,
+    "scores": [
+      0.6739068609009466,
+      0.2,
+      0.09411482372784334,
+      0.31910777304289245
+    ],
+    "updated_at": []
+  },
+  "complete_teams": 38,
+  "normalization_max_error": 0.0,
+  "tasks": {
+    "34-watermark-localisation-image": {
+      "min": 0.49129971028972225,
+      "max": 0.8032744758421851,
+      "score": 0.6739068609009466,
+      "rank": 20,
+      "participants": 42,
+      "updated_at": [
+        "2026-11-22T01:43:05.186014+00:00"
+      ],
+      "normalized": 0.5853266698922047,
+      "overall_gain_per_raw_001": 0.010684624852367383
+    },
+    "33-model-equality": {
+      "min": 0.05,
+      "max": 1.0,
+      "score": 0.2,
+      "rank": 25,
+      "participants": 40,
+      "updated_at": [
+        "2026-11-21T15:48:05.126693+00:00"
+      ],
+      "normalized": 0.15789473684210528,
+      "overall_gain_per_raw_001": 0.003508771929824562
+    },
+    "31-unlearning": {
+      "min": 0.0,
+      "max": 0.43957955664817944,
+      "score": 0.09411482372784334,
+      "rank": 31,
+      "participants": 42,
+      "updated_at": [
+        "2026-11-21T23:40:19.452979+00:00"
+      ],
+      "normalized": 0.21410191239436732,
+      "overall_gain_per_raw_001": 0.007583003538085803
+    }
+  },
+  "top10": [
+    {
+      "team": "Murmell",
+      "rank": 1,
+      "scores": [
+        0.7822610598464041,
+        1.0,
+        0.43957955664817944,
+        0.9775479533218344
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Fable 4.2",
+      "rank": 2,
+      "scores": [
+        0.7474071104729534,
+        1.0,
+        0.35807085440771086,
+        0.8784997382065362
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "MasterChickenHack",
+      "rank": 3,
+      "scores": [
+        0.8032744758421851,
+        0.6,
+        0.39421673046746,
+        0.8252504756644208
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Azerit",
+      "rank": 4,
+      "scores": [
+        0.7241001056737961,
+        1.0,
+        0.28932237219255713,
+        0.8014650795478501
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Eugenia",
+      "rank": 5,
+      "scores": [
+        0.7589187609664994,
+        0.85,
+        0.2566265378665388,
+        0.7612426648296382
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "LesRooters",
+      "rank": 6,
+      "scores": [
+        0.7768564718327061,
+        0.7,
+        0.30068347345014,
+        0.7611852468546018
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Sevel Labs - ENSAI",
+      "rank": 7,
+      "scores": [
+        0.7469485504388451,
+        0.6,
+        0.38098823226888623,
+        0.7550371625603743
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "3V1B",
+      "rank": 8,
+      "scores": [
+        0.6841310575460776,
+        1.0,
+        0.17842500579020162,
+        0.6746661388734152
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Chapeau",
+      "rank": 9,
+      "scores": [
+        0.7130989791714809,
+        0.7,
+        0.24253839436182148,
+        0.6489713237484261
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Holmes",
+      "rank": 10,
+      "scores": [
+        0.7259840521730758,
+        0.7,
+        0.15905882923447762,
+        0.5994359570983158
+      ],
+      "updated_at": []
+    }
+  ],
+  "all_teams": [
+    {
+      "team": "Murmell",
+      "rank": 1,
+      "scores": [
+        0.7822610598464041,
+        1.0,
+        0.43957955664817944,
+        0.9775479533218344
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Fable 4.2",
+      "rank": 2,
+      "scores": [
+        0.7474071104729534,
+        1.0,
+        0.35807085440771086,
+        0.8784997382065362
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "MasterChickenHack",
+      "rank": 3,
+      "scores": [
+        0.8032744758421851,
+        0.6,
+        0.39421673046746,
+        0.8252504756644208
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Azerit",
+      "rank": 4,
+      "scores": [
+        0.7241001056737961,
+        1.0,
+        0.28932237219255713,
+        0.8014650795478501
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Eugenia",
+      "rank": 5,
+      "scores": [
+        0.7589187609664994,
+        0.85,
+        0.2566265378665388,
+        0.7612426648296382
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "LesRooters",
+      "rank": 6,
+      "scores": [
+        0.7768564718327061,
+        0.7,
+        0.30068347345014,
+        0.7611852468546018
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Sevel Labs - ENSAI",
+      "rank": 7,
+      "scores": [
+        0.7469485504388451,
+        0.6,
+        0.38098823226888623,
+        0.7550371625603743
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "3V1B",
+      "rank": 8,
+      "scores": [
+        0.6841310575460776,
+        1.0,
+        0.17842500579020162,
+        0.6746661388734152
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Chapeau",
+      "rank": 9,
+      "scores": [
+        0.7130989791714809,
+        0.7,
+        0.24253839436182148,
+        0.6489713237484261
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Holmes",
+      "rank": 10,
+      "scores": [
+        0.7259840521730758,
+        0.7,
+        0.15905882923447762,
+        0.5994359570983158
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "WhatThePhoques",
+      "rank": 11,
+      "scores": [
+        0.7633914155158886,
+        0.6,
+        0.1476060230519944,
+        0.5956319352232075
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "CISPA fan boys",
+      "rank": 12,
+      "scores": [
+        0.5869167172067214,
+        0.6,
+        0.3764111704753483,
+        0.5805783647307446
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Incoming PhD",
+      "rank": 13,
+      "scores": [
+        0.7809134123169656,
+        0.1,
+        0.3044508942823854,
+        0.557850456327435
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Skesiea",
+      "rank": 14,
+      "scores": [
+        0.6844350716604062,
+        0.1,
+        0.4168093985871811,
+        0.5399684622657402
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "teambuilders",
+      "rank": 15,
+      "scores": [
+        0.6743212492851209,
+        0.1,
+        0.38879816737899464,
+        0.5079212959396184
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Begg",
+      "rank": 16,
+      "scores": [
+        0.7443829225443027,
+        0.1,
+        0.28365650342937754,
+        0.5030506044969506
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Unblo",
+      "rank": 17,
+      "scores": [
+        0.6369172000641179,
+        1.0,
+        0.0,
+        0.48892015835161945
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Tempête",
+      "rank": 18,
+      "scores": [
+        0.680550081561595,
+        0.4,
+        0.1675476665916356,
+        0.4520653944212196
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Automateam2",
+      "rank": 19,
+      "scores": [
+        0.6630430592894928,
+        0.45,
+        0.14347233441047436,
+        0.43264732463336353
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Trust Layer",
+      "rank": 20,
+      "scores": [
+        0.5926383737566787,
+        0.45,
+        0.21893185189729847,
+        0.4146435381651454
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "229-237",
+      "rank": 21,
+      "scores": [
+        0.6251538142095829,
+        0.3,
+        0.22214758414058913,
+        0.39919197843049514
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Teletubbies",
+      "rank": 22,
+      "scores": [
+        0.6919491490494721,
+        0.45,
+        0.0358355271027888,
+        0.3819113680725433
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Ca hack les hack",
+      "rank": 23,
+      "scores": [
+        0.6889051950911256,
+        0.4,
+        0.06146595550930196,
+        0.3805507207410637
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "BlitzTeam",
+      "rank": 24,
+      "scores": [
+        0.6667874156933046,
+        0.05,
+        0.23421119854770975,
+        0.3651044645686641
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "SaraqZit",
+      "rank": 25,
+      "scores": [
+        0.7390196982915281,
+        0.1,
+        0.07775371101872011,
+        0.341184040247773
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Argos",
+      "rank": 26,
+      "scores": [
+        0.6539116524126787,
+        0.1,
+        0.17105435630417032,
+        0.32099919836494084
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "SLZ",
+      "rank": 27,
+      "scores": [
+        0.6739068609009466,
+        0.2,
+        0.09411482372784334,
+        0.31910777304289245
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Meta",
+      "rank": 28,
+      "scores": [
+        0.5583180388036284,
+        0.6,
+        0.07122385654224671,
+        0.31859810159632845
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Tryon",
+      "rank": 29,
+      "scores": [
+        0.655477188819784,
+        0.2,
+        0.11933585730173171,
+        0.31854147849145287
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Epi84",
+      "rank": 30,
+      "scores": [
+        0.5042304972746805,
+        0.4,
+        0.18647919465860166,
+        0.2780303176294318
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "PixelHack",
+      "rank": 31,
+      "scores": [
+        0.5300463801816793,
+        0.35,
+        0.1616097800216076,
+        0.2692112744714566
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "FF(FrenchyFight)",
+      "rank": 32,
+      "scores": [
+        0.5851673950684212,
+        0.1,
+        0.1841825051820812,
+        0.2575036182561131
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Les 4 bréziliennes",
+      "rank": 33,
+      "scores": [
+        0.6469684844810727,
+        0.05,
+        0.10923247399173353,
+        0.24915726902156501
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "Token Theory",
+      "rank": 34,
+      "scores": [
+        0.6655989504856106,
+        0.1,
+        0.020251244831090885,
+        0.2191325851241773
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "kame_network",
+      "rank": 35,
+      "scores": [
+        0.544375784640721,
+        0.3,
+        0.09596442496832601,
+        0.21719894995981068
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "RYON",
+      "rank": 36,
+      "scores": [
+        0.5845690835966832,
+        0.1,
+        0.08744885141384447,
+        0.18351118101642372
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "51",
+      "rank": 37,
+      "scores": [
+        0.5568977696142974,
+        0.05,
+        0.09803776897684477,
+        0.14443114039438779
+      ],
+      "updated_at": []
+    },
+    {
+      "team": "42team",
+      "rank": 38,
+      "scores": [
+        0.5040275583671947,
+        0.05,
+        0.0,
+        0.013599228188571866
+      ],
+      "updated_at": []
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "actuel",
+      "scores": [
+        0.6739068609009466,
+        0.2,
+        0.09411482372784334
+      ],
+      "overall": 0.31910777304289245,
+      "gain": 0.0,
+      "rank_others_fixed": 27
+    },
+    {
+      "label": "T1 +0,007623 (CV, pas prédiction serveur)",
+      "scores": [
+        0.681529864072614,
+        0.2,
+        0.09411482372784334
+      ],
+      "overall": 0.32725266595665964,
+      "gain": 0.008144892913767188,
+      "rank_others_fixed": 26
+    },
+    {
+      "label": "T1 à 0,70",
+      "scores": [
+        0.7,
+        0.2,
+        0.09411482372784334
+      ],
+      "overall": 0.3469873132922949,
+      "gain": 0.027879540249402424,
+      "rank_others_fixed": 25
+    },
+    {
+      "label": "T1 à 0,75",
+      "scores": [
+        0.75,
+        0.2,
+        0.09411482372784334
+      ],
+      "overall": 0.4004104375541318,
+      "gain": 0.08130266451123935,
+      "rank_others_fixed": 21
+    },
+    {
+      "label": "T2 à 0,40",
+      "scores": [
+        0.6739068609009466,
+        0.4,
+        0.09411482372784334
+      ],
+      "overall": 0.3892832116393837,
+      "gain": 0.07017543859649122,
+      "rank_others_fixed": 22
+    },
+    {
+      "label": "T2 à 0,60",
+      "scores": [
+        0.6739068609009466,
+        0.6,
+        0.09411482372784334
+      ],
+      "overall": 0.45945865023587484,
+      "gain": 0.1403508771929824,
+      "rank_others_fixed": 18
+    },
+    {
+      "label": "T3 à 0,20",
+      "scores": [
+        0.6739068609009466,
+        0.2,
+        0.2
+      ],
+      "overall": 0.39940053967315275,
+      "gain": 0.0802927666302603,
+      "rank_others_fixed": 21
+    },
+    {
+      "label": "T3 à 0,30",
+      "scores": [
+        0.6739068609009466,
+        0.2,
+        0.3
+      ],
+      "overall": 0.47523057505401073,
+      "gain": 0.15612280201111828,
+      "rank_others_fixed": 18
+    },
+    {
+      "label": "T1 seule au maximum actuel",
+      "scores": [
+        0.8032744758421851,
+        0.2,
+        0.09411482372784334
+      ],
+      "overall": 0.45733221641215754,
+      "gain": 0.1382244433692651,
+      "rank_others_fixed": 18
+    },
+    {
+      "label": "T2 seule au maximum actuel",
+      "scores": [
+        0.6739068609009466,
+        1.0,
+        0.09411482372784334
+      ],
+      "overall": 0.5998095274288574,
+      "gain": 0.28070175438596495,
+      "rank_others_fixed": 10
+    },
+    {
+      "label": "T3 seule au maximum actuel",
+      "scores": [
+        0.6739068609009466,
+        0.2,
+        0.43957955664817944
+      ],
+      "overall": 0.58107380224477,
+      "gain": 0.26196602920187756,
+      "rank_others_fixed": 12
+    },
+    {
+      "label": "T1 0,75 / T2 0,40 / T3 0,20",
+      "scores": [
+        0.75,
+        0.4,
+        0.2
+      ],
+      "overall": 0.5508786427808833,
+      "gain": 0.23177086973799083,
+      "rank_others_fixed": 14
+    },
+    {
+      "label": "T1 0,75 / T2 0,60 / T3 0,20",
+      "scores": [
+        0.75,
+        0.6,
+        0.2
+      ],
+      "overall": 0.6210540813773745,
+      "gain": 0.30194630833448205,
+      "rank_others_fixed": 10
+    },
+    {
+      "label": "T1 0,75 / T2 0,85 / T3 0,30",
+      "scores": [
+        0.75,
+        0.85,
+        0.3
+      ],
+      "overall": 0.7846034150038466,
+      "gain": 0.4654956419609541,
+      "rank_others_fixed": 5
+    }
+  ],
+  "single_task_raw_scores_required_fixed_extrema": {
+    "0.4": {
+      "T1": {
+        "raw_score_required_on_frozen_scale": 0.7496158615208274,
+        "within_current_task_range": true,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T2": {
+        "raw_score_required_on_frozen_scale": 0.43054284682775656,
+        "within_current_task_range": true,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T3": {
+        "raw_score_required_on_frozen_scale": 0.2007905315141111,
+        "within_current_task_range": true,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      }
+    },
+    "0.5": {
+      "T1": {
+        "raw_score_required_on_frozen_scale": 0.8432082911865663,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T2": {
+        "raw_score_required_on_frozen_scale": 0.7155428468277565,
+        "within_current_task_range": true,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T3": {
+        "raw_score_required_on_frozen_scale": 0.3326643985085649,
+        "within_current_task_range": true,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      }
+    },
+    "0.6": {
+      "T1": {
+        "raw_score_required_on_frozen_scale": 0.9368007208523051,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T2": {
+        "raw_score_required_on_frozen_scale": 1.0005428468277564,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T3": {
+        "raw_score_required_on_frozen_scale": 0.46453826550301874,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      }
+    },
+    "0.7": {
+      "T1": {
+        "raw_score_required_on_frozen_scale": 1.030393150518044,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T2": {
+        "raw_score_required_on_frozen_scale": 1.2855428468277563,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T3": {
+        "raw_score_required_on_frozen_scale": 0.5964121324974725,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      }
+    },
+    "0.7611852468546018": {
+      "T1": {
+        "raw_score_required_on_frozen_scale": 1.087657909646246,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T2": {
+        "raw_score_required_on_frozen_scale": 1.4599208003633715,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      },
+      "T3": {
+        "raw_score_required_on_frozen_scale": 0.6770994835547384,
+        "within_current_task_range": false,
+        "warning": "Une cible au-dessus du maximum actuel modifierait la normalisation ; ce chiffre ne constitue pas un scénario réalisable à extrema fixes."
+      }
+    }
+  },
+  "history": [
+    {
+      "label": "21/11 vers 23:15",
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/audit-strategies-20261121/leaderboard-2315.html",
+      "slz": {
+        "team": "SLZ",
+        "rank": 20,
+        "scores": [
+          0.5845240611743311,
+          0.2,
+          0.0566615988869403,
+          0.3256323276988149
+        ],
+        "updated_at": []
+      },
+      "participants": 29,
+      "limits": {
+        "34-watermark-localisation-image": {
+          "min": 0.2933516637472399,
+          "max": 0.7510793234766997
+        },
+        "33-model-equality": {
+          "min": 0.0,
+          "max": 1.0
+        },
+        "31-unlearning": {
+          "min": 0.0,
+          "max": 0.4025086561120364
+        }
+      },
+      "actual_overall_change_to_live": -0.006524554655922443,
+      "raw_score_gain_in_old_scale": 0.09610818561488083,
+      "normalization_change_at_current_scores": -0.10263274027080327,
+      "old_scores_in_live_scale": 0.19520481106144602
+    },
+    {
+      "label": "22/11 vers 00:26",
+      "path": "/private/tmp/claude-501/-Users-selyan--claude-spares-spare-oGfpae/d60fc14b-9806-4319-b999-3844f0f1cede/scratchpad/lb2.html",
+      "slz": {
+        "team": "SLZ",
+        "rank": 26,
+        "scores": [
+          0.5845240611743311,
+          0.2,
+          0.08268124133003875,
+          0.2996915403729063
+        ],
+        "updated_at": []
+      },
+      "participants": 33,
+      "limits": {
+        "34-watermark-localisation-image": {
+          "min": 0.40369066502404394,
+          "max": 0.770002432945858
+        },
+        "33-model-equality": {
+          "min": 0.0,
+          "max": 1.0
+        },
+        "31-unlearning": {
+          "min": 0.0,
+          "max": 0.4025086561120364
+        }
+      },
+      "actual_overall_change_to_live": 0.019416232669986155,
+      "raw_score_gain_in_old_scale": 0.09080441772580283,
+      "normalization_change_at_current_scores": -0.07138818505581668,
+      "old_scores_in_live_scale": 0.21493551513202033
+    },
+    {
+      "label": "22/11 vers 03:05",
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/reprise-claude-20261122/preuves/leaderboard-0308.html",
+      "slz": {
+        "team": "SLZ",
+        "rank": 26,
+        "scores": [
+          0.6739068609009466,
+          0.2,
+          0.09411482372784334,
+          0.31968302840227303
+        ],
+        "updated_at": []
+      },
+      "participants": 37,
+      "limits": {
+        "34-watermark-localisation-image": {
+          "min": 0.49129971028972225,
+          "max": 0.8032744758421851
+        },
+        "33-model-equality": {
+          "min": 0.05,
+          "max": 1.0
+        },
+        "31-unlearning": {
+          "min": 0.0,
+          "max": 0.43606466229877544
+        }
+      },
+      "actual_overall_change_to_live": -0.0005752553593805776,
+      "raw_score_gain_in_old_scale": 0.0,
+      "normalization_change_at_current_scores": -0.0005752553593805776,
+      "old_scores_in_live_scale": 0.31910777304289245
+    }
+  ]
+}

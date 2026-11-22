@@ -1,0 +1,28 @@
+{
+  "job_id": "15904703",
+  "job_name": "j12",
+  "authorization": "GO explicite de Selyan : go lance ça alors ?",
+  "submitted_paris": "2026-11-22T03:11:09+01:00",
+  "started_paris": "2026-11-22T03:11:10+01:00",
+  "observed_paris": "2026-11-22T03:11:57+01:00",
+  "observed_state": "RUNNING",
+  "node": "jrc0256",
+  "partition": "dc-gpu-devel",
+  "gpu_count": 4,
+  "time_limit": "00:40:00",
+  "team_queue_empty_before_submit": true,
+  "launcher_sha256": "5cd0f914b62f8d0c16df6bf797cea2b22e2c9786b3099134a9a6af0a751fa5d7",
+  "remote_launcher": "/p/project1/training2666/mouhali1/t1sr/relay_validate_ss6k.sbatch",
+  "command": "sbatch --parsable /p/project1/training2666/mouhali1/t1sr/relay_validate_ss6k.sbatch",
+  "log_prefix": "/p/project1/training2666/mouhali1/t1sr/relay_ss6k_15904703",
+  "tasks": {
+    "0": "CV 6000 pas, folds 2 et 3",
+    "1": "CV 6000 pas, fold 4",
+    "2": "CV 3000 pas, folds 2, 3 et 4",
+    "3": "fit-all 6000 pas, graine 62, prédictions test"
+  },
+  "all_four_task_configuration_logs_present": true,
+  "submission_to_scoring_server": false,
+  "task2_endpoint_collection": false,
+  "status_note": "Lancement vérifié ; entraînements et mesure finale encore à terminer."
+}

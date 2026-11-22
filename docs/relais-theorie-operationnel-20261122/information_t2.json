@@ -1,0 +1,102 @@
+{
+  "nature": "Approximation logistique locale fictive ; pas de puissance serveur",
+  "temperature": 0.7,
+  "results": {
+    "55|w_pt|temperature": {
+      "raw_information": 2.0012038650903357,
+      "efficient_information": 1.7311380879693274,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.03798984514297232
+    },
+    "55|w_pt|temperature_and_contexts": {
+      "raw_information": 2.0012038650903357,
+      "efficient_information": 0.25408854998522995,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.0048525929390533795
+    },
+    "55|w_pc|temperature": {
+      "raw_information": 1.0339463022342401,
+      "efficient_information": 0.8427685849389364,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.01491999945403838
+    },
+    "55|w_pc|temperature_and_contexts": {
+      "raw_information": 1.0339463022342401,
+      "efficient_information": 0.09259696144436648,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.002668682675846634
+    },
+    "55|w_pt_a_pt|temperature": {
+      "raw_information": 3.807964650352738,
+      "efficient_information": 3.788090660661791,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.12632629077554314
+    },
+    "55|w_pt_a_pt|temperature_and_contexts": {
+      "raw_information": 3.807964650352738,
+      "efficient_information": 1.0916709274729801,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.020407649221575452
+    },
+    "55|w_pc_a_tok|temperature": {
+      "raw_information": 2.2556053151929074,
+      "efficient_information": 2.245281366499512,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.05571418413341389
+    },
+    "55|w_pc_a_tok|temperature_and_contexts": {
+      "raw_information": 2.2556053151929074,
+      "efficient_information": 0.3402673983594122,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.006089627878801296
+    },
+    "110|w_pt|temperature": {
+      "raw_information": 4.002407730180671,
+      "efficient_information": 3.462276175938655,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.1094398126706222
+    },
+    "110|w_pt|temperature_and_contexts": {
+      "raw_information": 4.002407730180671,
+      "efficient_information": 0.5081770999704608,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.008718374733018397
+    },
+    "110|w_pc|temperature": {
+      "raw_information": 2.0678926044684802,
+      "efficient_information": 1.6855371698778727,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.03657051923434962
+    },
+    "110|w_pc|temperature_and_contexts": {
+      "raw_information": 2.0678926044684802,
+      "efficient_information": 0.18519392288873301,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.0039083045421267615
+    },
+    "110|w_pt_a_pt|temperature": {
+      "raw_information": 7.615929300705475,
+      "efficient_information": 7.576181321323581,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.3677774498651895
+    },
+    "110|w_pt_a_pt|temperature_and_contexts": {
+      "raw_information": 7.615929300705475,
+      "efficient_information": 2.183341854945961,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.05341371569507741
+    },
+    "110|w_pc_a_tok|temperature": {
+      "raw_information": 4.511210630385813,
+      "efficient_information": 4.490562732999024,
+      "nuisance_rank": 1,
+      "optimistic_local_directed_power": 0.16573997844473998
+    },
+    "110|w_pc_a_tok|temperature_and_contexts": {
+      "raw_information": 4.511210630385813,
+      "efficient_information": 0.6805347967188247,
+      "nuisance_rank": 6,
+      "optimistic_local_directed_power": 0.011747546742705395
+    }
+  }
+}

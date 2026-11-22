@@ -1,0 +1,11 @@
+{
+  "heure_paris": "2026-11-22T03:06:56.263174+01:00",
+  "commande": [
+    "git",
+    "rev-parse",
+    "HEAD"
+  ],
+  "code": 0,
+  "stdout": "f209e20397736c53824a7a94ec73f2bd66d012eb\n",
+  "stderr": ""
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover" font-family="Arial, Helvetica, sans-serif">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FAF8F3"/>
+  <g id="kicker" data-pptx-bounds="64 84 900 40">
+    <rect x="64" y="94" width="40" height="4" fill="#C2410C"/>
+    <text x="120" y="110" font-size="18" fill="#6B6A66" letter-spacing="2">EAIC PARIS 2026 · ÉQUIPE SLZ · CARNET DE NUIT</text>
+  </g>
+  <g id="hook" data-pptx-bounds="64 220 1100 190">
+    <text x="64" y="320" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="96" fill="#C2410C">0,51 → 0,68</text>
+    <text x="64" y="388" font-size="18" fill="#6B6A66">Task 1, localisation de watermark : de la validation croisée imbriquée au dernier score public</text>
+  </g>
+  <g id="title" data-pptx-bounds="64 430 1100 120">
+    <text x="64" y="482" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="44" fill="#1F2A44">Mesurer avant de soumettre</text>
+    <text x="64" y="534" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="32" fill="#22252B">Watermark · Model equality · Unlearning</text>
+  </g>
+  <g id="footer" data-pptx-bounds="64 596 1152 66">
+    <line x1="64" y1="606" x2="1216" y2="606" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="64" y="648" font-size="18" fill="#6B6A66">Jury technique CISPA · dimanche 22 novembre 2026</text>
+  </g>
+</svg>

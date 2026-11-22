@@ -1,0 +1,89 @@
+{
+  "n_fit": 1400,
+  "n_calibrate": 1050,
+  "n_test": 1050,
+  "n_anchors": 175,
+  "scale": 1.0666692799333632,
+  "rho": 0.0031268467942132234,
+  "calibration_ce": 1.443533649484355,
+  "source_sha256": "11ba50f84a2ca87ae9bee6a25de1e2e0f46d409a38ad30100470f2e36c1a3d51",
+  "metrics": {
+    "forget": {
+      "n": 1050,
+      "champion": {
+        "n": 1050,
+        "agreement": 0.5704761904761905,
+        "KL_original_candidate": 1.4338620138899125,
+        "CE_pseudo_mean": 1.4834856114664472,
+        "CE_pseudo_std": 1.9103489877725823,
+        "flip_pseudo": 0.42952380952380953
+      },
+      "candidate": {
+        "n": 1050,
+        "agreement": 0.6047619047619047,
+        "KL_original_candidate": 1.4307902095458802,
+        "CE_pseudo_mean": 1.4750701313665802,
+        "CE_pseudo_std": 1.979934237755935,
+        "flip_pseudo": 0.3952380952380952
+      }
+    },
+    "altered": {
+      "n": 1050,
+      "champion": {
+        "n": 1050,
+        "agreement": 0.5695238095238095,
+        "KL_original_candidate": 1.4234188089571074,
+        "CE_pseudo_mean": 1.4650411414677003,
+        "CE_pseudo_std": 1.8887341268735538,
+        "flip_pseudo": 0.43142857142857144
+      },
+      "candidate": {
+        "n": 1050,
+        "agreement": 0.6104761904761905,
+        "KL_original_candidate": 1.3940310779349698,
+        "CE_pseudo_mean": 1.4225399161714376,
+        "CE_pseudo_std": 1.9413651624434056,
+        "flip_pseudo": 0.3904761904761905
+      }
+    },
+    "pshuffle": {
+      "n": 130,
+      "champion": {
+        "n": 130,
+        "agreement": 1.0,
+        "KL_original_candidate": 0.8413067440739371
+      },
+      "candidate": {
+        "n": 130,
+        "agreement": 0.9923076923076923,
+        "KL_original_candidate": 0.4521758252542796
+      }
+    },
+    "mask35": {
+      "n": 114,
+      "champion": {
+        "n": 114,
+        "agreement": 1.0,
+        "KL_original_candidate": 0.7020165275612833
+      },
+      "candidate": {
+        "n": 114,
+        "agreement": 1.0,
+        "KL_original_candidate": 0.5565951459020004
+      }
+    },
+    "lowpass32": {
+      "n": 156,
+      "champion": {
+        "n": 156,
+        "agreement": 1.0,
+        "KL_original_candidate": 0.5010139579810902
+      },
+      "candidate": {
+        "n": 156,
+        "agreement": 0.9935897435897436,
+        "KL_original_candidate": 0.4793123219798902
+      }
+    }
+  }
+}

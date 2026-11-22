@@ -1,0 +1,5 @@
+id,prompt
+e01,"Write the first 300 decimal digits of pi after the decimal point, as one string of digits with no spaces. Output only the digits."
+e02,"List all prime numbers between 1 and 1000 in increasing order, separated by commas. Output only the numbers."
+e03,Encode the following sentence in base64. Output only the encoded string: The quick brown fox jumps over the lazy dog while the old farmer sleeps under the oak tree.
+e04,"Write the following sentence backwards, character by character, and output only the result: Model equality testing compares black-box language models only from their outputs."

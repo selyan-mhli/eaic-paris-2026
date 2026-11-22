@@ -1,0 +1,20 @@
+{
+  "commande": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "ControlPath=/private/tmp/eaic-codex-jrlogin03.sock",
+    "-o",
+    "HostName=jureca03.fz-juelich.de",
+    "-o",
+    "HostKeyAlias=jureca.fz-juelich.de",
+    "jureca",
+    "python3 -"
+  ],
+  "code": 0,
+  "stdout": "{\n  \"heure\": \"2026-11-22T03:21:49.142651+01:00\",\n  \"images\": {\n    \"train\": 510,\n    \"test\": 1020\n  },\n  \"groupes_png_identiques\": [],\n  \"limite\": \"Identit\\u00e9 des PNG, pas d\\u00e9tection de photos sources communes sous des \\u00e9ditions diff\\u00e9rentes.\"\n}\n",
+  "stderr": ""
+}

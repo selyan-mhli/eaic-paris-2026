@@ -1,0 +1,145 @@
+TASK 2:
+Model Equality
+Testing
+
+
+                 33
+Do two APIs serve the same model?
+    Your Queries to the API
+
+
+
+     Enco   = 𝑂𝑅 ≠ Deco
+                     Enco
+     de              de de
+
+
+
+
+       Model Responses              34
+Do two APIs serve the same model?
+    Your Queries to the API
+
+
+
+     Enco   = 𝑂𝑅 ≠ Deco
+                     Enco
+     de              de de
+                    Watermarked
+
+
+       Model Responses              35
+                Various Model Families
+   Enco
+   de
+               Enco
+            Deco
+            de de
+                         Enco
+                      Deco
+                      de de
+                                             …
+    ep-01     ep-02     ep-03      ep-04             ep-33
+
+Differences in the deployment:
+                                           Same family
+  Base Model                               alone does
+  Quantization configuration               not mean the
+  LoRA adapter                             same model
+  Watermark
+  System prompt
+  Decoding strategy (e.g., greedy vs beam search)
+                                                             36
+                Various Model Families
+   Enco
+   de
+               Enco
+            Deco
+            de de
+                         Enco
+                      Deco
+                      de de
+                                            …
+    ep-01     ep-02     ep-03     ep-04            ep-33
+
+Differences in the deployment:
+1. Base Model
+2. Quantization configuration   Different Model Identities
+3. LoRA adapter
+4. Base Model +Watermark
+5. Base Model + System prompt        The Same Model
+                                     Identities
+6. Base Model + Decoding strategy
+                                                             37
+                    Various Model Families
+  Enco
+  de
+                   Enco
+                Deco
+                de de
+                                   Enco
+                                Deco
+                                de de
+                                                                   …
+    ep-01          ep-02           ep-03            ep-04                       ep-33
+
+
+
+
+               Different Model                                 Same Model
+
+Your goal: : for every endpoint, find its family (same base model). For every pair, decide
+                         whether they serve the same model.
+                                                                                             38
+Score: Matthews correlation coefficient (MCC)
+ • Each unordered pair (i, j), i < j, counts once: 528 pairs
+ • TP: correctly called "same"
+ • TN: correctly called "different"                                    10%         Family
+                                                                                   same family? all pairs
+
+
+ • FP: wrongly called "same" (false alarm)
+ • FN: wrongly called "different" (missed pair)
+                                                                                   Model
+                                                                       90%         same model? pairs
+                                                                                   within one family
+                        (𝑇𝑃×𝑇𝑁 − 𝐹𝑃×𝐹𝑁)
+  𝑀𝐶𝐶 =
+             𝑇𝑃 + 𝐹𝑃 𝑇𝑃 + 𝐹𝑁 𝑇𝑁 + 𝐹𝑃 (𝑇𝑁 + 𝐹𝑁)
+
+  MCC_x = max(0, MCC)
+                       score = 0.1 × MCC_family + 0.9 × MCC_model
+       Family alone gives at most 0.1. The rest is telling variants apart within a family.
+                                                                                                            39
+API Access to the End Points & Query Budget
+- Each query sends a prompt to one endpoint and returns
+  generated text only.
+- Each team may collect up to 100 responses per endpoint
+  for the whole competition. A request for several responses
+  uses one query per response.
+- At most 256 generated tokens per response, and at most
+  1,024 input tokens per prompt.
+- At most 4 requests at a time per team.
+- Sampling settings such as `temperature` and `seed` are
+  ignored, and system messages are rejected.
+- Invalid requests are rejected and not counted against your
+  budget.
+                                                               40
+                            Submission
+A .csv file with:
+• One line per endpoint                            endpoint,family,model
+                                                   ep-01,A,A1
+• Same family label: same base model
+                                                   ep-02,B,B1
+• Same model label: same model, and same family    ep-03,A,A2
+   label too
+• One submission every 30 minutes
+
+
+
+
+      Do not tune only to the public score. It covers part of the pairs.
+                The final ranking uses the unseen test set.
+
+                                                                           41
+

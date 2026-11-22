@@ -1,0 +1,176 @@
+{
+  "pixseg": {
+    "fixed_ss6k": {
+      "n": 170,
+      "SS": 0.5332318486032542,
+      "SS_fixed05": 0.5247368959272081,
+      "SS_F": 0.5233090443821328,
+      "SS_R": 0.5431546528243757,
+      "reference_head_seed0_SS": 0.5182075215589661,
+      "global_delta_replacing_only_SS_vs_head_seed0": 0.005008109014762705,
+      "configs": [
+        {
+          "file": "pixseg_cv_ss6k_a.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '0,1', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_a', 'device': 'cuda'}"
+        },
+        {
+          "file": "pixseg_cv_ss6k_b.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '2,3', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_b', 'device': 'cuda'}"
+        },
+        {
+          "file": "pixseg_cv_ss6k_c.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '4', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_c', 'device': 'cuda'}"
+        }
+      ]
+    },
+    "selected_ss6k": {
+      "n": 170,
+      "SS": 0.5926478081939129,
+      "SS_fixed05": 0.5828878964297903,
+      "SS_F": 0.6193247048573468,
+      "SS_R": 0.5659709115304792,
+      "reference_head_seed0_SS": 0.5182075215589661,
+      "global_delta_replacing_only_SS_vs_head_seed0": 0.024813428878315613,
+      "configs": [
+        {
+          "file": "pixseg_cvsel_ss6k_a0.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '0,1', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_a', 'device': 'cuda'}"
+        },
+        {
+          "file": "pixseg_cvsel_ss6k_b.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '2,3', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_b', 'device': 'cuda'}"
+        },
+        {
+          "file": "pixseg_cvsel_ss6k_c.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '4', 'inner_val': 1, 'thr': 0.5, 'seed': 0, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_c', 'device': 'cuda'}"
+        },
+        {
+          "file": "pixseg_cvsel_ss6k_f1s3.npz",
+          "config": "{'cv': True, 'fit_all': False, 'predict_test': False, 'synth': ['output/pixseg_syn_stegastamp_s0_00.npz', 'output/pixseg_syn_stegastamp_s0_01.npz', 'output/pixseg_syn_stegastamp_s0_02.npz', 'output/pixseg_syn_stegastamp_s0_03.npz', 'output/pixseg_syn_stegastamp_s0_04.npz', 'output/pixseg_syn_stegastamp_s0_05.npz', 'output/pixseg_syn_stegastamp_s1_00.npz', 'output/pixseg_syn_stegastamp_s1_01.npz', 'output/pixseg_syn_stegastamp_s1_02.npz', 'output/pixseg_syn_stegastamp_s1_03.npz', 'output/pixseg_syn_stegastamp_s1_04.npz', 'output/pixseg_syn_stegastamp_s1_05.npz'], 'limit_synth': 0, 'in_scale': 1.0, 'hp_mode': 'bin5', 'hp_luma': False, 'synth_methods': '', 'synth_holdout': 300, 'real_frac': 0.0, 'steps': 3000, 'bs': 16, 'lr': 0.002, 'wd': 0.0001, 'bce_w': 1.0, 'iou_w': 1.0, 'crop': 448, 'no_flip': False, 'no_amp': False, 'base': 24, 'backbone': '', 'no_pretrained': False, 'extra_maps': '', 'extra_maps_test': '', 'maps_drop': 0.3, 'folds': '1', 'inner_val': 1, 'thr': 0.5, 'seed': 3, 'log_every': 200, 'data': None, 'ref_heats': 'output/heats_train.npz', 'out': 'output/pixseg', 'tag': 'ss6k_f1s3', 'device': 'cuda'}"
+        }
+      ]
+    }
+  },
+  "contrast": {
+    "pixelseal": {
+      "all": {
+        "n": 13,
+        "strict_top1": {
+          "acc": 5,
+          "margin": 7,
+          "normalized": 7
+        }
+      },
+      "bbox_fill_gt_098": {
+        "n": 4,
+        "strict_top1": {
+          "acc": 4,
+          "margin": 4,
+          "normalized": 4
+        }
+      },
+      "other": {
+        "n": 9,
+        "strict_top1": {
+          "acc": 1,
+          "margin": 3,
+          "normalized": 3
+        }
+      }
+    },
+    "trustmark": {
+      "all": {
+        "n": 13,
+        "strict_top1": {
+          "acc": 8,
+          "margin": 9,
+          "normalized": 10
+        }
+      },
+      "bbox_fill_gt_098": {
+        "n": 8,
+        "strict_top1": {
+          "acc": 8,
+          "margin": 8,
+          "normalized": 8
+        }
+      },
+      "other": {
+        "n": 5,
+        "strict_top1": {
+          "acc": 0,
+          "margin": 1,
+          "normalized": 2
+        }
+      }
+    },
+    "stegastamp": {
+      "all": {
+        "n": 15,
+        "strict_top1": {
+          "acc": 11,
+          "margin": 10,
+          "normalized": 10
+        }
+      },
+      "bbox_fill_gt_098": {
+        "n": 11,
+        "strict_top1": {
+          "acc": 10,
+          "margin": 10,
+          "normalized": 10
+        }
+      },
+      "other": {
+        "n": 4,
+        "strict_top1": {
+          "acc": 1,
+          "margin": 0,
+          "normalized": 0
+        }
+      }
+    }
+  },
+  "files": {
+    "work_segf/head_eval.py": {
+      "bytes": 13779,
+      "sha256": "66f815c304cc061a136b16a7de57a7be00b030d6088bd9a1eebf996c99169f31"
+    },
+    "wmloc/watermarks.py": {
+      "bytes": 7828,
+      "sha256": "faeff2ca656eb0f8d10d3d263f42e7cefd747a92facafb5e1f25fc0028811520"
+    },
+    "output/segf_ens3_3.npz": {
+      "bytes": 17835,
+      "sha256": "c182e5dac66fec152ae4a5784433fd6866dfe5af935cf02f29e0b887f4bb0896"
+    },
+    "output/c1_segf_ffm_e20_20261121.pt": {
+      "bytes": 16734635,
+      "sha256": "514470852e15f8f4fc4316932ee8ece46ea86218bd067c48f1f2b9181c5ab43f"
+    },
+    "output/segf_sub_1.pt": {
+      "bytes": 16734635,
+      "sha256": "514470852e15f8f4fc4316932ee8ece46ea86218bd067c48f1f2b9181c5ab43f"
+    },
+    "task1_contrastive_probe.py": {
+      "bytes": 9634,
+      "sha256": "45bdeed38972cb314cd534420d0c36e487f38d4917307f4d0e343e5e0140a8e3"
+    },
+    "work_pixseg/train.py": {
+      "bytes": 16192,
+      "sha256": "9f07e51e17ada15c874239fa15dcc7b04c1f26ee5652f010e6875b3f89f70f06"
+    },
+    "work_pixseg/model.py": {
+      "bytes": 4912,
+      "sha256": "572e315cfaeeb2aa12f9402c4a34ab3223f000e09eeb080b7d726bde91c99d35"
+    },
+    "work_pixseg_v2/train.py": {
+      "bytes": 16560,
+      "sha256": "c1ab1b7848aa541d7a3d18e529e84b5c18508c4b50338df0fe9f9e6895406f80"
+    },
+    "work_pixseg_v2/model.py": {
+      "bytes": 6579,
+      "sha256": "8e22cb5994ba364f4bd8eb10ab268462571921129f92ab86fb32d1a9e52d3c28"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "stage": "stage2",
+  "lang": "fr",
+  "selection_sha256": "90a996e5f42ddc95161eb5116b983a119cb275af89661342afb9f79860fec506",
+  "recommend": {
+    "delivery_purpose": "presentation",
+    "mode": "custom",
+    "visual_style": "custom",
+    "image_strategy": "custom",
+    "image_usage": "none",
+    "generation_mode": "continuous"
+  },
+  "page_count": { "value": "7-8" },
+  "image_notes": { "value": "Aucune image : le deck porte des mesures, des courbes et des tableaux ; les visuels viennent des graphiques natifs et de la typographie." },
+  "proactive_speaker_notes": { "value": true },
+  "proactive_custom_animations": { "value": false },
+  "proactive_narration_audio": { "value": false },
+  "refine_spec": { "value": false },
+  "design_spec_depth": { "value": "brief" },
+  "design_directions": {
+    "selected": 0,
+    "candidates": [
+      {
+        "id": "carnet-de-labo",
+        "name": "Carnet de labo",
+        "note": "Une page de cahier d'expériences : chaque affirmation porte sa mesure et sa source, comme dans un rapport de recherche.",
+        "mode": "custom",
+        "mode_behavior": "Conclusion d'abord sur chaque page (titre = affirmation mesurée), puis la preuve chiffrée, puis la limite ; une page par épreuve, ouverte par le score et fermée par ce qu'elle nous a appris ; la dernière page tire l'enseignement transférable.",
+        "visual_style": "custom",
+        "visual_style_behavior": "Fond papier clair, filets fins et colonnes de type revue scientifique, titres en serif, chiffres-clés en grand, lignes de source en petit sous chaque preuve ; une couleur d'accent par épreuve, le reste en gris encre ; aucun ornement hors filets.",
+        "icons": "tabler-outline",
+        "color": { "name": "Encre et papier", "palette": {
+          "background": "#FAF8F3", "secondary_bg": "#EFEBE1",
+          "primary": "#1F2A44", "accent": "#C2410C",
+          "secondary_accent": "#2F6F73", "body_text": "#22252B"
+        } },
+        "typography": {
+          "name": "Georgia + Arial",
+          "heading": { "primary": "Georgia", "css": "serif" },
+          "body": { "primary": "Arial", "css": "sans-serif" },
+          "body_size": 28
+        },
+        "image_strategy": {
+          "name": "Figure de revue",
+          "rendering": "custom",
+          "visual": "Figures au trait sobre, légendées, comme dans un article de revue",
+          "mood": "Rigoureux et calme, comme une figure de NeurIPS imprimée",
+          "behavior": "Trait fin, aplats limités aux couleurs du deck, légende et source sous chaque figure ; aucun effet de profondeur."
+        }
+      },
+      {
+        "id": "console-nuit",
+        "name": "Console de nuit",
+        "note": "L'ambiance d'une nuit de hackathon : écran sombre, chiffres en police machine, une lueur par épreuve.",
+        "mode": "custom",
+        "mode_behavior": "Récit chronologique de la nuit : situation au départ, ce qu'on a mesuré, les décisions prises par règle figée, le score final ; chaque épreuve suit la même boucle hypothèse → mesure → décision.",
+        "visual_style": "custom",
+        "visual_style_behavior": "Fond quasi noir, grille fine en filigrane, chiffres et identifiants en police à chasse fixe, un halo discret sur le chiffre-clé de chaque page ; cartes à bords nets, sans ombre portée.",
+        "icons": "tabler-outline",
+        "color": { "name": "Terminal", "palette": {
+          "background": "#0E1116", "secondary_bg": "#171C24",
+          "primary": "#E6EDF3", "accent": "#3FB950",
+          "secondary_accent": "#58A6FF", "body_text": "#C9D1D9"
+        } },
+        "typography": {
+          "name": "Arial + Consolas",
+          "heading": { "primary": "Arial", "css": "sans-serif" },
+          "body": { "primary": "Consolas", "css": "monospace" },
+          "body_size": 28
+        },
+        "image_strategy": {
+          "name": "Tableau de bord",
+          "rendering": "custom",
+          "visual": "Éléments d'interface de supervision, courbes lumineuses sur fond sombre",
+          "mood": "Concentré et nocturne, comme une salle de supervision à 4 h du matin",
+          "behavior": "Lignes fines lumineuses dans les couleurs du deck, fond sombre uni, aucun personnage."
+        }
+      },
+      {
+        "id": "grille-suisse",
+        "name": "Grille suisse",
+        "note": "Très peu de texte, un chiffre géant par page, une grille stricte : le jury lit en deux secondes.",
+        "mode": "custom",
+        "mode_behavior": "Une idée par page, énoncée en une phrase, appuyée par un seul chiffre ou un seul graphique ; le détail passe dans les notes du présentateur.",
+        "visual_style": "custom",
+        "visual_style_behavior": "Fond blanc, grille à 12 colonnes visible par l'alignement seul, grands blancs, chiffre-clé en très grand corps gras, un seul accent rouge ; titres alignés en haut à gauche, rien de centré.",
+        "icons": "tabler-outline",
+        "color": { "name": "Blanc et rouge", "palette": {
+          "background": "#FFFFFF", "secondary_bg": "#F2F2F2",
+          "primary": "#111111", "accent": "#E30613",
+          "secondary_accent": "#6B6B6B", "body_text": "#1A1A1A"
+        } },
+        "typography": {
+          "name": "Arial seule",
+          "heading": { "primary": "Arial", "css": "sans-serif" },
+          "body": { "primary": "Arial", "css": "sans-serif" },
+          "body_size": 30
+        },
+        "image_strategy": {
+          "name": "Affiche suisse",
+          "rendering": "custom",
+          "visual": "Formes géométriques pleines et typographie comme seule image",
+          "mood": "Net et sûr, comme une affiche du Style international",
+          "behavior": "Aplats géométriques dans les couleurs du deck, aucune texture, beaucoup de blanc."
+        }
+      }
+    ]
+  }
+}

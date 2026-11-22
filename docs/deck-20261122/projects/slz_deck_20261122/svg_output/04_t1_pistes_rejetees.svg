@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Arial, Helvetica, sans-serif">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FAF8F3"/>
+  <g id="header" data-pptx-bounds="64 48 1152 88">
+    <text x="64" y="70" font-size="18" fill="#C2410C" letter-spacing="2">TASK 1 · CE QUE LA RÈGLE A FILTRÉ</text>
+    <text x="64" y="114" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="44" fill="#1F2A44">T1 : la règle a coupé ce qui ne mesurait pas</text>
+  </g>
+  <g id="t1-pistes" data-pptx-bounds="64 150 1152 364" data-pptx-replace-with="table" data-pptx-fallback-sha256="60410dd36e8f541a4ad6e3a07704bdcd45f7e11c75f740e5420a4f4e39ce649d">
+    <metadata type="application/json">
+      {
+        "schema": "ppt-master.semantic-table.v2",
+        "name": "t1-pistes",
+        "x": 64, "y": 156, "width": 1152, "height": 352,
+        "column_widths": [600, 280, 272],
+        "row_heights": [52, 60, 60, 60, 60, 60],
+        "header_rows": 1,
+        "defaults": {
+          "cell": {"font_size": 26, "color": "#22252B", "align": "l", "valign": "middle",
+                   "padding": {"left": 12, "right": 12, "top": 0, "bottom": 0},
+                   "borders": {"top": {"style": "none"}, "left": {"style": "none"}, "right": {"style": "none"},
+                               "bottom": {"style": "solid", "color": "#D9D3C4", "width": 1}}}
+        },
+        "cell_styles": {
+          "head": {"font_size": 18, "bold": true, "color": "#6B6A66",
+                   "borders": {"top": {"style": "none"}, "left": {"style": "none"}, "right": {"style": "none"},
+                               "bottom": {"style": "solid", "color": "#1F2A44", "width": 2}}},
+          "abandon": {"color": "#6B6A66"},
+          "diag": {"color": "#2F6F73", "bold": true},
+          "keep": {"color": "#C2410C", "bold": true}
+        },
+        "columns": [
+          {"text": "PISTE TESTÉE", "cell_style": "head"},
+          {"text": "GAIN MESURÉ", "cell_style": "head"},
+          {"text": "DÉCISION", "cell_style": "head"}
+        ],
+        "rows": [
+          ["8 000 pas au lieu de 4 000", "−0,004", {"text": "Abandon", "cell_style": "abandon"}],
+          ["PixelSeal 6k (local F +0,079)", "public 0,6773", {"text": "Démenti", "cell_style": "abandon"}],
+          ["Perte BCE 0,5 + IoU 2, 5 folds", "+0,003", {"text": "Diagnostic", "cell_style": "diag"}],
+          ["StegaStamp à 6 000 pas", "positif sur 5 folds", {"text": "Soumis (+0,0049)", "cell_style": "keep"}],
+          ["Template matching, ré-embarquement", "pas de signal", {"text": "Écarté", "cell_style": "abandon"}]
+        ]
+      }
+    </metadata>
+    <g id="t1-pistes-rules" stroke-width="1" stroke="#D9D3C4">
+      <line x1="64" y1="208" x2="1216" y2="208" stroke="#1F2A44" stroke-width="2"/>
+      <line x1="64" y1="268" x2="1216" y2="268"/>
+      <line x1="64" y1="328" x2="1216" y2="328"/>
+      <line x1="64" y1="388" x2="1216" y2="388"/>
+      <line x1="64" y1="448" x2="1216" y2="448"/>
+      <line x1="64" y1="508" x2="1216" y2="508"/>
+    </g>
+    <g id="t1-pistes-head" font-size="18" font-weight="bold" fill="#6B6A66">
+      <text x="76" y="188">PISTE TESTÉE</text>
+      <text x="676" y="188">GAIN MESURÉ</text>
+      <text x="956" y="188">DÉCISION</text>
+    </g>
+    <g id="t1-pistes-body" font-size="26" fill="#22252B">
+      <text x="76" y="247">8 000 pas au lieu de 4 000</text>
+      <text x="676" y="247">−0,004</text>
+      <text x="956" y="247" fill="#6B6A66">Abandon</text>
+      <text x="76" y="307">PixelSeal 6k (local F +0,079)</text>
+      <text x="676" y="307">public 0,6773</text>
+      <text x="956" y="307" fill="#6B6A66">Démenti</text>
+      <text x="76" y="367">Perte BCE 0,5 + IoU 2, 5 folds</text>
+      <text x="676" y="367">+0,003</text>
+      <text x="956" y="367" fill="#2F6F73" font-weight="bold">Diagnostic</text>
+      <text x="76" y="427">StegaStamp à 6 000 pas</text>
+      <text x="676" y="427">positif sur 5 folds</text>
+      <text x="956" y="427" fill="#C2410C" font-weight="bold">Soumis (+0,0049)</text>
+      <text x="76" y="487">Template matching, ré-embarquement</text>
+      <text x="676" y="487">pas de signal</text>
+      <text x="956" y="487" fill="#6B6A66">Écarté</text>
+    </g>
+  </g>
+  <g id="limit" data-pptx-bounds="64 526 1152 114">
+    <rect x="64" y="536" width="6" height="92" fill="#2F6F73"/>
+    <text x="90" y="560" font-size="18" fill="#6B6A66" letter-spacing="2">LIMITE</text>
+    <text x="90" y="594" font-size="26" fill="#22252B">15 équipes atteignent 0,71–0,77 avec une recette forensique générique ;<tspan x="90" dy="32">notre recette lisait surtout le signal du watermark.</tspan></text>
+  </g>
+  <g id="source" data-pptx-bounds="64 648 1152 36">
+    <text x="64" y="672" font-size="18" fill="#6B6A66">Source : journal d'expériences (gains appariés, bootstrap 2 000) et classement public relevé le 22/11 à 00:25</text>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Arial, Helvetica, sans-serif">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FAF8F3"/>
+  <g id="header" data-pptx-bounds="64 48 1152 88">
+    <text x="64" y="70" font-size="18" fill="#C2410C" letter-spacing="2">TASK 1 · LOCALISATION DE WATERMARK</text>
+    <text x="64" y="114" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="44" fill="#1F2A44">T1 : +0,17 en six étapes mesurées</text>
+  </g>
+  <g id="t1-progression" data-pptx-bounds="64 150 800 470" data-pptx-replace-with="chart" data-pptx-fallback-sha256="a4ad370166369be17d6b29b5b84a2f6ff06961c35867704bfc35a80b74834b5d">
+    <metadata type="application/json">
+      {
+        "name": "t1-progression",
+        "x": 64, "y": 150, "width": 800, "height": 470,
+        "type": "line",
+        "grouping": "standard",
+        "line_style": "lineMarker",
+        "marker_size": 12,
+        "plot_area": {"x": 96, "y": 200, "width": 760, "height": 320},
+        "categories": ["CV", "Tête F", "+ pixseg", "convnext", "4 × 4k", "Ens. E", "SS 6k"],
+        "series": [
+          {"name": "Score T1", "values": [0.5088, 0.5572, 0.5845, 0.6137, 0.6377, 0.6739, 0.6788],
+           "point_colors": ["#6B6A66", "#C2410C", "#C2410C", "#C2410C", "#C2410C", "#C2410C", "#C2410C"]}
+        ],
+        "axes": {
+          "category": {"label_position": "next_to"},
+          "value": {"minimum": 0.5, "maximum": 0.7, "major_unit": 0.05, "label_position": "none", "major_gridlines": false, "cross_between": "between"}
+        },
+        "style": {"colors": ["#C2410C"], "axis_color": "#D9D3C4", "text_color": "#6B6A66"},
+        "notes": [
+          {"text": "0,5088"}, {"text": "0,5572"}, {"text": "0,5845"}, {"text": "0,6137"},
+          {"text": "0,6377"}, {"text": "0,6739"}, {"text": "0,6788"},
+          {"text": "CV : validation croisée imbriquée (local). Points suivants : scores publics."}
+        ]
+      }
+    </metadata>
+    <g id="t1-progression-chartArea">
+      <line id="t1-axis" x1="96" y1="520" x2="856" y2="520" stroke="#D9D3C4" stroke-width="1"/>
+      <!-- chart-plot-area: object=t1-progression | 96,200,856,520 -->
+      <path d="M150.29 505.92 L258.86 428.48 L367.43 384.8 L476 338.08 L584.57 299.68 L693.14 241.76 L801.71 233.92" fill="none" stroke="#C2410C" stroke-width="3"/>
+      <circle cx="150.29" cy="505.92" r="6" fill="#6B6A66"/>
+      <circle cx="258.86" cy="428.48" r="6" fill="#C2410C"/>
+      <circle cx="367.43" cy="384.8" r="6" fill="#C2410C"/>
+      <circle cx="476" cy="338.08" r="6" fill="#C2410C"/>
+      <circle cx="584.57" cy="299.68" r="6" fill="#C2410C"/>
+      <circle cx="693.14" cy="241.76" r="6" fill="#C2410C"/>
+      <circle cx="801.71" cy="233.92" r="6" fill="#C2410C"/>
+    </g>
+    <g font-size="18" fill="#22252B" text-anchor="middle">
+      <text x="150.29" y="487">0,5088</text>
+      <text x="258.86" y="410">0,5572</text>
+      <text x="367.43" y="366">0,5845</text>
+      <text x="476" y="320">0,6137</text>
+      <text x="584.57" y="281">0,6377</text>
+      <text x="693.14" y="223">0,6739</text>
+      <text x="801.71" y="215" font-weight="bold" fill="#C2410C">0,6788</text>
+    </g>
+    <g font-size="18" fill="#6B6A66" text-anchor="middle">
+      <text x="150.29" y="552">CV</text>
+      <text x="258.86" y="552">Tête F</text>
+      <text x="367.43" y="552">+ pixseg</text>
+      <text x="476" y="552">convnext</text>
+      <text x="584.57" y="552">4 × 4k</text>
+      <text x="693.14" y="552">Ens. E</text>
+      <text x="801.71" y="552">SS 6k</text>
+    </g>
+    <text x="96" y="600" font-size="18" fill="#6B6A66">CV : validation croisée imbriquée (local). Points suivants : scores publics.</text>
+  </g>
+  <g id="local-public-gap" data-pptx-bounds="904 190 312 432">
+    <line x1="904" y1="200" x2="1216" y2="200" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="904" y="320" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="96" fill="#1F2A44">0,001</text>
+    <text x="904" y="376" font-size="28" fill="#22252B">d'écart entre<tspan x="904" dy="36">local et public</tspan></text>
+    <text x="904" y="460" font-size="18" fill="#6B6A66">0,5583 en local</text>
+    <text x="904" y="488" font-size="18" fill="#6B6A66">0,5572 au public</text>
+    <text x="904" y="552" font-size="18" fill="#22252B">Chaque étape a donc été<tspan x="904" dy="26">choisie hors ligne.</tspan></text>
+    <text x="904" y="600" font-size="18" fill="#6B6A66">Relevé de 04:06 : <tspan font-weight="bold" fill="#C2410C">0,6880</tspan><tspan x="904" dy="24">(dernier envoi, hors registre)</tspan></text>
+  </g>
+  <g id="source" data-pptx-bounds="64 648 1152 36">
+    <text x="64" y="672" font-size="18" fill="#6B6A66">Source : journal d'expériences de l'équipe (scores publics du serveur EAIC)</text>
+  </g>
+</svg>

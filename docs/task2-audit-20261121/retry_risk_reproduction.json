@@ -1,0 +1,25 @@
+{
+  "scenario": "502 vide, 502 vide, 200 ; chaque tentative débitée dans le scénario",
+  "source": "runner_metadata.json : c2run/ep/ep1b.py/query",
+  "http_attempts": 3,
+  "saved_answers": 1,
+  "budget_reads": 1,
+  "simulated_budget_used": 3,
+  "sleeps_without_real_wait": [
+    15,
+    15
+  ],
+  "client_timeouts": [
+    180,
+    180,
+    180
+  ],
+  "console": "1 prompts x 1 endpoints x 1 repeats: 0 answers already in /var/folders/6k/tj3vszcs1p10zr80_s1lcllh0000gn/T/task2-retry-audit-pwjigl4p/answers.jsonl, 1 to query\n Retrying in 15 s.\n Retrying in 15 s.\n1/1 answers (ep-01: 3/100 used)\nFinished: /var/folders/6k/tj3vszcs1p10zr80_s1lcllh0000gn/T/task2-retry-audit-pwjigl4p/answers.jsonl\n",
+  "saved_record_fields": [
+    "endpoint",
+    "id",
+    "repeat",
+    "prompt",
+    "response"
+  ]
+}

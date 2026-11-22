@@ -1,0 +1,756 @@
+{
+ "nature": "Plan local fictif, non validé ; pas de collecte automatique",
+ "candidate_count": 487,
+ "budget_per_endpoint": 60,
+ "probes": [
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 0.2471951752493592,
+   "mass": 0.9062335395719856,
+   "d_ctx": [
+    -0.0017021703085241535,
+    0.24807141733349292,
+    -0.377475689143029,
+    -0.37650225275521754,
+    0.8725243838229424
+   ],
+   "mass_ctx": [
+    0.9475573907257058,
+    0.9488085396005772,
+    0.9485457229893655,
+    0.9619536445825361,
+    0.9423080446431413
+   ],
+   "d_fp8": {
+    "w_pt": 1.2470144616537402,
+    "w_pc": 0.6845145423837188,
+    "w_pt_a_pt": 0.7470145332187161,
+    "w_pc_a_tok": 0.6226740963698371
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "heads or tails?"
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 0.24933307109341107,
+   "mass": 0.9923335023049731,
+   "d_ctx": [
+    0.6244469972014527,
+    0.24929009052149464,
+    -0.1255194218623552,
+    -0.25027806524461704,
+    -1.125519441404737
+   ],
+   "mass_ctx": [
+    0.9935128716606414,
+    0.9907121062278748,
+    0.9935743234818801,
+    0.9943582620180678,
+    0.9948837382544298
+   ],
+   "d_fp8": {
+    "w_pt": 0.6244113829433302,
+    "w_pc": 0.49944702384130835,
+    "w_pt_a_pt": 0.6241955637124443,
+    "w_pc_a_tok": 0.6245508709397198
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    }
+   ],
+   "s1": "yes",
+   "s2": "no",
+   "d0": 0.375404521552948,
+   "mass": 0.985180999734439,
+   "d_ctx": [
+    0.3752959387718341,
+    0.7501795744998683,
+    1.000216558705746,
+    0.8752780844396131,
+    0.25023054086623364
+   ],
+   "mass_ctx": [
+    0.9866452418937115,
+    0.9913546504831174,
+    0.9880818986566737,
+    0.9890448090154678,
+    0.9923079358268296
+   ],
+   "d_fp8": {
+    "w_pt": 0.2502780418751819,
+    "w_pc": 0.0,
+    "w_pt_a_pt": 0.2502305308071192,
+    "w_pc_a_tok": -0.1250000304361084
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    }
+   ],
+   "s1": "no",
+   "s2": "yes",
+   "d0": 0.12459542064900375,
+   "mass": 0.9868516084097791,
+   "d_ctx": [
+    -0.00020344767148050558,
+    0.12484155424833843,
+    -0.0003354063636378246,
+    -0.12538004990217033,
+    0.6248685674003702
+   ],
+   "mass_ctx": [
+    0.9893874246408814,
+    0.9947852615950978,
+    0.9850446292257402,
+    0.9882719148736214,
+    0.9954897412972059
+   ],
+   "d_fp8": {
+    "w_pt": 0.3745954164986436,
+    "w_pc": -0.5003570551391063,
+    "w_pt_a_pt": 0.5000000285019301,
+    "w_pc_a_tok": -0.1254584395230457
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    }
+   ],
+   "s1": "no",
+   "s2": "yes",
+   "d0": 0.12470315690416112,
+   "mass": 0.9902236379057285,
+   "d_ctx": [
+    -0.2502453814494384,
+    -0.1251584752812831,
+    -0.6253150831485785,
+    -1.0003353971100648,
+    -0.00019112257581332948
+   ],
+   "mass_ctx": [
+    0.9916749146650545,
+    0.9955574780105962,
+    0.9870447808498284,
+    0.9925743304338539,
+    0.996669644890062
+   ],
+   "d_fp8": {
+    "w_pt": 0.12459545195590183,
+    "w_pc": -0.3754306057527991,
+    "w_pt_a_pt": -0.2503354243791922,
+    "w_pc_a_tok": -0.12531511753960722
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "x or o?"
+    }
+   ],
+   "s1": "x",
+   "s2": "o",
+   "d0": 0.062499997299442556,
+   "mass": 0.8891147673130035,
+   "d_ctx": [
+    -0.0625000049065012,
+    0.18750006126471153,
+    0.8124999994709923,
+    1.0624999151396892,
+    0.1250000180997125
+   ],
+   "mass_ctx": [
+    0.8879813253879547,
+    0.8921127319335938,
+    0.9200305640697479,
+    0.8107443004846573,
+    0.9269408881664276
+   ],
+   "d_fp8": {
+    "w_pt": 0.3749999489015603,
+    "w_pc": 0.6249999732228633,
+    "w_pt_a_pt": 0.7500000294926339,
+    "w_pc_a_tok": 0.937500021684285
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    }
+   ],
+   "s1": "tails",
+   "s2": "heads",
+   "d0": 0.5008044339776808,
+   "mass": 0.9714909052418079,
+   "d_ctx": [
+    0.2507099049379151,
+    0.5005194084761029,
+    0.37570989759658047,
+    -0.3746429649534616,
+    0.12555293489131858
+   ],
+   "mass_ctx": [
+    0.9783178177603986,
+    0.9808443683141377,
+    0.9749486552318558,
+    0.985552744474262,
+    0.9725335783150513
+   ],
+   "d_fp8": {
+    "w_pt": 0.12609935277231366,
+    "w_pc": 0.8758044214213039,
+    "w_pt_a_pt": 1.0009702063373351,
+    "w_pc_a_tok": 1.1259702192862913
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick 0 or 1 at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Pick 0 or 1 at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Pick 0 or 1 at random. One word."
+    }
+   ],
+   "s1": "0",
+   "s2": "1",
+   "d0": 0.12500002060720805,
+   "mass": 0.9616663753986359,
+   "d_ctx": [
+    -0.25000000641132347,
+    0.0,
+    0.2500000069043028,
+    -0.24999997055839496,
+    0.12499998643740595
+   ],
+   "mass_ctx": [
+    0.9636656641960144,
+    0.9629402756690979,
+    0.9802831411361694,
+    0.9745329022407532,
+    0.981338381767273
+   ],
+   "d_fp8": {
+    "w_pt": 0.2500000113389691,
+    "w_pc": -0.3749999740210851,
+    "w_pt_a_pt": 0.12500003796262116,
+    "w_pc_a_tok": -0.25000000666985867
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. In the old library, dust drifted through shafts of light falling across the long oak tables. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose A or B at random and reply with only your choice."
+    }
+   ],
+   "s1": "B",
+   "s2": "A",
+   "d0": 0.0,
+   "mass": 0.9573462009429932,
+   "d_ctx": [
+    0.0,
+    0.12500001590938314,
+    -0.500000016349612,
+    0.0,
+    0.24999999634700387
+   ],
+   "mass_ctx": [
+    0.9581133127212524,
+    0.9203944802284241,
+    0.950276643037796,
+    0.9220990538597107,
+    0.9581020176410675
+   ],
+   "d_fp8": {
+    "w_pt": -0.24999996845986205,
+    "w_pc": -0.3749999414544608,
+    "w_pt_a_pt": 0.1250000415153193,
+    "w_pc_a_tok": -0.5000000136155612
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    }
+   ],
+   "s1": "o",
+   "s2": "x",
+   "d0": 1.250588545448365,
+   "mass": 0.9649985752766952,
+   "d_ctx": [
+    0.37442127892262267,
+    1.1239647611822727,
+    0.7493052563741405,
+    0.49890062608106744,
+    0.6242423531882895
+   ],
+   "mass_ctx": [
+    0.9676925344101619,
+    0.9676682648132555,
+    0.9747099255619105,
+    0.9621578558871988,
+    0.9664586653816514
+   ],
+   "d_fp8": {
+    "w_pt": 0.6243808284540909,
+    "w_pc": 0.750000015434996,
+    "w_pt_a_pt": 0.8115506055142339,
+    "w_pc_a_tok": 0.7492151628933827
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: yes or no."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "no",
+   "s2": "yes",
+   "d0": 0.18750001872389888,
+   "mass": 0.9516794383525848,
+   "d_ctx": [
+    0.0,
+    0.37499994717453644,
+    0.12500003411643035,
+    -0.12499998295312609,
+    0.6249999830848296
+   ],
+   "mass_ctx": [
+    0.9477119445800781,
+    0.9720919132232666,
+    0.9423941671848297,
+    0.9443678855895996,
+    0.971664309501648
+   ],
+   "d_fp8": {
+    "w_pt": 0.6875000186392511,
+    "w_pc": 0.37499997230067506,
+    "w_pt_a_pt": 1.1874999698434827,
+    "w_pc_a_tok": 0.3749999472280615
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick yes or no at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Pick yes or no at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "no",
+   "s2": "yes",
+   "d0": 0.3749999410956705,
+   "mass": 0.9635485708713531,
+   "d_ctx": [
+    -0.1250000320027278,
+    0.24999997572693644,
+    -0.062499974518139045,
+    -0.06250001300945784,
+    0.5000000144481784
+   ],
+   "mass_ctx": [
+    0.9660211801528931,
+    0.9625549614429474,
+    0.9548055529594421,
+    0.956245481967926,
+    0.9785108864307404
+   ],
+   "d_fp8": {
+    "w_pt": 0.9999999924957146,
+    "w_pc": 0.6249999306072792,
+    "w_pt_a_pt": 0.9374999759020513,
+    "w_pc_a_tok": 0.31249997114416705
+   }
+  }
+ ],
+ "efficient_information_by_scheme": {
+  "w_pt": 4.78112182139089,
+  "w_pc": 4.784305038929252,
+  "w_pt_a_pt": 5.081009631707156,
+  "w_pc_a_tok": 5.194017996593532
+ },
+ "min_information": 4.78112182139089,
+ "status": "VALIDATION REFS NEUVE NECESSAIRE",
+ "caveats": [
+  "Contexte représenté par 5 directions simulées ; les vrais contextes restent inconnus.",
+  "Approximation de p(s1 | s1 ou s2) ; top-p, watermark, autres tokens absents.",
+  "Ce plan ne teste pas la LoRA faible et ne passe donc pas le critère ep."
+ ]
+}

@@ -17,10 +17,12 @@ set -euo pipefail
 PREFIX=${1:?prefixe}; EXTRA=${2:-}
 export SRUN_CPUS_PER_TASK=$SLURM_CPUS_PER_TASK
 export HF_HUB_OFFLINE=1 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4
-cd /p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task
+TASK=${TASK:-/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task}
+cd "$TASK"
 source .venv/bin/activate
 export PREFIX EXTRA
 srun --ntasks=4 --kill-on-bad-exit=0 --cpu-bind=cores --output="output/%j_%t.out" bash -c '
+  set -euo pipefail
   export CUDA_VISIBLE_DEVICES=$SLURM_LOCALID
   M=(pixelseal trustmark stegastamp)
   if [ "$SLURM_LOCALID" -lt 3 ]; then

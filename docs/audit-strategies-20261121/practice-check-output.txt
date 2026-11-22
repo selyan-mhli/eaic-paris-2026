@@ -1,0 +1,8 @@
+0 raw_ngram cross Practice score (MCC over 36 pairs, same model or not): 0.000 OK
+1 raw_ngram cross Practice score (MCC over 36 pairs, same model or not): 0.000 OK
+2 raw_ngram mmd Practice score (MCC over 36 pairs, same model or not): 0.000 OK
+3 raw_ngram mmd Practice score (MCC over 36 pairs, same model or not): 0.000 OK
+4 numeric_sequence cross Practice score (MCC over 36 pairs, same model or not): 0.331 OK
+5 numeric_sequence cross Practice score (MCC over 36 pairs, same model or not): 0.021 OK
+6 numeric_sequence mmd Practice score (MCC over 36 pairs, same model or not): 0.000 OK
+7 numeric_sequence mmd Practice score (MCC over 36 pairs, same model or not): 0.120 OK

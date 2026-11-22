@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Arial, Helvetica, sans-serif">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FAF8F3"/>
+  <g id="header" data-pptx-bounds="64 48 1152 88">
+    <text x="64" y="70" font-size="18" fill="#2F6F73" letter-spacing="2">TASK 3 · UNLEARNING D'UN VIT-B/16</text>
+    <text x="64" y="114" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="44" fill="#1F2A44">T3 : seule la tête a fait bouger le serveur</text>
+  </g>
+  <g id="t3-push" data-pptx-bounds="64 148 580 408" data-pptx-replace-with="chart" data-pptx-fallback-sha256="dc8cc982f128a9930fe09c2c61dd405fffaf7987d31fc8e533debde6dc31e134">
+    <metadata type="application/json">
+      {
+        "name": "t3-push",
+        "x": 64, "y": 148, "width": 580, "height": 392,
+        "type": "column",
+        "grouping": "clustered",
+        "gap_width": 86,
+        "plot_area": {"x": 96, "y": 200, "width": 520, "height": 320},
+        "categories": ["× 1,25", "× 1,5", "× 1,65", "× 1,75", "× 2,0"],
+        "series": [
+          {"name": "Score public T3", "values": [0.0567, 0.0827, 0.0923, 0.0941, 0.0792],
+           "point_colors": ["#2F6F73", "#2F6F73", "#2F6F73", "#C2410C", "#2F6F73"]}
+        ],
+        "axes": {
+          "category": {"label_position": "next_to"},
+          "value": {"minimum": 0, "maximum": 0.1, "major_unit": 0.02, "label_position": "none", "major_gridlines": false}
+        },
+        "style": {"colors": ["#2F6F73"], "axis_color": "#D9D3C4", "text_color": "#6B6A66"},
+        "notes": [
+          {"text": "0,0567"}, {"text": "0,0827"}, {"text": "0,0923"}, {"text": "0,0941"}, {"text": "0,0792"},
+          {"text": "SCORE PUBLIC SELON L'INTENSITÉ DU PUSH"}
+        ]
+      }
+    </metadata>
+    <text x="64" y="172" font-size="18" fill="#6B6A66" letter-spacing="2">SCORE PUBLIC SELON L'INTENSITÉ DU PUSH</text>
+    <g id="t3-push-chartArea">
+      <line id="t3-axis" x1="96" y1="520" x2="616" y2="520" stroke="#D9D3C4" stroke-width="1"/>
+      <!-- chart-plot-area: object=t3-push | 96,200,616,520 -->
+      <rect x="120" y="338.56" width="55.91" height="181.44" fill="#2F6F73"/>
+      <rect x="224" y="255.36" width="55.91" height="264.64" fill="#2F6F73"/>
+      <rect x="328" y="224.64" width="55.91" height="295.36" fill="#2F6F73"/>
+      <rect x="432" y="218.88" width="55.91" height="301.12" fill="#C2410C"/>
+      <rect x="536" y="266.56" width="55.91" height="253.44" fill="#2F6F73"/>
+    </g>
+    <g font-size="18" fill="#22252B" text-anchor="middle">
+      <text x="147.96" y="326">0,0567</text>
+      <text x="251.96" y="243">0,0827</text>
+      <text x="355.96" y="212">0,0923</text>
+      <text x="459.96" y="206" font-weight="bold" fill="#C2410C">0,0941</text>
+      <text x="563.96" y="254">0,0792</text>
+    </g>
+    <g font-size="18" fill="#6B6A66" text-anchor="middle">
+      <text x="147.96" y="548">× 1,25</text>
+      <text x="251.96" y="548">× 1,5</text>
+      <text x="355.96" y="548">× 1,65</text>
+      <text x="459.96" y="548">× 1,75</text>
+      <text x="563.96" y="548">× 2,0</text>
+    </g>
+  </g>
+    <g id="refuted" data-pptx-bounds="700 148 516 392">
+    <text x="700" y="172" font-size="18" fill="#6B6A66" letter-spacing="2">RÉFUTÉ PAR LE SERVEUR</text>
+    <line x1="700" y1="190" x2="1216" y2="190" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="700" y="228" font-size="26" font-weight="bold" fill="#1F2A44">Soupes, distillation, ancrage</text>
+    <text x="700" y="256" font-size="18" fill="#6B6A66">0,001 à 0,004</text>
+    <line x1="700" y1="274" x2="1216" y2="274" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="700" y="312" font-size="26" font-weight="bold" fill="#1F2A44">Supprimer 9 classes</text>
+    <text x="700" y="340" font-size="18" fill="#6B6A66">0,0205</text>
+    <line x1="700" y1="358" x2="1216" y2="358" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="700" y="396" font-size="26" font-weight="bold" fill="#1F2A44">Préserver les variations img2img</text>
+    <text x="700" y="424" font-size="18" fill="#6B6A66">0,0317 : le gold baisse toute la classe</text>
+    <line x1="700" y1="442" x2="1216" y2="442" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="700" y="480" font-size="18" fill="#6B6A66">Contexte : 3 500 images forget générées par diffusion,<tspan x="700" dy="24">45 classes, ni gold ni retain · maximum du tableau 0,46</tspan></text>
+  </g>
+  <g id="takeaway" data-pptx-bounds="64 557 1152 76">
+    <rect x="64" y="558" width="1152" height="68" rx="4" fill="#EFEBE1"/>
+    <rect x="64" y="558" width="6" height="68" fill="#2F6F73"/>
+    <text x="96" y="602" font-size="28" fill="#22252B">Le push ne modifie que <tspan font-weight="bold">45 lignes de la tête</tspan> ; optimum à <tspan font-weight="bold" fill="#C2410C">× 1,75</tspan></text>
+  </g>
+  <g id="source" data-pptx-bounds="64 648 1152 36">
+    <text x="64" y="672" font-size="18" fill="#6B6A66">Source : registre de coordination (soumissions T3) ; poids vérifiés : seuls head.weight et head.bias diffèrent</text>
+  </g>
+</svg>

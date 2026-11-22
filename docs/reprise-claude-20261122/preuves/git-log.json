@@ -1,0 +1,12 @@
+{
+  "heure_paris": "2026-11-22T03:06:56.294864+01:00",
+  "commande": [
+    "git",
+    "log",
+    "--oneline",
+    "-20"
+  ],
+  "code": 0,
+  "stdout": "f209e20 docs(c1): real-data results (nested CV 0.5088) and repro commands (#13)\n6e485cc feat(c3): eval.py par proxys (retain, forget, fp16, format) et guide pour verser les scripts JURECA (#14)\n9b8d3f8 feat(c1): nested-CV gated eval, segmentation pipeline and wrapper checks (#12)\n1f2c907 feat(c2): plan de requêtes, prompts et analyse hors ligne (synthétique) (#9)\ncae0f28 docs: record JURECA validation of 4-shard sbatch in GPU audit (#10)\naf7dcf4 feat(c1): PixelSeal detection-channel probe and Task 1 research notes (#11)\n22209d1 docs: audit of SLZ GPU usage on JURECA (#8)\n312577f docs(c1): submission size limit is 25 MB (#7)\n12ada16 feat(c1): gated F/R evaluation combining heatmaps and box search (#6)\n497f103 feat(c1): box search for rectangle-only watermarks and generic Slurm runner (#5)\nbe8c7ba feat(c1): heatmaps on real data and stratified threshold eval (#1)\nd140b70 chore: PR workflow with CI, PR template, CODEOWNERS and task briefs (#2)\n1e6e9a5 feat(c1): metric, PixelSeal wrapper, synthetic data and sliding-window localizer\n6ce1e97 docs: assign task owners (T1 Selyan, T2 Sophie, T3 Yihuan)\n6b0d8cd docs: add task briefs and team repo architecture\n6bba2d9 feat(autoresearch): add autonomous experiment loop for challenges\n99862ed chore(agents): add project ml-dev agent for EAIC experiments\nf63ed65 chore(jureca): add Slurm job script for the cispahack reservation\n27363d5 squelette EAIC Paris 2026\n",
+  "stderr": ""
+}

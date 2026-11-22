@@ -1,0 +1,115 @@
+{
+  "nature": "Exemples construits ; aucun score de modèle ou de serveur.",
+  "T2_same_weights_different_temperature": {
+    "logits": [
+      2.0,
+      0.0
+    ],
+    "T_A": 0.5,
+    "T_B": 2.0,
+    "P_A_option1": 0.9820137900379085,
+    "P_B_option1": 0.7310585786300049,
+    "MMD2_delta_kernel": 0.12595703626557114,
+    "same_model_by_challenge_definition": true
+  },
+  "T2_partial_partitions_using_known_truth_not_a_method": [
+    {
+      "isolates": [],
+      "model_MCC": 0.0,
+      "hypothetical_total_if_families_perfect_on_scored_endpoints": 0.1
+    },
+    {
+      "isolates": [
+        7
+      ],
+      "model_MCC": 0.33149677206589795,
+      "hypothetical_total_if_families_perfect_on_scored_endpoints": 0.3983470948593082
+    },
+    {
+      "isolates": [
+        4,
+        7
+      ],
+      "model_MCC": 0.5241424183609592,
+      "hypothetical_total_if_families_perfect_on_scored_endpoints": 0.5717281765248633
+    },
+    {
+      "isolates": [
+        2,
+        4,
+        7
+      ],
+      "model_MCC": 0.7337993857053429,
+      "hypothetical_total_if_families_perfect_on_scored_endpoints": 0.7604194471348086
+    },
+    {
+      "isolates": [
+        2,
+        4,
+        7,
+        9
+      ],
+      "model_MCC": 1.0,
+      "hypothetical_total_if_families_perfect_on_scored_endpoints": 1.0
+    }
+  ],
+  "T3_same_loss_different_predictions": {
+    "true_label": 0,
+    "CE_A_T1": 0.2231435513142097,
+    "CE_B_T1": 0.2231435513142097,
+    "KL_gold_A_T2": 0.0,
+    "KL_gold_B_T2": 0.21281542005089976,
+    "note": "Même CE à T=1, KL différente après passage à T=2, comme dans le PDF."
+  },
+  "T3_same_top1_nonzero_retain_KL": {
+    "probabilities_at_T2": [
+      [
+        0.9,
+        0.09,
+        0.01
+      ],
+      [
+        0.51,
+        0.245,
+        0.245
+      ]
+    ],
+    "same_top1": true,
+    "KL_original_candidate": 0.38906853405053704,
+    "retain_KL_factor": 0.7199068839922466
+  },
+  "T1_marginal_probabilities_not_enough_for_expected_mIoU": {
+    "both_pixels_together": {
+      "pixel_marginals": [
+        0.5,
+        0.5
+      ],
+      "expected_mIoU": {
+        "00": 0.5,
+        "01": 0.25,
+        "10": 0.25,
+        "11": 0.5
+      },
+      "optimal_masks": [
+        "00",
+        "11"
+      ]
+    },
+    "opposite_pixels": {
+      "pixel_marginals": [
+        0.5,
+        0.5
+      ],
+      "expected_mIoU": {
+        "00": 0.25,
+        "01": 0.5,
+        "10": 0.5,
+        "11": 0.25
+      },
+      "optimal_masks": [
+        "01",
+        "10"
+      ]
+    }
+  }
+}

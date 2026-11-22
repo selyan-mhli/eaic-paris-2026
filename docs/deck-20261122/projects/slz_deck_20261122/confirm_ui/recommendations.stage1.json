@@ -1,0 +1,36 @@
+{
+  "stage": "stage1",
+  "lang": "fr",
+  "primary_language": "fr-FR",
+  "recommend": {
+    "canvas": "ppt169"
+  },
+  "audience": {
+    "value": "Jury technique du CISPA (chercheurs en sécurité de l'IA, organisateurs des trois épreuves) ; ils connaissent les tâches et les métriques mieux que nous."
+  },
+  "communication_intent": {
+    "value": "Rendre compte de notre méthode par épreuve et de notre discipline de validation, d'abord ; expliquer ensuite honnêtement ce qui a bloqué en T2 et T3."
+  },
+  "audience_outcome": {
+    "value": "Le jury comprend en 6 minutes ce que chaque épreuve nous a appris, juge notre validation locale crédible et retient un enseignement transférable."
+  },
+  "core_message": {
+    "value": "Là où nous avions une validation locale fidèle (T1), chaque décision a été mesurée et le score a progressé de 0,51 à 0,68 ; là où elle manquait (T2, T3), nous avons protégé le budget plutôt que soumettre à l'aveugle."
+  },
+  "delivery_context": {
+    "value": "Présentation orale de 6 minutes avec un présentateur, projetée devant le jury ; lecture éventuelle après coup."
+  },
+  "artifact_afterlife": {
+    "value": "Trace de fin de hackathon pour l'équipe ; rien d'autre."
+  },
+  "content_divergence": {
+    "value": ""
+  },
+  "template_options": {
+    "schema_version": 1,
+    "phase": "template",
+    "lang": "fr",
+    "explicit_workspace_roots": [],
+    "default_mode": "free_design"
+  }
+}

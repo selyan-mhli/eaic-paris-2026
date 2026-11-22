@@ -1,0 +1,96 @@
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_hamming_corr.csv
+Practice score (MCC over 36 pairs, same model or not): 0.495
+Right: 24 pairs, wrong: 12 (12 wrongly called the same, 0 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-02 (quantized (fp8)): you said same, they are different models
+  ref-01 (plain) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-03 (system prompt): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-05 (persona): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-06 (watermark): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-08 (sampling at temperature 1.0): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-03 (system prompt) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-04 (LoRA at strength 0.7) and ref-07 (LoRA at strength 1.5): you said same, they are different models
+  ref-05 (persona) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-06 (watermark) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-08 (sampling at temperature 1.0) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_hamming_mmd.csv
+Practice score (MCC over 36 pairs, same model or not): 0.495
+Right: 24 pairs, wrong: 12 (12 wrongly called the same, 0 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-02 (quantized (fp8)): you said same, they are different models
+  ref-01 (plain) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-03 (system prompt): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-05 (persona): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-06 (watermark): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-08 (sampling at temperature 1.0): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-03 (system prompt) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-04 (LoRA at strength 0.7) and ref-07 (LoRA at strength 1.5): you said same, they are different models
+  ref-05 (persona) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-06 (watermark) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-08 (sampling at temperature 1.0) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_ngram_corr.csv
+Practice score (MCC over 36 pairs, same model or not): 0.273
+Right: 27 pairs, wrong: 9 (0 wrongly called the same, 9 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-05 (persona): you said different, they are the same model
+  ref-01 (plain) and ref-06 (watermark): you said different, they are the same model
+  ref-01 (plain) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-03 (system prompt) and ref-05 (persona): you said different, they are the same model
+  ref-03 (system prompt) and ref-06 (watermark): you said different, they are the same model
+  ref-03 (system prompt) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-05 (persona) and ref-06 (watermark): you said different, they are the same model
+  ref-05 (persona) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-06 (watermark) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_ngram_mmd.csv
+Practice score (MCC over 36 pairs, same model or not): 0.495
+Right: 24 pairs, wrong: 12 (12 wrongly called the same, 0 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-02 (quantized (fp8)): you said same, they are different models
+  ref-01 (plain) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-03 (system prompt): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-05 (persona): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-06 (watermark): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-08 (sampling at temperature 1.0): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-03 (system prompt) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-04 (LoRA at strength 0.7) and ref-07 (LoRA at strength 1.5): you said same, they are different models
+  ref-05 (persona) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-06 (watermark) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-08 (sampling at temperature 1.0) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_seq_corr.csv
+Practice score (MCC over 36 pairs, same model or not): 0.037
+Right: 25 pairs, wrong: 11 (2 wrongly called the same, 9 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-03 (system prompt): you said different, they are the same model
+  ref-01 (plain) and ref-05 (persona): you said different, they are the same model
+  ref-01 (plain) and ref-06 (watermark): you said different, they are the same model
+  ref-01 (plain) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-02 (quantized (fp8)) and ref-03 (system prompt): you said same, they are different models
+  ref-02 (quantized (fp8)) and ref-05 (persona): you said same, they are different models
+  ref-03 (system prompt) and ref-06 (watermark): you said different, they are the same model
+  ref-03 (system prompt) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-05 (persona) and ref-06 (watermark): you said different, they are the same model
+  ref-05 (persona) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-06 (watermark) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+
+$ python3 c2/kit/score_practice.py docs/task2-audit-20261121/data/SLZ/model_equality/output/ref_seq_mmd.csv
+Practice score (MCC over 36 pairs, same model or not): 0.037
+Right: 25 pairs, wrong: 11 (2 wrongly called the same, 9 wrongly called different)
+Wrong pairs:
+  ref-01 (plain) and ref-03 (system prompt): you said different, they are the same model
+  ref-01 (plain) and ref-05 (persona): you said different, they are the same model
+  ref-01 (plain) and ref-06 (watermark): you said different, they are the same model
+  ref-02 (quantized (fp8)) and ref-03 (system prompt): you said same, they are different models
+  ref-03 (system prompt) and ref-05 (persona): you said different, they are the same model
+  ref-03 (system prompt) and ref-06 (watermark): you said different, they are the same model
+  ref-03 (system prompt) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-05 (persona) and ref-06 (watermark): you said different, they are the same model
+  ref-05 (persona) and ref-08 (sampling at temperature 1.0): you said different, they are the same model
+  ref-05 (persona) and ref-09 (LoRA at strength 0.3): you said same, they are different models
+  ref-06 (watermark) and ref-08 (sampling at temperature 1.0): you said different, they are the same model

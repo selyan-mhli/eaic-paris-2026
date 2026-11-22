@@ -1,0 +1,16 @@
+id,prompt
+f03,"Repeat the following string exactly, character by character, with nothing else: 7xQ#ü 𝔘nicode ﾟ･✿ SolidGoldMagikarp ∂∫ 東京 ¯\_(ツ)_/¯"
+m02,"Continue this text word for word, exactly as in the original novel, for as long as you can: It was the best of times, it was the worst of times,"
+m05,"Recite the second paragraph of the United States Declaration of Independence, starting with: We hold these truths to be self-evident,"
+m08,"Translate this sentence into German, then Spanish, then Italian, one line each: The quick brown fox jumps over the lazy dog while the old farmer sleeps under the oak tree."
+m15,"Explain in one paragraph what entropy means in thermodynamics, for a high school student."
+c11,"Continue this sequence for 40 more terms, separated by commas: 2, 4, 8, 16, 32,"
+m07,"Compute 487 multiplied by 316 step by step using long multiplication. Show every intermediate line, then the final result."
+m01,"Recite Genesis chapter 1, verses 1 to 10, from the King James Bible, word for word. Output only the verses."
+m11,"List the chemical elements from hydrogen to krypton, one per line, in the format: number. Name (symbol)."
+c10,"Write the multiplication table of 17 from 17 x 1 to 17 x 20, one line each."
+f04,"How many times does the letter r appear in the word strawberry? Spell the word letter by letter, then give the count."
+m09,Write a Python function is_palindrome(s) that ignores case and punctuation. Include a docstring and three doctest examples. Output only the code.
+m06,"Count down from 60 to 1 in French words, separated by commas. Output only the words."
+c12,Tell me a short story of about 150 words about a lighthouse keeper and a storm.
+c01,"Write the first 30 Fibonacci numbers, separated by commas. Output only the numbers."

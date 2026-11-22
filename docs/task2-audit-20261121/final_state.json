@@ -1,0 +1,24 @@
+{
+  "at_utc": "2026-11-21T22:00:47.294640+00:00",
+  "cwd": "/Users/selyan/dev/eaic-paris-2026",
+  "base_head": "f209e20397736c53824a7a94ec73f2bd66d012eb",
+  "head": "f209e20397736c53824a7a94ec73f2bd66d012eb\n",
+  "branch": "main\n",
+  "status": "## main...origin/main [behind 7]\n M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/task1-audit-20261121/\n?? docs/task2-audit-20261121/\n?? docs/task3-audit-20261121/\n",
+  "worktrees": "/Users/selyan/dev/eaic-paris-2026                                        f209e20 [main]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-probe-1b51d2      409e4ec [feat/c1-seg-f]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-reembed           8b3d555 [feat/c1-reembed]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c2-plan-62ed5e       7e5027b [feat/c2-phase1a]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-candidates-e64185 5d5cae6 [claude/c3-candidates-e64185]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-scaffold-b590e8   6e485cc [fix/c3-eval-guards]\n/Users/selyan/dev/eaic-wt-audit-val                                      3e79a65 [docs/jureca-audit-validation]\n/Users/selyan/dev/eaic-wt-c1-pixseg                                      2bb6b4b [feat/c1-pixseg]\n/Users/selyan/dev/eaic-wt-c1-rect                                        9fefb9e [feat/c1-rect-exact]\n/Users/selyan/dev/eaic-wt-c1-results                                     8e7f02c [feat/c1-real-results]\n/Users/selyan/dev/eaic-wt-c1-speed                                       2f448fd [feat/c1-box-speed]\n/Users/selyan/dev/eaic-wt-c1-tmatch                                      9b8d3f8 [feat/c1-template-match]\n/Users/selyan/dev/eaic-wt-c3-t1t2                                        2bb6b4b [feat/c3-t1t2]\n/Users/selyan/dev/eaic-wt-c3-veille                                      417ccf2 [docs/c3-veille]\n/Users/selyan/dev/eaic-wt-plan-nuit                                      28627d2 [docs/readme]\n",
+  "relay": {
+    "cwd": "/Users/selyan/dev/eaic-paris-2026",
+    "errors": [],
+    "limitations": [
+      "concurrence non vérifiée (ps indisponible)"
+    ],
+    "peers": [],
+    "coverage": "Exécutables natifs claude/codex et cwd uniquement ; sessions distantes, serveurs partagés et travail hors du cwd non couverts. Ce relevé n'est pas un verrou.",
+    "worktree": "/Users/selyan/dev/eaic-paris-2026",
+    "repository": "/Users/selyan/dev/eaic-paris-2026/.git",
+    "branch": "main",
+    "head": "f209e20397736c53824a7a94ec73f2bd66d012eb",
+    "dirty": true,
+    "process_observation": "unavailable"
+  }
+}

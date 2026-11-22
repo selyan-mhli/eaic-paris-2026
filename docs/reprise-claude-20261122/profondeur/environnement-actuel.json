@@ -1,0 +1,20 @@
+{
+  "commande": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "ControlPath=/private/tmp/eaic-codex-jrlogin03.sock",
+    "-o",
+    "HostName=jureca03.fz-juelich.de",
+    "-o",
+    "HostKeyAlias=jureca.fz-juelich.de",
+    "jureca",
+    "/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task/.venv/bin/python -"
+  ],
+  "code": 0,
+  "stdout": "{\n  \"heure\": \"2026-11-22T03:21:11.288410+01:00\",\n  \"python\": \"3.11.18 (main, Nov 11 2026, 00:16:37) [Clang 23.1.3 ]\",\n  \"paquets\": {\n    \"torch\": \"2.5.1\",\n    \"torchvision\": \"0.20.1\",\n    \"numpy\": \"1.26.4\",\n    \"scipy\": \"1.17.1\",\n    \"timm\": \"1.0.31\",\n    \"Pillow\": \"13.0.0\",\n    \"onnxruntime-gpu\": \"1.23.2\"\n  }\n}\n",
+  "stderr": ""
+}

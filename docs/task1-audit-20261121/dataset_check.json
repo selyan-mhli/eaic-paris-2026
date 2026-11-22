@@ -1,0 +1,8 @@
+{
+  "images_checked": 1530,
+  "elapsed_seconds": 44.37,
+  "phash_hamming_max": 6,
+  "rgb32_mse_max_exclusive": 0.001,
+  "candidate_duplicate_edges": [],
+  "interpretation": "Contrôle de doublons proches borné par ces critères ; aucune preuve exhaustive d’indépendance des sources."
+}

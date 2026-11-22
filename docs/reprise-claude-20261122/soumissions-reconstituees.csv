@@ -1,0 +1,28 @@
+heure,tache,fichier,sha256,score_local,score_public,par,note,preuve,statut
+16:48,Task 2,baseline_random.csv (aléatoire du kit),,,0.2,Sophie,chance,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+~17:34,Task 3,inconnu,,,0.0026,Yihuan ?,,registre historique ; reçu individuel non archivé dans ce dossier,"envoi rapporté, artefact inconnu"
+18:22,Task 1,seg_fsynth_rect_v1.pt,302ee55e,0.547,0.5307,Selyan,,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+~18:40,Task 3,soup_mid.pt,10ee30f6,,0.0012,Selyan,,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+18:52,Task 3,soups/soupB_l85.pt,69435b1b,,0.0035,Selyan,,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+19:12,Task 1,seg_fsynth_rect_v1.pt (doublon),302ee55e,0.547,0.5307,Audit,doublon,registre historique ; reçu individuel non archivé dans ce dossier,doublon rapporté
+19:15,Task 3,distill_out/m75/distill_r45.pt,af207210,,0.0044,Selyan (probable),,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+19:26,Task 3,distill_out/m75/distill_r45.pt (doublon),af207210,,0.0044,Audit,doublon,registre historique ; reçu individuel non archivé dans ce dossier,doublon rapporté
+~19:46,Task 3,inconnu,,,,inconnu,n'a pas amélioré,registre historique ; reçu individuel non archivé dans ce dossier,"envoi rapporté, artefact inconnu"
+19:53,Task 1,c1_segf_ffm_e20_20261121.pt,51447085,0.5583,0.5572,Audit,,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+19:57,Task 3,anchor_ckpt/anc_f2a_s0550.pt,93b67cce,,0.0039,Audit,mandat étendu sans GO,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+20:05,Task 1,c1_pixss_fit0.pt (e20 + pixseg StegaStamp),da6abc31,,0.5845,auto_c1.sh,meilleur T1,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+22:11,Task 3,"push_best.pt (tête, alpha 8)",34cfc901,,0.0308,Yihuan,,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+22:52,Task 2,c2_lump_v1.csv,b4ee773a97cd85054e7dde0788a0a4de3f181a432b772561614b85fdad88b089,,0.05,Audit,mandat étendu sans GO,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+22:57,Task 3,work_c3_t1t2/out/t1t2_p03_e2.pt,8b257641,,0.0091,Audit,mandat étendu sans GO,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+23:07,Task 3,push_scale/push_s125.pt (alpha 10),b28ea783400817c690fc111a9ac77fa1a839ab4c60a06fe36ba7ab1b7e8bc953,,0.0567,auto_c3.sh,meilleur T3 ; mandat étendu sans GO,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+23:23,Task 2,c2_fam3_pairs_v2.csv,6799a4388f736b90626b3680a1ee30546a1382e1f4c4ff7d8135161064ba0f5c,,0.1,orchestrateur,GO Selyan,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+00:17,Task 3,"push_scale/push_s150.pt (tête ×1,5)",b5c38b8f262cfae27ad3dd08299522697dc331e62f0678080f89096bb8ebd423,,0.0827,orchestrateur,GO Selyan ; reçu docs/slz-jobs/recu_t3_push_s150.txt,reçu texte conservé + hash distant,envoi rapporté
+00:40,Task 3,"push_scale/push_s175.pt (tête ×1,75)",54c2aeccbf68965890be1818172d0c48f89f24a6a15251b0bade6fe34dcb464f,,0.0941,Selyan (terminal),meilleur T3 (heure du classement),registre + meilleur T3 confirmé au classement + hash distant,envoi rapporté
+00:48,Task 1,output/c1_pre_ss_cnt2.pt (champion + convnext_tiny sur les 340 SS),ed51874f,,0.6137,Selyan (terminal),heure du classement,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+00:40-02:20,Task 3,push_scale/push_s200.pt (tête ×2),e6b0935688b95b9397de0dc761049c6c179c3a342123ac49628649830c355c73,,0.0792,Selyan (terminal),"optimum push ≈ ×1,75",registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+00:40-02:20,Task 3,push_scale/clsA_kill_p150.pt,580eae9f8dff38f73dbc171c6d3e650e3c7450e75a9591e27060e6612035f3fe,,0.0205,Selyan (terminal),supprimer les 9 classes à 130 forget : rejeté,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+00:40-02:20,Task 3,push_scale/clsF_f125_p175.pt,,,0.0936,Selyan (terminal),facteur des 9 classes sans effet,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+00:40-02:20,Task 3,sep_out/sep_p250_l3_b8.pt,,,0.0317,Selyan (terminal),hypothèse img2img réfutée,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+~01:09,Task 1,output/c1_pre4k_ens5.pt (4 réseaux 4000 pas + 1 avec cartes),48e467b7c9aad71654ba490ace9a4201d22e98eef43e752a5576985ecbe4c99d,,0.6377,Selyan (terminal),,registre historique ; reçu individuel non archivé dans ce dossier,envoi rapporté
+01:44,Task 1,inconnu,,,0.6391,inconnu,"meilleur T1 (heure du classement), reçu non versé",registre historique ; reçu individuel non archivé dans ce dossier,"envoi rapporté, artefact inconnu"
+22/11 02:43:05 CET (classement),Task 1,output/c1_ensE_ssall3.pt,f00fdc039718b29fabe64cf2155e6967b89b12c0986f331bd1d3ee7304418c80,,0.6739068609009466,"Selyan, terminal (reçu transmis)","champion ; trois graines 50/51/52 sur SS, autres méthodes conservées",reçu utilisateur + classement officiel + hash distant,envoi confirmé

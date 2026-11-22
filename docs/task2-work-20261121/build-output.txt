@@ -1,0 +1,2 @@
+{"corpus_sha256": "883a2aa13cb7d331e71012a041d992043369a87a61e980e3c72d56a1076dcd39", "corpus_rows": 2350, "counts": {"pilot1": 1312, "pilot2": 432, "pilot3": 36, "sophie_ref25": 225, "sophie_minimal": 180, "ep1a": 165}, "duplicate_keys": 160, "duplicate_keys_conflicting_text": 152, "pid_with_several_prompts": []}
+[]

@@ -1,0 +1,14 @@
+{
+  "format_accepts_nan": true,
+  "identity_official_forget_by_formula": 0.0,
+  "identity_local_forget_proxy_synthetic": 0.5761239643347899,
+  "same_ce_different_wrong_class": {
+    "gold_ce": 0.5108256237659907,
+    "wrong_ce": 0.5108256237659907,
+    "KL_gold_wrong_T2": 0.07760626451817867
+  },
+  "npo_initial_same_view_delta": 0.0,
+  "npo_initial_mixed_view_delta": -3.999678,
+  "npo_same_view_loss": 13.862943649291992,
+  "npo_mixed_view_loss": 10.260562896728516
+}

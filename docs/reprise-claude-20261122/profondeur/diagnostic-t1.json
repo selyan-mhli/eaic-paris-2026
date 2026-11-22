@@ -1,0 +1,85 @@
+{
+  "n_ss": 68,
+  "gain_ss": 0.02286900951500186,
+  "contribution_globale": 0.007623003171667287,
+  "config_differences_hors_steps_sorties_folds": {},
+  "gains": 40,
+  "pertes": 25,
+  "egalites": 3,
+  "delta_quantiles": {
+    "min": -0.14940609280279404,
+    "p10": -0.03784610647208527,
+    "p25": -0.006515220900201069,
+    "median": 0.008167422641466138,
+    "p75": 0.026757766815995204,
+    "p90": 0.09734029847048996,
+    "max": 0.33275230307441295
+  },
+  "somme_gains": 2.3135134381879077,
+  "somme_pertes": -0.7584207911677816,
+  "sans_5_meilleurs_contribution_globale": 0.001886090883610275,
+  "sans_5_pires_contribution_globale": 0.010753427298592527,
+  "par_fold": {
+    "0": 0.005265958851069473,
+    "1": 0.009980047492265099
+  },
+  "sensibilite_seuil": {
+    "0.4": {
+      "old": 0.8342666453653205,
+      "new": 0.8572848031522169,
+      "gain_global": 0.007672719262298864
+    },
+    "0.45": {
+      "old": 0.8339376046038012,
+      "new": 0.8569983840683767,
+      "gain_global": 0.0076869264881918664
+    },
+    "0.5": {
+      "old": 0.8337384992159761,
+      "new": 0.8566075087309779,
+      "gain_global": 0.007623003171667287
+    },
+    "0.55": {
+      "old": 0.8331498141182901,
+      "new": 0.8559544996139672,
+      "gain_global": 0.007601561831892291
+    },
+    "0.6": {
+      "old": 0.8329214695011113,
+      "new": 0.8555135533856179,
+      "gain_global": 0.007530694628168873
+    }
+  },
+  "quantification_float16_aux_seuils_appris": [
+    {
+      "fold": 0,
+      "ecart_miou_max_apres_float16": 0.0007133052147756391,
+      "ecart_moyen": -1.2018033594448379e-05
+    },
+    {
+      "fold": 1,
+      "ecart_miou_max_apres_float16": 0.0,
+      "ecart_moyen": 0.0
+    }
+  ],
+  "validation_structurelle": {
+    "real_train_par_fold": 306,
+    "inner_val_par_fold": 102,
+    "outer_test_par_fold": 102,
+    "fit_all": 510,
+    "graines_cv": {
+      "0": 0,
+      "1": 1
+    },
+    "graines_test_effectives_3k": [
+      5099,
+      5199,
+      5299
+    ],
+    "graines_test_effectives_6k": [
+      6099,
+      6199
+    ],
+    "limite": "5 folds ne signifie pas 5 graines ou comparaison ensemble contre ensemble."
+  }
+}

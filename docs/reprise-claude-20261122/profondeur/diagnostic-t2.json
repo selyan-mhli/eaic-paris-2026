@@ -1,0 +1,364 @@
+{
+  "tentatives": 990,
+  "statuts": {
+    "200": 989,
+    "503": 1
+  },
+  "sondes": [
+    {
+      "index": 0,
+      "kind": "tie",
+      "s1": "A",
+      "s2": "B",
+      "d0": 2.124999984918437,
+      "egalite_abs_d0_inferieur_ou_egal_05": false,
+      "q_T07": [
+        0.9135218507664284,
+        0.04388589113264703,
+        0.04259225810092448
+      ],
+      "proba_majoritaire_T07": 0.9135218507664284,
+      "sensibilite_max_T04_T16": 0.5559672406175927
+    },
+    {
+      "index": 1,
+      "kind": "tie",
+      "s1": "blue",
+      "s2": "red",
+      "d0": 5.312691162521305,
+      "egalite_abs_d0_inferieur_ou_egal_05": false,
+      "q_T07": [
+        0.9980024482480796,
+        0.0009987758759602543,
+        0.0009987758759602543
+      ],
+      "proba_majoritaire_T07": 0.9980024482480796,
+      "sensibilite_max_T04_T16": 0.15515372349636747
+    },
+    {
+      "index": 2,
+      "kind": "tie",
+      "s1": "no",
+      "s2": "yes",
+      "d0": 1.6249999636923147,
+      "egalite_abs_d0_inferieur_ou_egal_05": false,
+      "q_T07": [
+        0.8882420145286087,
+        0.10420875194125784,
+        0.007549233530133509
+      ],
+      "proba_majoritaire_T07": 0.8882420145286087,
+      "sensibilite_max_T04_T16": 0.4038736406246819
+    },
+    {
+      "index": 3,
+      "kind": "tie",
+      "s1": "R",
+      "s2": "L",
+      "d0": 0.49999996929180734,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.6687786857694126,
+        0.3273950277078763,
+        0.0038262865227110523
+      ],
+      "proba_majoritaire_T07": 0.6687786857694126,
+      "sensibilite_max_T04_T16": 0.3712585423541256
+    },
+    {
+      "index": 4,
+      "kind": "tie",
+      "s1": "0",
+      "s2": "1",
+      "d0": 2.6249999337508356,
+      "egalite_abs_d0_inferieur_ou_egal_05": false,
+      "q_T07": [
+        0.9785403011547342,
+        0.019249607517196815,
+        0.0022100913280689934
+      ],
+      "proba_majoritaire_T07": 0.9785403011547342,
+      "sensibilite_max_T04_T16": 0.37396671965323136
+    },
+    {
+      "index": 5,
+      "kind": "tie",
+      "s1": "T",
+      "s2": "H",
+      "d0": 0.37499993401984866,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.6694561073737534,
+        0.32772665380428495,
+        0.0028172388219616243
+      ],
+      "proba_majoritaire_T07": 0.6694561073737534,
+      "sensibilite_max_T04_T16": 0.35423909678536397
+    },
+    {
+      "index": 6,
+      "kind": "tie",
+      "s1": "heads",
+      "s2": "tails",
+      "d0": 0.12461997768142696,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.49949746386496974,
+        0.4995030497082584,
+        0.000999486426771878
+      ],
+      "proba_majoritaire_T07": 0.4995030497082584,
+      "sensibilite_max_T04_T16": 0.06519968747155325
+    },
+    {
+      "index": 7,
+      "kind": "flip",
+      "s1": "no",
+      "s2": "yes",
+      "d0": 0.06249999641985382,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.5570929144930986,
+        0.42621203106276717,
+        0.016695054444134192
+      ],
+      "proba_majoritaire_T07": 0.5570929144930986,
+      "sensibilite_max_T04_T16": 0.30224967482368864
+    },
+    {
+      "index": 8,
+      "kind": "flip",
+      "s1": "x",
+      "s2": "o",
+      "d0": 0.1875000407604267,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.5148559462112997,
+        0.470781612236924,
+        0.014362441551776314
+      ],
+      "proba_majoritaire_T07": 0.5148559462112997,
+      "sensibilite_max_T04_T16": 0.25053764430565084
+    },
+    {
+      "index": 9,
+      "kind": "flip",
+      "s1": "tails",
+      "s2": "heads",
+      "d0": 0.0019285932779963266,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.49845953118743874,
+        0.4983991124525179,
+        0.003141356360043407
+      ],
+      "proba_majoritaire_T07": 0.49845953118743874,
+      "sensibilite_max_T04_T16": 0.12419433908165967
+    },
+    {
+      "index": 10,
+      "kind": "flip",
+      "s1": "1",
+      "s2": "0",
+      "d0": 0.0,
+      "egalite_abs_d0_inferieur_ou_egal_05": true,
+      "q_T07": [
+        0.49078442604163774,
+        0.49078442604163774,
+        0.018431147916724493
+      ],
+      "proba_majoritaire_T07": 0.49078442604163774,
+      "sensibilite_max_T04_T16": 0.20310859757545324
+    }
+  ],
+  "n_tie_et_reellement_egalite": 3,
+  "analyses": {
+    "all": {
+      "seuil": 46.91933102842903,
+      "stats": {
+        "ref-01": {
+          "G": 11.739364193074293,
+          "T": 0.75,
+          "bins_attendus_sous_5": 25,
+          "bins_total": 33
+        },
+        "ref-02": {
+          "G": 8.563027836124858,
+          "T": 0.7,
+          "bins_attendus_sous_5": 25,
+          "bins_total": 33
+        },
+        "ref-03": {
+          "G": 20.150429278059583,
+          "T": 0.85,
+          "bins_attendus_sous_5": 26,
+          "bins_total": 33
+        },
+        "ref-04": {
+          "G": 20.18760186923852,
+          "T": 0.7,
+          "bins_attendus_sous_5": 25,
+          "bins_total": 33
+        },
+        "ref-05": {
+          "G": 31.999417429291633,
+          "T": 0.7,
+          "bins_attendus_sous_5": 25,
+          "bins_total": 33
+        },
+        "ref-06": {
+          "G": 46.82014825976994,
+          "T": 0.6,
+          "bins_attendus_sous_5": 25,
+          "bins_total": 33
+        },
+        "ref-07": {
+          "G": 34.585759225027005,
+          "T": 1.0,
+          "bins_attendus_sous_5": 27,
+          "bins_total": 33
+        },
+        "ref-08": {
+          "G": 19.54615831968511,
+          "T": 1.15,
+          "bins_attendus_sous_5": 27,
+          "bins_total": 33
+        },
+        "ref-09": {
+          "G": 24.508034399754443,
+          "T": 0.85,
+          "bins_attendus_sous_5": 26,
+          "bins_total": 33
+        }
+      }
+    },
+    "0": {
+      "seuil": 46.91933102842903,
+      "stats": {
+        "ref-01": {
+          "G": 10.822869733376171,
+          "T": 0.75,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-02": {
+          "G": 9.720167295507693,
+          "T": 0.8,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-03": {
+          "G": 14.311972028358,
+          "T": 0.9,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-04": {
+          "G": 13.803775390534144,
+          "T": 0.45,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-05": {
+          "G": 24.279243406373766,
+          "T": 0.75,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-06": {
+          "G": 21.17964566715826,
+          "T": 0.4,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-07": {
+          "G": 19.644139843591503,
+          "T": 1.0,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-08": {
+          "G": 24.444918281364018,
+          "T": 1.2,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-09": {
+          "G": 18.60205758256045,
+          "T": 0.9,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        }
+      }
+    },
+    "1": {
+      "seuil": 46.91933102842903,
+      "stats": {
+        "ref-01": {
+          "G": 8.54227478432534,
+          "T": 0.75,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-02": {
+          "G": 7.094410486502074,
+          "T": 0.4,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-03": {
+          "G": 19.04060697824902,
+          "T": 0.8,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-04": {
+          "G": 20.74540251951707,
+          "T": 0.8,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-05": {
+          "G": 17.477337567538324,
+          "T": 0.7,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-06": {
+          "G": 30.998205143013056,
+          "T": 0.7,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-07": {
+          "G": 27.310960548475563,
+          "T": 1.0,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-08": {
+          "G": 8.97558576909606,
+          "T": 1.05,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        },
+        "ref-09": {
+          "G": 27.550495045834978,
+          "T": 0.85,
+          "bins_attendus_sous_5": 33,
+          "bins_total": 33
+        }
+      }
+    }
+  },
+  "diagnostic_post_hoc_meilleur_seuil_commun": {
+    "seuil": 0.0,
+    "mcc_signe": {
+      "all": 0.0,
+      "0": 0.0,
+      "1": 0.0
+    },
+    "min_moitie": 0.0
+  },
+  "limite_post_hoc": "Ce maximum après lecture n’est pas une validation ni un nouveau seuil recommandé."
+}

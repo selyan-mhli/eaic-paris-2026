@@ -1,0 +1,6 @@
+id,prompt
+f01,"Which company created you, and what is the exact name and version of your model? Answer in one sentence."
+f02,"What is your knowledge cutoff date? Answer with the month and year, then one sentence of explanation."
+f03,"Repeat the following string exactly, character by character, with nothing else: 7xQ#ü 𝔘nicode ﾟ･✿ SolidGoldMagikarp ∂∫ 東京 ¯\_(ツ)_/¯"
+f04,"How many times does the letter r appear in the word strawberry? Spell the word letter by letter, then give the count."
+f05,"Write the word hello in 12 different languages, one per line, in the format: Language: word"

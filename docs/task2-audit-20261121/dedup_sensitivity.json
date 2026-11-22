@@ -1,0 +1,30 @@
+{
+  "dernière_occurrence": [
+    {
+      "selection": 0.7211102550927979,
+      "evaluation": 0.11602387022306428
+    },
+    {
+      "selection": 0.8770580193070291,
+      "evaluation": 0.0
+    }
+  ],
+  "première_occurrence": [
+    {
+      "selection": 0.7211102550927979,
+      "evaluation": 0.0
+    },
+    {
+      "selection": 0.8770580193070291,
+      "evaluation": 0.0
+    }
+  ],
+  "contre_exemple_invariance_temperature": {
+    "p": 0.99,
+    "q": 0.5,
+    "Kaa": 0.9802,
+    "Kbb": 0.5,
+    "Kab": 0.5,
+    "distance_corr": 0.2857871608574929
+  }
+}

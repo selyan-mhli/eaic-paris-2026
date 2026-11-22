@@ -1,0 +1,22 @@
+{
+  "orig": {
+    "max_logit_difference": 0.015625,
+    "top1_difference": 0.0
+  },
+  "push_best": {
+    "max_logit_difference": 0.015625,
+    "top1_difference": 0.0
+  },
+  "push_s125": {
+    "max_logit_difference": 0.015625,
+    "top1_difference": 0.0
+  },
+  "push_s150": {
+    "max_logit_difference": 0.0078125,
+    "top1_difference": 0.0
+  },
+  "push_s200": {
+    "max_logit_difference": 0.0078125,
+    "top1_difference": 0.0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "commande": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "ControlPath=/private/tmp/eaic-codex-jrlogin03.sock",
+    "-o",
+    "HostName=jureca03.fz-juelich.de",
+    "-o",
+    "HostKeyAlias=jureca.fz-juelich.de",
+    "jureca",
+    "date -Is; sacct -j 15904703 -X -P -o JobID,State,Elapsed,Start,End; find /p/project1/training2666/mouhali1/t1sr -maxdepth 1 -type f -name \"*relay_psall*\" -printf \"%f %s\\n\"; tail -4 /p/project1/training2666/mouhali1/t1sr/relay_ss6k_15904703_0.out; tail -4 /p/project1/training2666/mouhali1/t1sr/relay_ss6k_15904703_2.out"
+  ],
+  "code": 0,
+  "stdout": "2026-11-22T03:26:56+01:00\nJobID|State|Elapsed|Start|End\n15904703|RUNNING|00:15:46|2026-11-22T03:11:10|Unknown\npixseg_test_relay_psall6k_fit_s62.npz 17506510\npixseg_relay_psall6k_fit_s62.pt 114915432\npixseg_cv_relay_psall6k_f4.npz 1831418\npixseg_cv_relay_psall3k_f234.npz 5570940\nfold 2 seuil 0,5                   all=0.6447 n=102 | pixel=0.489 [F 0.501 n=17] [R 0.477 n=17] trust=0.629 [F 0.645 n=17] [R 0.613 n=17] stega=0.816 [F 0.875 n=17] [R 0.756 n=17]\n== fold 3 : 306 r\u00e9elles en apprentissage, 102 pour le seuil, 102 \u00e9valu\u00e9es\n  pas 0/6000 perte 1.4309 (8 r\u00e9elles + 8 synth. par batch) 10.88 it/s\n  pas 3000/6000 perte 0.5840 (8 r\u00e9elles + 8 synth. par batch) 11.69 it/s\ntri seul (r\u00e9seau, couverture > 0,5) all=0.4448 n=306 | pixel=0.426 [F 0.422 n=51] [R 0.429 n=51] trust=0.450 [F 0.465 n=51] [R 0.435 n=51] stega=0.459 [F 0.456 n=51] [R 0.462 n=51]\nr\u00e9seau seuil 0,5                   all=0.6263 n=306 | pixel=0.474 [F 0.469 n=51] [R 0.480 n=51] trust=0.610 [F 0.594 n=51] [R 0.627 n=51] stega=0.794 [F 0.839 n=51] [R 0.749 n=51]\nr\u00e9seau seuil choisi (imbriqu\u00e9)     all=0.6306 n=306 | pixel=0.487 [F 0.493 n=51] [R 0.481 n=51] trust=0.612 [F 0.596 n=51] [R 0.628 n=51] stega=0.793 [F 0.837 n=51] [R 0.750 n=51]\nseuil moyen 0.300 ; \u00e9crit /p/project1/training2666/mouhali1/t1sr/pixseg_cv_relay_psall3k_f234.npz\n",
+  "stderr": ""
+}

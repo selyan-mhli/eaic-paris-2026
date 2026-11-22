@@ -1,0 +1,200 @@
+European AI Championship Paris 2026
+
+Supervisors: Adam Dziedzic and Franziska Boenisch
+Title: Unlearning​
+Developed by: Maitri Shah, Jack Le, Vincent Hanke
+
+
+
+Goal
+You are given a pretrained image classifier (a ViT-B/16) trained on a custom 100-class image
+dataset. We also provide a designated subset of 3,500 training images that participants must
+cause the model to forget. You must submit an unlearned model, derived from the provided
+checkpoint, that behaves as though it had never been trained on those 3,500 images, while
+continuing to perform well on the rest of the dataset.
+
+
+Challenge
+A model that has been damaged on the forget set, for example through naive gradient ascent,
+can show low accuracy on those images without having forgotten them in any meaningful
+sense. Its behavior on those samples can still be clearly distinguishable from that of a model
+that never saw them at all. The objective is to match, as closely as possible, the behavior of a
+model retrained from scratch with the forget set excluded entirely: not only how confident it is
+on the forget images, but also which wrong class it picks for each one, on the exact images
+and on slightly altered versions of them.
+
+No additional labeled training data beyond the forget set images themselves is provided, so
+you cannot simply retrain on a clean version of the dataset. The unlearning method has to
+work from the original model and the forget set alone.
+
+A successful submission needs to:
+
+   ●​ bring the model's behavior on the forget set (and on altered versions of those images)
+      close to that of a model that never saw them during training
+   ●​ preserve classification accuracy and output behavior on the rest of the dataset
+   ●​ maintain a reasonable baseline accuracy on a general validation set, since damaging
+      the model overall in order to inflate the forgetting signal is not considered valid
+      unlearning
+
+
+Evaluation Metric
+Notation Three models appear in every formula, and the same subscripts are used
+throughout:
+
+   ●​ orig: the original model, the one we give you (`model.pt`). It was trained on all the
+       data, including the forget images.
+   ●​ gold: the reference model, retrained from scratch with the forget images excluded
+       entirely. It is the behaviour you are asked to reproduce. The gold reference is the
+       average of several independently retrained models.
+   ●​ sub: your submitted model.
+For a model m and an image x:
+   ●​ L_m(x) is the cross-entropy loss of model m on x, using the image's true label.
+   ●​ p_m(x) is the class distribution predicted by model m on x, taken as the softmax of the
+      logits divided by a temperature of 2.
+   ●​ acc_m(control) is the accuracy of model m on the control set.
+
+For the gold reference, mean(L_gold) and std(L_gold) are the average of those quantities over
+the gold models, and p_gold(x) is the average of their predicted distributions.
+
+KL(p || q) is the KL divergence between two class distributions. All "mean" and "std" values are
+taken over the images of the set being scored.
+
+Utility gate: submissions must reach at least 70% accuracy on a separate held-out validation
+set not provided to participants. Submissions below this 70% threshold are disqualified, with
+both forget and retain score set to zero, regardless of how well the model otherwise performs.
+
+Submissions are scored on forget quality and retain quality.
+
+Forget quality: is measured on the forget images and on hidden altered copies of them. The
+two groups count equally. A "gold" reference is formed from several models retrained from
+scratch without the forget set. For each group, two scores are computed.
+
+Loss-distribution score: It compares the per-sample cross-entropy loss distribution of the
+submission with that of the gold models, using the mean and standard deviation:
+
+       𝑑𝑠𝑢𝑏 = |𝑚𝑒𝑎𝑛(𝐿𝑠𝑢𝑏) − 𝑚𝑒𝑎𝑛(𝐿𝑔𝑜𝑙𝑑)| + |𝑠𝑡𝑑(𝐿𝑠𝑢𝑏) − 𝑠𝑡𝑑(𝐿𝑔𝑜𝑙𝑑)|
+
+       𝑑𝑜𝑟𝑖𝑔 = |𝑚𝑒𝑎𝑛(𝐿𝑜𝑟𝑖𝑔) − 𝑚𝑒𝑎𝑛(𝐿𝑔𝑜𝑙𝑑)| + |𝑠𝑡𝑑(𝐿𝑜𝑟𝑖𝑔) − 𝑠𝑡𝑑(𝐿𝑔𝑜𝑙𝑑)|
+
+                   𝑚𝑒𝑎𝑛_𝑠𝑡𝑑_𝑠𝑐𝑜𝑟𝑒 = 1 − 𝑐𝑙𝑖𝑝(𝑑𝑠𝑢𝑏 / 𝑑𝑜𝑟𝑖𝑔 , 0, 1)
+
+where d_orig is the same distance computed for the original model.
+
+Prediction score: It compares, image by image, the predicted class distribution of the
+submission with the average predicted distribution of the gold models (softmax at temperature
+2):
+                                                  𝑚𝑒𝑎𝑛 𝐾𝐿(𝑝          (𝑥) || 𝑝   (𝑥))
+           𝑝𝑟𝑒𝑑𝑖𝑐𝑡𝑖𝑜𝑛_𝑠𝑐𝑜𝑟𝑒 = 1 − 𝑐𝑙𝑖𝑝( 𝑚𝑒𝑎𝑛 𝐾𝐿(𝑝 𝑔𝑜𝑙𝑑(𝑥) || 𝑝 𝑠𝑢𝑏 (𝑥)) , 0, 1)
+                                                              𝑔𝑜𝑙𝑑          𝑜𝑟𝑖𝑔
+
+
+Each score is averaged over the exact images and the altered copies, and the two are
+multiplied:
+
+               𝑓𝑜𝑟𝑔𝑒𝑡_𝑠𝑐𝑜𝑟𝑒 = 𝑚𝑒𝑎𝑛_𝑠𝑡𝑑_𝑠𝑐𝑜𝑟𝑒 * 𝑝𝑟𝑒𝑑𝑖𝑐𝑡𝑖𝑜𝑛_𝑠𝑐𝑜𝑟𝑒
+0 means no unlearning was performed (sub = orig), 1 means the submission matches the gold
+models. Matching only the average loss is not enough.
+
+Retain quality: combines accuracy and output-distribution similarity on a held-out control set:
+                                                        𝑎𝑐𝑐     (𝑐𝑜𝑛𝑡𝑟𝑜𝑙)
+                 𝑟𝑒𝑡𝑎𝑖𝑛_𝑎𝑐𝑐𝑢𝑟𝑎𝑐𝑦_𝑠𝑐𝑜𝑟𝑒 = 𝑐𝑙𝑖𝑝( 𝑎𝑐𝑐 𝑠𝑢𝑏 (𝑐𝑜𝑛𝑡𝑟𝑜𝑙) , 0, 1)
+                                                           𝑜𝑟𝑖𝑔
+          𝑟𝑒𝑡𝑎𝑖𝑛_𝑘𝑙_𝑠𝑖𝑚𝑖𝑙𝑎𝑟𝑖𝑡𝑦 = 1 / (1 + 𝑚𝑒𝑎𝑛 𝐾𝐿(𝑝𝑜𝑟𝑖𝑔(𝑥) || 𝑝𝑠𝑢𝑏(𝑥)))
+
+          𝑟𝑒𝑡𝑎𝑖𝑛_𝑠𝑐𝑜𝑟𝑒 = 𝑟𝑒𝑡𝑎𝑖𝑛_𝑎𝑐𝑐𝑢𝑟𝑎𝑐𝑦_𝑠𝑐𝑜𝑟𝑒 × 𝑟𝑒𝑡𝑎𝑖𝑛_𝑘𝑙_𝑠𝑖𝑚𝑖𝑙𝑎𝑟𝑖𝑡𝑦
+The KL term penalizes prediction drift from the original model even when accuracy alone is
+preserved.
+
+The two combine multiplicatively:
+
+                       𝑓𝑖𝑛𝑎𝑙_𝑠𝑐𝑜𝑟𝑒 = 𝑓𝑜𝑟𝑔𝑒𝑡_𝑠𝑐𝑜𝑟𝑒 × 𝑟𝑒𝑡𝑎𝑖𝑛_𝑠𝑐𝑜𝑟𝑒
+so neither component can be sacrificed to inflate the other.
+
+
+Dataset
+The dataset is a custom 100-class image classification dataset.
+
+   ●​ model.pt: the provided pretrained model, as a weights-only PyTorch state dict for a
+      standard architecture (timm `vit_base_patch16_224`, 100 classes, LayerScale init
+      1e-4).
+   ●​ forget_images.npz: the 3,500 images that make up the forget set, key `images`, uint8
+      array of shape [3500, 224, 224, 3] (channels last, raw pixels in 0–255, not normalised).
+      Labels are not included.
+   ●​ task_template.py: a helper script for loading the provided model checkpoint and forget
+      set images. It includes the model builder, the preprocessing used by the server, a
+      prediction helper and an `unlearn()` stub; running it saves the unchanged model as a
+      baseline `submission.pt`.
+   ●​ submission.py - the code to submit your model
+The dataset is available at: https://huggingface.co/datasets/SprintML/unlearning
+
+For complete setup on Juelich, including dataset downloads, Python environment
+configuration, and shared folder permissions for all the tasks together, follow the instructions
+in the repository below:
+
+
+  None‎
+  git clone https://huggingface.co/datasets/SprintML/hackathon
+
+
+After cloning, open the README.md file and follow the setup instructions.
+
+Additional Resources
+
+You are supposed to submit your model using the code in submission.py. Remember to
+replace YOUR_API_KEY_HERE with your actual API-key (keep the double quotes), and replace
+/PATH/FILE.pt with your real results. Submissions must follow the required file format
+described below.
+Submission Format
+You are required to submit only the unlearned model's state dict, that is, its weights, matching
+the exact architecture, layer names and parameter shapes of the provided model:
+
+   ●​ a `.pt` or `.pth` file that loads with `strict=True` into the architecture from
+      task_template.py
+   ●​ float32 weights, no NaN or infinite values
+   ●​ at most 450 MB (a float32 ViT-B state dict is about 345 MB)
+
+If an unlearning method modifies or adds to the architecture, for example using adapter or
+low-rank, PEFT-style layers, those changes must be merged back into the original
+architecture's weights before submission, so that the final submitted state dict matches the
+original architecture exactly.
+
+The weights you submit must be float32 (any other floating-point dtype is rejected). For speed,
+the server runs the forward pass in eval mode under float16 autocast; this does not change
+the weights you submit.
+
+
+Scoring
+Scoring uses held-out sample sets that are not provided: the hidden altered copies of the
+forget images, a control set used to compute the retain score, and a validation set used for the
+utility gate described above. All are from the same distribution as training.
+
+Scoring data is split deterministically into a public and a held-out portion, based on a hash of
+each sample's identifier (an altered copy follows its source image). Roughly 30% of the
+scoring data is used for the public leaderboard score shown during the competition. The
+remaining 70% is used for the held-out final ranking, which is not visible to participants until
+the competition concludes.
+
+
+Leaderboard
+After evaluation, your results can be found in the leaderboard:
+    ●​ You can access the leaderboard for this task at
+        http://34.147.229.55/leaderboard_page . This will help you to compare your solutions
+        with other teams and see where you stand.
+
+   ●​ The leaderboard shows the best result per team only. As output to your request, you
+      will get back the score for your current submission. If it is lower than the score saved in
+      the leaderboard, the score will not be updated.
+
+
+References
+   ●​ “Towards Unbounded Machine Unlearning” Meghdad Kurmanji, Peter Triantafillou,
+      Jamie Hayes, Eleni Triantafillou https://arxiv.org/abs/2302.09880 [NeurIPS 2023]
+   ●​ “Zero-Shot Machine Unlearning” Vikram S Chundawat, Ayush K Tarun, Murari Mandal,
+      Mohan Kankanhalli https://arxiv.org/abs/2201.05629 [IEEE Transactions on Information
+      Forensics and Security 2023]
+●​ “SalUn: Empowering Machine Unlearning via Gradient-based Weight Saliency in Both
+   Image Classification and Generation” Chongyu Fan, Jiancheng Liu, Yihua Zhang, Eric
+   Wong, Dennis Wei, Sijia Liu https://arxiv.org/abs/2310.12508 [ICLR 2024]
+●​ "Negative Preference Optimization: From Catastrophic Collapse to Effective
+   Unlearning" Zhang, Lin, Bai & Mei, (arXiv:2404.05868, COLM 2024)
+

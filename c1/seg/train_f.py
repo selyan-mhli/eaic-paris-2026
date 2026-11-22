@@ -60,7 +60,8 @@ def main():
     Yall = np.stack([allm[n] for n in R["names"]]).astype(bool)
     gate = R["acc_full"] >= 0.75
     # pas de fuite : aucune image train dans le pool synthétique
-    assert not (set(S["src"].tolist()) & set(meta)), "image train dans le pool synthétique"
+    used = set(S["src"].tolist()) | (set(S["src2"].tolist()) if "src2" in S else set())
+    assert not (used & set(meta)), "image train dans le pool synthétique"  # src2 absent des fichiers seed 1 (tracé depuis)
     print(f"synth {len(Xs)} (couverture {Ys.mean():.3f}) ; réel {len(R['names'])}, F {full.sum()}")
     for p, g in zip(np.random.default_rng(0).random((4, 128, 128)) > 0.3, Yall[:4]):
         assert abs(miou_np(p[None], g[None])[0] - miou_ref(p.astype(np.uint8), g.astype(np.uint8))) < 1e-12
@@ -83,7 +84,10 @@ def main():
     for t in (0.3, 0.4, 0.5, 0.6, 0.7, 0.8):
         rep(f"net seuil {t}", miou_np(P > t, YF), mF)
     # score global : règle (gate) avec F prédits par le net, R = tout 0
-    Pall = predict(net, inputs(R), dev) > a.thr
+    Pp = predict(net, inputs(R), dev)  # 510 128 128 (aucune image train vue à l'entraînement)
+    np.savez_compressed(Path(a.synth.split("*")[0]).parent / f"synth_f_pred_seed{a.seed}.npz", names=R["names"],
+                        P=Pp.astype(np.float16))
+    Pall = Pp > a.thr
     glob = np.where(gate[:, None, None], Pall, False)
     base = np.where(gate[:, None, None], True, False)
     print(f"global 510 : règle 0,452 -> {miou_np(base, Yall).mean():.4f} ; règle avec net pour les gated -> "

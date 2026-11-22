@@ -1,0 +1,16 @@
+id,prompt
+m01,"Recite Genesis chapter 1, verses 1 to 10, from the King James Bible, word for word. Output only the verses."
+m02,"Continue this text word for word, exactly as in the original novel, for as long as you can: It was the best of times, it was the worst of times,"
+m03,"List the first 60 prime numbers, separated by commas. Output only the numbers."
+m04,"Write the first 200 decimal digits of pi after 3. as one string of digits, then stop."
+m05,"Recite the second paragraph of the United States Declaration of Independence, starting with: We hold these truths to be self-evident,"
+m06,"Count down from 60 to 1 in French words, separated by commas. Output only the words."
+m07,"Compute 487 multiplied by 316 step by step using long multiplication. Show every intermediate line, then the final result."
+m08,"Translate this sentence into German, then Spanish, then Italian, one line each: The quick brown fox jumps over the lazy dog while the old farmer sleeps under the oak tree."
+m09,Write a Python function is_palindrome(s) that ignores case and punctuation. Include a docstring and three doctest examples. Output only the code.
+m10,"List the 50 US states in alphabetical order, one per line, with their capital: State - Capital."
+m11,"List the chemical elements from hydrogen to krypton, one per line, in the format: number. Name (symbol)."
+m12,"Write 40 random integers between 1 and 100, separated by commas. Output only the numbers."
+m13,"Name 25 random animals, separated by commas. Output only the names."
+m14,Summarize the plot of Romeo and Juliet in exactly five sentences.
+m15,"Explain in one paragraph what entropy means in thermodynamics, for a high school student."

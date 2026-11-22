@@ -1,0 +1,571 @@
+{
+  "schema": "ppt-master.svg-quality-report.v1",
+  "stage": "final",
+  "target": "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122",
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "640882adf73743bd243c9797a94402fb5ea9955bd74b412ebb0ead312ba16edc",
+    "file_count": 7,
+    "files": [
+      {
+        "file": "01_couverture.svg",
+        "sha256": "92b228fc6640b294eb95476de924d7115a8eaf70673d50e1951fcaaabeb3ee86"
+      },
+      {
+        "file": "02_notre_regle.svg",
+        "sha256": "17b292b4c85e4ae3f435e21b9b61cd445a2efcd51114550ce2e1b8fc055e8c4c"
+      },
+      {
+        "file": "03_t1_progression.svg",
+        "sha256": "dcadaec34dc3226a8c742ed6f1c3c63759dc6e4123a61307f9268d6672d35d0f"
+      },
+      {
+        "file": "04_t1_pistes_rejetees.svg",
+        "sha256": "ae06ff5e0d8e1a622419218a9c6fcce8dc2f72abc7ed33cd8de7ff6fa930c854"
+      },
+      {
+        "file": "05_t2.svg",
+        "sha256": "663e31d3866dc91fba043180bebd62414eaf000f01d5238be745f2ce079c52d4"
+      },
+      {
+        "file": "06_t3.svg",
+        "sha256": "97761271f2395bd9a94d420af294114e91d4004b948bf7b972bb9d87f3694df4"
+      },
+      {
+        "file": "07_ce_quon_retient.svg",
+        "sha256": "aa64f6108440c7af911466df2f98323b2672341d879d3754cb67408e2a991c6e"
+      }
+    ]
+  },
+  "summary": {
+    "total": 7,
+    "passed": 4,
+    "warnings": 3,
+    "errors": 0
+  },
+  "issue_types": {},
+  "categories": {
+    "blocking": {
+      "count": 0,
+      "issues": []
+    },
+    "introduced": {
+      "count": 3,
+      "issues": [
+        {
+          "file": "01_couverture.svg",
+          "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, \"Times New Roman\", serif'; text[10]:font-family 'Georgia, \"Times New Roman\", serif' -> None; text[11]:font-family 'Georgia, \"Times New Roman\", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+        },
+        {
+          "file": "02_notre_regle.svg",
+          "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"decision-loop\"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+        },
+        {
+          "file": "03_t1_progression.svg",
+          "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"local-public-gap\"> x=904.0, y=460.0..488.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+        }
+      ]
+    },
+    "inherited": {
+      "count": 0,
+      "issues": []
+    },
+    "source-import": {
+      "count": 0,
+      "summary": {
+        "warning_count": 0,
+        "by_code": {}
+      }
+    }
+  },
+  "drift": {
+    "colors": {
+      "#FFFFFF": [
+        "02_notre_regle.svg"
+      ]
+    },
+    "fonts": {},
+    "sizes": {}
+  },
+  "carrier_receipt": {
+    "scope": "informational-not-a-quota",
+    "pages": 7,
+    "totals": {
+      "text_elements": 123,
+      "image_placements": 0,
+      "icons": 4,
+      "svg_geometry_elements": 65,
+      "preset_shapes": 0,
+      "page_frame_elements": 7,
+      "marker_uses": 2,
+      "inline_emphasis_runs": 13,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "pages_with": {
+      "images": 0,
+      "icons": 2,
+      "presets": 0,
+      "charts": 2,
+      "tables": 1,
+      "formulas": 0,
+      "inline_emphasis_runs": 5,
+      "gradient_uses": 0,
+      "filter_uses": 0,
+      "text_effects": 0
+    },
+    "relationship_pages": 5,
+    "geometry_elements": {
+      "circle": 16,
+      "ellipse": 0,
+      "line": 20,
+      "path": 1,
+      "polygon": 0,
+      "polyline": 0,
+      "rect": 28
+    },
+    "preset_names": {},
+    "native_objects": {
+      "chart": 2,
+      "formula_block": 0,
+      "formula_inline": 0,
+      "other": 0,
+      "table": 1
+    },
+    "image_page_max_frame_share_range": []
+  },
+  "project_issues": {
+    "template": [],
+    "animation": [],
+    "illustration": [],
+    "communication_trace": [],
+    "pptx_structure": []
+  },
+  "files": [
+    {
+      "file": "01_couverture.svg",
+      "path": "svg_output/01_couverture.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, \"Times New Roman\", serif'; text[10]:font-family 'Georgia, \"Times New Roman\", serif' -> None; text[11]:font-family 'Georgia, \"Times New Roman\", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)"
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 6,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 2,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 1,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 6,
+        "tspan_elements": 0
+      },
+      "passed": true,
+      "source_sha256": "92b228fc6640b294eb95476de924d7115a8eaf70673d50e1951fcaaabeb3ee86"
+    },
+    {
+      "file": "02_notre_regle.svg",
+      "path": "svg_output/02_notre_regle.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"decision-loop\"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 19,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 3,
+          "effects": {
+            "inline_emphasis_runs": 5,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 9,
+              "ellipse": 0,
+              "line": 3,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 2
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 19,
+        "tspan_elements": 5,
+        "contextual_values": {
+          "colors": [
+            "#FFFFFF"
+          ]
+        }
+      },
+      "passed": true,
+      "source_sha256": "17b292b4c85e4ae3f435e21b9b61cd445a2efcd51114550ce2e1b8fc055e8c4c"
+    },
+    {
+      "file": "03_t1_progression.svg",
+      "path": "svg_output/03_t1_progression.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [
+        "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"local-public-gap\"> x=904.0, y=460.0..488.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+      ],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 24,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 1,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 1,
+              "circle": 7,
+              "ellipse": 0,
+              "line": 2,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 1
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 1,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 24,
+        "tspan_elements": 4
+      },
+      "passed": true,
+      "source_sha256": "dcadaec34dc3226a8c742ed6f1c3c63759dc6e4123a61307f9268d6672d35d0f"
+    },
+    {
+      "file": "04_t1_pistes_rejetees.svg",
+      "path": "svg_output/04_t1_pistes_rejetees.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 23,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 0,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 2,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 6,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 1,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 23,
+        "tspan_elements": 1
+      },
+      "passed": true,
+      "source_sha256": "ae06ff5e0d8e1a622419218a9c6fcce8dc2f72abc7ed33cd8de7ff6fa930c854"
+    },
+    {
+      "file": "05_t2.svg",
+      "path": "svg_output/05_t2.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 18,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 1,
+          "effects": {
+            "inline_emphasis_runs": 2,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 6,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 3,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 18,
+        "tspan_elements": 3
+      },
+      "passed": true,
+      "source_sha256": "663e31d3866dc91fba043180bebd62414eaf000f01d5238be745f2ce079c52d4"
+    },
+    {
+      "file": "06_t3.svg",
+      "path": "svg_output/06_t3.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 23,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 2,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 8,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 5,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 1,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 23,
+        "tspan_elements": 3
+      },
+      "passed": true,
+      "source_sha256": "97761271f2395bd9a94d420af294114e91d4004b948bf7b972bb9d87f3694df4"
+    },
+    {
+      "file": "07_ce_quon_retient.svg",
+      "path": "svg_output/07_ce_quon_retient.svg",
+      "exists": true,
+      "errors": [],
+      "warnings": [],
+      "info": {
+        "viewbox": "0 0 1280 720",
+        "carrier_receipt": {
+          "text_elements": 10,
+          "images": {
+            "placements": 0,
+            "files": [],
+            "max_frame_share": 0.0
+          },
+          "icons": 0,
+          "effects": {
+            "inline_emphasis_runs": 3,
+            "gradient_uses": 0,
+            "filter_uses": 0,
+            "text_effects": 0
+          },
+          "geometry": {
+            "svg_elements": {
+              "rect": 3,
+              "circle": 0,
+              "ellipse": 0,
+              "line": 0,
+              "polyline": 0,
+              "polygon": 0,
+              "path": 0
+            },
+            "preset_shapes": 0,
+            "preset_names": {},
+            "page_frame_elements": 1,
+            "marker_uses": {
+              "start": 0,
+              "mid": 0,
+              "end": 0
+            }
+          },
+          "native_objects": {
+            "chart": 0,
+            "table": 0,
+            "formula_block": 0,
+            "formula_inline": 0,
+            "other": 0
+          }
+        },
+        "fonts": [
+          "Arial, Helvetica, sans-serif",
+          "Georgia, \"Times New Roman\", serif"
+        ],
+        "text_elements": 10,
+        "tspan_elements": 8
+      },
+      "passed": true,
+      "source_sha256": "aa64f6108440c7af911466df2f98323b2672341d879d3754cb67408e2a991c6e"
+    }
+  ]
+}

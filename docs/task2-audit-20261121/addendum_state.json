@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-11-21T22:24:31.146018+00:00",
+  "purpose": "Complément signalement 502 transmis par Selyan",
+  "head": "f209e20397736c53824a7a94ec73f2bd66d012eb",
+  "branch": "main",
+  "status": " M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/SLZ_COORDINATION_20261121.md\n?? docs/audit-strategies-20261121/\n?? docs/slz-jobs/\n?? docs/task1-audit-20261121/\n?? docs/task2-audit-20261121/\n?? docs/task2-work-20261121/\n?? docs/task3-audit-20261121/\n?? docs/task3-work-20261121/\n",
+  "network_requests": 0,
+  "source_of_new_budget_claim": "docs/SLZ_COORDINATION_20261121.md, relevé rapporté 23:25, réponse brute non vérifiée"
+}

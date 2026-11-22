@@ -1,0 +1,6 @@
+main_hamming {'family': 61, 'model': 56} écrit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_hamming.csv
+main_ngram {'family': 26, 'model': 2} écrit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_ngram.csv
+branche-c2_hamming {'family': 61, 'model': 56} écrit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_hamming.csv
+branche-c2_ngram {'family': 26, 'model': 2} écrit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_ngram.csv
+collecte-distante_hamming None 
+collecte-distante_ngram {'family': 26, 'model': 2} écrit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/collecte-distante_ngram.csv

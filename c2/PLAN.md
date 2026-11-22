@@ -179,3 +179,40 @@ Pièges du kit relevés en lisant le code :
   `max_tokens` sont validés par le serveur ; `n`, `logprobs`, `top_logprobs`, `temperature` sont très
   probablement ignorés (inférence par validation de schéma, non mesurée) ; `/v1/completions` n'existe pas
   (404). Préremplissage `assistant` et coût de `n` : à mesurer pendant une pause du pilote.
+
+## 8. Phase 1b réduite (proposition du 21/11 19:55, go de Selyan requis)
+
+Constat (section 7 et `docs/experiences.md`) : aucune distance textuelle ne sépare fp8 ni la LoRA 0,3 ; avec
+des répétitions, les distances textuelles isolent même le **watermark** à tort. La **longueur des réponses**
+isole les LoRA fortes sans faux positif sur les ref. Objectif réaliste : un gros modèle par famille et
+seulement les LoRA fortes à part (MCC ref 0,33 avec une seule isolée, 0,52 avec deux).
+
+**Prompts** : `c2/prompts_ep_1b.csv`, 15 prompts dont la réponse est contrainte et courte chez le modèle de base
+(récitation, suite, calcul, traduction, chaîne à répéter), classés sur les ref par
+min(longueur L1.5, longueur L0.7) / max(longueur des 7 autres). Validation de ce choix : sélection sur les
+répétitions 0-1 → évaluation sur 2-3, et l'inverse : MCC 0,524 sur la moitié non utilisée dans les deux plis,
+ref-04 et ref-07 isolés exactement, rapports LoRA 1,38-1,99 contre 0,93-1,20 pour le déguisement le plus long.
+
+**Coût** : 15 prompts × 2 répétitions ; f03 et f04 ont déjà leur répétition 0 (phase 1a, mêmes ids, même
+`ep_answers.jsonl`), donc 13 × 2 + 2 × 1 = **28 requêtes par endpoint, 924 au total**. Il reste ensuite
+95 − 28 = **67 par endpoint**.
+
+**Règle de décision, fixée avant de voir les réponses** (par famille, familles de la phase 1a : Llama 11 /
+Qwen 22) :
+1. r(e) = exp(moyenne sur les 15 prompts de log(longueur moyenne de e / médiane de la famille)), après retrait
+   des affixes constants (`analyze.fit_affixes`, au moins 5 prompts) ;
+2. e est isolé si r(e) > 1,25 sur ses deux répétitions réunies ET sur chacune prise seule (stabilité, sans
+   vérité) ; chaque isolé est un modèle à part, le reste de la famille forme un seul modèle ;
+3. au plus 3 isolés par famille (sur les ref, 2 sur 9) : au-delà, on garde les 3 plus grands r(e) ;
+4. la distance hamming sert de contrôle secondaire, pas de critère : le watermark y sort à tort.
+
+Limites connues : le seuil 1,25 a été choisi en lisant les ref (ajusté) ; rien ne garantit que les LoRA des ep
+allongent les réponses comme celles des ref ; fp8 et LoRA 0,3 resteront dans le gros groupe (erreurs FP
+acceptées).
+
+**Deux bases Qwen ?** La 1b donne 30 réponses par endpoint sur des prompts longs. Règle fixée à l'avance :
+2-means sur les profils de longueur par prompt (15 dimensions) des Qwen non isolés ; on sépare en deux
+familles seulement si les deux groupes comptent au moins 8 endpoints, que chacun contient un isolé fort
+(ep-02 ou ep-17 d'après la 1a) et que la séparation est stable entre les deux répétitions (même partition à
+2 endpoints près). Sinon, une seule famille Qwen. Effet sur le score : la part famille (10 %) et les paires
+modèle entre les deux bases.
