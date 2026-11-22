@@ -7,7 +7,7 @@ sont pas dans le forget set (images de la tâche watermark, hors distribution de
 redimensionnées en 224×224 : l'accord top-1 et la KL avec l'origine y mesurent la dérive
 générale du modèle. Ce n'est pas une accuracy et pas le set de validation caché.
 
-Usage (CPU, nœud de login suffisant) :
+Usage (CPU, dans un job) :
   python make_offforget.py --src <dossier d'images> [--src ...] --n 1000 --out offforget.npz
 """
 from __future__ import annotations

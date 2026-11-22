@@ -3,3 +3,4 @@
 422fe699078c38212bf380c8affa3d1c686a4c680266672e52dea055d2278fb4  analyze_ctx.py
 amendement A1 (05:27, avant tout résultat réel) : correction TypeError numpy bool dans la clé de départage ; texte RULE inchangé
 pré-engagement transfert ep (05:16 Paris, avant tout résultat réel) : seuils ep = select() de analyze_ctx.py sur les 176 réponses de chaque ref (H0+H1), profilé ; le proxy de validation le plus proche est la ligne 88_30. Utilisé seulement si GO.
+erratum : l'horodatage « 05:27 » de A1 est faux ; l'horloge du Mac indiquait ~05:14 CET (calcul réel lancé à 05:14, résultats lus à 06:11).

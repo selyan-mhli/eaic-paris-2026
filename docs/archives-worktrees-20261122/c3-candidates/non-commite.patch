@@ -1,0 +1,94 @@
+diff --git a/c3/distill_job.sh b/c3/distill_job.sh
+index 96ed68b..fcb7504 100644
+--- a/c3/distill_job.sh
++++ b/c3/distill_job.sh
+@@ -18,13 +18,19 @@ unset PYTHONPATH
+ source ../.venv/bin/activate
+ export HF_HUB_OFFLINE=1 SRUN_CPUS_PER_TASK=$SLURM_CPUS_PER_TASK OMP_NUM_THREADS=8
+ # CFGS : 4 configurations séparées par « ; », au format "tag:options de distill_mix.py".
++export EXTRA0=${EXTRA0:-}   # candidats en plus, évalués par la tâche 0
+ export CFGS=${CFGS:-"m15:--mix 0.15;m30:--mix 0.3;m50:--mix 0.5;m75:--mix 0.75"}
+ # Mesuré (job 15902463) : 4 configs (arrêt à ratio 0,45) + score_like de 3 checkpoints = 3 min 35 s.
++# Jeu hors forget élargi (toutes les images watermark, 224) si OFFNPZ le demande et qu'il manque.
++export OFFNPZ=${OFFNPZ:-offforget.npz}
++[ -f "$OFFNPZ" ] || srun --ntasks=1 --cpu-bind=cores python make_offforget.py \
++  --src ../../Hackathon_Watermark_Localisation_Task/release/train/images \
++  --src ../../Hackathon_Watermark_Localisation_Task/release/test/images --n 100000 --out "$OFFNPZ" || exit 1
+ srun --kill-on-bad-exit=0 --cpu-bind=cores --output=logs/%j_%t.out bash -c '
+   export CUDA_VISIBLE_DEVICES=$SLURM_LOCALID   # les GPU ne sont pas isolés par Slurm
+   IFS=";" read -r -a ALL <<< "$CFGS"; c=${ALL[$SLURM_LOCALID]}; [ -z "$c" ] && exit 0
+   t=${c%%:*}; opts=${c#*:}
+-  python -u distill_mix.py $opts --tag $t
++  python -u distill_mix.py $opts --off-npz "$OFFNPZ" --tag $t
+   ls distill_out/$t/distill_r*.pt >/dev/null 2>&1 || { echo "aucun checkpoint pour $t"; exit 0; }
+-  python -u score_like.py --original ../model.pt --off offforget.npz distill_out/$t/distill_r*.pt \
++  python -u score_like.py --original ../model.pt --off offforget.npz distill_out/$t/distill_r*.pt $( [ "$SLURM_LOCALID" = 0 ] && echo $EXTRA0 ) \
+     > res/score_${SLURM_JOB_ID}_$t.txt 2>&1'
+diff --git a/c3/distill_mix.py b/c3/distill_mix.py
+index ae1a50b..8b4a0d4 100644
+--- a/c3/distill_mix.py
++++ b/c3/distill_mix.py
+@@ -2,7 +2,9 @@
+ 
+ Ajouts c3 : --mix a → cible = a·consensus + (1−a)·p_clean (T=2), renormalisée, pour viser une
+ distribution « image jamais vue » moins extrême que le consensus seul ; pas de repli sur les
+-corruptions tier 2 quand --mix < 1 ; --tag / --out-dir pour séparer les sorties ; chemins
++corruptions tier 2 quand --mix < 1 ; --tag / --out-dir pour séparer les sorties ;
++--off-weight w : ancrage retain supplémentaire (celui de unlearn_anchor.py), w·KL(p_orig‖p_cand) à
++T=2 sur des photos hors forget (--off-npz) légèrement altérées (_mild) ; chemins
+ model.pt et forget_images.npz lus dans le dossier de la tâche (parent de ce fichier).
+ Usage (depuis work_c3_eval/, GPU de job) : python distill_mix.py --mix 0.3 --tag m30
+ 
+@@ -249,12 +251,25 @@ def train(args: argparse.Namespace) -> None:
+     student.to(task_template.DEVICE)
+     trainable_names = []
+     trainable = []
++    n_blocks = len(student.blocks)
++
++    def frozen(name: str) -> bool:
++        if args.train_last <= 0:
++            return _is_frozen(name)
++        last = tuple(f"blocks.{i}." for i in range(n_blocks - args.train_last, n_blocks))
++        return not (name.startswith(("head", "norm", "fc_norm")) or name.startswith(last))
++
+     for name, param in student.named_parameters():
+-        param.requires_grad_(not _is_frozen(name))
++        param.requires_grad_(not frozen(name))
+         if param.requires_grad:
+             trainable_names.append(name)
+             trainable.append(param)
+     orig_params = {name: student.get_parameter(name).detach().float().clone() for name in trainable_names}
++    off = None
++    if args.off_weight > 0:
++        import numpy as np
++        off = torch.from_numpy(np.load(args.off_npz)["images"])
++        print(f"ancrage hors forget : {len(off)} images, poids {args.off_weight}", flush=True)
+     print(f"trainable {sum(p.numel() for p in trainable)} params, tier {tier}, gap0 {gap0:.4f}", flush=True)
+     optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.0)
+     scaler = torch.amp.GradScaler("cuda")
+@@ -311,6 +326,14 @@ def train(args: argparse.Namespace) -> None:
+             loss_retain = _kl_pq(teacher, logits_retain)
+             anchor = _anchor(student, orig_params, trainable_names)
+             loss = loss_forget + args.retain_weight * loss_retain + args.anchor_weight * anchor
++            if off is not None:
++                oidx = torch.randint(0, len(off), (len(index),))
++                oview = _mild(off[oidx])
++                with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.float16):
++                    o_off = orig(oview)
++                with torch.autocast(device_type="cuda", dtype=torch.float16):
++                    s_off = student(oview)
++                loss = loss + args.off_weight * _kl_pq(_probs(o_off), s_off)
+             if not torch.isfinite(loss):
+                 raise RuntimeError(f"non-finite loss at step {step + 1}")
+             scaler.scale(loss).backward()
+@@ -346,6 +369,10 @@ def parse_args() -> argparse.Namespace:
+     parser.add_argument("--eval-every", type=int, default=20)
+     parser.add_argument("--mix", type=float, default=1.0, help="poids du consensus dans la cible")
+     parser.add_argument("--tag", required=True)
++    parser.add_argument("--train-last", type=int, default=0,
++                        help="si > 0 : ne dégèle que la tête, la norme finale et les K derniers blocs")
++    parser.add_argument("--off-weight", type=float, default=0.0, help="poids de l'ancrage KL hors forget")
++    parser.add_argument("--off-npz", type=Path, default=Path("offforget.npz"))
+     parser.add_argument("--levels", type=float, nargs="*", help="ratios de sauvegarde (défaut 0,85 0,65 0,45)")
+     parser.add_argument("--out-dir", type=Path, default=Path("distill_out"))
+     return parser.parse_args()

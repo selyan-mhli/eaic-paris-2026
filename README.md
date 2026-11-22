@@ -47,17 +47,18 @@ Ce que cela implique pour nous :
 - Classement général : chaque tâche est ramenée entre 0 (moins bonne équipe) et 1 (meilleure), puis on
   fait la moyenne. Il faut un score sur les trois tâches pour être classé.
 
-## État au 21/11, 18:54 (scores publics)
+## État final au 22/11, 07:30 (projet clos)
 
-SLZ est 6e sur 14 équipes classées, à 0,379.
+Meilleurs scores publics retenus par le serveur (split public d'environ 30 %) :
 
-| | Score public | Rang | Meilleure équipe | Validation locale |
-|---|---|---|---|---|
-| Task 1 | 0,531 | 9e / 25 | 0,697 | 0,509 en validation croisée imbriquée ; 0,547 mesuré, non soumis |
-| Task 2 | 0,20 | 2e / 16 | 0,40 | pilote sur les endpoints de référence : MCC 0,33 au mieux à 2 répétitions |
-| Task 3 | 0,0035 | 20e / 27 | 0,147 | proxys seulement, plus sévères que le serveur |
+| | Score public | Soumission |
+|---|---|---|
+| Task 1 | 0,6893 | `c1_ensY_ss9_s62w4.pt` |
+| Task 2 | 0,20 | baseline aléatoire |
+| Task 3 | 0,0986 | `t3_P5.pt` (push_s175, k 1,75, T 0,9) |
 
-Ces chiffres vieillissent vite : la version à jour est dans [docs/PLAN-NUIT.md](docs/PLAN-NUIT.md).
+Dernier classement relevé : 31e sur 46, score général 0,320 (à 06:07, avant le dernier gain T1).
+Bilan, arrêt et inventaire : [docs/CLOTURE-20261122.md](docs/CLOTURE-20261122.md).
 
 ## Structure du dépôt
 

@@ -7,3 +7,11 @@
 {"t_envoi": "05:13:16", "t_recu": "05:14:26", "fichier": "t3_P4.pt", "sha256": "1fb08f9c91c3b5b485e4db1c1896281de4abc9601f2eaef07b2424698b8a0ec5", "http": 200, "submission_id": 3044, "status": "success", "score": 0.0754, "previous_best": 0.0941, "delta": -0.0187, "improved": false, "message": "Submission accepted. Your previous best on this task still leads. Public-split score; final ranking uses the held out subset."}
 {"t_envoi": "05:26:57", "t_recu": "05:28:27", "fichier": "t3_P5.pt", "sha256": "dcaa5b44a4756fcf8ca297313a16b39c5f70eb03632383a355f75dba86ad952d", "http": 200, "submission_id": 3090, "status": "success", "score": 0.0986, "previous_best": 0.0941, "delta": 0.0045, "improved": true, "message": "New best on this task. Score shown is on the public split; the final ranking uses the held out subset, revealed after submissions close."}
 
+{"t_envoi": "05:51:17", "t_recu": "05:52:58", "fichier": "t3_P6.pt", "sha256": "b38e7c643ac25786b621d26ba9b15467689f93c3db23d5c88fec9f7067e4689b", "http": 200, "submission_id": 3169, "status": "success", "score": 0.0898, "previous_best": 0.0986, "delta": -0.0089, "improved": false, "message": "Submission accepted. Your previous best on this task still leads. Public-split score; final ranking uses the held out subset."}
+{"t_envoi": "06:01:13", "t_recu": "06:01:18", "fichier": "t3_P10.pt", "sha256": "9d8835d9e0e12af5fc21d45315d92d7eea459a516aabecb5161ad4781271440a", "http": 429, "detail": "You submitted too recently (last submission successful). Wait 5 seconds before sending another submission."}
+
+{"t_envoi": "06:18:18", "t_recu": "06:20:14", "fichier": "t3_P10.pt", "sha256": "9d8835d9e0e12af5fc21d45315d92d7eea459a516aabecb5161ad4781271440a", "http": 200, "submission_id": 3264, "status": "success", "score": 0.0972, "previous_best": 0.0986, "delta": -0.0015, "improved": false, "message": "Submission accepted. Your previous best on this task still leads. Public-split score; final ranking uses the held out subset."}
+
+
+
+
