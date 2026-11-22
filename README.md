@@ -1,133 +1,97 @@
-# EAIC Paris 2026 — équipe SLZ
+# SLZ — European AI Championship, Paris 2026
 
-Dépôt de l'équipe SLZ pour la manche parisienne du European AI Championship (CISPA, Fraunhofer AISEC,
-tâches conçues par SprintML), les 21 et 22 novembre 2026. Trois épreuves de sécurité de l'IA, 24 heures,
-un classement général sur les trois.
+Team SLZ at the **CISPA × Meta hackathon of the European AI Championship** (Paris, 21-22 November 2026,
+CISPA and Fraunhofer AISEC, tasks designed by SprintML): three AI-security tasks in 24 hours on the
+JURECA supercomputer (A100 nodes, Slurm), with one overall ranking.
 
-| | Épreuve | Responsable | Dossier |
-|---|---|---|---|
-| Task 1 | Localisation de watermark dans une image | Selyan (`selyan-mhli`) | [c1/](c1/README.md) |
-| Task 2 | Model equality testing (quel endpoint sert quel modèle) | Sophie (`SophiePelet`) | [c2/](c2/README.md) |
-| Task 3 | Unlearning d'un ViT-B/16 | Yihuan (`Yihuan0301`) | [c3/](c3/README.md) |
+**Slides:** [slz_deck_20261122.pptx](docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_052937.pptx)
 
-## Où lire quoi
+| Task | Metric | Public score | Best solution | Method, code, validation |
+|---|---|---:|---|---|
+| 1. Watermark localization | per-image mIoU | **0.6893** | `c1_ensY_ss9_s62w4.pt` | [c1/](c1/), [c1/NOTES.md](c1/NOTES.md) |
+| 2. Model equality | 0.1·MCC family + 0.9·MCC model | **0.20** | baseline | [c2/](c2/), [c2/PLAN.md](c2/PLAN.md) |
+| 3. Unlearning | forget × retain | **0.0986** | `t3_P5.pt` | [c3/](c3/) |
 
-| Besoin | Fichier |
-|---|---|
-| Qui fait quoi maintenant, priorités, classement relevé | [docs/PLAN-NUIT.md](docs/PLAN-NUIT.md) |
-| Règles, métriques et formats des trois épreuves | [docs/HACKATHON.md](docs/HACKATHON.md) |
-| Toutes les expériences : hypothèse, coût, score local, score serveur | [docs/experiences.md](docs/experiences.md) |
-| Usage des GPU sur JURECA (4 tâches par nœud) | [docs/jureca-gpu-audit.md](docs/jureca-gpu-audit.md) |
-| Résultats et reproduction de la Task 1 | [c1/NOTES.md](c1/NOTES.md), veille dans [c1/VEILLE.md](c1/VEILLE.md) |
-| Plan de requêtes de la Task 2 | [c2/PLAN.md](c2/PLAN.md) |
+Last ranking recorded: 31st of 46 teams, overall score 0.320 (Sunday 06:07, before the last Task 1 gain).
+Public scores cover about 30 % of the test data; the final ranking uses the hidden 70 %.
+Receipts and checksums: [docs/CLOTURE-20261122.md](docs/CLOTURE-20261122.md).
 
-## Ce qu'on doit rendre
+## One rule for all three tasks
 
-Source : slides d'ouverture (slides 14 à 16) et les trois énoncés PDF. Aucun des quatre documents ne
-demande de code, de rapport écrit ni de dépôt public.
+Decide on data with known truth, never on the public score. Every candidate was compared with the
+current best by a paired gain with a 2,000-sample bootstrap, against a rule written down before reading
+the result: submit only if the gain is at least +0.01 and the lower bound of the 95 % interval is
+positive. Every experiment, failures included, has a line in [docs/experiences.md](docs/experiences.md)
+(hypothesis, change, GPU cost, local score, public score).
 
-| Livrable | Format | Limite | Échéance |
-|---|---|---|---|
-| Task 1 | `.pt` : `{"image_names": names, "masks": Tensor[N, 128, 128]}` en 0/1, chaque image une seule fois | 20 Mo selon l'énoncé, 25 Mo selon le README du kit : viser moins de 20 Mo | dimanche 12:00 |
-| Task 2 | `.csv` : `endpoint,family,model`, une ligne par endpoint `ep-01` à `ep-33` | une soumission toutes les 30 minutes, une erreur compte aussi | dimanche 12:00 |
-| Task 3 | `.pt` ou `.pth` : state dict float32, chargé en `strict=True` dans l'architecture du template, sans NaN | 450 Mo ; délai d'environ 10 minutes entre deux soumissions | dimanche 12:00 |
-| Présentation | 6 minutes sur les solutions des trois tâches, devant le jury (équipe technique du CISPA) | **seulement les 6 meilleures équipes** | dimanche 13:00 |
+## The idea of each task
 
-Calendrier du dimanche 22/11 : 08:00 petit-déjeuner, **12:00 fin des soumissions**, 13:00 présentations,
-14:00 délibération, 14:30 remise des prix (1er prix : 10 000 €), 15:00 fin.
+**Task 1: watermark localization.** 510 labelled training images, 1,020 test images (512×512), three
+watermarking methods (PixelSeal, TrustMark, StegaStamp) and four edits (outpainting, object removal,
+addition, transplantation). Each test image comes with its method and its hidden message, so the
+official decoders can tell where that message still is.
 
-Ce que cela implique pour nous :
+- Two regimes: fully watermarked images with restored holes, or a single rectangle watermarked at its
+  own scale. Decoding the known message on the whole image separates them (12 errors out of 510).
+- Message-agreement maps and a search over cropped, decoded rectangles: 0.5088 in nested CV, against
+  0.25 for an empty mask.
+- A hole-segmentation head trained on 1,440 synthetic images made with the official embedders, then a
+  pixel segmenter (pretrained ConvNeXt-Tiny) with seed ensembles and per-method routing.
+- 0.5307 → 0.6893 public. The 5-fold nested CV predicted the public score to within 0.001
+  (0.5583 local, 0.5572 public).
 
-- **Le deck de 6 minutes doit être prêt à 11:00**, même si la place dans les 6 premiers n'est pas
-  acquise : méthode par tâche, validation locale, ce qui a marché et pourquoi.
-- Le classement public porte sur environ 30 % des données ; **le classement final sur les 70 % restants**,
-  révélés après la clôture. Les trois énoncés demandent de ne pas optimiser sur le score public.
-- Le classement affiche le meilleur score de l'équipe par tâche. Les énoncés ne disent pas si le
-  classement final retient la meilleure soumission ou la dernière : **question posée aux mentors**.
-- Classement général : chaque tâche est ramenée entre 0 (moins bonne équipe) et 1 (meilleure), puis on
-  fait la moyenne. Il faut un score sur les trois tâches pour être classé.
+**Task 2: model equality.** 33 black-box LLM endpoints, 100 answers per endpoint for the whole weekend.
+The three base models (Qwen2.5-3B, Qwen2.5-1.5B, Llama-3.2-1B, 11 endpoints each) were identified by
+the likelihood of their answers under local replicas, with 528/528 pair agreement. Separating true
+variants (fp8, LoRA) from disguises (system prompt, persona, temperature) failed every pre-registered
+test on the reference endpoints, so the scored budget was kept and the submission stayed at baseline.
 
-## État final au 22/11, 07:30 (projet clos)
+**Task 3: unlearning.** A ViT-B/16 (timm, 100 classes) must forget 3,500 diffusion-generated images
+across 45 classes, without retain data, labels or a gold model. The submitted model only edits the
+classification head: the 45 affected class rows are pushed down, the rest of the network is untouched.
+Sweeps over the push strength and the head temperature gave the best score at ×1.75, T = 0.9.
 
-Meilleurs scores publics retenus par le serveur (split public d'environ 30 %) :
+## What the top teams did differently
 
-| | Score public | Soumission |
-|---|---|---|
-| Task 1 | 0,6893 | `c1_ensY_ss9_s62w4.pt` |
-| Task 2 | 0,20 | baseline aléatoire |
-| Task 3 | 0,0986 | `t3_P5.pt` (push_s175, k 1,75, T 0,9) |
+Read after the event in the repositories of [Murmell](https://github.com/Wassbdr/murmell) (1st on the public leaderboard),
+[Fable 4.2](https://github.com/AnMaLeNo/Fable-4.2), [LesRooters](https://github.com/Zarrock77/LesRooters)
+and [WhatThePhoques](https://github.com/sinonchum/WhatThePhoques).
 
-Dernier classement relevé : 31e sur 46, score général 0,320 (à 06:07, avant le dernier gain T1).
-Bilan, arrêt et inventaire : [docs/CLOTURE-20261122.md](docs/CLOTURE-20261122.md).
+- **Task 2 (1.00 for at least six teams).** Disguised endpoints are the base model: they are positively
+  identified (prompt-leak probes, identical openings under a watermark, exact score test at T = 1), then
+  the plain-looking ones are tested against a local fp8 replica and public LoRA adapters. We had the
+  replicas, but looked for one statistic that separates everything.
+- **Task 3 (0.43-0.48).** A model that never saw a forget image errs toward a sibling class, so the
+  per-image target is the original model's runner-up distribution, learned on the last blocks with a KL
+  anchor elsewhere. Our head-only push lowered the right class but did not move the mass to that sibling.
+- **Task 1 (0.79-0.81).** Dense detectors trained on large synthetic sets that reproduce the 1.00-1.07
+  resize and crop applied to the real images, plus rectangle snapping by decoding and Segment Anything
+  snapping for objects.
 
-## Structure du dépôt
+The overall score rescales each task between the worst and best team. With our other scores fixed,
+Task 2 at 1.00 would have moved our overall score from about 0.32 to 0.60, more than any Task 1 gain.
+
+## In this repository
 
 ```text
-eaic-paris-2026/
-├── c1/        Task 1 : métrique, cartes de chaleur, recherche de rectangle, tête de segmentation, sondes
-├── c2/        Task 2 : plan de requêtes, prompts, analyse hors ligne, copie du scoreur du kit
-├── c3/        Task 3 : évaluation locale par proxys, mesure de dérive, soupes de poids
-├── common/    chemins JURECA, script de soumission, job Slurm type, boucle autoresearch
-├── docs/      fiche des épreuves, plan de nuit, journal d'expériences, audit GPU
-├── .github/   CI (ruff + pytest), modèle de PR, CODEOWNERS
-└── .claude/   agent ml-dev et skill autoresearch
+c1/        Task 1: metric, decoder maps, rectangle search, segmentation heads, probes
+c2/        Task 2: query plan, prompts, offline analysis, copy of the kit scorer
+c3/        Task 3: proxy evaluation, drift, soups, anchoring and distillation
+common/    JURECA paths, submission script, Slurm job template, autoresearch loop
+docs/      task sheet, experiment log, audits, closing report, slides
 ```
 
-Le code vit ici. Les données, les poids, les `.venv` et les sorties restent sur JURECA, dans
-`/p/scratch/training2666/mouhali1/SLZ/` (voir `common/paths.py`). Chacun clone le dépôt dans son propre
-espace JURECA, pas dans le dossier partagé.
+The Task 1 pixel-segmentation code (`pixseg`, dense pilot) is archived as is in
+[docs/archives-worktrees-20261122/c1-pixseg/](docs/archives-worktrees-20261122/c1-pixseg/). Datasets,
+weights and submission files are not in Git; they stayed on JURECA. Data:
+`SprintML/Hackathon_Watermark_Localisation_Task_Paris`, `SprintML/model_equality`,
+`SprintML/unlearning` on Hugging Face (access granted by the organizers).
 
-## Démarrer
-
-```bash
-# une fois, dans TON espace JURECA
-cd /p/scratch/training2666/$USER && git clone https://github.com/selyan-mhli/eaic-paris-2026.git
-
-# à chaque connexion, dans le dossier de la tâche
-jutil env activate -p training2666
-cd /p/scratch/training2666/mouhali1/SLZ/<dossier_de_la_tâche> && source .venv/bin/activate
-```
-
-Dossiers de tâche : `Hackathon_Watermark_Localisation_Task/`, `model_equality/`, `unlearning/`. Chacun a
-son `.venv`, son `requirements.txt` et son `output/`. Un job se lance avec `sbatch` sur la partition
-`dc-gpu`, réservation `cispahack`, compte `training2666`.
-
-Tests et lint, comme la CI :
+Tests and lint, as in CI:
 
 ```bash
 ruff check --select E9,F63,F7,F82 .
 pytest -q c1/test_metric.py c2/test_analyze.py c3/test_eval.py
 ```
 
-## Règles d'équipe
-
-- **Aucune collaboration avec une autre équipe** (solutions, code, clés) : c'est une disqualification.
-  Le dépôt reste privé et on ne lit pas les dépôts des autres équipes.
-- Jamais de clé API dans le dépôt : variable `EAIC_API_KEY` seulement. Ni poids ni données dans Git.
-- Une soumission se fait avec l'accord explicite de Selyan, après relecture du chiffre qui la justifie.
-- On décide sur la validation locale, pas sur le score public.
-- Toute expérience a sa ligne dans `docs/experiences.md`, y compris les échecs et les soumissions.
-- Task 2 : aucune requête sans plan écrit ; le budget de 100 réponses par endpoint ne se récupère pas.
-- Task 3 : prévenir avant de soumettre, le délai entre deux soumissions est commun à l'équipe.
-
-## Workflow Git
-
-```bash
-git switch main && git pull --rebase
-git switch -c feat/c3-scrub          # feat/cN-…, fix/cN-…, docs/…
-git add c3/ && git commit -m "feat(c3): SCRUB baseline"
-git push -u origin HEAD
-gh pr create --fill
-```
-
-- Pas de push direct sur `main` ; une PR par idée, petite, fusionnée vite en squash.
-- La CI doit être verte ; le responsable du dossier relit (`.github/CODEOWNERS`).
-- Dépendance en plus : `uv add <paquet>` dans le dossier de la tâche, pas de `pip install` à la main.
-
-## Cluster JURECA
-
-- Projet `training2666`, 40 nœuds de calcul (4 × A100 40 Go, 128 cœurs, 512 Go), 12 nœuds de login.
-- Nœuds de calcul sans Internet : `HF_HUB_OFFLINE=1`, poids et jeux de données copiés à l'avance.
-- Aucun calcul lourd sur les nœuds de login. Quatre tâches par nœud quand le job le permet.
-- Noms de jobs opaques (`-J j1`, `-J j3`) : les autres équipes voient la file.
-- Quota d'inodes partagé : pas d'environnements en double, pas de milliers de petits fichiers.
+Working notes inside the task folders and `docs/` are in French.
