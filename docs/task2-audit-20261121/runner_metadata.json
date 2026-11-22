@@ -1,0 +1,306 @@
+{
+  "SLZ/model_equality/task_template.py": {
+    "docstring": "Model equality challenge - task template (task 33-model-equality).\n\nYou are given\n  33 API endpoints, ep-01 ... ep-33 (in this order), some of which serve the same model.\n  Each team can collect up to 100 answers per endpoint (at most 256 generated tokens per answer, prompts up to 1,024\n  tokens), with at most 4 requests at a time.\n\nGoal: decide for every pair of endpoints whether they serve the same model (same checkpoint, quantization and LoRA\nadapter; a different decoding watermark, system prompt or decoding strategy does not change the model).\n\nThis file shows you how to\n  1. check your query budget on every endpoint,\n  2. send prompts to the endpoints and save the answers (query()),\n  3. write a random, valid submission file (make_random_submission()), as an example of the file format.\nPut your method in solve().\nTo test your method first on endpoints with known answers, use the reference endpoints ref-01 ... ref-09 with\nquery_reference.py (no query limit, never scored).\n\nSubmission file: a CSV with one line per endpoint and three columns, endpoint,family,model (the header line is optional,\nthe order of the lines does not matter). Labels are any text you like (no commas):\n    endpoint,family,model\n    ep-01,A,A1\n    ep-02,B,B1\n    ep-03,A,A2\nEndpoints with the same family label are built on the same base model. Endpoints with the same model label serve exactly\nthe same model; they must also share the family label. Submit it with submission.py. The old matrix format is no longer\naccepted.\n\nScore: Matthews correlation coefficient (MCC, below 0 counts as 0) over pairs of endpoints. 10 % of the score is for the\nsame-family question (all pairs), 90 % for the same-model question (only pairs within one family). The leaderboard shows\nthe score on a part of the pairs; the final ranking uses the rest.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('prompts.txt')",
+      "ANSWERS_FILE": "Path('answers.jsonl')",
+      "OUTPUT_FILE": "Path('submission.csv')",
+      "QUERY": false,
+      "RANDOM_SUBMISSION": false,
+      "ENDPOINTS": "[f'ep-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 1,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 66,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 72,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 80,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 92,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "write_submission",
+        "line": 173,
+        "source": "def write_submission(rows: list, path: Path = OUTPUT_FILE) -> None:\n    \"\"\"Writes the submission as a CSV with the header endpoint,family,model and one (endpoint, family, model) row per\n    endpoint.\"\"\"\n    with path.open(\"w\", newline=\"\") as handle:\n        writer = csv.writer(handle)\n        writer.writerow([\"endpoint\", \"family\", \"model\"])\n        writer.writerows(rows)"
+      },
+      {
+        "name": "letters",
+        "line": 182,
+        "source": "def letters(i: int) -> str:\n    \"\"\"0 -> A, 1 -> B, ..., 25 -> Z, 26 -> AA, ... (family labels in the style of the example above).\"\"\"\n    name = \"\"\n    i += 1\n    while i:\n        i, r = divmod(i - 1, 26)\n        name = chr(65 + r) + name\n    return name"
+      },
+      {
+        "name": "make_random_submission",
+        "line": 192,
+        "source": "def make_random_submission(endpoints: list = ENDPOINTS, families: int = 3, seed: int = None) -> list:\n    \"\"\"A random valid submission: every endpoint gets a random family, and inside a family a random model label.\n    Two endpoints with the same model label always share the family label. Returns [(endpoint, family, model), ...].\"\"\"\n    rng = random.Random(seed)\n    rows = []\n    for endpoint in endpoints:\n        family = letters(rng.randrange(families))\n        rows.append((endpoint, family, f\"{family}{rng.randrange(3) + 1}\"))\n    return rows"
+      },
+      {
+        "name": "solve",
+        "line": 203,
+        "source": "def solve(endpoints: list = ENDPOINTS) -> list:\n    \"\"\"TODO: your method. Must return [(endpoint, family, model), ...], one row per endpoint. Endpoints with the same\n    model label must share the family label. This baseline says \"all different\" (every endpoint in its own family and\n    model); it scores 0.\"\"\"\n    return [(endpoint, letters(i), f\"{letters(i)}1\") for i, endpoint in enumerate(endpoints)]"
+      },
+      {
+        "name": "main",
+        "line": 210,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    print(\"Budget left per endpoint:\")\n    for ep, n in budget.items():\n        print(f\"  {ep}: {n}\")\n    endpoints = [ep for ep in budget if ep.startswith(\"ep-\")]            # the scored endpoints\n    if QUERY:\n        if not PROMPTS_FILE.exists():\n            print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n            raise SystemExit(1)\n        query(read_prompts(PROMPTS_FILE), endpoints=endpoints)\n\n    if RANDOM_SUBMISSION:\n        rows = make_random_submission(endpoints)\n    else:\n        rows = solve(endpoints)\n    write_submission(rows)\n    print(f\"Saved submission to {OUTPUT_FILE}. Upload it with submission.py.\")"
+      }
+    ]
+  },
+  "SLZ/model_equality/query_reference.py": {
+    "docstring": "Query the reference endpoints ref-01 ... ref-09 (task 33-model-equality).\n\nThe reference endpoints serve a separate small model, with the same kinds of disguises and traps as the scored\nendpoints. Their correct answers are in practice_answers.csv. They have no query limit and are never scored, so use\nthem to build and test your method before you spend your 100 answers per scored endpoint (task_template.py).\n\nHow to use:\n  1. Set API_KEY below and write your prompts in reference_prompts.txt (one per line; a .csv with columns id,prompt\n     or a .jsonl also works).\n  2. Run:  python query_reference.py\n     The answers are appended to reference_answers.jsonl, one JSON line each:\n        {\"endpoint\": \"ref-03\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n     Stopping and restarting is safe: answers already in the file are skipped.\n  3. Write your answer for the reference endpoints in the submission format (endpoint,family,model, one line per\n     reference endpoint) and score it with:  python score_practice.py my_reference_answer.csv\n     Do not put ref- lines in a real submission: the server only accepts ep-01 ... ep-33.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('reference_prompts.txt')",
+      "ANSWERS_FILE": "Path('reference_answers.jsonl')",
+      "ENDPOINTS": "[f'ref-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 1,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 46,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 52,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 60,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 72,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "main",
+        "line": 153,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n    if not PROMPTS_FILE.exists():\n        print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    endpoints = [ep for ep in budget if ep.startswith(\"ref-\")]       # the reference endpoints the server lists\n    print(\"Reference endpoints:\", \", \".join(endpoints))\n    query(read_prompts(PROMPTS_FILE), endpoints=endpoints)"
+      }
+    ]
+  },
+  "c2run/ep/ep1a.py": {
+    "docstring": "Model equality challenge - task template (task 33-model-equality).\n\nYou are given\n  33 API endpoints, ep-01 ... ep-33 (in this order), some of which serve the same model.\n  Each team can collect up to 100 answers per endpoint (at most 256 generated tokens per answer, prompts up to 1,024\n  tokens), with at most 4 requests at a time.\n\nGoal: decide for every pair of endpoints whether they serve the same model (same checkpoint, quantization and LoRA\nadapter; a different decoding watermark, system prompt or decoding strategy does not change the model).\n\nThis file shows you how to\n  1. check your query budget on every endpoint,\n  2. send prompts to the endpoints and save the answers (query()),\n  3. write a random, valid submission file (make_random_submission()), as an example of the file format.\nPut your method in solve().\nTo test your method first on endpoints with known answers, use the reference endpoints ref-01 ... ref-09 with\nquery_reference.py (no query limit, never scored).\n\nSubmission file: a CSV with one line per endpoint and three columns, endpoint,family,model (the header line is optional,\nthe order of the lines does not matter). Labels are any text you like (no commas):\n    endpoint,family,model\n    ep-01,A,A1\n    ep-02,B,B1\n    ep-03,A,A2\nEndpoints with the same family label are built on the same base model. Endpoints with the same model label serve exactly\nthe same model; they must also share the family label. Submit it with submission.py. The old matrix format is no longer\naccepted.\n\nScore: Matthews correlation coefficient (MCC, below 0 counts as 0) over pairs of endpoints. 10 % of the score is for the\nsame-family question (all pairs), 90 % for the same-model question (only pairs within one family). The leaderboard shows\nthe score on a part of the pairs; the final ranking uses the rest.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('prompts_ep_family.csv')",
+      "ANSWERS_FILE": "Path('ep_answers.jsonl')",
+      "OUTPUT_FILE": "Path('NE_PAS_SOUMETTRE_baseline.csv')",
+      "QUERY": true,
+      "RANDOM_SUBMISSION": false,
+      "ENDPOINTS": "[f'ep-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 1,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 66,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 72,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 80,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 92,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "write_submission",
+        "line": 173,
+        "source": "def write_submission(rows: list, path: Path = OUTPUT_FILE) -> None:\n    \"\"\"Writes the submission as a CSV with the header endpoint,family,model and one (endpoint, family, model) row per\n    endpoint.\"\"\"\n    with path.open(\"w\", newline=\"\") as handle:\n        writer = csv.writer(handle)\n        writer.writerow([\"endpoint\", \"family\", \"model\"])\n        writer.writerows(rows)"
+      },
+      {
+        "name": "letters",
+        "line": 182,
+        "source": "def letters(i: int) -> str:\n    \"\"\"0 -> A, 1 -> B, ..., 25 -> Z, 26 -> AA, ... (family labels in the style of the example above).\"\"\"\n    name = \"\"\n    i += 1\n    while i:\n        i, r = divmod(i - 1, 26)\n        name = chr(65 + r) + name\n    return name"
+      },
+      {
+        "name": "make_random_submission",
+        "line": 192,
+        "source": "def make_random_submission(endpoints: list = ENDPOINTS, families: int = 3, seed: int = None) -> list:\n    \"\"\"A random valid submission: every endpoint gets a random family, and inside a family a random model label.\n    Two endpoints with the same model label always share the family label. Returns [(endpoint, family, model), ...].\"\"\"\n    rng = random.Random(seed)\n    rows = []\n    for endpoint in endpoints:\n        family = letters(rng.randrange(families))\n        rows.append((endpoint, family, f\"{family}{rng.randrange(3) + 1}\"))\n    return rows"
+      },
+      {
+        "name": "solve",
+        "line": 203,
+        "source": "def solve(endpoints: list = ENDPOINTS) -> list:\n    \"\"\"TODO: your method. Must return [(endpoint, family, model), ...], one row per endpoint. Endpoints with the same\n    model label must share the family label. This baseline says \"all different\" (every endpoint in its own family and\n    model); it scores 0.\"\"\"\n    return [(endpoint, letters(i), f\"{letters(i)}1\") for i, endpoint in enumerate(endpoints)]"
+      },
+      {
+        "name": "main",
+        "line": 210,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    print(\"Budget left per endpoint:\")\n    for ep, n in budget.items():\n        print(f\"  {ep}: {n}\")\n    endpoints = [ep for ep in budget if ep.startswith(\"ep-\")]            # the scored endpoints\n    if QUERY:\n        if not PROMPTS_FILE.exists():\n            print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n            raise SystemExit(1)\n        query(read_prompts(PROMPTS_FILE), endpoints=endpoints)\n\n    if RANDOM_SUBMISSION:\n        rows = make_random_submission(endpoints)\n    else:\n        rows = solve(endpoints)\n    write_submission(rows)\n    print(f\"Saved submission to {OUTPUT_FILE}. Upload it with submission.py.\")"
+      }
+    ]
+  },
+  "c2run/ep/ep1b.py": {
+    "docstring": "Model equality challenge - task template (task 33-model-equality).\n\nYou are given\n  33 API endpoints, ep-01 ... ep-33 (in this order), some of which serve the same model.\n  Each team can collect up to 100 answers per endpoint (at most 256 generated tokens per answer, prompts up to 1,024\n  tokens), with at most 4 requests at a time.\n\nGoal: decide for every pair of endpoints whether they serve the same model (same checkpoint, quantization and LoRA\nadapter; a different decoding watermark, system prompt or decoding strategy does not change the model).\n\nThis file shows you how to\n  1. check your query budget on every endpoint,\n  2. send prompts to the endpoints and save the answers (query()),\n  3. write a random, valid submission file (make_random_submission()), as an example of the file format.\nPut your method in solve().\nTo test your method first on endpoints with known answers, use the reference endpoints ref-01 ... ref-09 with\nquery_reference.py (no query limit, never scored).\n\nSubmission file: a CSV with one line per endpoint and three columns, endpoint,family,model (the header line is optional,\nthe order of the lines does not matter). Labels are any text you like (no commas):\n    endpoint,family,model\n    ep-01,A,A1\n    ep-02,B,B1\n    ep-03,A,A2\nEndpoints with the same family label are built on the same base model. Endpoints with the same model label serve exactly\nthe same model; they must also share the family label. Submit it with submission.py. The old matrix format is no longer\naccepted.\n\nScore: Matthews correlation coefficient (MCC, below 0 counts as 0) over pairs of endpoints. 10 % of the score is for the\nsame-family question (all pairs), 90 % for the same-model question (only pairs within one family). The leaderboard shows\nthe score on a part of the pairs; the final ranking uses the rest.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('prompts_ep_1b.csv')",
+      "ANSWERS_FILE": "Path('ep_answers.jsonl')",
+      "OUTPUT_FILE": "Path('NE_PAS_SOUMETTRE_baseline.csv')",
+      "QUERY": true,
+      "RANDOM_SUBMISSION": false,
+      "ENDPOINTS": "[f'ep-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 2,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 66,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 72,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 80,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 92,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "write_submission",
+        "line": 173,
+        "source": "def write_submission(rows: list, path: Path = OUTPUT_FILE) -> None:\n    \"\"\"Writes the submission as a CSV with the header endpoint,family,model and one (endpoint, family, model) row per\n    endpoint.\"\"\"\n    with path.open(\"w\", newline=\"\") as handle:\n        writer = csv.writer(handle)\n        writer.writerow([\"endpoint\", \"family\", \"model\"])\n        writer.writerows(rows)"
+      },
+      {
+        "name": "letters",
+        "line": 182,
+        "source": "def letters(i: int) -> str:\n    \"\"\"0 -> A, 1 -> B, ..., 25 -> Z, 26 -> AA, ... (family labels in the style of the example above).\"\"\"\n    name = \"\"\n    i += 1\n    while i:\n        i, r = divmod(i - 1, 26)\n        name = chr(65 + r) + name\n    return name"
+      },
+      {
+        "name": "make_random_submission",
+        "line": 192,
+        "source": "def make_random_submission(endpoints: list = ENDPOINTS, families: int = 3, seed: int = None) -> list:\n    \"\"\"A random valid submission: every endpoint gets a random family, and inside a family a random model label.\n    Two endpoints with the same model label always share the family label. Returns [(endpoint, family, model), ...].\"\"\"\n    rng = random.Random(seed)\n    rows = []\n    for endpoint in endpoints:\n        family = letters(rng.randrange(families))\n        rows.append((endpoint, family, f\"{family}{rng.randrange(3) + 1}\"))\n    return rows"
+      },
+      {
+        "name": "solve",
+        "line": 203,
+        "source": "def solve(endpoints: list = ENDPOINTS) -> list:\n    \"\"\"TODO: your method. Must return [(endpoint, family, model), ...], one row per endpoint. Endpoints with the same\n    model label must share the family label. This baseline says \"all different\" (every endpoint in its own family and\n    model); it scores 0.\"\"\"\n    return [(endpoint, letters(i), f\"{letters(i)}1\") for i, endpoint in enumerate(endpoints)]"
+      },
+      {
+        "name": "main",
+        "line": 210,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    print(\"Budget left per endpoint:\")\n    for ep, n in budget.items():\n        print(f\"  {ep}: {n}\")\n    endpoints = [ep for ep in budget if ep.startswith(\"ep-\")]            # the scored endpoints\n    if QUERY:\n        if not PROMPTS_FILE.exists():\n            print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n            raise SystemExit(1)\n        query(read_prompts(PROMPTS_FILE), endpoints=endpoints)\n\n    if RANDOM_SUBMISSION:\n        rows = make_random_submission(endpoints)\n    else:\n        rows = solve(endpoints)\n    write_submission(rows)\n    print(f\"Saved submission to {OUTPUT_FILE}. Upload it with submission.py.\")"
+      }
+    ]
+  },
+  "c2run/q1.py": {
+    "docstring": "Query the reference endpoints ref-01 ... ref-09 (task 33-model-equality).\n\nThe reference endpoints serve a separate small model, with the same kinds of disguises and traps as the scored\nendpoints. Their correct answers are in practice_answers.csv. They have no query limit and are never scored, so use\nthem to build and test your method before you spend your 100 answers per scored endpoint (task_template.py).\n\nHow to use:\n  1. Set API_KEY below and write your prompts in reference_prompts.txt (one per line; a .csv with columns id,prompt\n     or a .jsonl also works).\n  2. Run:  python query_reference.py\n     The answers are appended to reference_answers.jsonl, one JSON line each:\n        {\"endpoint\": \"ref-03\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n     Stopping and restarting is safe: answers already in the file are skipped.\n  3. Write your answer for the reference endpoints in the submission format (endpoint,family,model, one line per\n     reference endpoint) and score it with:  python score_practice.py my_reference_answer.csv\n     Do not put ref- lines in a real submission: the server only accepts ep-01 ... ep-33.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('prompts_ref_pilot.csv')",
+      "ANSWERS_FILE": "Path('ref_answers.jsonl')",
+      "ENDPOINTS": "[f'ref-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 4,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 46,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 52,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 60,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 72,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "main",
+        "line": 153,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n    if not PROMPTS_FILE.exists():\n        print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    endpoints = [ep for ep in budget if ep.startswith(\"ref-\")]\n    assert endpoints and all(e.startswith(\"ref-\") for e in endpoints)       # the reference endpoints the server lists\n    print(\"Reference endpoints:\", \", \".join(endpoints))\n    query(read_prompts(PROMPTS_FILE), endpoints=endpoints, repeats=REPEATS)"
+      }
+    ]
+  },
+  "c2run/q2.py": {
+    "docstring": "Query the reference endpoints ref-01 ... ref-09 (task 33-model-equality).\n\nThe reference endpoints serve a separate small model, with the same kinds of disguises and traps as the scored\nendpoints. Their correct answers are in practice_answers.csv. They have no query limit and are never scored, so use\nthem to build and test your method before you spend your 100 answers per scored endpoint (task_template.py).\n\nHow to use:\n  1. Set API_KEY below and write your prompts in reference_prompts.txt (one per line; a .csv with columns id,prompt\n     or a .jsonl also works).\n  2. Run:  python query_reference.py\n     The answers are appended to reference_answers.jsonl, one JSON line each:\n        {\"endpoint\": \"ref-03\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n     Stopping and restarting is safe: answers already in the file are skipped.\n  3. Write your answer for the reference endpoints in the submission format (endpoint,family,model, one line per\n     reference endpoint) and score it with:  python score_practice.py my_reference_answer.csv\n     Do not put ref- lines in a real submission: the server only accepts ep-01 ... ep-33.\n\nNeeds: pip install requests",
+    "config": {
+      "SERVER_URL": "http://34.147.229.55",
+      "PROMPTS_FILE": "Path('prompts_ref_pilot2.csv')",
+      "ANSWERS_FILE": "Path('ref_answers.jsonl')",
+      "ENDPOINTS": "[f'ref-{i:02d}' for i in range(1, NUM_ENDPOINTS + 1)]",
+      "REPEATS": 4,
+      "MAX_TOKENS": 256,
+      "PARALLEL": 2
+    },
+    "definitions": [
+      {
+        "name": "make_session",
+        "line": 46,
+        "source": "def make_session() -> requests.Session:\n    session = requests.Session()\n[ligne li\u00e9e \u00e0 une authentification omise]\n    return session"
+      },
+      {
+        "name": "get_budget",
+        "line": 52,
+        "source": "def get_budget(session: requests.Session) -> dict:\n    \"\"\"Answers left on every endpoint, e.g. {\"ep-01\": 100, ...}.\"\"\"\n    reply = session.get(f\"{BASE_URL}/models\", timeout=60)\n    if reply.status_code != 200:\n        raise RuntimeError(f\"Error (HTTP {reply.status_code}): {reply.text[:300]}\")\n    return {m[\"id\"]: m[\"budget\"][\"limit\"] - m[\"budget\"][\"used\"] for m in reply.json()[\"data\"]}"
+      },
+      {
+        "name": "read_prompts",
+        "line": 60,
+        "source": "def read_prompts(path: Path) -> list:\n    \"\"\"Returns [(id, prompt), ...] from a .txt (one prompt per line), .csv (id,prompt) or .jsonl file.\"\"\"\n    if path.suffix == \".csv\":\n        with path.open(newline=\"\", encoding=\"utf-8\") as f:\n            return [(row[\"id\"], row[\"prompt\"]) for row in csv.DictReader(f)]\n    if path.suffix == \".jsonl\":\n        with path.open(encoding=\"utf-8\") as f:\n            return [(str(r[\"id\"]), r[\"prompt\"]) for r in (json.loads(line) for line in f if line.strip())]\n    with path.open(encoding=\"utf-8\") as f:\n        return [(str(i), line.rstrip(\"\\n\")) for i, line in enumerate(f)]"
+      },
+      {
+        "name": "query",
+        "line": 72,
+        "source": "def query(prompts: list, output: Path = ANSWERS_FILE, endpoints: list = ENDPOINTS, repeats: int = REPEATS,\n          max_tokens: int = MAX_TOKENS) -> None:\n    \"\"\"Sends every prompt to every chosen endpoint and appends each answer to `output` as one JSON line:\n        {\"endpoint\": \"ep-07\", \"id\": \"3\", \"repeat\": 0, \"prompt\": \"...\", \"response\": \"...\"}\n    Each answer costs one query from that endpoint's budget, so only as many requests as you have left are planned.\n    Stopping and restarting is safe: answers already in `output` are skipped.\"\"\"\n    session = make_session()\n    left = get_budget(session)\n    unknown = [e for e in endpoints if e not in left]\n    if unknown:\n        raise ValueError(f\"unknown endpoints {unknown}; valid: {', '.join(left)}\")\n\n    done = set()\n    if output.exists():\n        with output.open(encoding=\"utf-8\") as f:\n            done = {(r[\"endpoint\"], r[\"id\"], r[\"repeat\"]) for r in (json.loads(line) for line in f if line.strip())}\n    # Round-robin over endpoints, so a run that stops early has covered all of them evenly.\n    jobs, planned, over_budget = [], {ep: 0 for ep in endpoints}, 0\n    for repeat in range(repeats):\n        for pid, prompt in prompts:\n            for ep in endpoints:\n                if (ep, pid, repeat) in done:\n                    continue\n                if planned[ep] < left[ep]:\n                    planned[ep] += 1\n                    jobs.append((ep, pid, repeat, prompt))\n                else:\n                    over_budget += 1\n    print(f\"{len(prompts)} prompts x {len(endpoints)} endpoints x {repeats} repeats: {len(done)} answers already \"\n          f\"in {output}, {len(jobs)} to query\" + (f\", {over_budget} left out (over budget)\" if over_budget else \"\"))\n\n    lock, exhausted, counter = threading.Lock(), set(), [0]\n    out = output.open(\"a\", encoding=\"utf-8\")\n\n    def one(job):\n        ep, pid, repeat, prompt = job\n        while ep not in exhausted:\n            try:\n                r = session.post(f\"{BASE_URL}/chat/completions\", timeout=180,\n                                 json={\"model\": ep, \"max_tokens\": max_tokens,\n                                       \"messages\": [{\"role\": \"user\", \"content\": prompt}]})\n            except requests.RequestException as exc:\n                print(f\"Server unreachable ({type(exc).__name__}); retrying in 30 s.\")\n                time.sleep(30)\n                continue\n            if r.status_code == 200:\n                body = r.json()\n                line = {\"endpoint\": ep, \"id\": pid, \"repeat\": repeat, \"prompt\": prompt,\n                        \"response\": body[\"choices\"][0][\"message\"][\"content\"]}\n                with lock:\n                    out.write(json.dumps(line, ensure_ascii=False) + \"\\n\")\n                    out.flush()\n                    counter[0] += 1\n                    if counter[0] % 20 == 0 or counter[0] == len(jobs):\n                        b = body[\"budget\"]\n                        print(f\"{counter[0]}/{len(jobs)} answers ({ep}: {b['used']}/{b['limit']} used)\")\n                return\n            detail = r.json().get(\"detail\", r.text[:300]) if r.headers.get(\"content-type\", \"\").startswith(\n                \"application/json\") else r.text[:300]\n            if r.status_code == 429 and \"Retry-After\" in r.headers:   # busy: wait for a free slot\n                time.sleep(int(r.headers[\"Retry-After\"]))\n            elif r.status_code == 429:                                 # this endpoint's budget is used up\n                with lock:\n                    if ep not in exhausted:\n                        exhausted.add(ep)\n                        print(detail)\n            elif r.status_code in (502, 503, 504):\n                print(f\"{detail} Retrying in 15 s.\")\n                time.sleep(15)\n            else:\n                print(f\"{ep} id {pid}: HTTP {r.status_code}: {detail}\", file=sys.stderr)\n                return\n\n    try:\n        with ThreadPoolExecutor(max_workers=PARALLEL) as pool:\n            list(pool.map(one, jobs))\n    finally:\n        out.close()\n    print(f\"Finished: {output}\")"
+      },
+      {
+        "name": "main",
+        "line": 153,
+        "source": "def main() -> None:\n[ligne li\u00e9e \u00e0 une authentification omise]\n[ligne li\u00e9e \u00e0 une authentification omise]\n        raise SystemExit(1)\n    if not PROMPTS_FILE.exists():\n        print(f\"Error: {PROMPTS_FILE} not found. Write your prompts there (one per line).\", file=sys.stderr)\n        raise SystemExit(1)\n\n    budget = get_budget(make_session())\n    endpoints = [ep for ep in budget if ep.startswith(\"ref-\")]\n    assert endpoints and all(e.startswith(\"ref-\") for e in endpoints)       # the reference endpoints the server lists\n    print(\"Reference endpoints:\", \", \".join(endpoints))\n    query(read_prompts(PROMPTS_FILE), endpoints=endpoints, repeats=REPEATS)"
+      }
+    ]
+  },
+  "processes": "pelet1   systemd\npelet1   (sd-pam)\npelet1   sshd-session\npelet1   bash\npelet1   sh\npelet1   MainThread\npelet1   MainThread\npelet1   MainThread\npelet1   copilot-runtime\npelet1   sh\npelet1   code-8a14f0cc1b\npelet1   MainThread\npelet1   MainThread\npelet1   MainThread\npelet1   MainThread\npelet1   MainThread\npelet1   dbus-broker-lau\npelet1   dbus-broker\npelet1   sh\npelet1   code-8a14f0cc1b\npelet1   MainThread\npelet1   MainThread\nmouhali1 systemd\nmouhali1 (sd-pam)\nmouhali1 sshd-session\nmouhali1 bash\nmouhali1 bash\npelet1   bash\npelet1   git\npelet1   less\npelet1   git\npelet1   less\npelet1   git\npelet1   less\npelet1   git\npelet1   less\nmouhali1 bash\npelet1   sleep\npelet1   sleep\nmouhali1 python3\nmouhali1 ps"
+}

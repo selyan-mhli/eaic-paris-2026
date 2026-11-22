@@ -1,0 +1,22 @@
+66f815c304cc061a136b16a7de57a7be00b030d6088bd9a1eebf996c99169f31  work_segf/head_eval.py
+c182e5dac66fec152ae4a5784433fd6866dfe5af935cf02f29e0b887f4bb0896  output/segf_ens3_3.npz
+514470852e15f8f4fc4316932ee8ece46ea86218bd067c48f1f2b9181c5ab43f  output/c1_segf_ffm_e20_20261121.pt
+514470852e15f8f4fc4316932ee8ece46ea86218bd067c48f1f2b9181c5ab43f  output/segf_sub_1.pt
+ff+fm+hf:ncc_m,ncc_d (moy.) all=0.5614 | pixel=0.578 [F 0.571 n=85] [R 0.584 n=85] trust=0.590 [F 0.539 n=85] [R 0.641 n=85] stega=0.516 [F 0.556 n=85] [R 0.476 n=85]
+Δ pixelseal  +0.0661 par graine [0.0694, 0.0595, 0.0692] ; sur les F +0.1127
+Δ trustmark  +0.0404 par graine [0.0367, 0.0424, 0.042] ; sur les F +0.0810
+Δ stegastamp +0.0487 par graine [0.0491, 0.045, 0.0519] ; sur les F +0.0898
+Δ global +0.0517 par graine [0.0517, 0.049, 0.0544]
+Traceback (most recent call last):
+  File "/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task/work_segf/head_eval.py", line 261, in <module>
+    main()
+  File "/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task/work_segf/head_eval.py", line 247, in main
+    T32, T128 = build_inputs(a.config, tn, dt, load(a.test_ff), load(a.test_hf) if a.test_hf else {},
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/p/scratch/training2666/mouhali1/SLZ/Hackathon_Watermark_Localisation_Task/work_segf/head_eval.py", line 71, in build_inputs
+    assert v is not None, c
+           ^^^^^^^^^^^^^
+AssertionError: ncc_m
+JobID|State|Elapsed|SubmitLine
+15902420|COMPLETED|00:06:22|sbatch --parsable --time=00:40:00 work_segf/head.sbatch segf_sub ff+fm@60 ff+fm@20 ff@60 ff@20 --seeds 0
+15902663|FAILED|00:15:48|sbatch --parsable -p dc-gpu --time=00:25:00 work_segf/head.sbatch segf_ens3 ff+fm@20 ff+fm@10 ff@20 ff+fm+hf:ncc_m,ncc_d@20 --seeds 0 1 2 --ens 3

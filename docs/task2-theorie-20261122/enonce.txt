@@ -1,0 +1,208 @@
+European AI Championship Paris 2026
+
+Supervisors: Adam Dziedzic and Franziska Boenisch
+Title: Model Equality​
+Developed by: Xun Wang, Bihe Zhao, Maitri Shah, Ivo Hoese, Aditya Kumar
+
+
+Background: Model Equality Testing
+
+Model equality testing investigates whether two APIs serve the same model by comparing
+their responses to carefully chosen inputs. Since a model can produce different answers to the
+same prompt, a useful test must distinguish meaningful differences in model behavior from
+ordinary sampling variation. In this challenge, participants use generated text to identify which
+API endpoints serve the same model, even when their deployment settings differ.
+
+Challenge
+
+Changes in system prompts, decoding strategies, and watermarks can alter the text produced
+by the same model. Conversely, different quantized versions or LoRA adapters may produce
+very similar responses. Your task is to design informative prompts and compare responses
+within the query budget to identify model identity despite these effects.
+
+Setting and Goal
+
+We provide 33 LLM deployments, each exposed through its own API endpoint, `ep-01` to
+`ep-33`. Some endpoints serve the same model under different deployment settings, others
+serve different models.
+
+A deployment may vary in its decoding watermark, provider-added system prompt,
+decoding strategy, quantization configuration or LoRA adapter.
+
+Two endpoints serve the same model when they use the same checkpoint, the same
+quantization configuration and the same LoRA adapter.
+
+   ●​ Given the same base model, differences in watermark, system prompt, or decoding
+      strategy do not change model identity.
+   ●​ Differences in base model, quantization configuration or LoRA adapter do count as
+      different models.
+   ●​ Sharing a model family alone does not establish equality.
+
+For example, two deployments of the same OLMo base model with the same quantization and
+adapter settings are identical, even if one uses a decoding watermark and a different system
+prompt. A quantized variant of that checkpoint, or a version with a different LoRA adapter, is a
+different model.
+
+Your goal: for every endpoint, decide which family it belongs to (which endpoints are built on
+the same base model), and for every pair of endpoints, decide whether they serve the same
+model.
+
+Evaluation Metric
+Submissions are scored with the Matthews correlation coefficient (MCC) over the endpoint
+pairs. Each unordered pair (i, j) with i < j is counted once, which gives 528 pairs. Each pair is
+either the same or different. With
+
+   ●​   TP: pairs correctly called “same"
+   ●​   TN: pairs correctly called "different"
+   ●​   FP: pairs wrongly called "same" (false alarms)
+   ●​   FN: pairs wrongly called "different" (missed same-model pairs)
+
+And MMC is:
+
+                                               (𝑇𝑃·𝑇𝑁 − 𝐹𝑃·𝐹𝑁)
+                    𝑀𝐶𝐶 =
+                                    (𝑇𝑃+𝐹𝑃)(𝑇𝑃+𝐹𝑁)(𝑇𝑁+𝐹𝑃)(𝑇𝑁+𝐹𝑁)
+
+                                  𝑀𝑀𝐶𝑥 = 𝑚𝑎𝑥(0, 𝑀𝐶𝐶)
+
+Two questions are scored:
+
+   ●​ Family (10%): is the pair from the same family? (all pairs)
+   ●​ Model (90%): is the pair the same model? (only pairs within one family; pairs from
+      different families are never the same model)
+
+The final score combines the two MCCs:
+
+                    𝑠𝑐𝑜𝑟𝑒 = 0. 1 * 𝑀𝐶𝐶𝑓𝑎𝑚𝑖𝑙𝑦 + 0. 9 * 𝑀𝐶𝐶𝑚𝑜𝑑𝑒𝑙
+
+where
+
+   ●​ MCC_family is the MCC of your answer to "same family?", over all endpoint pairs;
+   ●​ MCC_model is the MCC of your answer to "same model?", over the endpoint pairs that
+      belong to the same family. Pairs from different families are never the same model, so
+      they are not counted here.
+
+Recognising the families alone therefore gives at most 0.1. The rest is for telling apart the
+endpoints within a family, such as the quantized and LoRA variants. Missed same-model pairs
+and false alarms both lower the score.
+
+A perfect answer scores 1. Higher is better.
+
+DO NOT RELY ON THE PUBLIC SCORE OR OPTIMIZE ONLY FOR IT. (see below for more
+info)
+
+API Access and Query Budget
+
+You receive API access to all 33 endpoints. Each query sends a prompt to one endpoint and
+returns generated text only.
+
+   ●​ Each team may collect up to 100 responses per endpoint for the whole competition. A
+      request for several responses uses one query per response.
+   ●​ At most 256 generated tokens per response, and at most 1,024 input tokens per
+      prompt.
+   ●​ At most 4 requests at a time per team.
+   ●​ Sampling settings such as `temperature` and `seed` are ignored, and system
+      messages are rejected.
+   ●​ Invalid requests are rejected and not counted against your budget.
+
+Reference / Practice endpoints
+
+Because submissions are limited (see below), we also give you endpoints on which you can
+test your method with known answers: `ref-01` to `ref-09`. They serve a separate small model,
+with the same kinds of disguises and traps as the scored endpoints. The answer for each one
+is published in practice_answers.csv, and score_practice.py scores your practice answer
+locally, as often as you like.
+
+To query them, use query_reference.py (set your API key, write your prompts in
+reference_prompts.txt and run python query_reference.py). It saves the answers to
+reference_answers.jsonl.
+
+Your Starting Point
+
+To start you off, we give you a task_template.py that shows you how to retrieve information
+about the endpoints and query them and generate a random submission, submission.py how
+to make a submission. Remember to replace YOUR_API_KEY_HERE with your actual API-key
+(keep the double quotes), and replace /PATH/FILE.csv with your real results. Submissions
+must follow the required file format described below.
+
+All files are available at: https://huggingface.co/datasets/SprintML/model_equality
+
+For complete setup on Juelich, including file downloads, Python environment configuration,
+and shared folder permissions for all the tasks together, follow the instructions in the
+repository below:
+
+
+  None‎
+  git clone https://huggingface.co/datasets/SprintML/hackathon
+
+
+After cloning, open the README.md file and follow the setup instructions.
+
+How to submit your results?
+
+Use the code file submission.py. Replace YOUR_API_KEY_HERE with your actual API key (keep
+the double quotes), and replace /PATH/FILE.csv with the path of your results.
+
+Submit a `.csv` file with one line per endpoint and three columns: `endpoint,family,model`. The
+header line is optional and the order of the lines does not matter. The labels are any text you
+like (no commas).
+
+For example, for three endpoints:
+  Python‎
+  endpoint,family,model
+  ep-01,A,A1
+  ep-02,B,B1
+  ep-03,A,A2
+
+
+   ●​ Endpoints with the same `family` label: you think they are built on the same base
+      model.
+   ●​ Endpoints with the same `model` label: you think they serve exactly the same model.
+      They must also share the `family` label.
+   ●​ The sample puts every endpoint in its own family and model ("all different").
+
+
+Submission limit
+
+To avoid brute-forcing, only one submission can be made every 30 minutes (about 48
+submissions in 24 hours). If a submission fails because of an error, the same cool-down
+applies.
+
+DO NOT RELY ON THE PUBLIC SCORE OR OPTIMIZE ONLY FOR IT.
+
+The public and the final score can differ a lot: a submission that is tuned to the
+leaderboard can score high there and close to nothing in the final ranking. Use the
+reference endpoints and your own analysis to judge your method and treat the public
+score only as a rough check.
+
+
+Leaderboard
+After evaluation, your results can be found in the leaderboard:
+
+   ●​ You       can     access      the     leaderboard       for    this    task      at
+      http://34.147.229.55/leaderboard_page. This will help you to compare your solutions
+      with other teams and see where you stand.
+
+   ●​ The leaderboard shows the best result per team only. If your current submission’s
+      score is lower than the score saved in the leaderboard, the score will not be updated.
+
+   ●​ The leaderboard only shows you the evaluation on a part of the pairs called public
+      score. After the hackathon is concluded, you will be ranked on the remaining, unseen
+      part. This is done to avoid overfitting to the leaderboard and to promote methods that
+      properly generalize. DO NOT RELY ON THE PUBLIC SCORE OR OPTIMIZE ONLY
+      FOR IT.
+
+
+
+
+References:
+●​ “Model Equality Testing: Which Model Is This API Serving?” Irena Gao, Percy Liang,
+   Carlos Guestrin. ICLR 2025. https://arxiv.org/pdf/2410.20247 (MET)
+●​ “Auditing Black-Box LLM APIs with a Rank-Based Uniformity Test” Xiaoyuan Zhu,
+   Yaowen Ye, Tianyi Qiu, Hanlin Zhu, Sijun Tan, Ajraf Mannan, Jonathan Michala,
+   Raluca Ada Popa, Willie Neiswanger. ICLR 2026. https://arxiv.org/pdf/2506.06975
+   (RUT)
+●​ “AgentProv: Auditing Agentic LLM API Providers via Tool-use Policy Probes” Xun
+   Wang, Bihe Zhao, Michael Backes, Franziska Boenisch, Adam Dziedzic. ICLR 2026.
+   https://arxiv.org/pdf/2609.00052
+

@@ -1,0 +1,38 @@
+unif prior n= 20000 P(H3)= 0.505
+    c2_lump_v1 {'E_priv': 0.128, 'p10': 0.062, 'p90': 0.231}
+    baseline_random {'E_priv': 0.031, 'p10': 0.0, 'p90': 0.105}
+    ep_first_hamming {'E_priv': 0.047, 'p10': 0.0, 'p90': 0.144}
+    ep_first_ngram {'E_priv': 0.022, 'p10': 0.0, 'p90': 0.104}
+    c2_fam3_pairs_v2 {'E_priv': 0.112, 'p10': 0.061, 'p90': 0.188}
+    W_fam3_lump {'E_priv': 0.11, 'p10': 0.062, 'p90': 0.184}
+    W_fam3_len_tau2 {'E_priv': 0.128, 'p10': 0.062, 'p90': 0.231}
+    W_fam3_singletons {'E_priv': 0.081, 'p10': 0.061, 'p90': 0.1}
+unif posterior_ABC n= 303 P(H3)= 1.0
+    c2_lump_v1 {'E_priv': 0.087, 'p10': 0.06, 'p90': 0.153}
+    baseline_random {'E_priv': 0.06, 'p10': 0.0, 'p90': 0.181}
+    ep_first_hamming {'E_priv': 0.034, 'p10': 0.0, 'p90': 0.127}
+    ep_first_ngram {'E_priv': 0.021, 'p10': 0.0, 'p90': 0.108}
+    c2_fam3_pairs_v2 {'E_priv': 0.124, 'p10': 0.1, 'p90': 0.186}
+    W_fam3_lump {'E_priv': 0.1, 'p10': 0.1, 'p90': 0.1}
+    W_fam3_len_tau2 {'E_priv': 0.131, 'p10': 0.1, 'p90': 0.208}
+    W_fam3_singletons {'E_priv': 0.1, 'p10': 0.1, 'p90': 0.1}
+unif bins fam3 public: {'[0.1,0.2)': {'n': 247, 'P(H3)': 1.0, 'E_priv_fam3': 0.123, 'E_priv_W_len': 0.134}, '[0.2,0.3)': {'n': 38, 'P(H3)': 1.0, 'E_priv_fam3': 0.121, 'E_priv_W_len': 0.118}, '[0.3,0.4)': {'n': 15, 'P(H3)': 1.0, 'E_priv_fam3': 0.148, 'E_priv_W_len': 0.124}, '>=0.4': {'n': 3, 'P(H3)': 1.0, 'E_priv_fam3': 0.111, 'E_priv_W_len': 0.134}}
+len prior n= 20000 P(H3)= 0.496
+    c2_lump_v1 {'E_priv': 0.205, 'p10': 0.068, 'p90': 0.357}
+    baseline_random {'E_priv': 0.031, 'p10': 0.0, 'p90': 0.101}
+    ep_first_hamming {'E_priv': 0.106, 'p10': 0.0, 'p90': 0.249}
+    ep_first_ngram {'E_priv': 0.023, 'p10': 0.0, 'p90': 0.105}
+    c2_fam3_pairs_v2 {'E_priv': 0.112, 'p10': 0.061, 'p90': 0.185}
+    W_fam3_lump {'E_priv': 0.111, 'p10': 0.062, 'p90': 0.187}
+    W_fam3_len_tau2 {'E_priv': 0.197, 'p10': 0.065, 'p90': 0.351}
+    W_fam3_singletons {'E_priv': 0.081, 'p10': 0.061, 'p90': 0.1}
+len posterior_ABC n= 184 P(H3)= 1.0
+    c2_lump_v1 {'E_priv': 0.122, 'p10': 0.061, 'p90': 0.23}
+    baseline_random {'E_priv': 0.055, 'p10': 0.0, 'p90': 0.167}
+    ep_first_hamming {'E_priv': 0.068, 'p10': 0.0, 'p90': 0.171}
+    ep_first_ngram {'E_priv': 0.025, 'p10': 0.0, 'p90': 0.122}
+    c2_fam3_pairs_v2 {'E_priv': 0.13, 'p10': 0.1, 'p90': 0.205}
+    W_fam3_lump {'E_priv': 0.1, 'p10': 0.1, 'p90': 0.1}
+    W_fam3_len_tau2 {'E_priv': 0.177, 'p10': 0.1, 'p90': 0.295}
+    W_fam3_singletons {'E_priv': 0.1, 'p10': 0.1, 'p90': 0.1}
+len bins fam3 public: {'[0.1,0.2)': {'n': 143, 'P(H3)': 1.0, 'E_priv_fam3': 0.131, 'E_priv_W_len': 0.175}, '[0.2,0.3)': {'n': 25, 'P(H3)': 1.0, 'E_priv_fam3': 0.128, 'E_priv_W_len': 0.195}, '[0.3,0.4)': {'n': 15, 'P(H3)': 1.0, 'E_priv_fam3': 0.119, 'E_priv_W_len': 0.163}, '>=0.4': {'n': 1, 'P(H3)': 1.0, 'E_priv_fam3': 0.1, 'E_priv_W_len': 0.166}}

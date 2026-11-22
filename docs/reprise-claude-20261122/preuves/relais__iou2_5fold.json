@@ -1,0 +1,92 @@
+{
+  "covered": 510,
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "partial": false,
+  "comparison": "ensemble 4k+IoU2 contre 4k+4k ; ne compare pas au champion ssall3 à 0,6739",
+  "threshold": 0.5,
+  "weight_iou2": 0.5,
+  "provenance": {
+    "base": [
+      {
+        "path": "/private/tmp/claude-501/-Users-selyan--claude-spares-spare-QUr5DF/615c7a8a-6851-4d35-992d-5de19df90633/scratchpad/t1_emiou/data/output/pixseg_cv_pre_cnt4k_f01.npz",
+        "sha256": "45402676ea93aa935223d927ea10568b24a7658fe6c85792fb3bee3d2269b1d2"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_base_f23.npz",
+        "sha256": "54571a7d9b6ce369cf96584949ff59761dc3ab0ad0be11b35ad287d0e91d31ae"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_base_f4.npz",
+        "sha256": "08e0c0d36c0cf9f2ba5693bee26c2b0ba45714c7b9a64ed551cda842c910c333"
+      }
+    ],
+    "seed1": [
+      {
+        "path": "/private/tmp/claude-501/-Users-selyan--claude-spares-spare-QUr5DF/615c7a8a-6851-4d35-992d-5de19df90633/scratchpad/t1_emiou/data/output/pixseg_cv_sr_seed1_f01.npz",
+        "sha256": "25137aaab81aeadd22a761f824487f7c004d89d2057b880a5f9dfa8d23003db7"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_seed1_f23.npz",
+        "sha256": "97af4d31f55fd6cd702d3a3942052ba061c08f1d45b7c421762991dd320a886c"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_seed1_f4.npz",
+        "sha256": "5520a17e5fa2179a8020aab27bb067d29dc2c2fda7bcb9c3efae7e54ba8f965a"
+      }
+    ],
+    "iou2": [
+      {
+        "path": "/private/tmp/claude-501/-Users-selyan--claude-spares-spare-QUr5DF/615c7a8a-6851-4d35-992d-5de19df90633/scratchpad/t1_emiou/data/output/pixseg_cv_sr_iou2_f01.npz",
+        "sha256": "809f8470121da39e26bac28529851ffb1a007532fd6c1aabd3ac76f46b68e0e6"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_iou2_f23.npz",
+        "sha256": "17d3801aa2c39f23be88768feb85855f02c04e82a19585d17d2407047044c283"
+      },
+      {
+        "path": "/private/tmp/eaic-relais-20261122/t1sr/pixseg_cv_sr_iou2_f4.npz",
+        "sha256": "68d5001bb45cfce8ec7ac84f078e9e5fe78a18d4011d59650e6f48fa7fe4877e"
+      }
+    ]
+  },
+  "groups": {
+    "global": {
+      "n": 510,
+      "gain": 0.0033809625562153133,
+      "ci95": [
+        0.0003469829734489858,
+        0.0065736066293374034
+      ]
+    },
+    "SS_F": {
+      "n": 85,
+      "gain": 0.007779118296753448,
+      "ci95": [
+        -0.002558245355626058,
+        0.01735101361726067
+      ]
+    },
+    "SS_R": {
+      "n": 85,
+      "gain": 0.01250665704053843,
+      "ci95": [
+        -0.0030701410590105818,
+        0.028338147834928815
+      ]
+    }
+  },
+  "per_fold": {
+    "0": 0.008107495641562781,
+    "1": 0.0016555298080629017,
+    "2": -0.0019404484794219355,
+    "3": -0.0015360620977756675,
+    "4": 0.010618297908648487
+  },
+  "verdict": "DIAGNOSTIC — décision Selyan"
+}

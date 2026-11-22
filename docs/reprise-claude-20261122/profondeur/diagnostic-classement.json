@@ -1,0 +1,77 @@
+{
+  "source": "capture officielle par le relais vers 03:17 Paris, copie figée",
+  "rang": 27,
+  "general": 0.31910777304289245,
+  "scores": {
+    "34-watermark-localisation-image": 0.6739068609009466,
+    "33-model-equality": 0.2,
+    "31-unlearning": 0.09411482372784334
+  },
+  "seuil_sixieme": 0.7611852468546018,
+  "ecart_general": 0.4420774738117093,
+  "normalisation": {
+    "34-watermark-localisation-image": {
+      "min": 0.49129971028972225,
+      "max": 0.8032744758421851,
+      "contribution": 0.19510888996406825,
+      "gain_general_pour_001": 0.010684624852367383
+    },
+    "33-model-equality": {
+      "min": 0.05,
+      "max": 1.0,
+      "contribution": 0.052631578947368425,
+      "gain_general_pour_001": 0.003508771929824562
+    },
+    "31-unlearning": {
+      "min": 0.0,
+      "max": 0.43957955664817944,
+      "contribution": 0.07136730413145577,
+      "gain_general_pour_001": 0.007583003538085803
+    }
+  },
+  "scenarios_tableau_fige": {
+    "34-watermark-localisation-image": [
+      {
+        "nouveau_score": 0.7,
+        "general_si_seule_cette_tache_change": 0.3469873132922949
+      },
+      {
+        "nouveau_score": 0.75,
+        "general_si_seule_cette_tache_change": 0.40041043755413186
+      },
+      {
+        "nouveau_score": 0.8032744758421851,
+        "general_si_seule_cette_tache_change": 0.4573322164121576
+      }
+    ],
+    "33-model-equality": [
+      {
+        "nouveau_score": 0.4,
+        "general_si_seule_cette_tache_change": 0.3892832116393837
+      },
+      {
+        "nouveau_score": 0.6,
+        "general_si_seule_cette_tache_change": 0.4594586502358749
+      },
+      {
+        "nouveau_score": 1.0,
+        "general_si_seule_cette_tache_change": 0.5998095274288574
+      }
+    ],
+    "31-unlearning": [
+      {
+        "nouveau_score": 0.2,
+        "general_si_seule_cette_tache_change": 0.39940053967315275
+      },
+      {
+        "nouveau_score": 0.3,
+        "general_si_seule_cette_tache_change": 0.4752305750540108
+      },
+      {
+        "nouveau_score": 0.43957955664817944,
+        "general_si_seule_cette_tache_change": 0.58107380224477
+      }
+    ]
+  },
+  "limite": "Scénarios comptables, pas gains réalisables ni prévisions ; les autres équipes et les extrêmes évolueront."
+}

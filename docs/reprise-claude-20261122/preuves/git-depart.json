@@ -1,0 +1,12 @@
+{
+  "heure_paris": "2026-11-22T03:06:56.252689+01:00",
+  "commande": [
+    "git",
+    "status",
+    "--short",
+    "--branch"
+  ],
+  "code": 0,
+  "stdout": "## main...origin/main [behind 7]\n M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/SLZ_COORDINATION_20261121.md\n?? docs/audit-global-20261122/\n?? docs/audit-strategies-20261121/\n?? docs/point-campagne-20261121/\n?? docs/relais-codex-20261122/\n?? docs/reprise-campagne-20261121/\n?? docs/reprise-claude-20261122/\n?? docs/slz-jobs/\n?? docs/task1-audit-20261121/\n?? docs/task1-dense-pilot-15903857/\n?? docs/task2-audit-20261121/\n?? docs/task2-bench-20261121/\n?? docs/task2-theorie-20261122/\n?? docs/task2-work-20261121/\n?? docs/task3-audit-20261121/\n?? docs/task3-work-20261121/\n",
+  "stderr": ""
+}

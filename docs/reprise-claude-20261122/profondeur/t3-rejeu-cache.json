@@ -1,0 +1,229 @@
+{
+  "source": "/private/tmp/claude-501/-Users-selyan--claude-spares-spare-oGfpae/d60fc14b-9806-4319-b999-3844f0f1cede/scratchpad/feats_15903971.npz",
+  "nature": "rejeu CPU de tête sur features fp16 sauvegardées ; aucune mesure du retain caché",
+  "classes_concernees": 45,
+  "verification": {
+    "orig": {
+      "logits_ecart_abs_max": 0.015625,
+      "desaccord_top1": 0.0
+    },
+    "push_best": {
+      "logits_ecart_abs_max": 0.015625,
+      "desaccord_top1": 0.0
+    },
+    "push_s125": {
+      "logits_ecart_abs_max": 0.015625,
+      "desaccord_top1": 0.0
+    },
+    "push_s150": {
+      "logits_ecart_abs_max": 0.0078125,
+      "desaccord_top1": 0.0
+    },
+    "push_s200": {
+      "logits_ecart_abs_max": 0.0078125,
+      "desaccord_top1": 0.0
+    }
+  },
+  "candidats": {
+    "1.25": {
+      "forget/tous": {
+        "n": 3500,
+        "accord_origine": 0.9011428356170654,
+        "kl_T2": 0.4615224003791809,
+        "facteur_KL": 0.6842180453344797
+      },
+      "forget/concernees": {
+        "n": 3500,
+        "accord_origine": 0.9011428356170654,
+        "kl_T2": 0.4615224003791809,
+        "facteur_KL": 0.6842180453344797
+      },
+      "altered/tous": {
+        "n": 3500,
+        "accord_origine": 0.9091428518295288,
+        "kl_T2": 0.45436179637908936,
+        "facteur_KL": 0.6875868181422878
+      },
+      "altered/concernees": {
+        "n": 3499,
+        "accord_origine": 0.9091168642044067,
+        "kl_T2": 0.45404714345932007,
+        "facteur_KL": 0.687735610566864
+      },
+      "altered/autres": {
+        "n": 1,
+        "accord_origine": 1.0,
+        "kl_T2": 1.555372953414917,
+        "facteur_KL": 0.3913323096981334
+      },
+      "offall/tous": {
+        "n": 1530,
+        "accord_origine": 0.6222222447395325,
+        "kl_T2": 0.5391424298286438,
+        "facteur_KL": 0.6497124506608087
+      },
+      "offall/concernees": {
+        "n": 699,
+        "accord_origine": 0.17453505098819733,
+        "kl_T2": 0.8573108315467834,
+        "facteur_KL": 0.5384128402283596
+      },
+      "offall/autres": {
+        "n": 831,
+        "accord_origine": 0.9987966418266296,
+        "kl_T2": 0.2715133726596832,
+        "facteur_KL": 0.7864643986466724
+      }
+    },
+    "1.5": {
+      "forget/tous": {
+        "n": 3500,
+        "accord_origine": 0.776285707950592,
+        "kl_T2": 0.8537206053733826,
+        "facteur_KL": 0.539455620820796
+      },
+      "forget/concernees": {
+        "n": 3500,
+        "accord_origine": 0.776285707950592,
+        "kl_T2": 0.8537206053733826,
+        "facteur_KL": 0.539455620820796
+      },
+      "altered/tous": {
+        "n": 3500,
+        "accord_origine": 0.7828571200370789,
+        "kl_T2": 0.8436244130134583,
+        "facteur_KL": 0.5424098275881857
+      },
+      "altered/concernees": {
+        "n": 3499,
+        "accord_origine": 0.7827950716018677,
+        "kl_T2": 0.8432942628860474,
+        "facteur_KL": 0.5425069779332461
+      },
+      "altered/autres": {
+        "n": 1,
+        "accord_origine": 1.0,
+        "kl_T2": 1.9992995262145996,
+        "facteur_KL": 0.33341118193090064
+      },
+      "offall/tous": {
+        "n": 1530,
+        "accord_origine": 0.5856209397315979,
+        "kl_T2": 0.7441285252571106,
+        "facteur_KL": 0.5733522418323989
+      },
+      "offall/concernees": {
+        "n": 699,
+        "accord_origine": 0.09442060440778732,
+        "kl_T2": 1.2022788524627686,
+        "facteur_KL": 0.45407510446813676
+      },
+      "offall/autres": {
+        "n": 831,
+        "accord_origine": 0.9987966418266296,
+        "kl_T2": 0.358752965927124,
+        "facteur_KL": 0.735968954678723
+      }
+    },
+    "1.75": {
+      "forget/tous": {
+        "n": 3500,
+        "accord_origine": 0.5828571319580078,
+        "kl_T2": 1.4196698665618896,
+        "facteur_KL": 0.4132795195821075
+      },
+      "forget/concernees": {
+        "n": 3500,
+        "accord_origine": 0.5828571319580078,
+        "kl_T2": 1.4196698665618896,
+        "facteur_KL": 0.4132795195821075
+      },
+      "altered/tous": {
+        "n": 3500,
+        "accord_origine": 0.5879999995231628,
+        "kl_T2": 1.4070489406585693,
+        "facteur_KL": 0.41544647601822327
+      },
+      "altered/concernees": {
+        "n": 3499,
+        "accord_origine": 0.5878822803497314,
+        "kl_T2": 1.4067507982254028,
+        "facteur_KL": 0.41549794051687505
+      },
+      "altered/autres": {
+        "n": 1,
+        "accord_origine": 1.0,
+        "kl_T2": 2.449859857559204,
+        "facteur_KL": 0.28986684714419264
+      },
+      "offall/tous": {
+        "n": 1530,
+        "accord_origine": 0.5653594732284546,
+        "kl_T2": 0.9673582315444946,
+        "facteur_KL": 0.5082958375175729
+      },
+      "offall/concernees": {
+        "n": 699,
+        "accord_origine": 0.05007153004407883,
+        "kl_T2": 1.5817464590072632,
+        "facteur_KL": 0.3873347038053154
+      },
+      "offall/autres": {
+        "n": 831,
+        "accord_origine": 0.9987966418266296,
+        "kl_T2": 0.45056256651878357,
+        "facteur_KL": 0.6893877059022058
+      }
+    },
+    "2.0": {
+      "forget/tous": {
+        "n": 3500,
+        "accord_origine": 0.3854285776615143,
+        "kl_T2": 2.155146837234497,
+        "facteur_KL": 0.31694245991939485
+      },
+      "forget/concernees": {
+        "n": 3500,
+        "accord_origine": 0.3854285776615143,
+        "kl_T2": 2.155146837234497,
+        "facteur_KL": 0.31694245991939485
+      },
+      "altered/tous": {
+        "n": 3500,
+        "accord_origine": 0.3837142884731293,
+        "kl_T2": 2.1387314796447754,
+        "facteur_KL": 0.3186000479764438
+      },
+      "altered/concernees": {
+        "n": 3499,
+        "accord_origine": 0.383538156747818,
+        "kl_T2": 2.1385130882263184,
+        "facteur_KL": 0.3186222175562551
+      },
+      "altered/autres": {
+        "n": 1,
+        "accord_origine": 1.0,
+        "kl_T2": 2.9031364917755127,
+        "facteur_KL": 0.25620420964195034
+      },
+      "offall/tous": {
+        "n": 1530,
+        "accord_origine": 0.5529412031173706,
+        "kl_T2": 1.2044528722763062,
+        "facteur_KL": 0.453627297991363
+      },
+      "offall/concernees": {
+        "n": 699,
+        "accord_origine": 0.022889843210577965,
+        "kl_T2": 1.9870402812957764,
+        "facteur_KL": 0.3347795495969008
+      },
+      "offall/autres": {
+        "n": 831,
+        "accord_origine": 0.9987966418266296,
+        "kl_T2": 0.5461753010749817,
+        "facteur_KL": 0.6467571945462768
+      }
+    }
+  }
+}

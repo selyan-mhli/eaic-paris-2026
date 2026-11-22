@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Arial, Helvetica, sans-serif">
+  <rect id="bg" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FAF8F3"/>
+  <g id="header" data-pptx-bounds="64 48 1152 88">
+    <text x="64" y="70" font-size="18" fill="#2F6F73" letter-spacing="2">TASK 2 · MODEL EQUALITY</text>
+    <text x="64" y="114" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="44" fill="#1F2A44">T2 : familles identifiées, variantes non séparées</text>
+  </g>
+  <g id="acquired" data-pptx-bounds="64 148 540 392">
+    <text x="64" y="172" font-size="18" fill="#6B6A66" letter-spacing="2">ACQUIS · 33 ENDPOINTS, 3 FAMILLES</text>
+    <text x="64" y="272" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="96" fill="#2F6F73">528/528</text>
+    <text x="64" y="306" font-size="18" fill="#6B6A66">accord entre l'identification en boîte blanche<tspan x="64" dy="24">(vraisemblance) et nos paires de familles</tspan></text>
+    <g id="family-qwen3b">
+      <rect x="64" y="368" width="520" height="46" rx="4" fill="#EFEBE1"/>
+      <text x="84" y="400" font-size="26" fill="#22252B">Qwen2.5-3B-Instruct · 11</text>
+    </g>
+    <g id="family-qwen15b">
+      <rect x="64" y="424" width="520" height="46" rx="4" fill="#EFEBE1"/>
+      <text x="84" y="456" font-size="26" fill="#22252B">Qwen2.5-1.5B-Instruct · 11</text>
+    </g>
+    <g id="family-llama">
+      <rect x="64" y="480" width="520" height="46" rx="4" fill="#EFEBE1"/>
+      <text x="84" y="512" font-size="26" fill="#22252B">Llama-3.2-1B-Instruct · 11</text>
+    </g>
+  </g>
+  <g id="lock" data-pptx-bounds="640 148 576 392">
+    <use data-icon="tabler-outline/lock" x="640" y="154" width="22" height="22" fill="#2F6F73" stroke-width="2"/>
+    <text x="670" y="172" font-size="18" fill="#6B6A66" letter-spacing="2">VERROU · LES VARIANTES D'UNE FAMILLE</text>
+    <text x="640" y="212" font-size="26" fill="#22252B">fp8 · LoRA · température · prompt système</text>
+    <line x1="640" y1="236" x2="1216" y2="236" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="640" y="276" font-size="26" font-weight="bold" fill="#1F2A44">Simulation GPU</text>
+    <text x="640" y="304" font-size="18" fill="#6B6A66">MCC de 0,00 à 0,52, même en vérité connue</text>
+    <line x1="640" y1="322" x2="1216" y2="322" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="640" y="362" font-size="26" font-weight="bold" fill="#1F2A44">Sondes à quasi-égalité de logits</text>
+    <text x="640" y="390" font-size="18" fill="#6B6A66">990 requêtes sur les 9 refs : MCC 0,000</text>
+    <line x1="640" y1="408" x2="1216" y2="408" stroke="#D9D3C4" stroke-width="1"/>
+    <text x="640" y="448" font-size="26" font-weight="bold" fill="#1F2A44">Canaux annexes</text>
+    <text x="640" y="476" font-size="18" fill="#6B6A66">latence rembourrée, id aléatoire, pas de champ usage : fermés</text>
+  </g>
+  <g id="decision" data-pptx-bounds="64 552 1152 80">
+    <rect x="64" y="558" width="1152" height="68" rx="4" fill="#EFEBE1"/>
+    <rect x="64" y="558" width="6" height="68" fill="#2F6F73"/>
+    <text x="96" y="602" font-size="28" fill="#22252B">Décision : <tspan font-weight="bold">aucun lot dépensé</tspan> sur les endpoints notés · score <tspan font-weight="bold" fill="#2F6F73">0,20</tspan></text>
+  </g>
+  <g id="source" data-pptx-bounds="64 648 1152 36">
+    <text x="64" y="672" font-size="18" fill="#6B6A66">Source : registre de coordination de l'équipe (jobs JURECA et validation sur les endpoints de référence)</text>
+  </g>
+</svg>

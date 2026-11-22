@@ -1,0 +1,38 @@
+[
+  {
+    "commande": [
+      ".venv/bin/python",
+      "c1/test_metric.py"
+    ],
+    "code": 0,
+    "stdout": "OK  test_downsample_seuil_50pc\nOK  test_egalite_reference_officielle\nOK  test_masque_plein\nOK  test_masque_vide_contre_plein\nOK  test_partiel\nOK  test_score_moyenne_par_image\nOK  test_tout1_contre_moitie\nOK  test_union_vide_classe1\n8 tests passés\n",
+    "stderr": ""
+  },
+  {
+    "commande": [
+      ".venv/bin/python",
+      "docs/task3-work-20261121/test_npo_same_view.py"
+    ],
+    "code": 0,
+    "stdout": "OK : même vue |delta|max = 0.00e+00 ; ancien calcul (vues mélangées) |delta|max = 0.0183 ; NPO initiale = 13.8629\n",
+    "stderr": ""
+  },
+  {
+    "commande": [
+      ".venv/bin/python",
+      "docs/task3-work-20261121/official_formula.py"
+    ],
+    "code": 0,
+    "stdout": "official_formula : cas à la main OK\n",
+    "stderr": ""
+  },
+  {
+    "commande": [
+      ".venv/bin/python",
+      "docs/task3-work-20261121/mech/test_class_split.py"
+    ],
+    "code": 0,
+    "stdout": "OK class_split (18 lignes)\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,255 @@
+[
+ {
+  "sel": "b0",
+  "ev": "b1",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.03739787960033829,
+  "errors": {
+   "base-fp8": 0.4,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-02",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b0",
+  "ev": "b2",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b0",
+  "ev": "b3",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b0",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b2",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b3",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b0",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b1",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b3",
+  "thr": [
+   null,
+   null,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b0",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b1",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.03739787960033829,
+  "errors": {
+   "base-fp8": 0.4,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-02",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b2",
+  "thr": [
+   null,
+   0.75,
+   null
+  ],
+  "mcc": 0.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 1.0,
+   "variant-variant": 0.0
+  },
+  "disguised": [],
+  "passed": false
+ }
+]

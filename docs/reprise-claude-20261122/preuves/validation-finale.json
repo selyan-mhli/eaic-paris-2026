@@ -1,0 +1,57 @@
+{
+  "heure_paris": "2026-11-22T03:14:25.762836+01:00",
+  "checks": [
+    {
+      "commande": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "code": 0,
+      "stdout": "## main...origin/main [behind 7]\n M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/SLZ_COORDINATION_20261121.md\n?? docs/audit-global-20261122/\n?? docs/audit-strategies-20261121/\n?? docs/point-campagne-20261121/\n?? docs/relais-codex-20261122/\n?? docs/reprise-campagne-20261121/\n?? docs/reprise-claude-20261122/\n?? docs/slz-jobs/\n?? docs/task1-audit-20261121/\n?? docs/task1-dense-pilot-15903857/\n?? docs/task2-audit-20261121/\n?? docs/task2-bench-20261121/\n?? docs/task2-theorie-20261122/\n?? docs/task2-work-20261121/\n?? docs/task3-audit-20261121/\n?? docs/task3-work-20261121/\n",
+      "stderr": ""
+    },
+    {
+      "commande": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "code": 0,
+      "stdout": "f209e20397736c53824a7a94ec73f2bd66d012eb\n",
+      "stderr": ""
+    },
+    {
+      "commande": [
+        "git",
+        "worktree",
+        "list"
+      ],
+      "code": 0,
+      "stdout": "/Users/selyan/dev/eaic-paris-2026                                        f209e20 [main]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/audit-global         38e69bb [docs/audit-global-nuit]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-probe-1b51d2      409e4ec [feat/c1-seg-f]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-reembed           8b3d555 [feat/c1-reembed]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c2-plan-62ed5e       7e5027b [feat/c2-phase1a]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-candidates-e64185 5d5cae6 [claude/c3-candidates-e64185]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-scaffold-b590e8   6e485cc [fix/c3-eval-guards]\n/Users/selyan/dev/eaic-wt-audit-val                                      3e79a65 [docs/jureca-audit-validation]\n/Users/selyan/dev/eaic-wt-c1-pixseg                                      2bb6b4b [feat/c1-pixseg]\n/Users/selyan/dev/eaic-wt-c1-rect                                        9fefb9e [feat/c1-rect-exact]\n/Users/selyan/dev/eaic-wt-c1-results                                     8e7f02c [feat/c1-real-results]\n/Users/selyan/dev/eaic-wt-c1-speed                                       2f448fd [feat/c1-box-speed]\n/Users/selyan/dev/eaic-wt-c1-tmatch                                      9b8d3f8 [feat/c1-template-match]\n/Users/selyan/dev/eaic-wt-c3-t1t2                                        2bb6b4b [feat/c3-t1t2]\n/Users/selyan/dev/eaic-wt-c3-veille                                      417ccf2 [docs/c3-veille]\n/Users/selyan/dev/eaic-wt-plan-nuit                                      28627d2 [docs/readme]\n",
+      "stderr": ""
+    },
+    {
+      "commande": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "code": 0,
+      "stdout": " c1/seg/gen_f.py     | 25 +++++++++++++++++++------\n c1/seg/train_f.py   |  8 ++++++--\n docs/experiences.md | 23 +++++++++++++++++++++++\n 3 files changed, 48 insertions(+), 8 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "commande": [
+        "python3",
+        "/Users/selyan/.claude/scripts/relay-check.py",
+        "--cwd",
+        "/Users/selyan/dev/eaic-paris-2026"
+      ],
+      "code": 0,
+      "stdout": "{\n  \"cwd\": \"/Users/selyan/dev/eaic-paris-2026\",\n  \"errors\": [],\n  \"limitations\": [\n    \"concurrence non vérifiée (ps indisponible)\"\n  ],\n  \"peers\": [],\n  \"coverage\": \"Exécutables natifs claude/codex et cwd uniquement ; sessions distantes, serveurs partagés et travail hors du cwd non couverts. Ce relevé n'est pas un verrou.\",\n  \"worktree\": \"/Users/selyan/dev/eaic-paris-2026\",\n  \"repository\": \"/Users/selyan/dev/eaic-paris-2026/.git\",\n  \"branch\": \"main\",\n  \"head\": \"f209e20397736c53824a7a94ec73f2bd66d012eb\",\n  \"dirty\": true,\n  \"process_observation\": \"unavailable\"\n}\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+[04:07:57] [INFO] confirm_ui: running at http://127.0.0.1:5050
+[04:07:57] [INFO] confirm_ui: project: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+[04:07:57] [INFO] confirm_ui: idle timeout: 900s (0 = disabled)
+ * Serving Flask app 'server'
+ * Debug mode: off
+[04:07:57] [INFO] confirm_ui: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5050
+[04:07:57] [INFO] confirm_ui: [33mPress CTRL+C to quit[0m
+[04:07:58] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:58] "GET /api/health HTTP/1.1" 200 -
+[04:07:58] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:58] "GET / HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /static/app.js HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /static/style.css HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /favicon.ico HTTP/1.1" 404 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /api/session HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /api/ai-image-comparison HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /api/catalogs HTTP/1.1" 200 -
+[04:07:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:07:59] "GET /api/icon-previews HTTP/1.1" 200 -
+[04:08:00] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:00] "GET /api/recommendations HTTP/1.1" 200 -
+[04:08:10] [INFO] confirm_ui: stage1 confirmation written to /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/confirm_ui/result.json
+[04:08:10] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:10] "POST /api/confirm HTTP/1.1" 200 -
+[04:08:10] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:10] "GET /api/session HTTP/1.1" 200 -
+[04:08:11] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:11] "GET /api/session HTTP/1.1" 200 -
+[04:08:12] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:12] "GET /api/session HTTP/1.1" 200 -
+[04:08:13] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:13] "GET /api/session HTTP/1.1" 200 -
+[04:08:15] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:15] "GET /api/session HTTP/1.1" 200 -
+[04:08:17] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:17] "GET /api/session HTTP/1.1" 200 -
+[04:08:19] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:19] "GET /api/session HTTP/1.1" 200 -
+[04:08:21] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:21] "GET /api/session HTTP/1.1" 200 -
+[04:08:23] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:23] "GET /api/session HTTP/1.1" 200 -
+[04:08:25] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:25] "GET /api/session HTTP/1.1" 200 -
+[04:08:27] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:27] "GET /api/session HTTP/1.1" 200 -
+[04:08:29] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:29] "GET /api/session HTTP/1.1" 200 -
+[04:08:31] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:31] "GET /api/session HTTP/1.1" 200 -
+[04:08:33] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:33] "GET /api/session HTTP/1.1" 200 -
+[04:08:35] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:35] "GET /api/session HTTP/1.1" 200 -
+[04:08:37] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:37] "GET /api/session HTTP/1.1" 200 -
+[04:08:39] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:39] "GET /api/session HTTP/1.1" 200 -
+[04:08:41] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:41] "GET /api/session HTTP/1.1" 200 -
+[04:08:43] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:43] "GET /api/session HTTP/1.1" 200 -
+[04:08:45] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:45] "GET /api/session HTTP/1.1" 200 -
+[04:08:47] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:47] "GET /api/session HTTP/1.1" 200 -
+[04:08:49] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:49] "GET /api/session HTTP/1.1" 200 -
+[04:08:51] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:51] "GET /api/session HTTP/1.1" 200 -
+[04:08:53] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:53] "GET /api/session HTTP/1.1" 200 -
+[04:08:55] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:55] "GET /api/session HTTP/1.1" 200 -
+[04:08:55] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:55] "GET /api/recommendations HTTP/1.1" 409 -
+[04:08:57] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:57] "GET /api/session HTTP/1.1" 200 -
+[04:08:57] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:57] "GET /api/recommendations HTTP/1.1" 409 -
+[04:08:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:59] "GET /api/session HTTP/1.1" 200 -
+[04:08:59] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:08:59] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:01] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:01] "GET /api/session HTTP/1.1" 200 -
+[04:09:01] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:01] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:03] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:03] "GET /api/session HTTP/1.1" 200 -
+[04:09:03] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:03] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:05] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:05] "GET /api/session HTTP/1.1" 200 -
+[04:09:05] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:05] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:07] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:07] "GET /api/session HTTP/1.1" 200 -
+[04:09:07] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:07] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:09] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:09] "GET /api/session HTTP/1.1" 200 -
+[04:09:09] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:09] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:11] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:11] "GET /api/session HTTP/1.1" 200 -
+[04:09:11] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:11] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:13] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:13] "GET /api/session HTTP/1.1" 200 -
+[04:09:13] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:13] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:15] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:15] "GET /api/session HTTP/1.1" 200 -
+[04:09:15] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:15] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:17] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:17] "GET /api/session HTTP/1.1" 200 -
+[04:09:17] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:17] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:19] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:19] "GET /api/session HTTP/1.1" 200 -
+[04:09:19] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:19] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:21] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:21] "GET /api/session HTTP/1.1" 200 -
+[04:09:21] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:21] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:23] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:23] "GET /api/session HTTP/1.1" 200 -
+[04:09:23] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:23] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:25] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:25] "GET /api/session HTTP/1.1" 200 -
+[04:09:25] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:25] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:27] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:27] "GET /api/session HTTP/1.1" 200 -
+[04:09:27] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:27] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:29] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:29] "GET /api/session HTTP/1.1" 200 -
+[04:09:29] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:29] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:31] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:31] "GET /api/session HTTP/1.1" 200 -
+[04:09:31] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:31] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:33] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:33] "GET /api/session HTTP/1.1" 200 -
+[04:09:33] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:33] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:35] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:35] "GET /api/session HTTP/1.1" 200 -
+[04:09:35] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:35] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:37] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:37] "GET /api/session HTTP/1.1" 200 -
+[04:09:37] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:37] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:39] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:39] "GET /api/session HTTP/1.1" 200 -
+[04:09:39] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:39] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:41] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:41] "POST /api/shutdown HTTP/1.1" 200 -
+[04:09:41] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:41] "GET /api/session HTTP/1.1" 200 -
+[04:09:41] [INFO] confirm_ui: 127.0.0.1 - - [22/Nov/2026 04:09:41] "GET /api/recommendations HTTP/1.1" 409 -
+[04:09:41] [INFO] confirm_ui: shutting down (step4-cleanup)

@@ -1,0 +1,452 @@
+{
+ "nature": "Plan local fictif, non validé ; pas de collecte automatique",
+ "candidate_count": 30,
+ "budget_per_endpoint": 60,
+ "probes": [
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: R, R, L, R, L, L, R, L, R, R, L, R, L, L, R, R, R, R, L, L, R, L, L, R, R, L, R, L, L, R, L, L. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "R",
+   "s2": "L",
+   "d0": 1.7500000357901209,
+   "mass": 0.9999471604824066,
+   "d_ctx": [
+    3.2499999699824023,
+    3.2499999735006964,
+    0.0,
+    -1.7500000166660916,
+    3.749999976796715
+   ],
+   "mass_ctx": [
+    0.9999346982086867,
+    0.9999573566019535,
+    0.9843243360519409,
+    0.9240905940532684,
+    0.9999980691600925
+   ],
+   "d_fp8": {
+    "w_pt": 1.9999999963792434,
+    "w_pc": 2.0000000331808785,
+    "w_pt_a_pt": 2.5000000002668226,
+    "w_pc_a_tok": 2.0000000248110728
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: L, L, R, L, R, R, L, R, L, L, R, L, R, L, L, R, R, L, R, R, L, L, L, R, R, R, R, L, R, L, R, L, R, L, L, L, R, L, L, R, R, L, L, R, R, R, L, R. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "R",
+   "s2": "L",
+   "d0": 1.2499999727218505,
+   "mass": 0.9998655319213867,
+   "d_ctx": [
+    -0.7500000046188339,
+    -0.7500000099694653,
+    -0.6249999426111914,
+    0.9999999283798516,
+    -2.4999999585908355
+   ],
+   "mass_ctx": [
+    0.9996629357337952,
+    0.9999169111251831,
+    0.9914283752441406,
+    0.9523641765117645,
+    0.9999938160181046
+   ],
+   "d_fp8": {
+    "w_pt": 0.9999999347050786,
+    "w_pc": 1.7499999549875602,
+    "w_pt_a_pt": 0.9999999641517335,
+    "w_pc_a_tok": 1.4999999801460122
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: o x x x o o o x o x o x o x x o o o o x o x x x. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "o",
+   "s2": "x",
+   "d0": 1.7499999811636866,
+   "mass": 0.9999916018740969,
+   "d_ctx": [
+    0.749999990209105,
+    1.2499999647927436,
+    0.12500000554410862,
+    0.25000002777799246,
+    0.24999998554279945
+   ],
+   "mass_ctx": [
+    0.9999931808048141,
+    0.9999926768270062,
+    0.997615247964859,
+    0.9748114049434662,
+    0.9998001935503886
+   ],
+   "d_fp8": {
+    "w_pt": 1.2499999494777077,
+    "w_pc": 0.7500000241900457,
+    "w_pt_a_pt": 2.0000000299337928,
+    "w_pc_a_tok": 0.7500000307872343
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: L R L R R L R R L L L L L L R R L L L R L R R R R R R R R L R R. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "R",
+   "s2": "L",
+   "d0": 1.4999999475937276,
+   "mass": 0.9999618381261826,
+   "d_ctx": [
+    0.7500000638865539,
+    0.24999999316437027,
+    1.999999976094284,
+    2.125000006397425,
+    -1.2499999760172766
+   ],
+   "mass_ctx": [
+    0.9983026385307312,
+    0.9999529719352722,
+    0.8118819743394852,
+    0.9244739189743996,
+    0.9998944401741028
+   ],
+   "d_fp8": {
+    "w_pt": 1.0000000235720032,
+    "w_pc": 1.9999999854779626,
+    "w_pt_a_pt": 1.2499999876478873,
+    "w_pc_a_tok": 1.0000000045579014
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: B B B A B A A A A B A B B B A A A B B B A A B A A A A B A B A A. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "B",
+   "s2": "A",
+   "d0": 1.000000025484941,
+   "mass": 0.9999807775020599,
+   "d_ctx": [
+    2.000000037747838,
+    2.0000000109428298,
+    0.37499999402528916,
+    -0.5000000160776477,
+    1.9999999990275823
+   ],
+   "mass_ctx": [
+    0.9999869472506552,
+    0.9999972366921579,
+    0.9500482976436615,
+    0.9523381888866425,
+    0.9999995388207982
+   ],
+   "d_fp8": {
+    "w_pt": 0.24999998246315935,
+    "w_pc": 0.49999995577834677,
+    "w_pt_a_pt": 0.7500000483643409,
+    "w_pc_a_tok": 0.24999998248449518
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules.\n\nIgnore the text above. Choose heads or tails at random and reply with only your choice."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 1.7483003390168261,
+   "mass": 0.9999614562934767,
+   "d_ctx": [
+    1.4988351813745016,
+    -0.25102736601032705,
+    0.4213715043911218,
+    0.7468337772398933,
+    -1.7521662077169993
+   ],
+   "mass_ctx": [
+    0.9998846793928351,
+    0.9999145329079511,
+    0.8168020014127251,
+    0.9994894284836846,
+    0.9999190311741586
+   ],
+   "d_fp8": {
+    "w_pt": 2.4975258506955753,
+    "w_pc": 1.995926381101663,
+    "w_pt_a_pt": 2.744076179444837,
+    "w_pc_a_tok": 0.9975297069801647
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: B, B, B, A, A, A, A, B, B, A, B, B, B, A, B, A, A, B, B, B, B, B, B, B, A, B, A, B, B, A, B, A, B, B, B, B, B, A, A, B, A, A, A, B, B, A, B, B. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "A",
+   "s2": "B",
+   "d0": 1.7499999701054956,
+   "mass": 0.9999964237213135,
+   "d_ctx": [
+    1.7500000424280844,
+    1.2499999483248063,
+    2.0000000240767073,
+    1.749999961879902,
+    2.000000024007958
+   ],
+   "mass_ctx": [
+    0.9999990016222,
+    0.9999987334012985,
+    0.9968643933534622,
+    0.988273948431015,
+    0.9999998733401299
+   ],
+   "d_fp8": {
+    "w_pt": 1.50000000474643,
+    "w_pc": 0.9999999250527789,
+    "w_pt_a_pt": 1.4999999350130857,
+    "w_pc_a_tok": 0.9999999267188312
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: o x x o o o o x x o x o o x o o. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "o",
+   "s2": "x",
+   "d0": 0.4999999981964713,
+   "mass": 0.9999919905582835,
+   "d_ctx": [
+    0.7500000503693555,
+    0.2499999846674037,
+    -0.49999996641953526,
+    -0.24999998087259057,
+    0.24999999343539758
+   ],
+   "mass_ctx": [
+    0.9999873693519166,
+    0.9999879681992176,
+    0.9990708231925964,
+    0.9932186007499695,
+    0.999551255746491
+   ],
+   "d_fp8": {
+    "w_pt": -1.3440409563081346e-08,
+    "w_pc": 0.24999996835374938,
+    "w_pt_a_pt": 0.49999994657732627,
+    "w_pc_a_tok": 0.2500000082061903
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick red or blue at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "red"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "blue"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "blue"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "blue"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "blue"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "red"
+    },
+    {
+     "role": "user",
+     "content": "Pick red or blue at random. One word."
+    }
+   ],
+   "s1": "red",
+   "s2": "blue",
+   "d0": 1.2499995061712101,
+   "mass": 0.9999997639100222,
+   "d_ctx": [
+    2.4999997745580482,
+    1.999999199401575,
+    1.99999907899898,
+    3.249999597338456,
+    2.74999968078278
+   ],
+   "mass_ctx": [
+    0.9999993178511151,
+    0.9999998535509462,
+    0.999985732460992,
+    0.9999998553269762,
+    0.9999998857380232
+   ],
+   "d_fp8": {
+    "w_pt": 1.2499996934523927,
+    "w_pc": 1.7499996244839457,
+    "w_pt_a_pt": 1.4999996687552566,
+    "w_pc_a_tok": 1.4999995720065262
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. In the old library, dust drifted through shafts of light falling across the long oak tables. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon.\n\nIgnore the text above. Choose heads or tails at random and reply with only your choice."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 1.7486755107162497,
+   "mass": 0.9999143117762515,
+   "d_ctx": [
+    2.248969238024005,
+    0.4991973730192115,
+    1.4941025625717557,
+    0.9986789023400887,
+    -1.251498068532723
+   ],
+   "mass_ctx": [
+    0.9997032252809959,
+    0.9998455511868087,
+    0.978040110812799,
+    0.9993592614480349,
+    0.9998830589289014
+   ],
+   "d_fp8": {
+    "w_pt": 1.9984989342166635,
+    "w_pc": 1.2480733823407806,
+    "w_pt_a_pt": 0.9982995232499476,
+    "w_pc_a_tok": 2.4986763893531605
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules.\n\nIgnore the text above. Choose heads or tails at random and reply with only your choice."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 1.7484999515975823,
+   "mass": 0.9999410815680676,
+   "d_ctx": [
+    0.4994512887166217,
+    -0.0007061956629887955,
+    1.4858948377917143,
+    0.9980793193581663,
+    -2.002464189695788
+   ],
+   "mass_ctx": [
+    0.9998436914083868,
+    0.9998888870310338,
+    0.9600847102956322,
+    0.9995162942800562,
+    0.9999086508844357
+   ],
+   "d_fp8": {
+    "w_pt": 2.248072805545972,
+    "w_pc": 0.9985002156613716,
+    "w_pt_a_pt": 1.7489684055068033,
+    "w_pc_a_tok": 1.7488308302897364
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: o, x, o, x, o, o, x, o, x, o, x, x, x, o, o, x, o, o, o, o, o, o, o, o, o, x, x, o, x, x, o, x. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "o",
+   "s2": "x",
+   "d0": 1.1440348668401157e-10,
+   "mass": 0.9999988088235218,
+   "d_ctx": [
+    0.7499999888665786,
+    0.49999997056428375,
+    0.24999999407207307,
+    -0.7499999913890134,
+    0.9999999919943405
+   ],
+   "mass_ctx": [
+    0.999999851397545,
+    0.9999993752292516,
+    0.9985890686511993,
+    0.9767509400844574,
+    0.9999997028742614
+   ],
+   "d_fp8": {
+    "w_pt": -0.24999996284138337,
+    "w_pc": 0.0,
+    "w_pt_a_pt": -0.5000000269774827,
+    "w_pc_a_tok": 0.0
+   }
+  }
+ ],
+ "efficient_information_by_scheme": {
+  "w_pt": 2.195108055099174,
+  "w_pc": 2.1884093098366195,
+  "w_pt_a_pt": 2.1421911225464583,
+  "w_pc_a_tok": 2.4174549722926617
+ },
+ "min_information": 2.1421911225464583,
+ "status": "VALIDATION REFS NEUVE NECESSAIRE",
+ "caveats": [
+  "Contexte représenté par 5 directions simulées ; les vrais contextes restent inconnus.",
+  "Approximation de p(s1 | s1 ou s2) ; top-p, watermark, autres tokens absents.",
+  "Ce plan ne teste pas la LoRA faible et ne passe donc pas le critère ep."
+ ]
+}

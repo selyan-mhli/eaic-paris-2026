@@ -1,0 +1,52 @@
+{
+ "A->B": {
+  "l8": -0.011915325118469239,
+  "lL": 0.00431966881616211,
+  "mcc_sel": 1.0,
+  "mcc_eval": 0.37274965820548744,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.7,
+   "variant-variant": 0.167
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "fp8",
+   "ref-03": "ref-03",
+   "ref-04": "ref-04",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "fp8",
+   "ref-08": "ref-08",
+   "ref-09": "ref-09"
+  }
+ },
+ "B->A": {
+  "l8": -0.011637388659881592,
+  "lL": 0.0072479258046875,
+  "mcc_sel": 0.7337993857053429,
+  "mcc_eval": 1.0,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.0,
+   "variant-variant": 0.0
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "fp8",
+   "ref-03": "base",
+   "ref-04": "ref-04",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "ref-07",
+   "ref-08": "base",
+   "ref-09": "ref-09"
+  }
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "sources": [
+  {
+   "path": "task2-work-20261121/raw/c2run_ref_answers.jsonl",
+   "sha256": "756e92094af0c088337dbb8182406282261784d890f584958886d42c2084f5d5",
+   "lines": 1780
+  },
+  {
+   "path": "task2-audit-20261121/data/SLZ/model_equality/reference_answers.jsonl",
+   "sha256": "46472f8244a12c94a17a8a2c67708b68edfe382d5b198de4a587e1954ee164d5",
+   "lines": 225
+  },
+  {
+   "path": "task2-audit-20261121/data/SLZ/model_equality/output/ref_pilot_minimal.jsonl",
+   "sha256": "58ddf353e0194296b706af3afb93a1de23049d3566f50f4ce88d9fa2c5b3c01a",
+   "lines": 180
+  },
+  {
+   "path": "task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+   "sha256": "0b2f0a2f1456be5254a5eb279c7aaa45045a1b847da3136626b491df8721e397",
+   "lines": 165
+  }
+ ],
+ "notes": [],
+ "duplicate_keys": 160,
+ "duplicate_keys_conflicting_text": 152,
+ "pid_with_several_prompts": [],
+ "counts": {
+  "pilot1": 1312,
+  "pilot2": 432,
+  "pilot3": 36,
+  "sophie_ref25": 225,
+  "sophie_minimal": 180,
+  "ep1a": 165
+ },
+ "corpus_sha256": "883a2aa13cb7d331e71012a041d992043369a87a61e980e3c72d56a1076dcd39",
+ "corpus_rows": 2350
+}

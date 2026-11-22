@@ -1,0 +1,10 @@
+{
+  "source": "/Users/selyan/dev/eaic-paris-2026/docs/relais-theorie-operationnel-20261122/ties_smol_gap_corrected.json",
+  "filter_audit": {
+    "actual_gap_bound": 0.5,
+    "selected": 15,
+    "coherent_all_schemes": 0,
+    "status": "RECHERCHE SEULEMENT ; pas de validation refs"
+  },
+  "statut": "copie de métadonnées, pas validation indépendante de la nouvelle méthode"
+}

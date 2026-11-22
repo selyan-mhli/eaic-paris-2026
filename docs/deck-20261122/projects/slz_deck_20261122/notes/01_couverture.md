@@ -1,0 +1,1 @@
+Bonjour, nous sommes l'équipe SLZ. Notre fil rouge tient en une idée : mesurer avant de soumettre. Sur la Task 1, la localisation de watermark, cette discipline nous a fait passer de 0,51 en validation croisée imbriquée à 0,69 au dernier score public. Nous allons montrer ce qui a marché sur les trois épreuves, et aussi, honnêtement, ce qui a bloqué.

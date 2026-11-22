@@ -1,0 +1,6 @@
+b5c38b8f262cfae27ad3dd08299522697dc331e62f0678080f89096bb8ebd423  push_scale/push_s150.pt
+b28ea783400817c690fc111a9ac77fa1a839ab4c60a06fe36ba7ab1b7e8bc953  push_scale/push_s125.pt
+Submitting push_s150.pt to 31-unlearning. Scoring can take a few minutes...
+Score (public split): 0.0827
+Previous best: 0.0567  (improved: True)
+New best on this task. Score shown is on the public split; the final ranking uses the held out subset, revealed after submissions close.

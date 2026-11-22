@@ -1,0 +1,206 @@
+{
+ "all": {
+  "mcc": 0.0,
+  "thr": 46.9,
+  "detail": {
+   "ref-01": {
+    "kind": "plain",
+    "G": 11.7,
+    "T": 0.75,
+    "base": true
+   },
+   "ref-02": {
+    "kind": "fp8",
+    "G": 8.6,
+    "T": 0.7,
+    "base": true
+   },
+   "ref-03": {
+    "kind": "sys",
+    "G": 20.2,
+    "T": 0.85,
+    "base": true
+   },
+   "ref-04": {
+    "kind": "lora0.7",
+    "G": 20.2,
+    "T": 0.7,
+    "base": true
+   },
+   "ref-05": {
+    "kind": "persona",
+    "G": 32.0,
+    "T": 0.7,
+    "base": true
+   },
+   "ref-06": {
+    "kind": "wm",
+    "G": 46.8,
+    "T": 0.6,
+    "base": true
+   },
+   "ref-07": {
+    "kind": "lora1.5",
+    "G": 34.6,
+    "T": 1.0,
+    "base": true
+   },
+   "ref-08": {
+    "kind": "temp1",
+    "G": 19.5,
+    "T": 1.15,
+    "base": true
+   },
+   "ref-09": {
+    "kind": "lora0.3",
+    "G": 24.5,
+    "T": 0.85,
+    "base": true
+   }
+  },
+  "errors": {
+   "base-fp8": 1.0,
+   "base-lora0.3": 1.0,
+   "base-lora0.7": 1.0,
+   "base-lora1.5": 1.0,
+   "deguis-deguis": 0.0,
+   "variant-variant": 1.0
+  }
+ },
+ "0": {
+  "mcc": 0.0,
+  "thr": 46.9,
+  "detail": {
+   "ref-01": {
+    "kind": "plain",
+    "G": 10.8,
+    "T": 0.75,
+    "base": true
+   },
+   "ref-02": {
+    "kind": "fp8",
+    "G": 9.7,
+    "T": 0.8,
+    "base": true
+   },
+   "ref-03": {
+    "kind": "sys",
+    "G": 14.3,
+    "T": 0.9,
+    "base": true
+   },
+   "ref-04": {
+    "kind": "lora0.7",
+    "G": 13.8,
+    "T": 0.45,
+    "base": true
+   },
+   "ref-05": {
+    "kind": "persona",
+    "G": 24.3,
+    "T": 0.75,
+    "base": true
+   },
+   "ref-06": {
+    "kind": "wm",
+    "G": 21.2,
+    "T": 0.4,
+    "base": true
+   },
+   "ref-07": {
+    "kind": "lora1.5",
+    "G": 19.6,
+    "T": 1.0,
+    "base": true
+   },
+   "ref-08": {
+    "kind": "temp1",
+    "G": 24.4,
+    "T": 1.2,
+    "base": true
+   },
+   "ref-09": {
+    "kind": "lora0.3",
+    "G": 18.6,
+    "T": 0.9,
+    "base": true
+   }
+  },
+  "errors": {
+   "base-fp8": 1.0,
+   "base-lora0.3": 1.0,
+   "base-lora0.7": 1.0,
+   "base-lora1.5": 1.0,
+   "deguis-deguis": 0.0,
+   "variant-variant": 1.0
+  }
+ },
+ "1": {
+  "mcc": 0.0,
+  "thr": 46.9,
+  "detail": {
+   "ref-01": {
+    "kind": "plain",
+    "G": 8.5,
+    "T": 0.75,
+    "base": true
+   },
+   "ref-02": {
+    "kind": "fp8",
+    "G": 7.1,
+    "T": 0.4,
+    "base": true
+   },
+   "ref-03": {
+    "kind": "sys",
+    "G": 19.0,
+    "T": 0.8,
+    "base": true
+   },
+   "ref-04": {
+    "kind": "lora0.7",
+    "G": 20.7,
+    "T": 0.8,
+    "base": true
+   },
+   "ref-05": {
+    "kind": "persona",
+    "G": 17.5,
+    "T": 0.7,
+    "base": true
+   },
+   "ref-06": {
+    "kind": "wm",
+    "G": 31.0,
+    "T": 0.7,
+    "base": true
+   },
+   "ref-07": {
+    "kind": "lora1.5",
+    "G": 27.3,
+    "T": 1.0,
+    "base": true
+   },
+   "ref-08": {
+    "kind": "temp1",
+    "G": 9.0,
+    "T": 1.05,
+    "base": true
+   },
+   "ref-09": {
+    "kind": "lora0.3",
+    "G": 27.6,
+    "T": 0.85,
+    "base": true
+   }
+  },
+  "errors": {
+   "base-fp8": 1.0,
+   "base-lora0.3": 1.0,
+   "base-lora0.7": 1.0,
+   "base-lora1.5": 1.0,
+   "deguis-deguis": 0.0,
+   "variant-variant": 1.0
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+  "train.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/train.py",
+    "existe_localement": true,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "c1ab1b7848aa541d7a3d18e529e84b5c18508c4b50338df0fe9f9e6895406f80",
+    "sha256_local": "c1ab1b7848aa541d7a3d18e529e84b5c18508c4b50338df0fe9f9e6895406f80",
+    "identiques": true
+  },
+  "data.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/data.py",
+    "existe_localement": true,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "971075ea874df286dc79879d99f051d44e7cb9dc7ceb789f6ce1df470a8a5932",
+    "sha256_local": "971075ea874df286dc79879d99f051d44e7cb9dc7ceb789f6ce1df470a8a5932",
+    "identiques": true
+  },
+  "model.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/model.py",
+    "existe_localement": true,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "8e22cb5994ba364f4bd8eb10ab268462571921129f92ab86fb32d1a9e52d3c28",
+    "sha256_local": "8e22cb5994ba364f4bd8eb10ab268462571921129f92ab86fb32d1a9e52d3c28",
+    "identiques": true
+  },
+  "export.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/export.py",
+    "existe_localement": true,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "924e635914dc5f059761d5a82a7f7a8ed4f3189ce74cfa5f83a03568fbd139cb",
+    "sha256_local": "924e635914dc5f059761d5a82a7f7a8ed4f3189ce74cfa5f83a03568fbd139cb",
+    "identiques": true
+  },
+  "merge_ss.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/merge_ss.py",
+    "existe_localement": false,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "127e9b539d747874136f801731eae56011881b112322546a0b01a43719f6ac98"
+  },
+  "combine_eval.py": {
+    "local_path": "/Users/selyan/dev/eaic-wt-c1-pixseg/c1/pixseg/combine_eval.py",
+    "existe_localement": true,
+    "tracked_in_git": false,
+    "sha256_cluster_capture": "109ab18e27f3db412437168ed458c8a359df16fb7511fed397c5edd343e8ec6e",
+    "sha256_local": "109ab18e27f3db412437168ed458c8a359df16fb7511fed397c5edd343e8ec6e",
+    "identiques": true
+  }
+}

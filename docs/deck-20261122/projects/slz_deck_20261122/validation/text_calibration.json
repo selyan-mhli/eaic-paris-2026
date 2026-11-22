@@ -1,0 +1,82 @@
+{
+  "roles": {
+    "body": {
+      "family": "Arial, Helvetica, sans-serif",
+      "size": 28.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 3.4,
+      "latin_chars_per_100px": 7.2,
+      "caps_chars_per_100px": 5.6,
+      "digits_chars_per_100px": 6.1,
+      "citation_chars_per_100px": 7.0,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 1665.9,
+        "slide": "P05",
+        "text": "Acquis : vraisemblance en boîte blanche…"
+      }
+    },
+    "title": {
+      "family": "Georgia, \"Times New Roman\", serif",
+      "size": 44.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 2.0,
+      "latin_chars_per_100px": 4.4,
+      "caps_chars_per_100px": 3.0,
+      "digits_chars_per_100px": 3.7,
+      "citation_chars_per_100px": 4.1,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 1034.1,
+        "slide": "P05",
+        "text": "T2 : familles identifiées, variantes no…"
+      }
+    },
+    "subtitle": {
+      "family": "Georgia, \"Times New Roman\", serif",
+      "size": 32.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 2.8,
+      "latin_chars_per_100px": 6.0,
+      "caps_chars_per_100px": 4.1,
+      "digits_chars_per_100px": 5.1,
+      "citation_chars_per_100px": 5.7,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": {
+        "px": 1614.7,
+        "slide": "P06",
+        "text": "Sans gold ni retain, notre meilleur lev…"
+      }
+    },
+    "annotation": {
+      "family": "Arial, Helvetica, sans-serif",
+      "size": 18.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 5.2,
+      "latin_chars_per_100px": 11.2,
+      "caps_chars_per_100px": 8.7,
+      "digits_chars_per_100px": 9.4,
+      "citation_chars_per_100px": 10.9,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    },
+    "display": {
+      "family": "Georgia, \"Times New Roman\", serif",
+      "size": 96.0,
+      "weight": "normal",
+      "cjk_chars_per_100px": 0.9,
+      "latin_chars_per_100px": 2.0,
+      "caps_chars_per_100px": 1.4,
+      "digits_chars_per_100px": 1.7,
+      "citation_chars_per_100px": 1.9,
+      "script_clusters_per_100px": {},
+      "longest_planned_line": null
+    }
+  },
+  "script_samples": {},
+  "source": "spec_lock.md",
+  "generated_at": "2026-11-22T03:11:37Z",
+  "notes": [
+    "every role is measured at normal weight; recalibrate a role realized as bold deck-wide with --role NAME:FAMILY:SIZE:bold: bold widens Latin and digits about 7%, while the bundled advance table gives CJK one width for both weights"
+  ]
+}

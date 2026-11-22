@@ -1,0 +1,39 @@
+{
+  "candidate": "/private/tmp/eaic-relais-20261122/c1_ensF_ssall6k2.pt",
+  "sha256": "39a3fb2d5ff9f3b31c44b51886bcebc2ad21e446e7b0825d327ab0c186b4bc7c",
+  "bytes": 16735080,
+  "champion": "/private/tmp/eaic-relais-20261122/psyn/c1_ensE_ssall3.pt",
+  "champion_sha256": "f00fdc039718b29fabe64cf2155e6967b89b12c0986f331bd1d3ee7304418c80",
+  "champion_public_user_reported": 0.6739,
+  "recipe": "StegaStamp uniquement : moyenne float32 des graines 60 et 61 à 6000 pas, seuil strict > 0.5",
+  "threshold": 0.5,
+  "ss_images": 340,
+  "other_images_preserved": 680,
+  "champion_ss_reproduced_exactly": true,
+  "pixels_changed_global": 0.00454310979694128,
+  "pixels_changed_ss": 0.013629330322146416,
+  "images_changed": 330,
+  "inputs": [
+    {
+      "path": "/private/tmp/eaic-relais-20261122/psyn/pixseg_test_psall_fit_s50.npz",
+      "sha256": "4d99d97859d23061f528b02622e13b54bfa04991f99c544760060df920169433"
+    },
+    {
+      "path": "/private/tmp/eaic-relais-20261122/psyn/pixseg_test_psall_fit_s51.npz",
+      "sha256": "a7c62cd9fbb880eaeebca5fc0b1659430c613edf073440457a312a4c2816b0f7"
+    },
+    {
+      "path": "/private/tmp/eaic-relais-20261122/psyn/pixseg_test_psall_fit_s52.npz",
+      "sha256": "dfd87b3f508e6b18501ab970359aae314f2516d740e43e028ef2c5df4d69942d"
+    },
+    {
+      "path": "/private/tmp/eaic-relais-20261122/psyn/pixseg_test_psall6k_fit_s60.npz",
+      "sha256": "970a2d9a41b28438aaba30fa67d102eef32d131320c5fcfd431c309e6dde24cf"
+    },
+    {
+      "path": "/private/tmp/eaic-relais-20261122/psyn/pixseg_test_psall6k_fit_s61.npz",
+      "sha256": "527fd0fe738dd086f39b304f306f47b023f5c770fc1c7bb9ad90a8f309e39e5f"
+    }
+  ],
+  "status": "PRÉPARÉ LOCALEMENT, NON SOUMIS ; validation seulement folds 0–1, une graine CV par configuration"
+}

@@ -1,0 +1,68 @@
+{
+  "head": "f209e20397736c53824a7a94ec73f2bd66d012eb",
+  "branch": "main",
+  "git_status": "## main...origin/main [behind 7]\n M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/SLZ_COORDINATION_20261121.md\n?? docs/audit-global-20261122/\n?? docs/audit-strategies-20261121/\n?? docs/point-campagne-20261121/\n?? docs/relais-codex-20261122/\n?? docs/reprise-campagne-20261121/\n?? docs/reprise-claude-20261122/\n?? docs/slz-jobs/\n?? docs/task1-audit-20261121/\n?? docs/task1-dense-pilot-15903857/\n?? docs/task2-audit-20261121/\n?? docs/task2-bench-20261121/\n?? docs/task2-theorie-20261122/\n?? docs/task2-work-20261121/\n?? docs/task3-audit-20261121/\n?? docs/task3-work-20261121/\n",
+  "verification": "python3 docs/task2-theorie-20261122/verifier_theorie.py : code 0 ; git diff --check : code 0",
+  "files": [
+    {
+      "path": "/Users/selyan/Downloads/Model Equality Testing (1).pdf",
+      "bytes": 196506,
+      "sha256": "cf4952bf9b6c321a149fc02a6f6a52f7c449a7594141a5ac1197124c59e73828"
+    },
+    {
+      "path": "/Users/selyan/Downloads/Unlearning (1).pdf",
+      "bytes": 212786,
+      "sha256": "c59253325f44ef4cad84e22170a98e106e4fbda70d214942f1b48cd88c416c4d"
+    },
+    {
+      "path": "/Users/selyan/Downloads/EuroAIChampionshipParis2026-11-21 (1).pdf",
+      "bytes": 8835439,
+      "sha256": "ec83c5ccceea3e07f980339f0054309d0b6a8368f450d83952740981a2c84a15"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/RAPPORT-CODEX.md",
+      "bytes": 15327,
+      "sha256": "91cfce5a7db9a82bb87f849d6b9b1be389660257bfc25315b515ea7609aa2bae"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/contre_exemples.json",
+      "bytes": 2521,
+      "sha256": "b76aa25e695cdf61eb67aff8364daa07d4c2ad21e7a27016eabe598aca36e8e2"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/enonce-t3.txt",
+      "bytes": 11252,
+      "sha256": "06dab2f9794c56a4ea3863ddb59893d725c4845a0f207a6f9a2aa548144bf288"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/enonce.txt",
+      "bytes": 9272,
+      "sha256": "ff64f61814ec186a2402b156a44a849f7cf908c03dc47c10fb4cbba81794ae36"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/slides-image-watermarking.html",
+      "bytes": 19874332,
+      "sha256": "f4026e0a01817b46e11751b9505c9aa4e4ff55e981f4875a1735211274b583ae"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/slides-image-watermarking.txt",
+      "bytes": 69,
+      "sha256": "7d4e3df183d49e7abce9ecc5224200fae7664c402fa75301357497bb83e7193d"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/slides-t2.txt",
+      "bytes": 5001,
+      "sha256": "b43cad72ba6c45f42210a703036c1d899d729cf1bc49a89f85e531cc72448798"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/verification.txt",
+      "bytes": 2521,
+      "sha256": "b76aa25e695cdf61eb67aff8364daa07d4c2ad21e7a27016eabe598aca36e8e2"
+    },
+    {
+      "path": "/Users/selyan/dev/eaic-paris-2026/docs/task2-theorie-20261122/verifier_theorie.py",
+      "bytes": 4143,
+      "sha256": "66b52821f1e67fdcecd326d28840d58d79085f6bf49d51a2f424dbaa4b00e391"
+    }
+  ]
+}

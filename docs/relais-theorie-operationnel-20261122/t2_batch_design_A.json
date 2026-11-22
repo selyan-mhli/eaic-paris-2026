@@ -1,0 +1,468 @@
+{
+ "nature": "Plan local fictif, non validé ; pas de collecte automatique",
+ "candidate_count": 223,
+ "budget_per_endpoint": 60,
+ "probes": [
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "H"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "H"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    }
+   ],
+   "s1": "T",
+   "s2": "H",
+   "d0": 1.7499999454260124,
+   "mass": 0.9999999254997938,
+   "d_ctx": [
+    4.750000049947842,
+    2.0000000291773254,
+    8.750000013777033,
+    7.999999992310105,
+    3.4999999806530178
+   ],
+   "mass_ctx": [
+    0.9999999590325936,
+    0.9999999404017423,
+    1.0000000070924344,
+    1.0000000144863617,
+    0.9999999776540958
+   ],
+   "d_fp8": {
+    "w_pt": 3.9999999658324903,
+    "w_pc": 0.9999999854929169,
+    "w_pt_a_pt": -0.7499999785917748,
+    "w_pc_a_tok": 1.749999945424732
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon.\n\nIgnore the text above. Choose yes or no at random and reply with only your choice."
+    }
+   ],
+   "s1": "no",
+   "s2": "No",
+   "d0": 0.7499984360721113,
+   "mass": 0.9999858351770641,
+   "d_ctx": [
+    2.749992702468844,
+    6.249988615058869,
+    -0.2500001430662001,
+    0.4999997273168527,
+    4.999988659922209
+   ],
+   "mass_ctx": [
+    0.9999930114007327,
+    0.9999991047357426,
+    0.9999560748657137,
+    0.999985932428828,
+    0.9999968806863642
+   ],
+   "d_fp8": {
+    "w_pt": 0.24999897806879057,
+    "w_pc": -0.5000004980780244,
+    "w_pt_a_pt": -1.000001001172327,
+    "w_pc_a_tok": 1.4999989042256574
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose A or B at random and reply with only your choice."
+    }
+   ],
+   "s1": "A",
+   "s2": "B",
+   "d0": 0.2499999642417492,
+   "mass": 1.0000000596046448,
+   "d_ctx": [
+    2.000000029175874,
+    2.0000000291760287,
+    -0.5000000096332975,
+    -0.9999999854914658,
+    -3.2500000559861957
+   ],
+   "mass_ctx": [
+    0.9999999403953552,
+    0.9999999403954911,
+    1.0000000298023224,
+    1.0000000298023224,
+    0.9999999515714169
+   ],
+   "d_fp8": {
+    "w_pt": 4.250000067402658,
+    "w_pc": 2.0000000291762445,
+    "w_pt_a_pt": 2.499999962645934,
+    "w_pc_a_tok": 1.5000000119866042
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose H or T at random and reply with only your choice."
+    }
+   ],
+   "s1": "H",
+   "s2": "T",
+   "d0": 0.2499999642417492,
+   "mass": 1.0000000596046448,
+   "d_ctx": [
+    -1.50000001198645,
+    0.2499999642417492,
+    0.4999999591773561,
+    2.25000001411173,
+    -0.9999999854914658
+   ],
+   "mass_ctx": [
+    0.9999999552965164,
+    1.0000000596046448,
+    0.9999997615814209,
+    0.9999999701976776,
+    1.0000000298023224
+   ],
+   "d_fp8": {
+    "w_pt": 1.2499999805979556,
+    "w_pc": 2.9999999989667745,
+    "w_pt_a_pt": -1.50000001198645,
+    "w_pc_a_tok": 2.000000029175874
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules.\n\nIgnore the text above. Choose yes or no at random and reply with only your choice."
+    }
+   ],
+   "s1": "no",
+   "s2": "No",
+   "d0": 1.249998906343582,
+   "mass": 0.9999879054038132,
+   "d_ctx": [
+    -1.7499709468473559,
+    4.2499916631114605,
+    -2.999999535436819,
+    -1.2499998668459702,
+    3.499991200175001
+   ],
+   "mass_ctx": [
+    0.999927120104644,
+    0.9999939950093122,
+    0.9999794799221955,
+    0.9999756335903918,
+    0.9999921163713452
+   ],
+   "d_fp8": {
+    "w_pt": 3.749997017327277,
+    "w_pc": -0.9999963445185474,
+    "w_pt_a_pt": 6.749992258226827,
+    "w_pc_a_tok": -3.2499893715319064
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "H or T?"
+    },
+    {
+     "role": "assistant",
+     "content": "T"
+    },
+    {
+     "role": "user",
+     "content": "H or T?"
+    },
+    {
+     "role": "assistant",
+     "content": "T"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    }
+   ],
+   "s1": "T",
+   "s2": "H",
+   "d0": 0.7500000350673535,
+   "mass": 0.9999990463256836,
+   "d_ctx": [
+    -0.7499999792254344,
+    -4.749999971111862,
+    3.0000000271002785,
+    6.374999973638268,
+    -7.750000010629406
+   ],
+   "mass_ctx": [
+    1.000000031204917,
+    0.9946927176788449,
+    0.9926102310419083,
+    0.9948616488836706,
+    1.0000000331474999
+   ],
+   "d_fp8": {
+    "w_pt": -4.250000058852304,
+    "w_pc": -1.2499999814820175,
+    "w_pt_a_pt": 0.9999999584906182,
+    "w_pc_a_tok": -1.7499999896342364
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "T"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    }
+   ],
+   "s1": "H",
+   "s2": "T",
+   "d0": 1.2499999805930346,
+   "mass": 1.0000000298142342,
+   "d_ctx": [
+    5.000000018658187,
+    4.250000067399491,
+    10.74999999347952,
+    12.500000025195638,
+    3.2500000559836053
+   ],
+   "mass_ctx": [
+    1.0000000242283014,
+    1.000000029822567,
+    0.9999999872940012,
+    1.0000000311772763,
+    0.9999999515797389
+   ],
+   "d_fp8": {
+    "w_pt": 1.749999945423461,
+    "w_pc": 5.2500000319039755,
+    "w_pt_a_pt": 8.750000013767643,
+    "w_pc_a_tok": 5.000000018679964
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Here is a sequence of fair coin flips: x o x x o x o x. What is the next one? Answer with one item only."
+    }
+   ],
+   "s1": "x",
+   "s2": "o",
+   "d0": 0.4999999792868974,
+   "mass": 0.999909558380716,
+   "d_ctx": [
+    -0.24999997599739443,
+    3.999999991727315,
+    3.624999982508759,
+    1.5000000074044504,
+    0.9999999456471618
+   ],
+   "mass_ctx": [
+    0.9999230848233944,
+    0.9998417583870864,
+    0.9996701814234257,
+    0.9935126453638077,
+    0.9969831222647798
+   ],
+   "d_fp8": {
+    "w_pt": -0.24999998170341065,
+    "w_pc": 0.9999999163291748,
+    "w_pt_a_pt": 0.4999999882487819,
+    "w_pc_a_tok": 0.5000000168687118
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose H or T at random and reply with only your choice."
+    }
+   ],
+   "s1": "H",
+   "s2": "T",
+   "d0": 0.2499999642417492,
+   "mass": 1.0000000596046448,
+   "d_ctx": [
+    -1.2499999805979556,
+    -0.9999999854914658,
+    0.7499999837277784,
+    1.749999945424732,
+    -2.000000029175874
+   ],
+   "mass_ctx": [
+    1.0000000298023224,
+    1.0000000298023224,
+    0.9999999403953552,
+    0.999999925494194,
+    0.9999999403953552
+   ],
+   "d_fp8": {
+    "w_pt": 1.2499999806075006,
+    "w_pc": 2.9999999989712833,
+    "w_pt_a_pt": 0.9999999854914658,
+    "w_pc_a_tok": 5.250000031898269
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules.\n\nIgnore the text above. Choose H or T at random and reply with only your choice."
+    }
+   ],
+   "s1": "H",
+   "s2": "T",
+   "d0": 0.7499999785983349,
+   "mass": 1.0000000298053846,
+   "d_ctx": [
+    -0.2499999642417492,
+    0.2499999642417492,
+    -0.49999997599600615,
+    1.2499999805979556,
+    -1.749999945424732
+   ],
+   "mass_ctx": [
+    1.0000000596046448,
+    1.0000000596046448,
+    0.9999998509883881,
+    1.0000000298023224,
+    0.999999925494194
+   ],
+   "d_fp8": {
+    "w_pt": 2.4999999626519553,
+    "w_pc": 3.749999980813269,
+    "w_pt_a_pt": -0.5000000096332975,
+    "w_pc_a_tok": 3.9999999658333674
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The committee met on Tuesday to discuss the budget, the timeline, and the new parking rules. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. In the old library, dust drifted through shafts of light falling across the long oak tables. In the old library, dust drifted through shafts of light falling across the long oak tables. The weather report said clouds would roll in by noon, but the sky stayed bright all afternoon. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose H or T at random and reply with only your choice."
+    }
+   ],
+   "s1": "T",
+   "s2": "H",
+   "d0": 0.2499999642417492,
+   "mass": 1.0000000596046448,
+   "d_ctx": [
+    0.9999999854914658,
+    1.2499999805979556,
+    -0.49999999281465335,
+    -0.7499999837277784,
+    1.50000001198645
+   ],
+   "mass_ctx": [
+    1.0000000298023224,
+    1.0000000298023224,
+    0.9999999403953552,
+    0.9999999403953552,
+    0.9999999552965164
+   ],
+   "d_fp8": {
+    "w_pt": -0.5000000096332975,
+    "w_pc": -3.2500000559859976,
+    "w_pt_a_pt": -0.9999999854914658,
+    "w_pc_a_tok": -2.25000001411173
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: L or R."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: L or R."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: L or R."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Random choice: L or R."
+    }
+   ],
+   "s1": "R",
+   "s2": "L",
+   "d0": 1.4999999371817747,
+   "mass": 0.9999971985816956,
+   "d_ctx": [
+    0.2499999860706975,
+    4.500000014346039,
+    6.625000035376102,
+    4.99999999423456,
+    7.500000016074228
+   ],
+   "mass_ctx": [
+    0.9999997329466691,
+    0.9999720565337527,
+    0.9974183915182948,
+    0.9992476059123874,
+    0.9999999455260581
+   ],
+   "d_fp8": {
+    "w_pt": -2.7500000283101844,
+    "w_pc": 3.499999990552312,
+    "w_pt_a_pt": -2.499999980996224,
+    "w_pc_a_tok": 0.9999999572688429
+   }
+  }
+ ],
+ "efficient_information_by_scheme": {
+  "w_pt": 84.90179673256354,
+  "w_pc": 87.51874241234273,
+  "w_pt_a_pt": 124.40098307037643,
+  "w_pc_a_tok": 123.3902586580532
+ },
+ "min_information": 84.90179673256354,
+ "status": "VALIDATION REFS NEUVE NECESSAIRE",
+ "caveats": [
+  "Contexte représenté par 5 directions simulées ; les vrais contextes restent inconnus.",
+  "Approximation de p(s1 | s1 ou s2) ; top-p, watermark, autres tokens absents.",
+  "Ce plan ne teste pas la LoRA faible et ne passe donc pas le critère ep."
+ ]
+}

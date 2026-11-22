@@ -1,0 +1,292 @@
+{
+ "fichiers": {
+  "dense": [
+   "docs/task1-dense-pilot-15903857/res_trustmark_head_15903857.npz"
+  ],
+  "ref": "docs/task1-dense-pilot-15903857/segf_sub_1_champion_oof.npz",
+  "ref2": "docs/task1-audit-20261121/segf_ens3_3.npz"
+ },
+ "decision_scope": "all",
+ "ref": {
+  "confirm": {
+   "scope": "confirm",
+   "folds": [
+    0,
+    1
+   ],
+   "n_images": 510,
+   "gates_seed0": {
+    "0": 0.65,
+    "1": 0.65,
+    "2": 0.65,
+    "3": 0.7,
+    "4": 0.65
+   },
+   "ref_global": 0.5577223321197736,
+   "cand_global": 0.561894006500338,
+   "gain_global": 0.004171674380564358,
+   "ic95_global_apparie": [
+    0.0014889606488767554,
+    0.007252485014600467
+   ],
+   "missing": [
+    "a59c74c9a78f",
+    "0703932c7705"
+   ],
+   "TM_F_routes_F": {
+    "n": 34,
+    "n_predits": 34,
+    "ref": 0.526228226628464,
+    "dense": 0.5888033423369293,
+    "gain_moyen": 0.06257511570846536,
+    "ic95_apparie": [
+     0.026545212260434263,
+     0.10236340433379804
+    ],
+    "contribution_globale": 0.004171674380564357,
+    "bornes_manquantes_globales": [
+     -0.0,
+     0.0
+    ]
+   },
+   "TM_R_routes_F": {
+    "n": 2,
+    "n_predits": 0,
+    "ref": null,
+    "dense": null,
+    "gain_moyen": null,
+    "ic95_apparie": null,
+    "contribution_globale": 0.0,
+    "bornes_manquantes_globales": [
+     -0.0021457633027067613,
+     0.0017758053247442188
+    ]
+   },
+   "TM_routes_R_inchanges": {
+    "n": 32,
+    "n_vrais_F": 0
+   },
+   "thr_utilises": [
+    0.699999988079071
+   ],
+   "decision": "INCOMPLET",
+   "export_ok": false,
+   "regle": "gain global >= +0.010 et contribution TM R routés F >= -0.001, sans manquante"
+  },
+  "all": {
+   "scope": "all",
+   "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "n_images": 510,
+   "gates_seed0": {
+    "0": 0.65,
+    "1": 0.65,
+    "2": 0.65,
+    "3": 0.7,
+    "4": 0.65
+   },
+   "ref_global": 0.5577223321197736,
+   "cand_global": 0.5668229901151032,
+   "gain_global": 0.009100657995329378,
+   "ic95_global_apparie": [
+    0.004739742775509365,
+    0.013676854415557126
+   ],
+   "missing": [
+    "a558bea42351",
+    "a59c74c9a78f",
+    "2dfa53b9ecf4",
+    "0703932c7705",
+    "6921edde828e"
+   ],
+   "TM_F_routes_F": {
+    "n": 85,
+    "n_predits": 85,
+    "ref": 0.5340357053225188,
+    "dense": 0.5886396532944952,
+    "gain_moyen": 0.05460394797197626,
+    "ic95_apparie": [
+     0.0308450341630987,
+     0.07875242335540679
+    ],
+    "contribution_globale": 0.009100657995329378,
+    "bornes_manquantes_globales": [
+     -0.0,
+     0.0
+    ]
+   },
+   "TM_R_routes_F": {
+    "n": 5,
+    "n_predits": 0,
+    "ref": null,
+    "dense": null,
+    "gain_moyen": null,
+    "ic95_apparie": null,
+    "contribution_globale": 0.0,
+    "bornes_manquantes_globales": [
+     -0.005736670095947597,
+     0.004067251472679854
+    ]
+   },
+   "TM_routes_R_inchanges": {
+    "n": 80,
+    "n_vrais_F": 0
+   },
+   "thr_utilises": [
+    0.5,
+    0.699999988079071,
+    0.8999999761581421
+   ],
+   "decision": "INCOMPLET",
+   "export_ok": false,
+   "regle": "gain global >= +0.010 et contribution TM R routés F >= -0.001, sans manquante"
+  }
+ },
+ "ref2": {
+  "confirm": {
+   "scope": "confirm",
+   "folds": [
+    0,
+    1
+   ],
+   "n_images": 510,
+   "gates_seed0": {
+    "0": 0.65,
+    "1": 0.65,
+    "2": 0.65,
+    "3": 0.7,
+    "4": 0.65
+   },
+   "ref_global": 0.5605540953048541,
+   "cand_global": 0.5647784356460576,
+   "gain_global": 0.004224340341203425,
+   "ic95_global_apparie": [
+    0.001407351651817313,
+    0.007460968525316161
+   ],
+   "missing": [
+    "a59c74c9a78f",
+    "0703932c7705"
+   ],
+   "TM_F_routes_F": {
+    "n": 34,
+    "n_predits": 34,
+    "ref": 0.525438237218878,
+    "dense": 0.5888033423369293,
+    "gain_moyen": 0.06336510511805139,
+    "ic95_apparie": [
+     0.024601319735900993,
+     0.10621881534866962
+    ],
+    "contribution_globale": 0.004224340341203427,
+    "bornes_manquantes_globales": [
+     -0.0,
+     0.0
+    ]
+   },
+   "TM_R_routes_F": {
+    "n": 2,
+    "n_predits": 0,
+    "ref": null,
+    "dense": null,
+    "gain_moyen": null,
+    "ic95_apparie": null,
+    "contribution_globale": 0.0,
+    "bornes_manquantes_globales": [
+     -0.0020861847145659915,
+     0.001835383912884989
+    ]
+   },
+   "TM_routes_R_inchanges": {
+    "n": 32,
+    "n_vrais_F": 0
+   },
+   "thr_utilises": [
+    0.699999988079071
+   ],
+   "decision": "INCOMPLET",
+   "export_ok": false,
+   "regle": "gain global >= +0.010 et contribution TM R routés F >= -0.001, sans manquante"
+  },
+  "all": {
+   "scope": "all",
+   "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "n_images": 510,
+   "gates_seed0": {
+    "0": 0.65,
+    "1": 0.65,
+    "2": 0.65,
+    "3": 0.7,
+    "4": 0.65
+   },
+   "ref_global": 0.5605540953048541,
+   "cand_global": 0.5696049676730666,
+   "gain_global": 0.009050872368212469,
+   "ic95_global_apparie": [
+    0.004606926799414679,
+    0.013697404024117609
+   ],
+   "missing": [
+    "a558bea42351",
+    "a59c74c9a78f",
+    "2dfa53b9ecf4",
+    "0703932c7705",
+    "6921edde828e"
+   ],
+   "TM_F_routes_F": {
+    "n": 85,
+    "n_predits": 85,
+    "ref": 0.5343344190852202,
+    "dense": 0.5886396532944952,
+    "gain_moyen": 0.0543052342092748,
+    "ic95_apparie": [
+     0.029396181023454884,
+     0.07902988928482269
+    ],
+    "contribution_globale": 0.009050872368212467,
+    "bornes_manquantes_globales": [
+     -0.0,
+     0.0
+    ]
+   },
+   "TM_R_routes_F": {
+    "n": 5,
+    "n_predits": 0,
+    "ref": null,
+    "dense": null,
+    "gain_moyen": null,
+    "ic95_apparie": null,
+    "contribution_globale": 0.0,
+    "bornes_manquantes_globales": [
+     -0.005865201154899938,
+     0.003938720413727513
+    ]
+   },
+   "TM_routes_R_inchanges": {
+    "n": 80,
+    "n_vrais_F": 0
+   },
+   "thr_utilises": [
+    0.5,
+    0.699999988079071,
+    0.8999999761581421
+   ],
+   "decision": "INCOMPLET",
+   "export_ok": false,
+   "regle": "gain global >= +0.010 et contribution TM R routés F >= -0.001, sans manquante"
+  }
+ },
+ "decision": "INCOMPLET",
+ "export_ok": false
+}

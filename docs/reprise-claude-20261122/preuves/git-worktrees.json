@@ -1,0 +1,12 @@
+{
+  "heure_paris": "2026-11-22T03:06:56.285078+01:00",
+  "commande": [
+    "git",
+    "worktree",
+    "list",
+    "--porcelain"
+  ],
+  "code": 0,
+  "stdout": "worktree /Users/selyan/dev/eaic-paris-2026\nHEAD f209e20397736c53824a7a94ec73f2bd66d012eb\nbranch refs/heads/main\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/audit-global\nHEAD 38e69bbe91a8fd9088c50c3ded21320b307d573d\nbranch refs/heads/docs/audit-global-nuit\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-probe-1b51d2\nHEAD 409e4ec85a5061302478621fd0407ff280faafe7\nbranch refs/heads/feat/c1-seg-f\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-reembed\nHEAD 8b3d555fd22785d34ba59e9b504d02ab2a4ab81d\nbranch refs/heads/feat/c1-reembed\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c2-plan-62ed5e\nHEAD 7e5027bb4e5c13ff0ea1c9ddfc97e20e4aaf869f\nbranch refs/heads/feat/c2-phase1a\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-candidates-e64185\nHEAD 5d5cae6e0d4ccf425ff612f256bc74ca997a1b23\nbranch refs/heads/claude/c3-candidates-e64185\n\nworktree /Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-scaffold-b590e8\nHEAD 6e485cce7e22b644de151029bf3d3516be6996b7\nbranch refs/heads/fix/c3-eval-guards\n\nworktree /Users/selyan/dev/eaic-wt-audit-val\nHEAD 3e79a653de166218ef8888cecd37cb373c0ce59b\nbranch refs/heads/docs/jureca-audit-validation\n\nworktree /Users/selyan/dev/eaic-wt-c1-pixseg\nHEAD 2bb6b4bb106ebeb21db4ba0c1c6753e1ca5f0b97\nbranch refs/heads/feat/c1-pixseg\n\nworktree /Users/selyan/dev/eaic-wt-c1-rect\nHEAD 9fefb9e631e66bda390358f5e11103c4e766ec78\nbranch refs/heads/feat/c1-rect-exact\n\nworktree /Users/selyan/dev/eaic-wt-c1-results\nHEAD 8e7f02caf0422e1cddd484310095b5463f37b62c\nbranch refs/heads/feat/c1-real-results\n\nworktree /Users/selyan/dev/eaic-wt-c1-speed\nHEAD 2f448fd39ae49e711d00e609a658fe7b469bc02f\nbranch refs/heads/feat/c1-box-speed\n\nworktree /Users/selyan/dev/eaic-wt-c1-tmatch\nHEAD 9b8d3f8810420655785e5c08c859c8f863743f43\nbranch refs/heads/feat/c1-template-match\n\nworktree /Users/selyan/dev/eaic-wt-c3-t1t2\nHEAD 2bb6b4bb106ebeb21db4ba0c1c6753e1ca5f0b97\nbranch refs/heads/feat/c3-t1t2\n\nworktree /Users/selyan/dev/eaic-wt-c3-veille\nHEAD 417ccf25695928241670a923ac60c40a613e0463\nbranch refs/heads/docs/c3-veille\n\nworktree /Users/selyan/dev/eaic-wt-plan-nuit\nHEAD 28627d245a2508120077cf290f93ce2ff0a3e3d5\nbranch refs/heads/docs/readme\n\n",
+  "stderr": ""
+}

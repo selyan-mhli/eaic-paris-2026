@@ -1,0 +1,43 @@
+{
+  "responses": 288,
+  "pairs": 36,
+  "same_pairs": 10,
+  "banks": [
+    {
+      "pids": [
+        "m03",
+        "m07",
+        "c02",
+        "c11"
+      ],
+      "auc": 0.4307692307692308,
+      "permutation_p": 0.6825396825396826
+    },
+    {
+      "pids": [
+        "c01",
+        "m04",
+        "c10",
+        "c04"
+      ],
+      "auc": 0.3038461538461538,
+      "permutation_p": 0.8650793650793651
+    }
+  ],
+  "transfer": [
+    {
+      "selection": 1,
+      "evaluation": 2,
+      "threshold": 0.01594551282051284,
+      "mcc_fit": 0.12033136751923737,
+      "mcc_other": 0.0
+    },
+    {
+      "selection": 2,
+      "evaluation": 1,
+      "threshold": 0.02291666666666667,
+      "mcc_fit": 0.12033136751923731,
+      "mcc_other": 0.12033136751923737
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+tag=mg15 margin=1.5 : CE cible forget 0.3096/0.1146
+entraînables 28359168 (derniers 4 blocs, tête gelée)
+/p/scratch/training2666/mouhali1/SLZ/unlearning/work_c3_eval/margin_edit.py:154: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f"step {step} loss_f={float(loss_f) / len(views):.4f} loss_h={float(loss_h) / len(holds):.4f} "
+step 25 loss_f=1.0059 loss_h=0.0391 3.25 step/s
+step 50 loss_f=0.9317 loss_h=0.0564 3.30 step/s
+step 75 loss_f=0.8454 loss_h=0.0575 3.31 step/s
+step 100 loss_f=0.7580 loss_h=0.0713 3.32 step/s
+step 125 loss_f=0.6713 loss_h=0.0660 3.32 step/s
+step 125: CE forget 0.0033/0.0137 changées 0.0000
+step 150 loss_f=0.5382 loss_h=0.0787 3.15 step/s
+step 175 loss_f=0.5563 loss_h=0.0776 3.17 step/s
+step 200 loss_f=0.5698 loss_h=0.0825 3.19 step/s
+step 225 loss_f=0.3920 loss_h=0.0833 3.21 step/s
+step 250 loss_f=0.4909 loss_h=0.0893 3.22 step/s
+step 250: CE forget 0.0073/0.0226 changées 0.0000
+step 275 loss_f=0.4326 loss_h=0.0839 3.14 step/s
+step 300 loss_f=0.3778 loss_h=0.0884 3.16 step/s
+step 325 loss_f=0.3533 loss_h=0.0872 3.17 step/s
+step 350 loss_f=0.3616 loss_h=0.0855 3.18 step/s
+step 375 loss_f=0.3738 loss_h=0.0861 3.19 step/s
+step 375: CE forget 0.0119/0.0312 changées 0.0000
+step 400 loss_f=0.3634 loss_h=0.0900 3.14 step/s
+step 425 loss_f=0.3428 loss_h=0.0934 3.15 step/s
+step 450 loss_f=0.3351 loss_h=0.0766 3.16 step/s
+step 475 loss_f=0.2214 loss_h=0.0864 3.17 step/s
+step 500 loss_f=0.2966 loss_h=0.0857 3.18 step/s
+step 500: CE forget 0.0167/0.0386 changées 0.0000
+step 525 loss_f=0.2926 loss_h=0.0817 3.14 step/s
+step 550 loss_f=0.2443 loss_h=0.0920 3.15 step/s
+step 575 loss_f=0.2818 loss_h=0.0874 3.16 step/s
+step 600 loss_f=0.2446 loss_h=0.0801 3.17 step/s
+step 625 loss_f=0.2747 loss_h=0.0775 3.17 step/s
+step 625: CE forget 0.0215/0.0447 changées 0.0000
+step 650 loss_f=0.2436 loss_h=0.0788 3.14 step/s
+step 675 loss_f=0.2478 loss_h=0.0862 3.15 step/s
+step 700 loss_f=0.2437 loss_h=0.0867 3.16 step/s
+step 725 loss_f=0.2236 loss_h=0.0790 3.16 step/s
+step 750 loss_f=0.1985 loss_h=0.0793 3.17 step/s
+step 750: CE forget 0.0268/0.0499 changées 0.0000
+step 775 loss_f=0.2369 loss_h=0.0794 3.14 step/s
+step 800 loss_f=0.1720 loss_h=0.0757 3.15 step/s
+step 825 loss_f=0.2120 loss_h=0.0844 3.15 step/s
+step 850 loss_f=0.2255 loss_h=0.0882 3.16 step/s
+step 875 loss_f=0.2115 loss_h=0.0780 3.16 step/s
+step 875: CE forget 0.0320/0.0555 changées 0.0000
+step 900 loss_f=0.2170 loss_h=0.0833 3.14 step/s
+step 925 loss_f=0.1795 loss_h=0.0825 3.15 step/s
+step 950 loss_f=0.1868 loss_h=0.0768 3.15 step/s
+step 975 loss_f=0.1643 loss_h=0.0714 3.16 step/s
+step 1000 loss_f=0.1718 loss_h=0.0744 3.16 step/s
+step 1000: CE forget 0.0382/0.0612 changées 0.0000

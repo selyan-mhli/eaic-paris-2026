@@ -1,0 +1,500 @@
+
+=== 2026-11-22T03:07:22.646Z NOTE id=b2735942897c ===
+Project initialized: profile=default; path=/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+
+=== 2026-11-22T03:07:25.987Z PYTHON run=d2ed8a93f0bf ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/project_manager.py", "import-sources", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/source-deck.md"]
+stdout:
+  [OK] Imported sources into: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+=== 2026-11-22T03:07:26.363Z END run=d2ed8a93f0bf elapsed_ms=376 output_lines=5 retained=1 omitted=4 ===
+
+=== 2026-11-22T03:07:53.354Z PYTHON run=6d0727cc4e52 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/confirm_ui/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--daemon"]
+stderr:
+  [04:07:53] [ERROR] confirm_ui: invalid Stage 1 recommendations: [Errno 2] No such file or directory: '/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/confirm_ui/recommendations.stage1.json'
+=== 2026-11-22T03:07:53.526Z END run=6d0727cc4e52 elapsed_ms=171 output_lines=1 retained=1 omitted=0 ===
+
+=== 2026-11-22T03:07:56.384Z PYTHON run=95b594533771 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/confirm_ui/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--daemon"]
+stderr:
+  [04:07:56] [INFO] confirm_ui: log: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/confirm_ui/server.log
+  [04:07:58] [INFO] confirm_ui: started confirm UI in background: http://127.0.0.1:5050 (pid=3806)
+  [04:07:58] [INFO] confirm_ui: browser launch request accepted by OS: http://127.0.0.1:5050
+=== 2026-11-22T03:07:58.799Z END run=95b594533771 elapsed_ms=2414 output_lines=3 retained=3 omitted=0 ===
+
+=== 2026-11-22T03:08:02.849Z PYTHON run=d74f5c2750d6 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/confirm_ui/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--wait-only", "--wait-stage", "stage1"]
+stderr:
+  [04:08:03] [INFO] confirm_ui: waiting for browser confirmation stage=stage1...
+  [04:08:10] [INFO] confirm_ui: confirmation stage=stage1 received: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/confirm_ui/result.json
+  [04:08:10] [INFO] confirm_ui: [NEXT] Stage 1 is intermediate: install the selected roots (if any), author fresh Stage 2, then wait for final confirmation.
+=== 2026-11-22T03:08:10.722Z END run=d74f5c2750d6 elapsed_ms=7872 output_lines=3 retained=3 omitted=0 ===
+
+=== 2026-11-22T03:08:58.390Z PYTHON run=14675c2109e9 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/confirm_ui/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--wait-only"]
+stderr:
+  [04:08:58] [INFO] confirm_ui: waiting for browser confirmation stage=final...
+
+=== 2026-11-22T03:09:41.430Z PYTHON run=4243860dda4e ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/confirm_ui/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--shutdown"]
+stderr:
+  [04:09:41] [INFO] confirm_ui: confirm server stopped (pid=3806)
+=== 2026-11-22T03:09:41.965Z END run=4243860dda4e elapsed_ms=534 output_lines=1 retained=1 omitted=0 ===
+
+=== 2026-11-22T03:09:56.964Z PYTHON run=ee8d10ea164c ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/icon_sync.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "tabler-outline/flask", "tabler-outline/ruler-measure", "tabler-outline/lock", "tabler-outline/target", "tabler-outline/check", "tabler-outline/x"]
+stderr:
+  [OK] 6 icon(s) in /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/icons:
+       + tabler-outline/flask
+       + tabler-outline/ruler-measure
+       + tabler-outline/lock
+       + tabler-outline/target
+       + tabler-outline/check
+       + tabler-outline/x
+=== 2026-11-22T03:09:56.968Z END run=ee8d10ea164c elapsed_ms=4 output_lines=7 retained=7 omitted=0 ===
+
+=== 2026-11-22T03:10:59.564Z PYTHON run=dd2a98cb99e4 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/project_manager.py", "validate", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [WARN]
+  [OK] Project structure is valid, with warnings.
+=== 2026-11-22T03:11:00.538Z END run=dd2a98cb99e4 elapsed_ms=973 output_lines=5 retained=2 omitted=3 ===
+
+=== 2026-11-22T03:11:36.872Z PYTHON run=e082c8343582 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/text_measure.py", "calibrate", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--outline"]
+=== 2026-11-22T03:11:37.038Z END run=e082c8343582 elapsed_ms=166 output_lines=14 retained=0 omitted=14 ===
+
+=== 2026-11-22T03:11:37.296Z PYTHON run=24518dcc8302 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_editor/server.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--live", "--daemon"]
+stderr:
+  [04:11:37] [INFO] svg_editor: started live preview in background: http://127.0.0.1:6060 (pid=6254)
+  [04:11:37] [INFO] svg_editor: log: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/live_preview/server.log
+  [04:11:38] [INFO] svg_editor: browser launch request accepted by OS: http://127.0.0.1:6060
+=== 2026-11-22T03:11:38.056Z END run=24518dcc8302 elapsed_ms=760 output_lines=3 retained=3 omitted=0 ===
+
+=== 2026-11-22T03:15:25.277Z PYTHON run=86a6e32fe02b ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/stamp_native_fallbacks.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output", "--write"]
+=== 2026-11-22T03:15:25.284Z END run=86a6e32fe02b elapsed_ms=7 output_lines=8 retained=0 omitted=8 ===
+
+=== 2026-11-22T03:15:25.356Z PYTHON run=b1944bb9ff3b ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [ERROR] 02_notre_regle.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text='Une règle fixée avan…') exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(902.1, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [ERROR] 03_t1_progression.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text='T1 : +0,17 en six ét…') exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(789.7, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="local-public-gap"> x=904.0, y=460.0..488.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [ERROR] 04_t1_pistes_rejetees.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text='T1 : la règle a coup…') exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(993.3, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=90, y=594; text='15 équipes atteignen…') exceeds <g id="limit"> data-pptx-bounds on the vertical axis: content (90.0, 571.9)-(977.2, 635.1), container (64.0, 526.0)-(1216.0, 634.0), overflow horizontal 0.0%, vertical 1.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+  [ERROR] 05_t2.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text='T2 : familles identi…') exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(1098.1, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+  [ERROR] 06_t3.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text='T3 : seule la tête a…') exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(930.6, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=161, y=548; text='× 1,25') exceeds <g id="t3-push"> data-pptx-bounds on the vertical axis: content (134.2, 532.7)-(187.8, 554.3), container (64.0, 148.0)-(644.0, 540.0), overflow horizontal 0.0%, vertical 3.6% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=291, y=548; text='× 1,5') exceeds <g id="t3-push"> data-pptx-bounds on the vertical axis: content (269.5, 532.7)-(312.5, 554.3), container (64.0, 148.0)-(644.0, 540.0), overflow horizontal 0.0%, vertical 3.6% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=421, y=548; text='× 1,75') exceeds <g id="t3-push"> data-pptx-bounds on the vertical axis: content (394.2, 532.7)-(447.8, 554.3), container (64.0, 148.0)-(644.0, 540.0), overflow horizontal 0.0%, vertical 3.6% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+     [WARN] <text> (x=551, y=548; text='× 2,0') exceeds <g id="t3-push"> data-pptx-bounds on the vertical axis: content (529.5, 532.7)-(572.5, 554.3), container (64.0, 148.0)-(644.0, 540.0), overflow horizontal 0.0%, vertical 3.6% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+  [ERROR] 07_ce_quon_retient.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] <text> (x=64, y=114; text="Ce qu'on retient") exceeds <g id="header"> data-pptx-bounds on the vertical axis: content (64.0, 76.6)-(416.6, 129.4), container (64.0, 48.0)-(1216.0, 124.0), overflow horizontal 0.0%, vertical 7.1% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 0 (0%)
+    [WARN] With warnings: 1 (14%)
+    [ERROR] With errors: 6 (85%)
+  Provenance categories:
+    blocking: 6          hard findings; gate also requires exit 0
+    introduced: 8        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 120 | images: 0 | icons: 0
+    Geometry: SVG elements 64 | native presets 0 | page-frame elements 7 | marker uses 2
+    Effects: inline emphasis 12 (pages 4) | gradients 0 (pages 0) | filters 0 (pages 0) | text effects 0 (pages 0)
+    Native objects: charts 2 | tables 1 | formulas 0
+    Presets: (none)
+    Relationship pages: 5 (§IX names order / link / parent / membership) | pages carrying a preset or connector: 0
+  [REPORT] JSON quality report exported: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/svg_quality_report.json
+=== 2026-11-22T03:15:26.387Z END run=b1944bb9ff3b elapsed_ms=1030 output_lines=62 retained=45 omitted=17 ===
+
+=== 2026-11-22T03:15:38.823Z PYTHON run=6e364f1cd12f ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/stamp_native_fallbacks.py", ".", "--write"]
+=== 2026-11-22T03:15:38.829Z END run=6e364f1cd12f elapsed_ms=5 output_lines=8 retained=0 omitted=8 ===
+
+=== 2026-11-22T03:15:38.896Z PYTHON run=a2dd3ebc9126 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", "..", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 3        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 120 | images: 0 | icons: 0
+    Geometry: SVG elements 64 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: ../validation/svg_quality_report.json
+=== 2026-11-22T03:15:39.892Z END run=a2dd3ebc9126 elapsed_ms=996 output_lines=49 retained=19 omitted=30 ===
+
+=== 2026-11-22T03:15:55.903Z PYTHON run=94a8406b1519 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", "..", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 3        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 120 | images: 0 | icons: 4
+    Geometry: SVG elements 64 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: ../validation/svg_quality_report.json
+=== 2026-11-22T03:15:56.882Z END run=94a8406b1519 elapsed_ms=978 output_lines=49 retained=19 omitted=30 ===
+
+=== 2026-11-22T03:16:27.475Z PYTHON run=81e3485648c8 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/total_md_split.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 7/7 file(s)
+  [Done] Notes splitting complete
+=== 2026-11-22T03:16:27.480Z END run=81e3485648c8 elapsed_ms=4 output_lines=16 retained=3 omitted=13 ===
+
+=== 2026-11-22T03:16:30.206Z PYTHON run=4f1ef7f017a0 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/finalize_svg.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] 02_notre_regle.svg (3 icons)
+  [OK] Done!
+=== 2026-11-22T03:16:30.468Z END run=4f1ef7f017a0 elapsed_ms=261 output_lines=14 retained=2 omitted=12 ===
+
+=== 2026-11-22T03:16:33.197Z PYTHON run=2b3ca006365d ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_to_pptx.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [Done] Saved: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_041634.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=7 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=3
+    [PPTX] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_041634.pptx
+    [REPORT] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/slz_deck_20261122_041634.report.json
+=== 2026-11-22T03:16:34.569Z END run=2b3ca006365d elapsed_ms=1371 output_lines=44 retained=5 omitted=39 ===
+
+=== 2026-11-22T03:54:30.724Z PYTHON run=a7b9a7db178c ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/stamp_native_fallbacks.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/svg_output", "--write"]
+=== 2026-11-22T03:54:30.731Z END run=a7b9a7db178c elapsed_ms=7 output_lines=8 retained=0 omitted=8 ===
+
+=== 2026-11-22T03:54:30.801Z PYTHON run=a31a0817bd7e ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_quality_checker.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 4        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/svg_quality_report.json
+=== 2026-11-22T03:54:31.813Z END run=a31a0817bd7e elapsed_ms=1012 output_lines=50 retained=19 omitted=31 ===
+
+=== 2026-11-22T03:54:31.890Z PYTHON run=478f5f79fedb ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/project_manager.py", "validate", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] Project structure is complete.
+=== 2026-11-22T03:54:32.445Z END run=478f5f79fedb elapsed_ms=555 output_lines=3 retained=1 omitted=2 ===
+
+=== 2026-11-22T03:54:36.463Z PYTHON run=a336541c4713 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/total_md_split.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 7/7 file(s)
+  [Done] Notes splitting complete
+=== 2026-11-22T03:54:36.468Z END run=a336541c4713 elapsed_ms=4 output_lines=16 retained=3 omitted=13 ===
+
+=== 2026-11-22T03:54:36.534Z PYTHON run=96f7a6f2c4d0 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/finalize_svg.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] 02_notre_regle.svg (3 icons)
+  [OK] Done!
+=== 2026-11-22T03:54:36.799Z END run=96f7a6f2c4d0 elapsed_ms=265 output_lines=14 retained=2 omitted=12 ===
+
+=== 2026-11-22T03:54:36.914Z PYTHON run=47a07b09f1d3 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_to_pptx.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [Done] Saved: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_045437.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=7 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=4
+    [PPTX] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_045437.pptx
+    [REPORT] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/slz_deck_20261122_045437.report.json
+=== 2026-11-22T03:54:38.112Z END run=47a07b09f1d3 elapsed_ms=1198 output_lines=44 retained=5 omitted=39 ===
+
+=== 2026-11-22T03:54:53.872Z PYTHON run=c5b0d669e861 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_quality_checker.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 4        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/svg_quality_report.json
+=== 2026-11-22T03:54:54.872Z END run=c5b0d669e861 elapsed_ms=999 output_lines=50 retained=19 omitted=31 ===
+
+=== 2026-11-22T03:54:54.955Z PYTHON run=40d960b07e8f ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/finalize_svg.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [OK] 02_notre_regle.svg (3 icons)
+  [OK] Done!
+=== 2026-11-22T03:54:55.225Z END run=40d960b07e8f elapsed_ms=269 output_lines=14 retained=2 omitted=12 ===
+
+=== 2026-11-22T03:54:55.339Z PYTHON run=3ba529bb2635 ===
+cwd: /Users/selyan/.agents/skills/ppt-master
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "scripts/svg_to_pptx.py", "/Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122"]
+stdout:
+  [Done] Saved: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_045456.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=7 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=4
+    [PPTX] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/exports/slz_deck_20261122_045456.pptx
+    [REPORT] /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122/validation/slz_deck_20261122_045456.report.json
+=== 2026-11-22T03:54:56.511Z END run=3ba529bb2635 elapsed_ms=1171 output_lines=44 retained=5 omitted=39 ===
+
+=== 2026-11-22T04:28:51.283Z PYTHON run=c4a149b285cb ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", ".", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [ERROR] 04_t1_pistes_rejetees.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] Canonical SVG-first native marker t1-pistes: Visible native-object SVG fallback was edited after its baseline was recorded; --native-charts-and-tables stopped to avoid discarding the SVG edit. Use the default fallback export, or deliberately update the native metadata and baseline together
+     [WARN] data-pptx-replace-with marker t1-pistes: visible SVG fallback differs from its recorded baseline; default shape-based fallback export remains available, but --native-charts-and-tables will fail
+  [OK] 05_t2.svg - Passed
+     viewBox: 0 0 1280 720
+  [OK] 06_t3.svg - Passed
+  [OK] 07_ce_quon_retient.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 3 (42%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 1 (14%)
+  Provenance categories:
+    blocking: 1          hard findings; gate also requires exit 0
+    introduced: 5        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: validation/svg_quality_report.json
+=== 2026-11-22T04:28:53.503Z END run=c4a149b285cb elapsed_ms=2219 output_lines=54 retained=26 omitted=28 ===
+
+=== 2026-11-22T04:28:59.254Z PYTHON run=47a6d7c3947e ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", ".", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [ERROR] 04_t1_pistes_rejetees.svg - Failed
+     viewBox: 0 0 1280 720
+     [ERROR] Canonical SVG-first native marker t1-pistes: Visible native-object SVG fallback was edited after its baseline was recorded; --native-charts-and-tables stopped to avoid discarding the SVG edit. Use the default fallback export, or deliberately update the native metadata and baseline together
+     [WARN] data-pptx-replace-with marker t1-pistes: visible SVG fallback differs from its recorded baseline; default shape-based fallback export remains available, but --native-charts-and-tables will fail
+  [OK] 05_t2.svg - Passed
+     viewBox: 0 0 1280 720
+  [OK] 06_t3.svg - Passed
+  [OK] 07_ce_quon_retient.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 3 (42%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 1 (14%)
+  Provenance categories:
+    blocking: 1          hard findings; gate also requires exit 0
+    introduced: 5        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: validation/svg_quality_report.json
+=== 2026-11-22T04:29:01.465Z END run=47a6d7c3947e elapsed_ms=2210 output_lines=54 retained=26 omitted=28 ===
+
+=== 2026-11-22T04:29:10.809Z PYTHON run=2f8ffba99d19 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/stamp_native_fallbacks.py", "--help"]
+=== 2026-11-22T04:29:10.811Z END run=2f8ffba99d19 elapsed_ms=1 output_lines=10 retained=0 omitted=10 ===
+
+=== 2026-11-22T04:29:19.577Z PYTHON run=f64066ba2496 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/stamp_native_fallbacks.py", "svg_output/04_t1_pistes_rejetees.svg", "--write"]
+=== 2026-11-22T04:29:19.582Z END run=f64066ba2496 elapsed_ms=4 output_lines=2 retained=0 omitted=2 ===
+
+=== 2026-11-22T04:29:19.688Z PYTHON run=3b2049fba807 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", ".", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 4        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: validation/svg_quality_report.json
+=== 2026-11-22T04:29:20.930Z END run=3b2049fba807 elapsed_ms=1241 output_lines=50 retained=19 omitted=31 ===
+
+=== 2026-11-22T04:29:29.848Z PYTHON run=0ef707282c12 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_quality_checker.py", ".", "--canonical-authoring", "--stage", "final", "--json"]
+stdout:
+  [WARN] 01_couverture.svg - Passed (with warnings)
+     [WARN] Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (3 change(s)); examples (group:attr None -> value hoists the shared value onto that group; child:attr value -> None drops the copy the child now inherits): title:font-family None -> 'Georgia, "Times New Roman", serif'; text[10]:font-family 'Georgia, "Times New Roman", serif' -> None; text[11]:font-family 'Georgia, "Times New Roman", serif' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace`, re-stamp pages that carry Chart/Table fallbacks, and rerun the final gate, or leave the explicit form)
+  [WARN] 02_notre_regle.svg - Passed (with warnings)
+     [WARN] Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id="decision-loop"> x=64.0, y=584.0..612.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy="0". Keep semantically independent text frames separate.
+  [OK] 04_t1_pistes_rejetees.svg - Passed
+  [SUMMARY] Check Summary
+  Total files: 7
+    [OK] Fully passed: 4 (57%)
+    [WARN] With warnings: 3 (42%)
+    [ERROR] With errors: 0 (0%)
+  Provenance categories:
+    blocking: 0          hard findings; gate also requires exit 0
+    introduced: 3        advisory; new or changed
+    inherited: 0         informational; prototype-identical
+    source-import: 0     informational; source-conversion loss
+  [CARRIERS] Actual-use receipt (informational; not a quota)
+    Pages: 7 | text: 123 | images: 0 | icons: 4
+    Geometry: SVG elements 65 | native presets 0 | page-frame elements 7 | marker uses 2
+  [REPORT] JSON quality report exported: validation/svg_quality_report.json
+=== 2026-11-22T04:29:30.779Z END run=0ef707282c12 elapsed_ms=930 output_lines=49 retained=19 omitted=30 ===
+
+=== 2026-11-22T04:29:30.890Z PYTHON run=3e2c4c122c4b ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/total_md_split.py", "."]
+stdout:
+  [OK] SVG files and notes have one-to-one correspondence
+  [Done] Successfully generated 7/7 file(s)
+  [Done] Notes splitting complete
+=== 2026-11-22T04:29:30.903Z END run=3e2c4c122c4b elapsed_ms=13 output_lines=16 retained=3 omitted=13 ===
+
+=== 2026-11-22T04:29:30.987Z PYTHON run=9717b48dc734 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/finalize_svg.py", "."]
+stdout:
+  [OK] 02_notre_regle.svg (3 icons)
+  [OK] Done!
+=== 2026-11-22T04:29:31.319Z END run=9717b48dc734 elapsed_ms=332 output_lines=14 retained=2 omitted=12 ===
+
+=== 2026-11-22T04:29:31.479Z PYTHON run=96ffdc57e145 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_to_pptx.py", "."]
+stderr:
+  Traceback (most recent call last):
+    File "/Users/selyan/.claude/skills/ppt-master/scripts/svg_to_pptx.py", line 25, in <module>
+      from svg_to_pptx import main
+    File "/Users/selyan/.agents/skills/ppt-master/scripts/svg_to_pptx/__init__.py", line 23, in __getattr__
+      from .pptx_package.cli import main
+    File "/Users/selyan/.agents/skills/ppt-master/scripts/svg_to_pptx/pptx_package/cli.py", line 87, in <module>
+      from .builder import RoundtripSlidePatch, create_pptx_with_native_svg
+    File "/Users/selyan/.agents/skills/ppt-master/scripts/svg_to_pptx/pptx_package/builder.py", line 26, in <module>
+stderr-tail:
+      from pptx import Presentation
+  ModuleNotFoundError: No module named 'pptx'
+=== 2026-11-22T04:29:31.991Z END run=96ffdc57e145 elapsed_ms=512 output_lines=10 retained=10 omitted=0 ===
+
+=== 2026-11-22T04:29:36.579Z PYTHON run=96d0224c4914 ===
+cwd: /Users/selyan/dev/eaic-paris-2026/docs/deck-20261122/projects/slz_deck_20261122
+argv: ["/Users/selyan/.local/share/ppt-master/venv/bin/python3", "/Users/selyan/.claude/skills/ppt-master/scripts/svg_to_pptx.py", "."]
+stdout:
+  [Done] Saved: exports/slz_deck_20261122_052937.pptx
+    [POSTFLIGHT] status=passed-with-warnings quality_gate=passed slides=7 warning_categories=1
+    [POSTFLIGHT][WARNING] quality_introduced_warnings=3
+    [PPTX] exports/slz_deck_20261122_052937.pptx
+    [REPORT] validation/slz_deck_20261122_052937.report.json
+=== 2026-11-22T04:29:38.071Z END run=96d0224c4914 elapsed_ms=1491 output_lines=44 retained=5 omitted=39 ===

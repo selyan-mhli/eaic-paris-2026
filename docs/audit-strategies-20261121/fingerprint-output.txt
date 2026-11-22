@@ -1,0 +1,8 @@
+raw_ngram          cross 0->1 train=0.0374 heldout=0.0000 AUC=0.2923 variant_merges={'ref-02': 1, 'ref-04': 1, 'ref-07': 0, 'ref-09': 1}
+raw_ngram          cross 1->0 train=0.0210 heldout=0.0000 AUC=0.3500 variant_merges={'ref-02': 2, 'ref-04': 2, 'ref-07': 0, 'ref-09': 2}
+raw_ngram          mmd   0->1 train=0.0210 heldout=0.0000 AUC=0.5462 variant_merges={'ref-02': 3, 'ref-04': 3, 'ref-07': 0, 'ref-09': 3}
+raw_ngram          mmd   1->0 train=0.3315 heldout=0.0000 AUC=0.3846 variant_merges={'ref-02': 4, 'ref-04': 4, 'ref-07': 4, 'ref-09': 4}
+numeric_sequence   cross 0->1 train=0.3315 heldout=0.3315 AUC=0.5962 variant_merges={'ref-02': 5, 'ref-04': 5, 'ref-07': 0, 'ref-09': 5}
+numeric_sequence   cross 1->0 train=0.3315 heldout=0.0210 AUC=0.5538 variant_merges={'ref-02': 4, 'ref-04': 4, 'ref-07': 0, 'ref-09': 4}
+numeric_sequence   mmd   0->1 train=0.2726 heldout=0.0000 AUC=0.5731 variant_merges={'ref-02': 0, 'ref-04': 1, 'ref-07': 0, 'ref-09': 1}
+numeric_sequence   mmd   1->0 train=0.2306 heldout=0.1203 AUC=0.4308 variant_merges={'ref-02': 0, 'ref-04': 1, 'ref-07': 0, 'ref-09': 0}

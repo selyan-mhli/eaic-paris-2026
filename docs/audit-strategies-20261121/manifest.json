@@ -1,0 +1,199 @@
+{
+  "generated_at_utc": "2026-11-21T22:30:00.903418+00:00",
+  "checkout": "/Users/selyan/dev/eaic-paris-2026",
+  "HEAD": "f209e20397736c53824a7a94ec73f2bd66d012eb",
+  "branch": "main",
+  "git_status_final": "## main...origin/main [behind 7]\n M c1/seg/gen_f.py\n M c1/seg/train_f.py\n M docs/experiences.md\n?? RAPPORT-CODEX.md\n?? c1/seg/combine.py\n?? c1/seg/export.py\n?? c1/seg/kfold_f.py\n?? docs/PLAN-NUIT.md\n?? docs/SLZ_COORDINATION_20261121.md\n?? docs/audit-strategies-20261121/\n?? docs/slz-jobs/\n?? docs/task1-audit-20261121/\n?? docs/task2-audit-20261121/\n?? docs/task2-work-20261121/\n?? docs/task3-audit-20261121/\n?? docs/task3-work-20261121/\n",
+  "worktrees": "/Users/selyan/dev/eaic-paris-2026                                        f209e20 [main]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-probe-1b51d2      409e4ec [feat/c1-seg-f]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c1-reembed           8b3d555 [feat/c1-reembed]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c2-plan-62ed5e       7e5027b [feat/c2-phase1a]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-candidates-e64185 5d5cae6 [claude/c3-candidates-e64185]\n/Users/selyan/dev/eaic-paris-2026/.claude/worktrees/c3-scaffold-b590e8   6e485cc [fix/c3-eval-guards]\n/Users/selyan/dev/eaic-wt-audit-val                                      3e79a65 [docs/jureca-audit-validation]\n/Users/selyan/dev/eaic-wt-c1-pixseg                                      2bb6b4b [feat/c1-pixseg]\n/Users/selyan/dev/eaic-wt-c1-rect                                        9fefb9e [feat/c1-rect-exact]\n/Users/selyan/dev/eaic-wt-c1-results                                     8e7f02c [feat/c1-real-results]\n/Users/selyan/dev/eaic-wt-c1-speed                                       2f448fd [feat/c1-box-speed]\n/Users/selyan/dev/eaic-wt-c1-tmatch                                      9b8d3f8 [feat/c1-template-match]\n/Users/selyan/dev/eaic-wt-c3-t1t2                                        2bb6b4b [feat/c3-t1t2]\n/Users/selyan/dev/eaic-wt-c3-veille                                      417ccf2 [docs/c3-veille]\n/Users/selyan/dev/eaic-wt-plan-nuit                                      28627d2 [docs/readme]\n",
+  "sources": [
+    {
+      "path": "RAPPORT-CODEX.md",
+      "bytes": 36558,
+      "sha256": "067ec50967f6392250ff9ac7546e14d20093c56fd4186676c1d0abc282b8b4a2"
+    },
+    {
+      "path": "docs/task1-audit-20261121/champion_summary.json",
+      "bytes": 9034,
+      "sha256": "85deba9879e3ac40a7bcbf14ad7031add6a068e73e37a084f0bc34d1774ad5b1"
+    },
+    {
+      "path": "docs/task1-audit-20261121/audit_results.json",
+      "bytes": 19923,
+      "sha256": "4d3c07bbcdfb84353c5e6290331468a3ddc81b828a09f9a982ee112bbb8edfca"
+    },
+    {
+      "path": "docs/task2-audit-20261121/RAPPORT-CODEX.md",
+      "bytes": 31756,
+      "sha256": "6cb6417f8d6d0374d53a6b0ddeee028107a1c6a5e8e758371469edf816b5075a"
+    },
+    {
+      "path": "docs/task3-audit-20261121/RAPPORT-CODEX.md",
+      "bytes": 11744,
+      "sha256": "625eb592e7b82333bb6ac61444300a168cac483ed0a44edb4ea6e0dc3ae1c5e4"
+    },
+    {
+      "path": "docs/task2-work-20261121/RAPPORT.md",
+      "bytes": 13818,
+      "sha256": "3ae3238ab64e41a9755fb956b2eed1f8e0ccc0010335ab05c45d5061cb681315"
+    },
+    {
+      "path": "docs/task2-work-20261121/corpus.jsonl",
+      "bytes": 1506540,
+      "sha256": "883a2aa13cb7d331e71012a041d992043369a87a61e980e3c72d56a1076dcd39"
+    },
+    {
+      "path": "docs/task2-work-20261121/validation_moreprompts.json",
+      "bytes": 405,
+      "sha256": "d00eb6cba9a61944de630228e012c1a71a080c8cd9448a5d293d41a6c5dfd969"
+    },
+    {
+      "path": "docs/task2-work-20261121/simulation_results.json",
+      "bytes": 3824,
+      "sha256": "d7d61e078337fae29b63cdfd6fa4dc4ce1d96a7f9c4f594eeb793f33f30bcff4"
+    },
+    {
+      "path": "docs/SLZ_COORDINATION_20261121.md",
+      "bytes": 17379,
+      "sha256": "5f5b1b9ff65b08e1ac53b1315abff33e1046fe7af529b2903e20b5625cb99a1c"
+    },
+    {
+      "path": "docs/task3-audit-20261121/sources/task_template.py",
+      "bytes": 7215,
+      "sha256": "2c1ad6b6557eacbd854d77aa224f193204e1b47d16f1ffa6f33bf8a86aaeb846"
+    },
+    {
+      "path": "c2/kit/score_practice.py",
+      "bytes": 2779,
+      "sha256": "3c1904dd5f7a366d2c6c4a0151dc2e0e67757ed06b839f92cf0aaa6e2ca2cc2d"
+    },
+    {
+      "path": "docs/task2-audit-20261121/data/SLZ/model_equality/practice_answers.csv",
+      "bytes": 285,
+      "sha256": "ff5a29aef5280bfa6f884f6ebb162ae1dddaa3c9a5182c60eb4ae24488c2efba"
+    },
+    {
+      "path": "docs/task3-work-20261121/official_formula.py",
+      "bytes": 5807,
+      "sha256": "722b81c973db21e25f6eb1d1f288da5dcd15f029386af03f05d589fb3f5b6093"
+    },
+    {
+      "path": "docs/task3-work-20261121/toy_alpha_output.txt",
+      "bytes": 2599,
+      "sha256": "65f31b8593f13a4283ebb566222a0ed18c13b5cba595e8c9efa42c2d5e89b800"
+    },
+    {
+      "path": "docs/task3-work-20261121/analyze_margin_historique.txt",
+      "bytes": 11433,
+      "sha256": "532f7f6cf6f89486ed6260fafab9376aab8b72be8506dc9304a2f2b80bc538c8"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/audit-strategies-20261121/RAPPORT-CODEX.md",
+      "bytes": 30319,
+      "sha256": "38235ef7b243914f6a715bb54009a6a3a92999f317368c4a9c1f2a67042b9ae7"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/analysis-output.txt",
+      "bytes": 3197,
+      "sha256": "0397f1b6484bb707f61a1c01443f568b981b2d589b80eceddf85999f436b984e"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/analysis_results.json",
+      "bytes": 36278,
+      "sha256": "d210c6cfc1fd20666a724e6d97eebf93668a4f5abb0a85521094b66b4691837a"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/analyze.py",
+      "bytes": 6707,
+      "sha256": "9c9be6edad8b6ce180bb482bc8aeb17c8898ffd8c808d9aa7b5636571ac6bf1a"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/chat-task1.json",
+      "bytes": 13690,
+      "sha256": "998c85499ed12c130abff5f363b2d4c298224041d7f597745ca14a4771acc982"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/chat-task2.json",
+      "bytes": 4075,
+      "sha256": "3b2314a79e76d68f20494f4b4b3e202fc05ac269dd5d80a53d02c5304b024326"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/chat-task3.json",
+      "bytes": 3818,
+      "sha256": "36355d2afa7c03f0d9768233ce5e48c1e43ef0610184a263c24b47261f5bc4d7"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/fingerprint-output.txt",
+      "bytes": 1096,
+      "sha256": "4583b80c869d4a9f3abd4b001dd45ede51a5ed9445a58348a8111ba6f87d09af"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/fingerprint_check.py",
+      "bytes": 6204,
+      "sha256": "70c6f39140cc1480c6fecee524b33756efc7d308adf6b39935719e326e076dd6"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/fingerprint_results.json",
+      "bytes": 9403,
+      "sha256": "2bd6e07fb93cadfb66375188f316a56e2cb80a804cd4d7e852a4095618a47547"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/leaderboard-2315.html",
+      "bytes": 125730,
+      "sha256": "e547723293f0af4e77b06a2ebcda4baa30b8f78852fef200362784e6e9c50313"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/practice-check-output.txt",
+      "bytes": 676,
+      "sha256": "c1af880733682c0df21029e51f9c50821ce72336fa6d9df33d614e6c54c2b916"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-0.csv",
+      "bytes": 130,
+      "sha256": "aec8de99ac548eeabeaaf9e3a523233bd55da27abd8a6fb57f45259042247b4c"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-1.csv",
+      "bytes": 130,
+      "sha256": "d4407705cd0896c8f104dfe30dfb6c7e1c7ac716b427b497e0ea2034f0672a65"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-2.csv",
+      "bytes": 130,
+      "sha256": "fc7228b152376b6d18514f84727590fed5b38dd61dea95167292fe1f83236fbb"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-3.csv",
+      "bytes": 130,
+      "sha256": "157461bc777bff51d4e76e696fee347a668c97cf2bd89d9d76fb27187adcb9cc"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-4.csv",
+      "bytes": 130,
+      "sha256": "a7c1b26577de8582697bc2c068a6c3571e2b096d6b78ecb56b61ce5c91b0f1a3"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-5.csv",
+      "bytes": 130,
+      "sha256": "be41e90d0f32543810dd6b255a7c29ec6f0d02302f53b7e1163b66a8fa53ba0d"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-6.csv",
+      "bytes": 130,
+      "sha256": "1440434f4a8dc93f526490539d6f524aa3ce04501b70bb8da76a68742936cbb1"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/ref-check-7.csv",
+      "bytes": 130,
+      "sha256": "789a5cc686dccc25148384bef1b003ca07b088b1bcda582bcee065dacea62472"
+    },
+    {
+      "path": "docs/audit-strategies-20261121/verification.txt",
+      "bytes": 439,
+      "sha256": "e6560bc47d2b04972ec43e990ce586552963f7677852a604018c2ab66ef3f8dc"
+    }
+  ],
+  "source_changes_since_first_manifest": [],
+  "HEAD_final": "f209e20397736c53824a7a94ec73f2bd66d012eb"
+}

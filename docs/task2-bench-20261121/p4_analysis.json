@@ -1,0 +1,287 @@
+[
+ {
+  "sel": "b0",
+  "ev": "b1",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.4461538461538462,
+  "errors": {
+   "base-fp8": 0.8,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.4,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-02",
+   "ref-03",
+   "ref-05",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b0",
+  "ev": "b2",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b0",
+  "ev": "b3",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.48617243480439776,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.7,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b0",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b2",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b1",
+  "ev": "b3",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b0",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b1",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b2",
+  "ev": "b3",
+  "thr": [
+   0.25,
+   null,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b0",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.7211102550927979,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.4,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-03",
+   "ref-05",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b1",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.4461538461538462,
+  "errors": {
+   "base-fp8": 0.8,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.4,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-01",
+   "ref-02",
+   "ref-03",
+   "ref-05",
+   "ref-06"
+  ],
+  "passed": false
+ },
+ {
+  "sel": "b3",
+  "ev": "b2",
+  "thr": [
+   0.25,
+   0.75,
+   null
+  ],
+  "mcc": 0.27255405754769874,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.9,
+   "variant-variant": 0.0
+  },
+  "disguised": [
+   "ref-03",
+   "ref-05"
+  ],
+  "passed": false
+ }
+]

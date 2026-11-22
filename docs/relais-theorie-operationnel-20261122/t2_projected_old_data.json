@@ -1,0 +1,340 @@
+{
+  "nature": "Méthode expérimentale ; aucune collecte ni soumission automatique",
+  "rule": "Binomial contexte projeté, bootstrap 999, alpha .05, couverture hors paire <= .20",
+  "statuses": {
+    "200": 989,
+    "503": 1
+  },
+  "results": {
+    "all": {
+      "MCC": 0.33149677206589795,
+      "base_grouped": true,
+      "fp8_and_weak_detected": false,
+      "coverage_ok": true,
+      "partition": {
+        "ref-01": "BASE",
+        "ref-02": "BASE",
+        "ref-03": "BASE",
+        "ref-04": "BASE",
+        "ref-05": "BASE",
+        "ref-06": "BASE",
+        "ref-07": "ref-07",
+        "ref-08": "BASE",
+        "ref-09": "BASE"
+      },
+      "details": {
+        "ref-01": {
+          "unknown": false,
+          "p_value": 0.899,
+          "isolate": false,
+          "G": 1.3981431744914659,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.009174311926605505,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-02": {
+          "unknown": false,
+          "p_value": 0.69,
+          "isolate": false,
+          "G": 0.6472872678905901,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-03": {
+          "unknown": false,
+          "p_value": 0.595,
+          "isolate": false,
+          "G": 3.3932055442669338,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.02727272727272727,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-04": {
+          "unknown": false,
+          "p_value": 0.078,
+          "isolate": false,
+          "G": 8.662717451601665,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.00909090909090909,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-05": {
+          "unknown": false,
+          "p_value": 0.389,
+          "isolate": false,
+          "G": 2.6761663019559023,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-06": {
+          "unknown": false,
+          "p_value": 0.056,
+          "isolate": false,
+          "G": 5.557223749132717,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.00909090909090909,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-07": {
+          "unknown": false,
+          "p_value": 0.046,
+          "isolate": true,
+          "G": 12.581190138319073,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.03636363636363636,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-08": {
+          "unknown": false,
+          "p_value": 0.393,
+          "isolate": false,
+          "G": 3.941430795392563,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.10909090909090909,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-09": {
+          "unknown": false,
+          "p_value": 0.266,
+          "isolate": false,
+          "G": 6.611898234708875,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        }
+      }
+    },
+    "0": {
+      "MCC": 0.0,
+      "base_grouped": true,
+      "fp8_and_weak_detected": false,
+      "coverage_ok": true,
+      "partition": {
+        "ref-01": "BASE",
+        "ref-02": "BASE",
+        "ref-03": "BASE",
+        "ref-04": "BASE",
+        "ref-05": "BASE",
+        "ref-06": "BASE",
+        "ref-07": "BASE",
+        "ref-08": "BASE",
+        "ref-09": "BASE"
+      },
+      "details": {
+        "ref-01": {
+          "unknown": false,
+          "p_value": 0.67,
+          "isolate": false,
+          "G": 1.8902211108918934,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.018518518518518517,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-02": {
+          "unknown": false,
+          "p_value": 0.58,
+          "isolate": false,
+          "G": 0.38612636806772827,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.03636363636363636,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-03": {
+          "unknown": false,
+          "p_value": 0.34,
+          "isolate": false,
+          "G": 4.407953484847056,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.03636363636363636,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-04": {
+          "unknown": false,
+          "p_value": 0.175,
+          "isolate": false,
+          "G": 1.027772012513104,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.0,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-05": {
+          "unknown": false,
+          "p_value": 0.066,
+          "isolate": false,
+          "G": 2.128455550158158,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-06": {
+          "unknown": false,
+          "p_value": 0.488,
+          "isolate": false,
+          "G": 4.8430477683325535e-05,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.0,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-07": {
+          "unknown": false,
+          "p_value": 0.558,
+          "isolate": false,
+          "G": 4.985989687110937,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.03636363636363636,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-08": {
+          "unknown": false,
+          "p_value": 0.189,
+          "isolate": false,
+          "G": 0.6538702451030893,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.14545454545454545,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-09": {
+          "unknown": false,
+          "p_value": 0.236,
+          "isolate": false,
+          "G": 7.5469220129119705,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        }
+      }
+    },
+    "1": {
+      "MCC": 0.23062266407882204,
+      "base_grouped": false,
+      "fp8_and_weak_detected": false,
+      "coverage_ok": true,
+      "partition": {
+        "ref-01": "BASE",
+        "ref-02": "BASE",
+        "ref-03": "BASE",
+        "ref-04": "BASE",
+        "ref-05": "BASE",
+        "ref-06": "ref-06",
+        "ref-07": "ref-07",
+        "ref-08": "BASE",
+        "ref-09": "ref-09"
+      },
+      "details": {
+        "ref-01": {
+          "unknown": false,
+          "p_value": 0.903,
+          "isolate": false,
+          "G": 1.2436904050379525,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.0,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-02": {
+          "unknown": false,
+          "p_value": 0.237,
+          "isolate": false,
+          "G": 1.1886730599919488,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.0,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-03": {
+          "unknown": false,
+          "p_value": 0.136,
+          "isolate": false,
+          "G": 1.4073529636665398,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-04": {
+          "unknown": false,
+          "p_value": 0.052,
+          "isolate": false,
+          "G": 10.240950665971717,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-05": {
+          "unknown": false,
+          "p_value": 0.283,
+          "isolate": false,
+          "G": 2.4761628458138745,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-06": {
+          "unknown": false,
+          "p_value": 0.019,
+          "isolate": true,
+          "G": 8.256539038192418,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-07": {
+          "unknown": false,
+          "p_value": 0.025,
+          "isolate": true,
+          "G": 14.934952641846124,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.03636363636363636,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-08": {
+          "unknown": false,
+          "p_value": 0.473,
+          "isolate": false,
+          "G": 4.299494108748576,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.07272727272727272,
+          "minimum_five_reps_per_half": true
+        },
+        "ref-09": {
+          "unknown": false,
+          "p_value": 0.021,
+          "isolate": true,
+          "G": 13.603842490549326,
+          "rank": 6,
+          "paired_probes": 11,
+          "other_rate": 0.01818181818181818,
+          "minimum_five_reps_per_half": true
+        }
+      }
+    }
+  },
+  "refs_pass": false,
+  "ep_authorized": false,
+  "warning": "Même une réussite refs ne prouve pas le transfert aux trois bases notées."
+}

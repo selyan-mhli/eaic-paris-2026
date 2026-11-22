@@ -1,0 +1,130 @@
+{
+  "main_hamming": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/main/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "hamming",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_hamming.csv",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "\u00e9crit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_hamming.csv\n",
+    "stderr": "",
+    "source_sha256": "2e5ee6da11fa50e473df74743106b7244c0c68f612391e2aba68ae2d0743fa60",
+    "diff_pairs_from_saved": {
+      "family": 61,
+      "model": 56
+    }
+  },
+  "main_ngram": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/main/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "ngram",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_ngram.csv",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "\u00e9crit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/main_ngram.csv\n",
+    "stderr": "",
+    "source_sha256": "2e5ee6da11fa50e473df74743106b7244c0c68f612391e2aba68ae2d0743fa60",
+    "diff_pairs_from_saved": {
+      "family": 26,
+      "model": 2
+    }
+  },
+  "branche-c2_hamming": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/branche-c2/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "hamming",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_hamming.csv",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "\u00e9crit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_hamming.csv\n",
+    "stderr": "",
+    "source_sha256": "e2bbb678481f9262eeb0d6a66a9b45642cdbc83d511ec06038c8add4c4d42657",
+    "diff_pairs_from_saved": {
+      "family": 61,
+      "model": 56
+    }
+  },
+  "branche-c2_ngram": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/branche-c2/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "ngram",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_ngram.csv",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "\u00e9crit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/branche-c2_ngram.csv\n",
+    "stderr": "",
+    "source_sha256": "e2bbb678481f9262eeb0d6a66a9b45642cdbc83d511ec06038c8add4c4d42657",
+    "diff_pairs_from_saved": {
+      "family": 26,
+      "model": 2
+    }
+  },
+  "collecte-distante_hamming": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/collecte-distante/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "hamming",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/collecte-distante_hamming.csv",
+      "--quiet"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": "usage: analyze.py [-h] [--prefix PREFIX] [--kernel {ngram,seq,both}]\n                  [--stat {corr,mmd}] [--t-model T_MODEL]\n                  [--t-family T_FAMILY] [--truth TRUTH] [--calibrate]\n                  [--rank-prompts] [--prompt-ids PROMPT_IDS]\n                  [--max-prompts MAX_PROMPTS] [--max-reps MAX_REPS]\n                  [--seed SEED] [--out OUT] [--dump DUMP] [--no-strip]\n                  [--quiet]\n                  answers [answers ...]\nanalyze.py: error: argument --kernel: invalid choice: 'hamming' (choose from 'ngram', 'seq', 'both')\n",
+    "source_sha256": "4c86d9d53971ea472a2fbaae532361c732c4f32bff45db83aacf05f663e58c41"
+  },
+  "collecte-distante_ngram": {
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/sources/collecte-distante/analyze.py",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/data/c2run/ep/ep_answers.jsonl",
+      "--prefix",
+      "ep-",
+      "--kernel",
+      "ngram",
+      "--out",
+      "/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/collecte-distante_ngram.csv",
+      "--quiet"
+    ],
+    "returncode": 0,
+    "stdout": "\u00e9crit : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/version-replays/collecte-distante_ngram.csv\n",
+    "stderr": "",
+    "source_sha256": "4c86d9d53971ea472a2fbaae532361c732c4f32bff45db83aacf05f663e58c41",
+    "diff_pairs_from_saved": {
+      "family": 26,
+      "model": 2
+    }
+  }
+}

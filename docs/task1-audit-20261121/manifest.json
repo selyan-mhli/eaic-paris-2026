@@ -1,0 +1,42 @@
+{
+  "analyze_champion.py": {
+    "bytes": 4069,
+    "sha256": "3d25259eb4331ceb5fe36c4b28439617e782216987cbcfa245d725d9de2c6629"
+  },
+  "audit_cpu.py": {
+    "bytes": 7977,
+    "sha256": "cdc788a7bbe23e67802b5f095d0d10ccf87c2bfc09a693389183d35363f0689f"
+  },
+  "audit_results.json": {
+    "bytes": 19923,
+    "sha256": "4d3c07bbcdfb84353c5e6290331468a3ddc81b828a09f9a982ee112bbb8edfca"
+  },
+  "champion_boxes_train.npz": {
+    "bytes": 9647,
+    "sha256": "15062e7d905d282d2cdfb0359e7308acaf21886ed7825a51cb23047f1706cb03"
+  },
+  "champion_summary.json": {
+    "bytes": 9034,
+    "sha256": "85deba9879e3ac40a7bcbf14ad7031add6a068e73e37a084f0bc34d1774ad5b1"
+  },
+  "dataset_check.json": {
+    "bytes": 290,
+    "sha256": "411351c886143aacc4f87d226036afec1a4a24f47f5f619bb8bf790b6b2907e3"
+  },
+  "mask_contact_sheet.png": {
+    "bytes": 27641,
+    "sha256": "9e779ac732cae4f683ed5f72b914f761069aaebd19896491d9ca67b07c1a0b34"
+  },
+  "remote_checks.txt": {
+    "bytes": 1867,
+    "sha256": "4031f91ea6bac198d8ab2594effa2d16fb0e8540b0ae6fbf399aac185047f63d"
+  },
+  "remote_evidence.json": {
+    "bytes": 11782,
+    "sha256": "b98cc6959491f7a2b3fd61bc0bf9536887653a538db96b9a079b8feb79ce42d1"
+  },
+  "segf_ens3_3.npz": {
+    "bytes": 17835,
+    "sha256": "c182e5dac66fec152ae4a5784433fd6866dfe5af935cf02f29e0b887f4bb0896"
+  }
+}

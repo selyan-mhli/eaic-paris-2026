@@ -1,0 +1,182 @@
+[
+  {
+    "fichier": "LIRE-DABORD.md",
+    "sha256": "9a45649b743c6818947da4ce1bb78f807bd453ab6323aeea9309c84432a03daf",
+    "octets": 4303
+  },
+  {
+    "fichier": "RAPPORT-CODEX.md",
+    "sha256": "5f75cca7f8385d07ad58c8bff7152701122a749c78f96f9ed40484cda6b32de7",
+    "octets": 29391
+  },
+  {
+    "fichier": "classement-verifie.json",
+    "sha256": "eedd8c9f8eee651ac9b0d7fb1bd3328ae0436f4e0715e0e365acc4ab77978825",
+    "octets": 1098
+  },
+  {
+    "fichier": "collecter_preuves.py",
+    "sha256": "26d73c4ae4be8212a01fa679f3a831e3cd5c614ad9bb08c0885cb02cd3423b50",
+    "octets": 5654
+  },
+  {
+    "fichier": "jobs-verifies.csv",
+    "sha256": "0131b0ae81f6fc770ad2ffabff9c4edca44664498851d501e80219bece3aa2c3",
+    "octets": 5148
+  },
+  {
+    "fichier": "jobs-verifies.json",
+    "sha256": "d3684989198b4a621e81ce45ca9d9b5bb50e4cabe99d44bfb836ddbca307f073",
+    "octets": 334
+  },
+  {
+    "fichier": "preuves/docs__PLAN-NUIT.md",
+    "sha256": "035a22fe4a87345f1abf9cfbde42bf15cb53fcb16be520f3376f4d0824adb227",
+    "octets": 4182
+  },
+  {
+    "fichier": "preuves/docs__SLZ_COORDINATION_20261121.md",
+    "sha256": "b8fb5ee060dd28d1af4cab690cb530117b89dde8c028fceb4953d60a16ee29e0",
+    "octets": 54188
+  },
+  {
+    "fichier": "preuves/docs__audit-global-20261122__RAPPORT.md",
+    "sha256": "3f66e1f8939021b552a2924abc5000dba782b11b99c16d1178822e6479ff4e1c",
+    "octets": 10885
+  },
+  {
+    "fichier": "preuves/docs__experiences.md",
+    "sha256": "f31d4a931cf8383fa3cfbbb603d5e19b7f4b130e38a2c2ee4c3fd4cd00556e8f",
+    "octets": 14505
+  },
+  {
+    "fichier": "preuves/docs__slz-jobs__chain_push_ncc.log",
+    "sha256": "c5862c632960aa7bd5c283a56876683a509b690f45e02bc41a972b47b955e048",
+    "octets": 319
+  },
+  {
+    "fichier": "preuves/docs__slz-jobs__recu_t3_push_s150.txt",
+    "sha256": "2171daad46caa1550f0f2309f02af883c2c9ab57524584e667a3cd6dadf0fb9a",
+    "octets": 462
+  },
+  {
+    "fichier": "preuves/extraits-chats.json",
+    "sha256": "2dcda9b6e646d762d77a0a9118cdcfd4e0d8146968ebe7413f620e8f7d22e80f",
+    "octets": 43538
+  },
+  {
+    "fichier": "preuves/git-depart.json",
+    "sha256": "37ab7e97b42afcca452e2fba30ca8df2cfc9333e737d282b08c49fa87906bd5b",
+    "octets": 900
+  },
+  {
+    "fichier": "preuves/git-diff.json",
+    "sha256": "166b6379d26171b04c6fe204535957b74610e2da32d568598120b12bd6df99d5",
+    "octets": 350
+  },
+  {
+    "fichier": "preuves/git-head.json",
+    "sha256": "8e03068e900680d7458f113392424868738894b8e875baee9cca8c12442ed259",
+    "octets": 203
+  },
+  {
+    "fichier": "preuves/git-log.json",
+    "sha256": "633fd6344705e8a2f8c111e9af0997a7fcfa86572b6c19a86cdc5570c8d92649",
+    "octets": 1611
+  },
+  {
+    "fichier": "preuves/git-retard.json",
+    "sha256": "7ebd3c05df08c5861f834215660b3ef7fcc6ccde075edb77177745851e956894",
+    "octets": 832
+  },
+  {
+    "fichier": "preuves/git-worktrees.json",
+    "sha256": "97b7d71d48f97fb082cad955bc84c45a689cef1d43fc64a7e94650c3eafaf7c0",
+    "octets": 2474
+  },
+  {
+    "fichier": "preuves/jureca-actualisation-0314.json",
+    "sha256": "792c3f76e6d75d6b9ed8429890997dbc24dab94603e5e4713e8ae7a6a5ba9d56",
+    "octets": 520
+  },
+  {
+    "fichier": "preuves/jureca-snapshot.json",
+    "sha256": "0298abdf9a99af40c284bfd62ef84db49abf2b75f4a3b9f8510d9dd7fa2f8596",
+    "octets": 175024
+  },
+  {
+    "fichier": "preuves/leaderboard-0308.html",
+    "sha256": "6d399d73c3cf7a216af7fafddf1e5a242f8c1159b510b50cbd3637cff4bb562e",
+    "octets": 133891
+  },
+  {
+    "fichier": "preuves/pilote-ep-reverifie.json",
+    "sha256": "aed71bfbc2cd45ce65760596c23370e3abf02afdd4f65e6e3c8b6cff4437f0b5",
+    "octets": 816
+  },
+  {
+    "fichier": "preuves/registre-dashboard-avant-reprise.json",
+    "sha256": "3ffb7b52d8452d0fdfc78d525a2a0ff72afd13fbdf45c8c3ad6520f1572e437f",
+    "octets": 5406
+  },
+  {
+    "fichier": "preuves/registre-temporaire-obsolete.md",
+    "sha256": "52fb11993a95fa01cf5e812b46730e55c3d0e1d64d8583faab49a845922cebb4",
+    "octets": 3389
+  },
+  {
+    "fichier": "preuves/relais__A3_strict_counts.json",
+    "sha256": "5ebf2d165bf04a5bc9404f311332ac6ad99862fd0733fad5a6d68cfa1c4b888b",
+    "octets": 331
+  },
+  {
+    "fichier": "preuves/relais__RAPPORT-CODEX.md",
+    "sha256": "ed85b2760ad0e2d223920b28668221493ed522e701a52b8773a5324aecc1113f",
+    "octets": 11470
+  },
+  {
+    "fichier": "preuves/relais__c1_ensF_ssall6k2.json",
+    "sha256": "f561abca7e7cbc217e0e639f2279b08ed8959dfc5ea37fd49a3610de1505061f",
+    "octets": 1771
+  },
+  {
+    "fichier": "preuves/relais__compare6k.json",
+    "sha256": "c3dcdedb34a96fe00b0a01ae2bfb55ce3d5b5ec79e0313b7070faf4bb9ccfd8a",
+    "octets": 2264
+  },
+  {
+    "fichier": "preuves/relais__iou2_5fold.json",
+    "sha256": "ac73fa42a72a89c97e175592cf83c2831630b194303e505e9eb1ba4af254e41a",
+    "octets": 2995
+  },
+  {
+    "fichier": "preuves/relais__launch_15904703.json",
+    "sha256": "e81a5f9132d7fad1ceefb07a2ced4cfddfc6cd468c36e8637d6333e8b39d8f31",
+    "octets": 1203
+  },
+  {
+    "fichier": "preuves/relais__ties_result.json",
+    "sha256": "ecf15b69943c4e1f7bfaf52ee3cfd214090362854d1a96007c0bd64e8682d2ac",
+    "octets": 3048
+  },
+  {
+    "fichier": "preuves/validation-finale.json",
+    "sha256": "f5386fe770a0c57497f18593e8c96713c5f6d170a41d86f789990efa2336e9d3",
+    "octets": 4133
+  },
+  {
+    "fichier": "soumissions-reconstituees.csv",
+    "sha256": "e74b8e79bd728baa2d25b16d9b9c77c4912d72f3259c1e4092eea85c48da018f",
+    "octets": 5405
+  },
+  {
+    "fichier": "soumissions-reconstituees.json",
+    "sha256": "6f176f8e8fa1e1c7fa960ad765a37f4bcaf3fc29af188678f48f06c6aee106a8",
+    "octets": 10218
+  },
+  {
+    "fichier": "synthetiser_preuves.py",
+    "sha256": "0bbbdf7e3f2a7b65cdc061f12841b591a2ac0d4946f48ba112d110828a26c5d6",
+    "octets": 5361
+  }
+]

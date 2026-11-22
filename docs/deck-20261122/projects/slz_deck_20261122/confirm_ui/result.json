@@ -1,0 +1,16 @@
+{
+  "canvas": "ppt169",
+  "audience": "Jury technique du CISPA (chercheurs en sécurité de l'IA, organisateurs des trois épreuves) ; ils connaissent les tâches et les métriques mieux que nous.",
+  "communication_intent": "Rendre compte de notre méthode par épreuve et de notre discipline de validation, d'abord ; expliquer ensuite honnêtement ce qui a bloqué en T2 et T3.",
+  "audience_outcome": "Le jury comprend en 6 minutes ce que chaque épreuve nous a appris, juge notre validation locale crédible et retient un enseignement transférable.",
+  "core_message": "Là où nous avions une validation locale fidèle (T1), chaque décision a été mesurée et le score a progressé de 0,51 à 0,68 ; là où elle manquait (T2, T3), nous avons protégé le budget plutôt que soumettre à l'aveugle.",
+  "delivery_context": "Présentation orale de 6 minutes avec un présentateur, projetée devant le jury ; lecture éventuelle après coup.",
+  "artifact_afterlife": "Trace de fin de hackathon pour l'équipe ; rien d'autre.",
+  "content_divergence": "",
+  "primary_language": "fr-FR",
+  "stage": "stage1",
+  "status": "stage1-confirmed",
+  "stage1_sha256": "0f47e4f867bf1b6a9903ed645ad97446dce5b75b10265c88d00f97f6e25f6569",
+  "selection_sha256": "90a996e5f42ddc95161eb5116b983a119cb275af89661342afb9f79860fec506",
+  "confirmed_at": "2026-11-22T04:08:10"
+}

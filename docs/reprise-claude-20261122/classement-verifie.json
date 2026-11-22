@@ -1,0 +1,39 @@
+{
+  "source": "http://34.147.229.55/leaderboard_page",
+  "capture_paris": "2026-11-22T03:05+01:00",
+  "rang": 26,
+  "equipes_classees": 37,
+  "scores": {
+    "34-watermark-localisation-image": 0.6739068609009466,
+    "33-model-equality": 0.2,
+    "31-unlearning": 0.09411482372784334
+  },
+  "general": 0.31968302840227303,
+  "normalisation": {
+    "34-watermark-localisation-image": {
+      "min": 0.49129971028972225,
+      "max": 0.8032744758421851,
+      "normalise": 0.5853266698922047,
+      "participants": 42,
+      "rang": 20,
+      "date_meilleur_utc": "2026-11-22T01:43:05.186014+00:00"
+    },
+    "33-model-equality": {
+      "min": 0.05,
+      "max": 1.0,
+      "normalise": 0.15789473684210528,
+      "participants": 39,
+      "rang": 25,
+      "date_meilleur_utc": "2026-11-21T15:48:05.126693+00:00"
+    },
+    "31-unlearning": {
+      "min": 0.0,
+      "max": 0.43606466229877544,
+      "normalise": 0.21582767847250905,
+      "participants": 42,
+      "rang": 30,
+      "date_meilleur_utc": "2026-11-21T23:40:19.452979+00:00"
+    }
+  },
+  "general_recalcule": 0.31968302840227303
+}

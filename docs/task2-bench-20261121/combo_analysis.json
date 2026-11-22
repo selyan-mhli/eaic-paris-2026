@@ -1,0 +1,102 @@
+{
+ "wb_lora_trA.npz sel2->eval3": {
+  "l8": -0.011586792698370457,
+  "lL": 0.004666492877287627,
+  "mcc_sel": 0.7211102550927979,
+  "mcc_eval": 0.48617243480439776,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.7,
+   "variant-variant": 0.0
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "fp8",
+   "ref-03": "ref-03",
+   "ref-04": "ref-04",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "ref-07",
+   "ref-08": "ref-08",
+   "ref-09": "ref-09"
+  }
+ },
+ "wb_lora_trA.npz sel3->eval2": {
+  "l8": -0.012652229449020863,
+  "lL": 0.007184812867773533,
+  "mcc_sel": 1.0,
+  "mcc_eval": 0.39641752376358586,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.8,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.4,
+   "variant-variant": 0.167
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "fp8",
+   "ref-03": "base",
+   "ref-04": "ref-04",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "fp8",
+   "ref-08": "ref-08",
+   "ref-09": "base"
+  }
+ },
+ "wb_lora_trB.npz sel0->eval1": {
+  "l8": -0.00911698204116726,
+  "lL": 0.004734901314360857,
+  "mcc_sel": 1.0,
+  "mcc_eval": 0.4461538461538462,
+  "errors": {
+   "base-fp8": 0.8,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.4,
+   "variant-variant": 0.0
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "base",
+   "ref-03": "ref-03",
+   "ref-04": "ref-04",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "ref-07",
+   "ref-08": "base",
+   "ref-09": "ref-09"
+  }
+ },
+ "wb_lora_trB.npz sel1->eval0": {
+  "l8": -0.014599691076444626,
+  "lL": 0.005877986153347254,
+  "mcc_sel": 1.0,
+  "mcc_eval": 0.6933752452815364,
+  "errors": {
+   "base-fp8": 0.0,
+   "base-lora0.3": 0.0,
+   "base-lora0.7": 0.0,
+   "base-lora1.5": 0.0,
+   "deguis-deguis": 0.0,
+   "variant-variant": 1.0
+  },
+  "partition": {
+   "ref-01": "base",
+   "ref-02": "fp8",
+   "ref-03": "base",
+   "ref-04": "fp8",
+   "ref-05": "base",
+   "ref-06": "base",
+   "ref-07": "fp8",
+   "ref-08": "base",
+   "ref-09": "fp8"
+  }
+ }
+}

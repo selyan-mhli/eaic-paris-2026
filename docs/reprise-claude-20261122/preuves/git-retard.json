@@ -1,0 +1,12 @@
+{
+  "heure_paris": "2026-11-22T03:06:56.304133+01:00",
+  "commande": [
+    "git",
+    "log",
+    "--oneline",
+    "HEAD..origin/main"
+  ],
+  "code": 0,
+  "stdout": "2bb6b4b feat(c1): exact max-sum rectangle search (P1), rejected against box_search (#21)\nf06e8e7 docs: README du dépôt (livrables, calendrier, état, structure) (#20)\na0a94f7 feat(c2): vues de features et mesure du pilote ref à 2 répétitions (#15)\nc919c52 docs: plan de nuit à jour (coordination, formule et scores serveur Task 3) (#19)\n463ff24 feat(c3): évaluation par lots des candidats unlearning + résultats (#16)\n4dc52a7 feat(c1): experimental FastEngine for box_search with ref-vs-fast benchmark (ref stays default) (#18)\n0533a93 feat(c1): probes A1 (recollé ou régénéré) et A2 (canal |logit| PixelSeal), veille v2 (#17)\n",
+  "stderr": ""
+}

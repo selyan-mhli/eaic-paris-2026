@@ -1,0 +1,22 @@
+{
+  "ties_A3s11": {
+    "prompts": 2500,
+    "strict_ties": 0,
+    "flips": 60
+  },
+  "ties_A3s13": {
+    "prompts": 2500,
+    "strict_ties": 0,
+    "flips": 60
+  },
+  "ties_A3s17": {
+    "prompts": 2500,
+    "strict_ties": 0,
+    "flips": 60
+  },
+  "ties_A3s19": {
+    "prompts": 2500,
+    "strict_ties": 0,
+    "flips": 60
+  }
+}

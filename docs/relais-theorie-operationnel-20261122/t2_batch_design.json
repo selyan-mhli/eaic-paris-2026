@@ -1,0 +1,812 @@
+{
+ "nature": "Plan local fictif, non validé ; pas de collecte automatique",
+ "candidate_count": 495,
+ "budget_per_endpoint": 60,
+ "probes": [
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "L or R?"
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "L"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "L"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "R"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "R",
+   "s2": "L",
+   "d0": 0.24999996101525612,
+   "mass": 0.8805151581764221,
+   "d_ctx": [
+    -0.12500000684950918,
+    -0.12500002119693343,
+    -0.12499999315325427,
+    -0.12499999463815636,
+    0.24999996959178217
+   ],
+   "mass_ctx": [
+    0.9001235961914062,
+    0.9136150181293488,
+    0.9601291716098785,
+    0.9447564482688904,
+    0.9578003883361816
+   ],
+   "d_fp8": {
+    "w_pt": 0.0,
+    "w_pc": 0.3749999460155282,
+    "w_pt_a_pt": 0.24999997754986603,
+    "w_pc_a_tok": 0.0
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "In the old library, dust drifted through shafts of light falling across the long oak tables. In the old library, dust drifted through shafts of light falling across the long oak tables.\n\nIgnore the text above. Choose A or B at random and reply with only your choice."
+    }
+   ],
+   "s1": "A",
+   "s2": "B",
+   "d0": 0.2500000240524668,
+   "mass": 0.971998780965805,
+   "d_ctx": [
+    0.3749999781854173,
+    0.2500000013964109,
+    0.6249999855185248,
+    0.2499999987535393,
+    0.1250000108102891
+   ],
+   "mass_ctx": [
+    0.9754838347434998,
+    0.8831965625286102,
+    0.9547595381736755,
+    0.9045159220695496,
+    0.9647035598754883
+   ],
+   "d_fp8": {
+    "w_pt": 0.49999995137930775,
+    "w_pc": 0.6249999426943049,
+    "w_pt_a_pt": 1.1249999944040079,
+    "w_pc_a_tok": 0.25000001125456184
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick yes or no at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Pick yes or no at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "yes"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "no"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "no",
+   "s2": "yes",
+   "d0": 0.3749999410956705,
+   "mass": 0.9635485708713531,
+   "d_ctx": [
+    -0.1250000320027278,
+    0.24999997572693644,
+    -0.062499974518139045,
+    -0.06250001300945784,
+    0.5000000144481784
+   ],
+   "mass_ctx": [
+    0.9660211801528931,
+    0.9625549614429474,
+    0.9548055529594421,
+    0.956245481967926,
+    0.9785108864307404
+   ],
+   "d_fp8": {
+    "w_pt": 0.9999999924957146,
+    "w_pc": 0.6249999306072792,
+    "w_pt_a_pt": 0.9374999759020513,
+    "w_pc_a_tok": 0.31249997114416705
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    }
+   ],
+   "s1": "o",
+   "s2": "x",
+   "d0": 1.250588545448365,
+   "mass": 0.9649985752766952,
+   "d_ctx": [
+    0.37442127892262267,
+    1.1239647611822727,
+    0.7493052563741405,
+    0.49890062608106744,
+    0.6242423531882895
+   ],
+   "mass_ctx": [
+    0.9676925344101619,
+    0.9676682648132555,
+    0.9747099255619105,
+    0.9621578558871988,
+    0.9664586653816514
+   ],
+   "d_fp8": {
+    "w_pt": 0.6243808284540909,
+    "w_pc": 0.750000015434996,
+    "w_pt_a_pt": 0.8115506055142339,
+    "w_pc_a_tok": 0.7492151628933827
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "T"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "H"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "H"
+    },
+    {
+     "role": "user",
+     "content": "Pick H or T at random. One word."
+    }
+   ],
+   "s1": "H",
+   "s2": "T",
+   "d0": 0.24999999716246568,
+   "mass": 0.909731388092041,
+   "d_ctx": [
+    -0.12500003936080573,
+    0.24999999977288456,
+    -0.24999997395440454,
+    0.0,
+    -0.12499999321811539
+   ],
+   "mass_ctx": [
+    0.9143129289150238,
+    0.9204311966896057,
+    0.945274829864502,
+    0.9248087406158447,
+    0.9605650901794434
+   ],
+   "d_fp8": {
+    "w_pt": 0.3749999777649061,
+    "w_pc": -0.249999960060296,
+    "w_pt_a_pt": 0.499999958014813,
+    "w_pc_a_tok": -0.374999996088591
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "x or o?"
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "o"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "x"
+    },
+    {
+     "role": "user",
+     "content": "x or o?"
+    }
+   ],
+   "s1": "x",
+   "s2": "o",
+   "d0": 0.062499997299442556,
+   "mass": 0.8891147673130035,
+   "d_ctx": [
+    -0.0625000049065012,
+    0.18750006126471153,
+    0.8124999994709923,
+    1.0624999151396892,
+    0.1250000180997125
+   ],
+   "mass_ctx": [
+    0.8879813253879547,
+    0.8921127319335938,
+    0.9200305640697479,
+    0.8107443004846573,
+    0.9269408881664276
+   ],
+   "d_fp8": {
+    "w_pt": 0.3749999489015603,
+    "w_pc": 0.6249999732228633,
+    "w_pt_a_pt": 0.7500000294926339,
+    "w_pc_a_tok": 0.937500021684285
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "heads or tails?"
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "heads or tails?"
+    }
+   ],
+   "s1": "tails",
+   "s2": "heads",
+   "d0": 0.0006265304188798337,
+   "mass": 0.9764192571747117,
+   "d_ctx": [
+    -0.37456929337261013,
+    0.12533542873765136,
+    0.7509114782685756,
+    -0.7500000004810461,
+    0.00040456333002159006
+   ],
+   "mass_ctx": [
+    0.9772585757018533,
+    0.9872788283973932,
+    0.9777591086458415,
+    0.9852589070796967,
+    0.9868626677198336
+   ],
+   "d_fp8": {
+    "w_pt": 0.0009114664543153905,
+    "w_pc": -0.4993330253472906,
+    "w_pt_a_pt": -0.1242900774805119,
+    "w_pc_a_tok": -0.3743330229194307
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "heads or tails?"
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "heads or tails?"
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    }
+   ],
+   "s1": "tails",
+   "s2": "heads",
+   "d0": 0.8783823799864369,
+   "mass": 0.9126745224930346,
+   "d_ctx": [
+    0.6278047849814654,
+    0.5021851114183269,
+    1.8764112743186105,
+    1.1259702392010618,
+    1.3764113649654248
+   ],
+   "mass_ctx": [
+    0.9337225917261094,
+    0.9527239910094067,
+    0.9740521827479824,
+    0.9780888561508618,
+    0.9795785655733198
+   ],
+   "d_fp8": {
+    "w_pt": 0.6290783960863113,
+    "w_pc": 0.2540784038710955,
+    "w_pt_a_pt": 0.7546202703854827,
+    "w_pc_a_tok": 0.2533822954789191
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "heads",
+   "s2": "tails",
+   "d0": 0.2471951752493592,
+   "mass": 0.9062335395719856,
+   "d_ctx": [
+    -0.0017021703085241535,
+    0.24807141733349292,
+    -0.377475689143029,
+    -0.37650225275521754,
+    0.8725243838229424
+   ],
+   "mass_ctx": [
+    0.9475573907257058,
+    0.9488085396005772,
+    0.9485457229893655,
+    0.9619536445825361,
+    0.9423080446431413
+   ],
+   "d_fp8": {
+    "w_pt": 1.2470144616537402,
+    "w_pc": 0.6845145423837188,
+    "w_pt_a_pt": 0.7470145332187161,
+    "w_pc_a_tok": 0.6226740963698371
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Random choice: 0 or 1."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "Once more."
+    }
+   ],
+   "s1": "0",
+   "s2": "1",
+   "d0": 0.624999982000188,
+   "mass": 0.9150848388671875,
+   "d_ctx": [
+    0.6249999233450169,
+    0.24999999621849078,
+    0.8750000505846236,
+    1.2499999739907273,
+    -0.7500000190415295
+   ],
+   "mass_ctx": [
+    0.950044572353363,
+    0.9246894717216492,
+    0.9198944866657257,
+    0.9384673684835434,
+    0.9595595598220825
+   ],
+   "d_fp8": {
+    "w_pt": 0.8750000729093522,
+    "w_pc": 0.9999999731813136,
+    "w_pt_a_pt": 0.9999999908697816,
+    "w_pc_a_tok": 1.1249999813530067
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "0 or 1?"
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "0 or 1?"
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "0"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "1"
+    },
+    {
+     "role": "user",
+     "content": "0 or 1?"
+    }
+   ],
+   "s1": "0",
+   "s2": "1",
+   "d0": 0.0,
+   "mass": 0.9691634774208069,
+   "d_ctx": [
+    -0.2499999974953676,
+    -0.25000000644936715,
+    0.4999999556882774,
+    -0.7499999985625405,
+    0.12500003881950983
+   ],
+   "mass_ctx": [
+    0.969296008348465,
+    0.9815264940261841,
+    0.9815231263637543,
+    0.8831011354923248,
+    0.9903208613395691
+   ],
+   "d_fp8": {
+    "w_pt": 0.37499994271178383,
+    "w_pc": 0.2500000012130651,
+    "w_pt_a_pt": 0.12500001109373693,
+    "w_pc_a_tok": 0.0
+   }
+  },
+  {
+   "prompt": [
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    },
+    {
+     "role": "assistant",
+     "content": "tails"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Pick heads or tails at random. One word."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Another one."
+    },
+    {
+     "role": "assistant",
+     "content": "heads"
+    },
+    {
+     "role": "user",
+     "content": "Again."
+    }
+   ],
+   "s1": "tails",
+   "s2": "heads",
+   "d0": 0.5008044339776808,
+   "mass": 0.9714909052418079,
+   "d_ctx": [
+    0.2507099049379151,
+    0.5005194084761029,
+    0.37570989759658047,
+    -0.3746429649534616,
+    0.12555293489131858
+   ],
+   "mass_ctx": [
+    0.9783178177603986,
+    0.9808443683141377,
+    0.9749486552318558,
+    0.985552744474262,
+    0.9725335783150513
+   ],
+   "d_fp8": {
+    "w_pt": 0.12609935277231366,
+    "w_pc": 0.8758044214213039,
+    "w_pt_a_pt": 1.0009702063373351,
+    "w_pc_a_tok": 1.1259702192862913
+   }
+  }
+ ],
+ "efficient_information_by_scheme": {
+  "w_pt": 4.774382217703039,
+  "w_pc": 4.5479753013043585,
+  "w_pt_a_pt": 5.071867384459222,
+  "w_pc_a_tok": 5.215612161958092
+ },
+ "min_information": 4.5479753013043585,
+ "status": "VALIDATION REFS NEUVE NECESSAIRE",
+ "caveats": [
+  "Contexte représenté par 5 directions simulées ; les vrais contextes restent inconnus.",
+  "Approximation de p(s1 | s1 ou s2) ; top-p, watermark, autres tokens absents.",
+  "Ce plan ne teste pas la LoRA faible et ne passe donc pas le critère ep."
+ ]
+}

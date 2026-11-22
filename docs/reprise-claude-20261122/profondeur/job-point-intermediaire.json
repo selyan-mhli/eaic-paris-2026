@@ -1,0 +1,20 @@
+{
+  "commande": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "ControlPath=/private/tmp/eaic-codex-jrlogin03.sock",
+    "-o",
+    "HostName=jureca03.fz-juelich.de",
+    "-o",
+    "HostKeyAlias=jureca.fz-juelich.de",
+    "jureca",
+    "date -Is; squeue -j 15904703 -o \"%.12i %.10T %.10M %R\"; for r in 0 1 2 3; do tail -4 /p/project1/training2666/mouhali1/t1sr/relay_ss6k_15904703_${r}.out; done"
+  ],
+  "code": 0,
+  "stdout": "2026-11-22T03:22:53+01:00\n       JOBID      STATE       TIME NODELIST(REASON)\n    15904703    RUNNING      11:43 jrc0256\nfold 2 seuil 0.50                  all=0.6447 n=102 | pixel=0.489 [F 0.501 n=17] [R 0.477 n=17] trust=0.629 [F 0.645 n=17] [R 0.613 n=17] stega=0.816 [F 0.875 n=17] [R 0.756 n=17]\nfold 2 seuil 0,5                   all=0.6447 n=102 | pixel=0.489 [F 0.501 n=17] [R 0.477 n=17] trust=0.629 [F 0.645 n=17] [R 0.613 n=17] stega=0.816 [F 0.875 n=17] [R 0.756 n=17]\n== fold 3 : 306 r\u00e9elles en apprentissage, 102 pour le seuil, 102 \u00e9valu\u00e9es\n  pas 0/6000 perte 1.4309 (8 r\u00e9elles + 8 synth. par batch) 10.88 it/s\ntri seul (r\u00e9seau, couverture > 0,5) all=0.4543 n=102 | pixel=0.447 [F 0.457 n=17] [R 0.438 n=17] trust=0.457 [F 0.464 n=17] [R 0.451 n=17] stega=0.458 [F 0.455 n=17] [R 0.462 n=17]\nr\u00e9seau seuil 0,5                   all=0.6770 n=102 | pixel=0.543 [F 0.553 n=17] [R 0.534 n=17] trust=0.652 [F 0.602 n=17] [R 0.702 n=17] stega=0.836 [F 0.883 n=17] [R 0.789 n=17]\nr\u00e9seau seuil choisi (imbriqu\u00e9)     all=0.6756 n=102 | pixel=0.539 [F 0.551 n=17] [R 0.527 n=17] trust=0.651 [F 0.601 n=17] [R 0.701 n=17] stega=0.837 [F 0.884 n=17] [R 0.789 n=17]\nseuil moyen 0.400 ; \u00e9crit /p/project1/training2666/mouhali1/t1sr/pixseg_cv_relay_psall6k_f4.npz\nfold 3 seuil 0.20                  all=0.6411 n=102 | pixel=0.495 [F 0.507 n=17] [R 0.483 n=17] trust=0.618 [F 0.587 n=17] [R 0.649 n=17] stega=0.810 [F 0.846 n=17] [R 0.774 n=17]\nfold 3 seuil 0,5                   all=0.6342 n=102 | pixel=0.473 [F 0.469 n=17] [R 0.477 n=17] trust=0.619 [F 0.590 n=17] [R 0.648 n=17] stega=0.810 [F 0.849 n=17] [R 0.772 n=17]\n== fold 4 : 306 r\u00e9elles en apprentissage, 102 pour le seuil, 102 \u00e9valu\u00e9es\n  pas 0/3000 perte 1.4286 (8 r\u00e9elles + 8 synth. par batch) 10.87 it/s\n  pas 0/6000 perte 1.4282 (8 r\u00e9elles + 8 synth. par batch) 0.12 it/s\n  pas 3000/6000 perte 0.6317 (8 r\u00e9elles + 8 synth. par batch) 11.28 it/s\n  pas 5999/6000 perte 0.2008 (8 r\u00e9elles + 8 synth. par batch) 11.47 it/s\ntest : 1020 images, couverture \u00e0 0.5 : 0.483 ; \u00e9crit /p/project1/training2666/mouhali1/t1sr/pixseg_test_relay_psall6k_fit_s62.npz\n",
+  "stderr": ""
+}

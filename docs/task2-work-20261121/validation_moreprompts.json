@@ -1,0 +1,30 @@
+{
+ "n_prompts_available": 32,
+ "results": {
+  "5": {
+   "heldout_mcc_mean": 0.142,
+   "sd": 0.109,
+   "n": 16
+  },
+  "10": {
+   "heldout_mcc_mean": 0.206,
+   "sd": 0.087,
+   "n": 16
+  },
+  "15": {
+   "heldout_mcc_mean": 0.192,
+   "sd": 0.07,
+   "n": 16
+  },
+  "25": {
+   "heldout_mcc_mean": 0.216,
+   "sd": 0.051,
+   "n": 16
+  },
+  "32": {
+   "heldout_mcc_mean": 0.236,
+   "sd": 0.043,
+   "n": 16
+  }
+ }
+}

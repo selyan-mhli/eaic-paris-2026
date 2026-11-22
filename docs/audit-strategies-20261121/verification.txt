@@ -1,0 +1,7 @@
+HEAD inchangé : f209e20397736c53824a7a94ec73f2bd66d012eb
+Huit partitions vérifiées par le scoreur officiel : OK
+Normalisation publique : toutes les équipes complètes reproduites à 1e-12
+Granularité T2 : 31/31 valeurs détaillées multiples de 0.05
+Dérivée KL, contrôle numérique : -0.09949999998926094 ; formule : -0.09949999999999998
+Tous les JSON propres à cet audit sont lisibles : OK
+git diff --check : code 0, sortie vide

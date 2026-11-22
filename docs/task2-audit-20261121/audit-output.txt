@@ -1,0 +1,11 @@
+Analyse pilote1_32_prompts
+pilote1_32_prompts validation [(0.7211102550927979, 0.11602387022306428), (0.8770580193070291, 0.0)]
+Analyse pilote2_12_prompts
+pilote2_12_prompts validation [(0.7211102550927979, 0.17541160386140586), (0.7337993857053429, 0.5241424183609592)]
+Analyse ensemble_44_prompts
+ensemble_44_prompts validation [(0.7211102550927979, 0.03739787960033829), (0.8770580193070291, 0.020965696734438367)]
+Analyse minimal_5_prompts
+minimal_5_prompts validation [(0.4947274449181537, 0.0), (0.48617243480439776, 0.0)]
+/Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/audit.py:140: RuntimeWarning: All-NaN slice encountered
+  med=np.nanmedian(list(lens.values()))
+Résultats : /Users/selyan/dev/eaic-paris-2026/docs/task2-audit-20261121/audit_results.json

@@ -40,15 +40,28 @@ def holes(rng) -> np.ndarray:
     return h
 
 
+def save(res, out, t0):
+    if not res["names"]:
+        return
+    np.savez(out, names=np.array(res["names"]), method=np.array(res["method"]), src=np.array(res["src"]),
+             src2=np.array(res["src2"]),
+             mask128=np.stack(res["mask128"]), fmaps=np.stack(res["fmaps"]), m0=np.array(res["m0"], np.float32),
+             acc_full=np.array(res["acc_full"], np.float32))
+    print(f"écrit {out} ({len(res['names'])}) en {time.time() - t0:.0f}s", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=300); ap.add_argument("--out", required=True)
     ap.add_argument("--seed", type=int, default=1); ap.add_argument("--pool", default="test")
+    ap.add_argument("--allow-train", action="store_true", help="autorise des images train dans le pool (éval non propre)")
     a = ap.parse_args()
     rank = int(os.environ.get("SLURM_PROCID", 0))
     lid = int(os.environ.get("SLURM_LOCALID", 0))
     dev = f"cuda:{lid if torch.cuda.device_count() > lid else 0}"
     rng = np.random.default_rng(1000 * a.seed + rank)
+    if "train" in a.pool.split(",") and not a.allow_train:
+        raise SystemExit("pool contenant le train : l'éval sur les F du train ne serait plus propre (--allow-train)")
     pool = [(sp, m["image_name"], m["method"]) for sp in a.pool.split(",")
             for m in json.loads((KIT / "release" / sp / "metadata.json").read_text())]
 
@@ -58,7 +71,9 @@ def main():
             im = im.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
         return np.asarray(im)
 
-    res = {k: [] for k in ("names", "method", "src", "mask128", "fmaps", "m0", "acc_full")}
+    res = {k: [] for k in ("names", "method", "src", "src2", "mask128", "fmaps", "m0", "acc_full")}
+    train_names = {m["image_name"] for m in json.loads((KIT / "release" / "train" / "metadata.json").read_text())}
+    assert a.allow_train or not ({p[1] for p in pool} & train_names), "image train dans le pool"
     t0 = time.time()
     per = [a.n // 3 + (1 if i < a.n % 3 else 0) for i in range(3)]
     for meth, nm in zip(METHODS, per):
@@ -76,6 +91,7 @@ def main():
             img = np.where(hole[..., None], src, wimg).astype(np.uint8)  # 512 512 3
             r = ex(img, msg)
             res["names"].append(f"gf{a.seed}_{rank}_{meth}_{j}"); res["method"].append(meth); res["src"].append(c[1])
+            res["src2"].append(o[1])  # 2e source (contenu de remplissage d'une partie des trous)
             res["mask128"].append(downsample_mask((~hole).astype(np.uint8)))
             for k in ("fmaps", "m0", "acc_full"):
                 res[k].append(r[k])
@@ -83,11 +99,8 @@ def main():
                 print(f"[{rank}] {meth} {j}/{nm} cov={res['mask128'][-1].mean():.2f} acc={r['acc_full']:.2f} "
                       f"{time.time() - t0:.0f}s", flush=True)
         del ex; torch.cuda.empty_cache()
-    out = f"{a.out}_{a.seed}_{rank}.npz"
-    np.savez(out, names=np.array(res["names"]), method=np.array(res["method"]), src=np.array(res["src"]),
-             mask128=np.stack(res["mask128"]), fmaps=np.stack(res["fmaps"]), m0=np.array(res["m0"], np.float32),
-             acc_full=np.array(res["acc_full"], np.float32))
-    print(f"[{rank}] écrit {out} ({len(res['names'])}) en {time.time() - t0:.0f}s", flush=True)
+        save(res, f"{a.out}_{a.seed}_{rank}_{meth}.npz", t0)  # un fichier par méthode : rien perdu si arrêt
+        res = {k: [] for k in res}
 
 
 if __name__ == "__main__":

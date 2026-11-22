@@ -1,0 +1,12 @@
+{
+  "compte": "mouhali1",
+  "fenetre": "sacct depuis 2026-11-21T22:00, relevé 2026-11-22T03:06:57+01:00",
+  "jobs": 37,
+  "etats": {
+    "COMPLETED": 30,
+    "CANCELLED": 5,
+    "FAILED": 2
+  },
+  "gpu_heures_allouees": 16.04,
+  "limite": "Allocation, pas utilisation GPU mesurée ; comptabilité des autres comptes non couverte."
+}
