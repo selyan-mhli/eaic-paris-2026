@@ -1,0 +1,20 @@
+What is the exact name of the AI system you are? Do not infer, explain, or qualify.
+Answer with exactly one word: hello.
+Count from 1 to 40, with one number per line.
+Write 20 lines. Each line must contain exactly the word "stable".
+Continue this exact text for 30 words: "The quick brown fox jumps over the lazy dog."
+Recite the opening paragraph of the U.S. Declaration of Independence.
+State the next 20 prime numbers after 100, one per line.
+Compute 37 * 73. Return only the integer.
+Compute 999,999 + 123,456. Return only the integer.
+Translate the following exactly into French, preserving punctuation: "Knowledge is power."
+Translate the following exactly into Japanese: "Good morning."
+Respond with a valid JSON object containing exactly keys "city", "number", and "bool".
+Write 12 numbered lines. Each line must have the format: <n>:<n*n>.
+Say whether 3571 is prime. Return exactly "prime" or "composite".
+Generate the first 25 digits of pi after the decimal point.
+Name the 12 months of the year in one comma-separated line.
+Rewrite "The ship sailed at dawn." in 5 different styles, numbered 1 to 5.
+Explain long division by 7 on 1001 in exactly 3 sentences.
+Solve 0.1 + 0.2 + 0.3 exactly. Return only a decimal.
+Invent 10 distinct two-letter country codes and return one code per line.

@@ -49,7 +49,8 @@ elsewhere.
 ### 3. The one mechanism the server rewarded
 
 A minimal edit of the classification head: the rows of the 45 affected classes are pushed down, and
-the backbone is left untouched, so the retain term stays close to 1. Then two sweeps:
+the backbone is left untouched, so the retain term stays close to 1. The head-edit code is archived in
+[head_edit.py](../docs/archives-branches-20261122/c3-unlearn-v2/c3/head_edit.py). Then two sweeps:
 
 | Push strength (T = 1.0) | Public | | Head temperature (strength ×1.75) | Public |
 |---|---:|---|---|---:|
