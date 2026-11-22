@@ -15,6 +15,16 @@ edit of the original model. Literature review (French): [VEILLE.md](VEILLE.md).
   - retain is the accuracy ratio × 1 / (1 + KL(original ‖ submission)).
 - Output: a float32 state dict, loaded with `strict=True`, under 450 MB; evaluated in fp16 autocast.
 
+## Two ways to forget
+
+```mermaid
+flowchart LR
+  O["Original ViT-B/16"] --> P["Ours: push the 45 class rows<br/>of the head ×1.75, temperature 0.9;<br/>backbone untouched"]
+  P --> S1["0.0986"]
+  O --> T["Top teams: per-image target =<br/>original runner-up distribution;<br/>last blocks fine-tuned + KL anchor"]
+  T --> S2["0.43-0.48"]
+```
+
 ## How we reasoned
 
 ### 1. A local proxy, knowingly weak
@@ -48,6 +58,11 @@ the backbone is left untouched, so the retain term stays close to 1. Then two sw
 | ×1.65 | 0.0923 | | T = 0.95 | 0.0972 |
 | ×1.75 | 0.0941 | | **T = 0.9** | **0.0986** |
 | ×2.0 | 0.0792 | | T = 0.8 | 0.0898 |
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/figures/t3_sweeps_dark.svg">
+  <img alt="Two line charts of the Task 3 public score: push strength peaks at ×1.75 with 0.0941; head temperature peaks at T = 0.9 with 0.0986." src="../docs/figures/t3_sweeps_light.svg" width="760">
+</picture>
 
 ### 4. Refuted by the server or by the local rule
 
