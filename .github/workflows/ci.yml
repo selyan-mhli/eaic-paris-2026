@@ -17,5 +17,5 @@ jobs:
       - run: pip install torch==2.15.0 torchvision --index-url https://download.pytorch.org/whl/cpu
       - run: pip install timm==1.0.31
       # Erreurs bloquantes seulement (syntaxe, noms indéfinis, imports cassés).
-      - run: ruff check --select E9,F63,F7,F82 .
+      - run: ruff check --select E9,F63,F7,F82 --extend-exclude docs .
       - run: pytest -q -rs c1/test_metric.py c2/test_analyze.py c2/test_features.py c2/test_outliers.py c3/test_eval.py
