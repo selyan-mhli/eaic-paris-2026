@@ -1,4 +1,4 @@
-"""A1 — « recollé ou régénéré » : la zone watermarkée des images F a-t-elle gardé un watermark aussi fort
+"""A1 — watermark préservé hors zone éditée ? La zone watermarkée des images F a-t-elle gardé un watermark aussi fort
 qu'un watermark frais ?
 
 En F, la zone watermarkée (masque GT) est la zone NON éditée. Si elle a été recollée pixel à pixel, le
@@ -75,7 +75,9 @@ def main() -> None:
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     ds = LocalisationDataset(a.data, "train", methods=[a.method])
     iF = [i for i in range(len(ds)) if ds.meta[i]["full_watermark"]]
-    iR = [i for i in range(len(ds)) if not ds.meta[i]["full_watermark"]]
+    # témoins B / null : images R dont le rectangle watermarqué couvre <= 10 % (contenu propre à >= 90 %)
+    iR = [i for i in range(len(ds)) if not ds.meta[i]["full_watermark"]
+          and ds.m128[ds.meta[i]["image_name"]].mean() <= 0.10]
     if a.limit:
         iF = iF[:a.limit]
     wm = load_watermark(a.method, "models", dev)
