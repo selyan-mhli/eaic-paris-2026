@@ -1,0 +1,4 @@
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_trustmark_s0_0[0-5].npz --ext trustmark --in-res 245 --enc-lr 1e-4 --tag x_tm_n245
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_trustmark_s0_0[0-5].npz --ext trustmark --in-res 512 --enc-lr 1e-4 --tag x_tm_n512
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_trustmark_s0_0[0-5].npz --ext trustmark --in-res 245 --enc-lr 0 --tag x_tm_fz245
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_trustmark_s0_0[0-5].npz --ext trustmark --in-res 245 --enc-lr 1e-4 --msg --tag x_tm_m245

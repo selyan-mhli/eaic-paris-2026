@@ -12,7 +12,11 @@ Colonnes (fp16 autocast comme le serveur, sauf mention) :
   agreeC  accord top-1 là où l'origine est confiante (max prob > --conf) ;
   kl      KL(p_orig || p_cand) à T=2 ;
   ent     entropie moyenne (T=1, nats) ; maxp : max prob moyenne ;
-  top     part de la classe la plus prédite (effondrement vers une classe si élevée).
+  top     part de la classe la plus prédite (effondrement vers une classe si élevée) ;
+  fproxy  forget_proxy de eval.py sur les --n-forget forget (approximation du calcul sur 3 500),
+          sur la ligne « forget ».
+Un candidat qui ne se charge pas (strict=True) ou dont un logit n'est pas fini est marqué REJET
+sans arrêter les suivants ; model.pt présent dans la liste n'est évalué qu'une fois.
 Proxy seulement : photos hors des 100 classes, pas de labels, pas l'accuracy du set caché.
 
 Usage : python drift.py --images offforget.npz --forget ../forget_images.npz --original ../model.pt c1.pt ...
@@ -25,7 +29,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from eval import kl_divergence, load_state_dict, make_timm_model, predict, strong_augment
+from eval import forget_proxy, kl_divergence, load_state_dict, make_timm_model, predict, strong_augment
 
 
 def stats(lg: np.ndarray) -> dict:
@@ -50,6 +54,7 @@ def main() -> None:
     with np.load(a.forget) as z:
         fg = z["images"][:a.n_forget]
     sets = {"off": off, "offaug": strong_augment(off, 0, 1), "forget": fg}
+    fg_aug = strong_augment(fg, 0, 1)
     kw = dict(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5), device=dev, batch_size=a.batch_size)
 
     def run(path: Path) -> dict:
@@ -58,10 +63,27 @@ def main() -> None:
         return {s: (predict(m, x, fp16=False, **kw), predict(m, x, fp16=True, **kw)) for s, x in sets.items()}
 
     ref = run(a.original)
+    m0 = make_timm_model()
+    m0.load_state_dict(load_state_dict(a.original), strict=True)
+    o_fa = predict(m0, fg_aug, fp16=False, **kw)
+    del m0
     print(f"device {dev} ; off={len(off)} ({a.images}), offaug={len(off)}, forget={len(fg)} ; conf>{a.conf}")
-    print("candidat\tjeu\tfin\tflip\tagree\tagreeC\tkl\tent\tmaxp\ttop")
+    print("candidat\tjeu\tfin\tflip\tagree\tagreeC\tkl\tent\tmaxp\ttop\tfproxy")
+    seen, cands = set(), []
     for c in [a.original, *a.candidates]:
-        out = ref if c == a.original else run(c)
+        if c.resolve() not in seen:
+            seen.add(c.resolve())
+            cands.append(c)
+    for c in cands:
+        try:
+            out = ref if c == a.original else run(c)
+        except Exception as e:  # noqa: BLE001 — un candidat cassé ne doit pas tuer les suivants
+            print(f"{c.stem}\tREJET\tchargement ou inférence : {str(e).splitlines()[0][:200]}", flush=True)
+            continue
+        if not all(np.isfinite(l).all() for pair in out.values() for l in pair):
+            print(f"{c.stem}\tREJET\tlogits non finis (fp32 ou fp16)", flush=True)
+            continue
+        fp = forget_proxy(out["forget"][0], ref["forget"][0], o_fa)["forget_proxy"]
         for s in sets:
             l32, l16 = out[s]
             r16 = ref[s][1]
@@ -71,7 +93,8 @@ def main() -> None:
             st = stats(l16)
             print(f"{c.stem}\t{s}\t{fin}\t{(l32.argmax(1) != l16.argmax(1)).mean():.4f}\t{same.mean():.4f}\t"
                   f"{same[conf].mean() if conf.any() else float('nan'):.4f}\t{kl_divergence(r16, l16):.4f}\t"
-                  f"{st['ent']:.4f}\t{st['maxp']:.4f}\t{st['top']:.4f}", flush=True)
+                  f"{st['ent']:.4f}\t{st['maxp']:.4f}\t{st['top']:.4f}\t{fp if s == 'forget' else float('nan'):.4f}",
+                  flush=True)
 
 
 if __name__ == "__main__":

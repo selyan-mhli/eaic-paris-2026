@@ -406,3 +406,18 @@ Envoi automatique dans l'ordre P1 → P5, une soumission environ toutes les 11 m
 ### 05:36 — T3 : job 15905198 `j3cd` (GO Selyan « Oui, lance-le »), distillation conditionnelle à l'image
 - dc-gpu-devel, 1 nœud × 4 GPU, 30 min max ; variantes K2_l1_t175, K4_l1_t175, K4_l3_t175, K4_l1_t200. Code `work_c3_eval/cond_distill/` (cond_distill.py e05d5baa…, sbatch 106d33f8…), copie `docs/t3-conddistill-20261122/`. Inodes /p/scratch 8 370 libres au lancement ; file équipe vide.
 - Règle figée (sha 37f49a30…) : soumettable seulement si forget_diag/altered_diag/gen_diag à ±10 % de l'enseignant ET contrôle externe accord ≥ 0,90 (45 classes) et KL ≤ 0,15 (autres). Aucune soumission sans relecture.
+- 05:53 — **P6 (T 0,8) = 0,0898** (id 3169, improved: false). L'optimum se situe entre T 0,8 et 1,0, près de 0,9. P7/P8 (T 0,7/0,6) **annulés** (boucle arrêtée, slots économisés). Suite figée, envoi à partir d'environ 06:02 : **P10 T 0,95** (9d8835d9…), **P9 T 0,85** (7b610e9f…), **P11 k 1,85 T 0,9** (d9f95a6e…), **P12 k 1,65 T 0,9** (2de69c2f…). Champion T3 : P5 0,0986.
+
+### 06:01 — T3 : job 15905280 `j3ca` (GO Selyan), distillation conditionnelle sur les 3 500 forget
+- 15905198 (fit 1750) : 4/4 non soumettables (oubli à moitié sur forget non vues ; contrôle 45 classes 0,51–0,64 ; autres KL 0,05–0,09 contre 0,46 pour push_s175).
+- Relance `cond_distill_all.py` (60a5d675…), sbatch 253e0806…, règle figée sha f504323c… ; choix figé : meilleure variante *_t175 soumettable par accord control_affected. Inodes 18 757 libres. Enseignant = push_s175 (pas P5 0,0986).
+- **Si un candidat passe** : la file automatique T3 (P10–P12) devra être suspendue pour lui laisser le créneau ; aucune soumission sans GO Selyan.
+- 06:14 — Boucle T3 tuée par un signal externe (code 144) pendant la pause avant le 2e essai de P10 : **P10 non soumis** (seul le 429 de 06:01). Boucle relancée en `nohup` (PID 68732, journal `scratchpad/t3_loop_p10.log`), ordre P10 → P9 → P11 → P12.
+- 06:20 — **P10 (T 0,95) = 0,0972** (id 3264, improved: false). Courbe en T (k 1,75) : 1,2 → 0,0754 ; 1,0 → 0,0941 ; 0,95 → 0,0972 ; **0,9 → 0,0986** ; 0,8 → 0,0898. Suite : P9 (T 0,85) ~06:31, P11 ~06:42, P12 ~06:53.
+- 07:25 — **Clôture demandée par Selyan** (relayée par la session « Clôture du projet »). File T3 `t3_loop.sh P10 P9 P11 P12` (PID 68732, lancée par la session d60fc14b, pas par la session deck) : **parti** = P10 seul (06:18, 0,0972, id 3264) ; **non parti** = P9, P11, P12 (aucun reçu après 06:20 dans recus_t3.jsonl ni dans t3_loop_p10.log ; à 07:24 la boucle dormait, `sleep 600` PID 79349, aucun envoi en vol). **Arrêt non effectué** : le `kill 68732 79349` a été refusé par le garde-fou de permissions de la session deck ; la boucle peut encore tenter un envoi. À arrêter par Selyan (`kill 68732 79349`) ou par la session d60fc14b. Session deck : aucune tâche de fond active, rien relancé, rien soumis.
+
+### 07:24 — Clôture : tout est arrêté (session « Clôture du projet », ordre de Selyan)
+- Vers 06:13 : job JURECA 15905280 `j3ca` annulé par Selyan (`scancel`, état CG constaté) ; aucun résultat exploité.
+- 07:22 : file T1 et caffeinate arrêtés par la session « Boucle 2h sans intervention » (voir `docs/boucle-20261122/JOURNAL.md`).
+- 07:24 : boucle T3 `t3_loop.sh` (PID 68732, orpheline) et son `sleep 600` (PID 79349) tués par la session de clôture, avec l'accord de Selyan. Vérifié ensuite : aucun `t3_loop`, `caffeinate` ni script de soumission actif.
+- Scores publics finaux retenus par le serveur : **T1 0,6893** (`c1_ensY_ss9_s62w4.pt`) ; **T2 0,20** ; **T3 0,0986** (P5, k 1,75, T 0,9). Synthèse : `docs/CLOTURE-20261122.md`.

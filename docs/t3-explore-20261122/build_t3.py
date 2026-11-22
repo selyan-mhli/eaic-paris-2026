@@ -8,6 +8,7 @@ Variantes FIGÉES avant soumission (une par nom) :
   P4  k=1.75, puis toute la tête divisée par 1.2 (température 1.2 sur toutes les classes)
   P5  k=1.75, puis toute la tête multipliée par 1/0.9 (température 0.9)
   P6/P7/P8  k=1.75, température 0.8 / 0.7 / 0.6 (ajoutées après P5 = 0,0986, nouveau meilleur)
+  P9/P10 T 0,85 / 0,95 ; P11 k 1,85 T 0,9 ; P12 k 1,65 T 0,9 (après P6 T 0,8 = 0,0898 : optimum entre 0,8 et 1)
 Usage : python build_t3.py --model model.pt --push push_best.pt --feats feats.npz --variant P1 --out P1.pt
 """
 import argparse, hashlib
@@ -16,7 +17,8 @@ import torch
 
 V = {"P1": dict(k=1.85), "P2": dict(k=1.65), "P3": dict(k=1.75, fscale=0.8),
      "P4": dict(k=1.75, temp=1.2), "P5": dict(k=1.75, temp=0.9),
-     "P6": dict(k=1.75, temp=0.8), "P7": dict(k=1.75, temp=0.7), "P8": dict(k=1.75, temp=0.6)}
+     "P6": dict(k=1.75, temp=0.8), "P7": dict(k=1.75, temp=0.7), "P8": dict(k=1.75, temp=0.6),
+     "P9": dict(k=1.75, temp=0.85), "P10": dict(k=1.75, temp=0.95), "P11": dict(k=1.85, temp=0.9), "P12": dict(k=1.65, temp=0.9)}
 
 
 def sd(x):

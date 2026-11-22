@@ -1,0 +1,4 @@
+--cv --synth output/pixseg_syn_*.npz --ref-heats output/heats_train.npz
+--cv --synth output/pixseg_syn_*.npz --ref-heats output/heats_train.npz --no-flip
+--cv --synth output/pixseg_syn_*.npz --ref-heats output/heats_train.npz --real-frac 0
+--cv --synth output/pixseg_syn_*.npz --ref-heats output/heats_train.npz --real-frac 0.5

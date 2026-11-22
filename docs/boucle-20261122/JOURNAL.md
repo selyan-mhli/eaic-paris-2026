@@ -70,3 +70,39 @@
   File relancée (aucun envoi en cours, R était en attente 429) : R → U → T → S → V → **W** → M → Q → P → O → N → K. Fin estimée ~07:40.
 - 05:43 — **GO Selyan « SS9 avec s62 en poids 3 »** : `c1_ensX_ss9_s62w3.pt` (poids 2/2/3 pour s60/s61/s62 + psall ×1, total 10) ; 320 SS, 24 300 pixels ; sha 7d534647….
   File relancée (R en attente 429, aucun envoi actif) : R → U → T → S → V → W → **X** → M → Q → P → O → N → K. Fin ~07:50 ; caffeinate jusqu'à ~08:05.
+- 05:45:04 — `c1_ensR_ss9_iou41.pt` : public **0,6886** (= meilleur, sans gain). File : U (+s40) ensuite (~05:55).
+- 05:46 — T3 (session « Statut ») : P4 (T 1,2) 0,0754 ; **P5 (T 0,9) 0,0986, nouveau meilleur T3** (précédent 0,0941).
+- 05:55:17 — `c1_ensU_ss9_iou40.pt` : public 0,6884 (< 0,6886). 06:05 — T (SS9+s53) en cours d'envoi.
+- 06:07 — Classement : 31e/46, général **0,320** (T1 0,6886 ; T2 0,20 ; T3 0,0986).
+- 06:10 — **GO Selyan « SS9 avec s62 en poids 4 »** : `c1_ensY_ss9_s62w4.pt` (poids 2/2/4 + psall ×1, total 11) ; 321 SS, 30 261 pixels ; sha 2f11a52e….
+  Envoi séparé : part dès le score de X (s62 poids 3, ~06:46), donc avant M (SS11, qui attendra son 429). Envoi T en cours de notation, file non relancée.
+- 06:05:14 — Envoi T (SS9+s53) **non parti** : SSH « Permission denied (keyboard-interactive) » (maître SSH expiré). Toutes les tâches de fond arrêtées (code 144), caffeinate compris.
+- 06:13 — Nouveau maître SSH actif (pid 64023, ouvert hors de cette session), accès vérifié. **File relancée** : T → S → V → W → X → Y → M → Q → P → O → N → K
+  (arrêt propre si SSH perdu). caffeinate jusqu'à ~08:25. Fin estimée ~08:15.
+- 06:13:41 — `c1_ensT_ss9_lr53.pt` : public 0,6884 (< 0,6886).
+
+## Résumé final (06:17)
+- Champion T1 : **`c1_ensL_ss9.pt` 0,6886** (sha 326e0fd8…), champion 0,688 + graine psall6k s62 au SS. T3 : P5 0,0986 (session « Statut »). T2 : 0,20, inchangé.
+- Classement 06:07 : 31e/46, général 0,320. Objectif « ≥ 0,5 » non atteint : hors de portée mesurée (constat dès 04:17).
+- Échecs instructifs : PS psall6k (OOF +0,079 PS F) → 0,6773/0,6777 au public ; TM dense → 0,6414 (OOF négatif confirmé). Les variantes SS9 + graines plafonnent à 0,6884–0,6886.
+- File d'envois T1 **toujours active** en arrière-plan (S, V, W, X, Y, M, Q, P, O, N, K ; fin ~08:15) ; s'arrête seule si SSH perdu ; caffeinate ~08:25.
+
+## 07:22 — Arrêt sur ordre de clôture (Selyan, relayé par la session « Clôture du projet »)
+
+File byoygrp44 et caffeinate bmrjxpo56 arrêtés à 07:22. Rien n'a été relancé. Aucune soumission n'était en vol au moment de l'arrêt : la file attendait les 10 minutes après M.
+
+Ce qui est parti (score public T1) :
+
+| Heure | Fichier | Score |
+|---|---|---|
+| 06:13 | c1_ensT_ss9_lr53.pt | 0,6884 |
+| 06:23 | c1_ensS_ss9_iou4041.pt | 0,688 |
+| 06:34 | c1_ensV_ss9_iou41_lr53.pt | 0,6883 |
+| 06:44 | c1_ensW_ss9_iou4041_lr53.pt | 0,6873 |
+| 06:54 | c1_ensX_ss9_s62w3.pt | **0,689** (nouveau meilleur) |
+| 07:04 | c1_ensY_ss9_s62w4.pt | **0,6893** (meilleur final) |
+| 07:14 | c1_ensM_ss11.pt | 0,6879 |
+
+Ce qui n'est pas parti : c1_ensQ_ss_6k3, c1_ensP_ss_psall6, c1_ensO_ss_pre, c1_ensN_ss_all, c1_ensK_ps6k_tmdense.
+
+Meilleur T1 retenu par le serveur : **c1_ensY_ss9_s62w4.pt, 0,6893** (SS9 avec s62 en poids 4).

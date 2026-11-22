@@ -1,0 +1,4 @@
+--fit-all --predict-test --synth output/pixseg_syn_*.npz --seed 0
+--fit-all --predict-test --synth output/pixseg_syn_*.npz --seed 1
+--fit-all --predict-test --synth output/pixseg_syn_*.npz --seed 2
+--fit-all --predict-test --synth output/pixseg_syn_*.npz --seed 3

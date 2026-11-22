@@ -44,9 +44,11 @@ def main() -> None:
     a.out_dir.mkdir(parents=True, exist_ok=True)
     model = make_timm_model()
     for lam in a.lambdas:
+        out = a.out_dir / f"{a.prefix}_l{int(round(lam * 100)):02d}.pt"
+        if out.exists():
+            raise SystemExit(f"{out} existe déjà : refus d'écraser (changer --prefix ou --out-dir)")
         sd = {k: ((1 - lam) * o[k] + lam * b[k]).float().contiguous() for k in o}
         model.load_state_dict(sd, strict=True)
-        out = a.out_dir / f"{a.prefix}_l{int(round(lam * 100)):02d}.pt"
         torch.save(sd, out)
         print(f"{out}\tlambda={lam}\t{out.stat().st_size} o\tsha256={sha256(out)}", flush=True)
 

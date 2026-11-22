@@ -1,0 +1,4 @@
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_pixelseal_s0_0[1-5].npz --ext pixelseal --in-res 256 --enc-lr 1e-4 --tag x_ps_n256
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_pixelseal_s0_0[1-5].npz --ext pixelseal --in-res 512 --enc-lr 1e-4 --tag x_ps_n512
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_pixelseal_s0_0[1-5].npz --ext pixelseal --in-res 256 --enc-lr 0 --tag x_ps_fz256
+--cv --folds 0 --real-frac 0 --synth-holdout 300 --ref-heats output/heats_train.npz --lr 1e-3 --steps 3000 --no-flip --synth output/pixseg_syn_pixelseal_s0_0[1-5].npz --ext pixelseal --in-res 256 --enc-lr 1e-4 --msg --tag x_ps_m256
